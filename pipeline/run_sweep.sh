@@ -28,6 +28,7 @@ case "$COF" in
     conda activate boltz 2>/dev/null
     command -v boltz >/dev/null || { say "!! boltz 없음"; exit 1; }
     export BOLTZ_CACHE="${BOLTZ_CACHE:-$DATA/boltz_cache}"; mkdir -p "$BOLTZ_CACHE"   # 가중치·CCD: 홈(~/.boltz) 대신 /mnt/data
+    MIN_MSA="${MIN_MSA:-2}"   # ⚠️ Boltz만: 순수 single-seq(1행)서 데이터로더 폭주(수십GB·stall) → <2서열 rung skip
     EXT="yaml"
     RUN(){ ( cd "$2" && boltz predict "$1" --out_dir results --cache "$BOLTZ_CACHE" --no_kernels --diffusion_samples "$SAMP" >"$3" 2>&1 ); }
     DONE(){ find "$1/results" -name '*_model_*.cif' 2>/dev/null | grep -q .; } ;;
@@ -38,6 +39,7 @@ case "$COF" in
     # 모든 Protenix 공개 체크포인트 = 학습컷오프 2021-09-30(AF3정렬) → post-2023-06 세트에 leakage-free.
     # 표의 2025/2026은 출시일일 뿐(컷오프 아님). 기본=권장·최강 v1.0.0.
     PROT_MODEL="${PROT_MODEL:-protenix_base_default_v1.0.0}"
+    MIN_MSA="${MIN_MSA:-1}"   # single-seq도 실행(공진화 0 극단점 = 편향 완전제거)
     EXT="json"
     # 커널 JIT 회피 3중: LAYERNORM_TYPE=torch(env) + 삼각커널 torch + fusion off → 무인 실행 시 컴파일 실패-루프 방지
     RUN(){ ( cd "$2" && protenix pred -i "$1" -o results -n "$PROT_MODEL" -s "$SEED" -e "$SAMP" \
@@ -47,6 +49,7 @@ case "$COF" in
     conda activate "${CHAI_ENV:-chai}" 2>/dev/null
     command -v chai-lab >/dev/null || { say "!! chai-lab 없음 (conda activate ${CHAI_ENV:-chai})"; exit 1; }
     export CHAI_DOWNLOADS_DIR="${CHAI_DOWNLOADS_DIR:-$DATA/chai_downloads}"; mkdir -p "$CHAI_DOWNLOADS_DIR"   # 가중치: 홈 대신 /mnt/data
+    MIN_MSA="${MIN_MSA:-1}"   # ESM-2 PLM 내장 → single-seq(MSA-free)가 설계상 유효, 실행
     EXT="fasta"    # make_input(chai)가 FASTA + $out/msa/*.aligned.pqt(항원, 파일명=서열해시) 생성. 항체=pqt없음→single-seq
     # chai-lab fold는 출력 폴더가 이미 있으면 실패 → 미완성 results 제거 후 실행(DONE이면 여기 안 옴)
     RUN(){ rm -rf "$2/results"; ( cd "$2" && chai-lab fold --msa-directory "$2/msa" "$1" results >"$3" 2>&1 ); }
@@ -74,6 +77,10 @@ while IFS=, read -r target pdb group ab dirtype ag_chains label; do
       map="${map:+$map,}$c=$a3m"
     done
     [ "$ok" = 1 ] || continue
+    # 최소 서열 수(항원 사슬 중 최소) < MIN_MSA → 이 모델은 skip. Boltz(MIN_MSA=2)만 single-seq rung 건너뜀; Chai/Protenix(1)는 실행.
+    minseq=1000000
+    for c in "${AGC[@]}"; do n=$(grep -c '^>' "$LADDIR/$target/$c/rung$r.a3m" 2>/dev/null || echo 0); [ "$n" -lt "$minseq" ] && minseq=$n; done
+    if [ "$minseq" -lt "$MIN_MSA" ]; then say "  skip $target rung$r ($COF: ${minseq}서열 < MIN_MSA=$MIN_MSA)"; n_skip=$((n_skip+1)); continue; fi
     mkdir -p "$out"
     inp="$out/input.$EXT"
     python "$HERE/make_input.py" --cofolder "$COF" --chains "$cj" --ag-a3m "$map" --dir "$out" --out "$inp" >/dev/null \
