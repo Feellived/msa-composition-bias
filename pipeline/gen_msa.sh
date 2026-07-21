@@ -7,7 +7,7 @@
 # ⚠️ MSA_CMD를 서버 colabfold에 맞게 확인(기본 colabfold_batch --msa-only).
 set -uo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"; cd "$HERE" || exit 1
-DATA="${DATA:-/mnt/data/admuser/msadepth}"; LADDIR="$DATA/ladders"; RUNGS="${RUNGS:-6}"
+DATA="${DATA:-/mnt/data/admuser/msadepth}"; LADDIR="$DATA/ladders"; RUNGS="${RUNGS:-12}"   # 12단(깊이 촘촘)
 DIVERSE="${DIVERSE:-$HERE/../runs_diverse}"; LIST="${LIST:-$HERE/sweep_targets.csv}"; ONLY="${ONLY:-}"
 # 항원 서열 → a3m. 서버 colabfold에 맞게 조정. 입력=단일서열 fasta, 출력=<outdir>/*.a3m
 MSA_CMD="${MSA_CMD:-colabfold_batch --msa-only}"
