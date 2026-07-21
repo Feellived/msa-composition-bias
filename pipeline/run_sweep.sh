@@ -4,11 +4,12 @@
 # 예산 소진 시 깔끔 정지, 재실행 시 self-heal(출력 있으면 skip).
 #   bash run_sweep.sh boltz 11     # Boltz, 11시간(반나절/밤샘)
 #   bash run_sweep.sh protenix 54  # Protenix, 주말
+#   bash run_sweep.sh chai 11      # Chai-1 (CHAI_ENV=chai)
 #   SMOKE=1 bash run_sweep.sh boltz 1   # 1건만
 set -uo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"          # .../consensus_docking/dataset
 cd "$HERE" || exit 1
-COF="${1:?boltz|protenix}"; HOURS="${2:-11}"
+COF="${1:?boltz|protenix|chai}"; HOURS="${2:-11}"
 DATA="${DATA:-/mnt/data/admuser/msadepth}"      # ⚠️ 대용량 출력 = /mnt/data(홈 금지)
 LADDIR="$DATA/ladders"; RUNGS="${RUNGS:-6}"; SAMP="${SAMP:-5}"; SEED="${SEED:-0}"; SMOKE="${SMOKE:-0}"
 DIVERSE="${DIVERSE:-$HERE/../runs_diverse}"      # C 재활용 위치(서버 확인)
@@ -33,7 +34,14 @@ case "$COF" in
     RUN(){ ( cd "$2" && protenix pred -i "$1" -o results -n "$PROT_MODEL" -s "$SEED" -e "$SAMP" \
              --trimul_kernel torch --triatt_kernel torch >"$3" 2>&1 ); }
     DONE(){ find "$1/results" -name '*sample*.cif' 2>/dev/null | grep -q .; } ;;
-  *) say "지원: boltz|protenix (chai 추후)"; exit 1;;
+  chai)
+    conda activate "${CHAI_ENV:-chai}" 2>/dev/null
+    command -v chai-lab >/dev/null || { say "!! chai-lab 없음 (conda activate ${CHAI_ENV:-chai})"; exit 1; }
+    EXT="fasta"    # make_input(chai)가 FASTA + $out/msa/*.aligned.pqt(항원, 파일명=서열해시) 생성. 항체=pqt없음→single-seq
+    # chai-lab fold는 출력 폴더가 이미 있으면 실패 → 미완성 results 제거 후 실행(DONE이면 여기 안 옴)
+    RUN(){ rm -rf "$2/results"; ( cd "$2" && chai-lab fold --msa-directory "$2/msa" "$1" results >"$3" 2>&1 ); }
+    DONE(){ find "$1/results" -name '*.cif' 2>/dev/null | grep -q .; } ;;
+  *) say "지원: boltz|protenix|chai"; exit 1;;
 esac
 
 say "=== sweep $COF | 예산 ${HOURS}h | rungs $RUNGS | samples $SAMP | out $DATA/$COF ==="
