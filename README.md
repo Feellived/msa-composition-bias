@@ -72,7 +72,12 @@ bash gen_msa.sh
 # 생성 (GPU) — 시간-박스 청크, self-heal 재개
 SMOKE=1 bash run_sweep.sh boltz 1      # 타이밍 스모크
 bash run_sweep.sh boltz 11             # 밤샘 / 54 = 주말
+
+# 채점 (CPU, 생성과 병렬 — 복합체 끝나는 대로 흘려보내며 채점)
+python dockq_sweep.py --models boltz protenix   # → results/dockq_sweep.csv (Neff80 · best DockQ)
 ```
+
+환경·설치 = [`requirements.md`](requirements.md) (env별 패키지·DockQ 설치).
 
 자세한 서버 실행 흐름 = [`pipeline/README.md`](pipeline/README.md) · 데이터 획득·저장(provenance) = [`pipeline/DATA.md`](pipeline/DATA.md).
 원천 데이터(SAbDab summary) 다운로드 = `bash pipeline/fetch_sabdab.sh` (구조는 `fetch_structures.py`가 RCSB에서). 대용량은 `/mnt/data` 권장(홈 디스크 보호).
@@ -94,9 +99,10 @@ bash run_sweep.sh boltz 11             # 밤샘 / 54 = 주말
 
 - [x] 데이터셋 설계·검증·lock (49 복합체, A/B·C 전부 self-contained) · 에피토프 분류기 6/6 참조 검증
 - [x] Neff80 사다리 빌더 · 생성 dispatcher(시간-박스 재개형) · 입력 생성기(다사슬 항원)
+- [x] DockQ 채점기(`dockq_sweep.py`) · 환경 문서(`requirements.md`)
 - [ ] 전체 depth-sweep 생성 (Boltz → Protenix → Chai, 청크)
-- [ ] depth-response 분석 (rescue 특이성 · sweet-spot · 선택 · 편향센서)
-- [ ] wet 검증 루프 (alanine scanning · BLI epitope binning)
+- [ ] depth-response 분석 (그룹별 깊이–DockQ 곡선·rescue·선택·편향센서) — `analyze_depth.py` 추후
+- [ ] Chai 러너 · 물리 생성기(HADDOCK·SnugDock) · wet 검증 루프
 
 ## 선행연구 · 정직한 위치
 

@@ -67,4 +67,4 @@ while IFS=, read -r target pdb group ab dirtype ag_chains label; do
     if [ "$(date +%s)" -ge "$DEADLINE" ]; then say "예산 소진 → 정지 (run=$n_run skip=$n_skip). 재실행하면 이어감."; exit 0; fi
   done
 done < <(tail -n +2 "$LIST")
-say "완료 스캔 끝 (run=$n_run skip=$n_skip). DockQ: dockq_sweep.py (추후)."
+say "완료 스캔 끝 (run=$n_run skip=$n_skip). 채점: python dockq_sweep.py --models $COF (DockQ env)."
