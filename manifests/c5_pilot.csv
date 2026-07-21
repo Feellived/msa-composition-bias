@@ -1,0 +1,6 @@
+pdb,antigen,AB,c_label,Hchain,Lchain,antigen_chain,date,res,antigen_name,organism
+9PI9,C,C,TROP2,A,B,C|E|F|H,2025/07/10,1.56,"Sacituzumab Heavy Chain|Tumor-associated calcium signal transducer 2|1,2-ETHANEDIOL",homo sapiens
+9DQ4,C,C,CTLA-4,H,L,A|B,2024/09/23,1.57,Cytotoxic T-lymphocyte protein 4|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NJY,C,C,ClfA(S.aureus),H,L,A|C,2025/02/28,1.58,Clumping factor A|GLYCEROL,mammalia
+9NCY,C,C,CSP(malaria),H,L,A|D|G|J|P,2025/02/17,1.63,Circumsporozoite protein|GLYCEROL|DI(HYDROXYETHYL)ETHER,homo sapiens
+8TS0,C,C,ASGR1,H,L,A|B|E,2023/08/10,1.7,Asialoglycoprotein receptor 1|GLYCEROL,homo sapiens

@@ -1,0 +1,16 @@
+pdb,antigen,AB,c_label,Hchain,Lchain,antigen_chain,date,res,antigen_name,organism
+9DQ4,C,C,CTLA-4,H,L,A|B,2024/09/23,1.57,Cytotoxic T-lymphocyte protein 4|beta-D-,homo sapiens
+9PI9,C,C,TROP2,A,B,C|E|F|H,2025/07/10,1.56,Sacituzumab Heavy Chain|Tumor-associated,homo sapiens
+8TS0,C,C,ASGR1,H,L,A|B|E,2023/08/10,1.7,Asialoglycoprotein receptor 1|GLYCEROL,homo sapiens
+9NJY,C,C,ClfA,H,L,A|C,2025/02/28,1.58,Clumping factor A|GLYCEROL,mammalia
+9NCY,C,C,CSP,H,L,A|D|G|J|P,2025/02/17,1.63,Circumsporozoite protein|GLYCEROL|DI(HYD,homo sapiens
+9M5B,C,C,FcgR,A,B,C,2025/03/05,1.66,Low affinity immunoglobulin gamma Fc reg,homo sapiens
+9GVO,C,C,IFNa2,A1,A2,B|D|E|F|J|K,2024/09/25,1.81,Interferon alpha-2|GLYCEROL|PHOSPHATE IO,homo sapiens
+9GOX,C,C,CD38,H,L,A|J|K,2024/09/06,1.84,ADP-ribosyl cyclase/cyclic ADP-ribose hy,homo sapiens
+9NCD,C,C,nsLTP,H,L,A|F|I,2025/02/15,1.6,Non-specific lipid-transfer protein|CHLO,homo sapiens
+8RZ0,C,C,RH5,B1,B2,A,2024/02/11,1.63,RH5-34EM,homo sapiens
+8VVL,C,C,GP38,H,L,A|K|M|N|P,2024/01/31,1.8,GP38|SULFATE ION|CHLORIDE ION,mus musculus
+9CDS,C,C,OspA,B,A,C|D,2024/06/25,1.85,Outer surface protein A|Hybridoma Antibo,mus musculus
+9D41,C,C,Borealin,H,L,A|D|E|J,2024/08/12,1.84,"Borealin|(4S)-2-METHYL-2,4-PENTANEDIOL",homo sapiens
+9NPI,C,C,Canf1,C,B,A,2025/03/11,1.85,Major allergen Can f 1,homo sapiens
+9FIK,C,C,NT-3,B,C,A|E|G|H,2024/05/29,1.86,Neurotrophin-3|GLYCEROL,homo sapiens

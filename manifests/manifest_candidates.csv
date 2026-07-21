@@ -1,0 +1,956 @@
+pdb,pdb_full,antigen,Hchain,Lchain,antigen_chain,nb,date,res,antigen_name,organism
+8T1G,pdb_00008t1g,HA,G,I,A|C|D|O,False,2023/06/02,3.5,Hemagglutinin HA1|Hemagglutinin HA2|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8T1G,pdb_00008t1g,HA,H,L,C|E|F|Q,False,2023/06/02,3.5,Hemagglutinin HA1|Hemagglutinin HA2|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8T1G,pdb_00008t1g,HA,J,K,A|B|E|M,False,2023/06/02,3.5,Hemagglutinin HA1|Hemagglutinin HA2|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8T49,pdb_00008t49,Env,C,D,A|B|BR|G|K,False,2023/06/08,3.2,MD65 N332-GT5 SOSIP gp120|MD65 N332-GT5 SOSIP gp41|2-acetamido-2-deoxy-beta-D-glucopyranose|RM20A3 heavy chain Fv,macaca mulatta
+8T4B,pdb_00008t4b,Env,O,Q,E|U,False,2023/06/08,3.5,MD65 N332-GT5 SOSIP gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+8T4B,pdb_00008t4b,Env,K,N,C|F|G|I,False,2023/06/08,3.5,RM20A3 heavy chain Fv|MD65 N332-GT5 SOSIP gp120|MD65 N332-GT5 SOSIP gp41,macaca mulatta
+8T4B,pdb_00008t4b,Env,J,M,B|E|G|K,False,2023/06/08,3.5,MD65 N332-GT5 SOSIP gp41|MD65 N332-GT5 SOSIP gp120|RM20A3 heavy chain Fv,macaca mulatta
+8T4B,pdb_00008t4b,Env,H,L,A|S,False,2023/06/08,3.5,MD65 N332-GT5 SOSIP gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+8T4B,pdb_00008t4b,Env,C,D,A|B|I|J,False,2023/06/08,3.5,MD65 N332-GT5 SOSIP gp120|MD65 N332-GT5 SOSIP gp41|RM20A3 heavy chain Fv,macaca mulatta
+8T4A,pdb_00008t4a,Env,P,R,F|Y,False,2023/06/08,3.4,MD65 N332-GT5 SOSIP gp120|alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+8T4A,pdb_00008t4a,Env,O,Q,E|V,False,2023/06/08,3.4,MD65 N332-GT5 SOSIP gp120|alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+8T4A,pdb_00008t4a,Env,K,N,C|E|F|G|I,False,2023/06/08,3.4,RM20A3 heavy chain Fv|MD65 N332-GT5 SOSIP gp120|MD65 N332-GT5 SOSIP gp41,macaca mulatta
+8T4A,pdb_00008t4a,Env,C,D,A|B|F|I|J,False,2023/06/08,3.4,MD65 N332-GT5 SOSIP gp120|MD65 N332-GT5 SOSIP gp41|RM20A3 heavy chain Fv,macaca mulatta
+8T49,pdb_00008t49,Env,P,R,F|a|d,False,2023/06/08,3.2,MD65 N332-GT5 SOSIP gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+8T49,pdb_00008t49,Env,O,Q,E|W|Z,False,2023/06/08,3.2,MD65 N332-GT5 SOSIP gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+8T49,pdb_00008t49,Env,K,N,B|BX|F|I|J,False,2023/06/08,3.2,MD65 N332-GT5 SOSIP gp41|2-acetamido-2-deoxy-beta-D-glucopyranose|MD65 N332-GT5 SOSIP gp120|RM20A3 heavy chain Fv,macaca mulatta
+8T49,pdb_00008t49,Env,J,M,BU|C|E|G|I,False,2023/06/08,3.2,2-acetamido-2-deoxy-beta-D-glucopyranose|RM20A3 heavy chain Fv|MD65 N332-GT5 SOSIP gp120|MD65 N332-GT5 SOSIP gp41,macaca mulatta
+8T49,pdb_00008t49,Env,H,L,A|S|V,False,2023/06/08,3.2,MD65 N332-GT5 SOSIP gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+8T4B,pdb_00008t4b,Env,P,R,F|W,False,2023/06/08,3.5,MD65 N332-GT5 SOSIP gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+8T4A,pdb_00008t4a,Env,J,M,A|B|E|G|K,False,2023/06/08,3.4,MD65 N332-GT5 SOSIP gp120|MD65 N332-GT5 SOSIP gp41|RM20A3 heavy chain Fv,macaca mulatta
+8T4A,pdb_00008t4a,Env,H,L,A|S,False,2023/06/08,3.4,MD65 N332-GT5 SOSIP gp120|alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+8T4D,pdb_00008t4d,Env,K,N,B|F|I|J,False,2023/06/09,3.1,MD65 N332-GT5 SOSIP gp41|MD65 N332-GT5 SOSIP gp120|RM20A3 heavy chain Fv,macaca mulatta
+8T4D,pdb_00008t4d,Env,O,Q,E|V,False,2023/06/09,3.1,MD65 N332-GT5 SOSIP gp120|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+8T4L,pdb_00008t4l,Env,P,R,F|a,False,2023/06/09,3.2,MD65 N332-GT5 SOSIP gp120|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+8T4L,pdb_00008t4l,Env,O,Q,E|X,False,2023/06/09,3.2,MD65 N332-GT5 SOSIP gp120|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+8T4L,pdb_00008t4l,Env,K,N,C|F|G|I,False,2023/06/09,3.2,RM20A3 heavy chain Fv|MD65 N332-GT5 SOSIP gp120|MD65 N332-GT5 SOSIP gp41,macaca mulatta
+8T4L,pdb_00008t4l,Env,J,M,B|E|G|K,False,2023/06/09,3.2,MD65 N332-GT5 SOSIP gp41|MD65 N332-GT5 SOSIP gp120|RM20A3 heavy chain Fv,macaca mulatta
+8T4D,pdb_00008t4d,Env,J,M,C|E|G|I,False,2023/06/09,3.1,RM20A3 heavy chain Fv|MD65 N332-GT5 SOSIP gp120|MD65 N332-GT5 SOSIP gp41,macaca mulatta
+8T4L,pdb_00008t4l,Env,C,D,A|B|I|J,False,2023/06/09,3.2,MD65 N332-GT5 SOSIP gp120|MD65 N332-GT5 SOSIP gp41|RM20A3 heavy chain Fv,macaca mulatta
+8T4D,pdb_00008t4d,Env,C,D,A|B|G|K,False,2023/06/09,3.1,MD65 N332-GT5 SOSIP gp120|MD65 N332-GT5 SOSIP gp41|RM20A3 heavy chain Fv,macaca mulatta
+8T4D,pdb_00008t4d,Env,H,L,A|S,False,2023/06/09,3.1,MD65 N332-GT5 SOSIP gp120|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+8T4D,pdb_00008t4d,Env,P,R,F|Y,False,2023/06/09,3.1,MD65 N332-GT5 SOSIP gp120|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+8T4L,pdb_00008t4l,Env,H,L,A|U,False,2023/06/09,3.2,MD65 N332-GT5 SOSIP gp120|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+8JVA,pdb_00008jva,RBD,B,A,F,False,2023/06/28,2.81,Spike protein S2',homo sapiens
+8JVA,pdb_00008jva,RBD,D,nan,F|G,True,2023/06/28,2.81,Spike protein S2'|2-acetamido-2-deoxy-beta-D-glucopyranose,vicugna pacos
+8K3K,pdb_00008k3k,RBD,D,nan,E,True,2023/07/16,2.43,Spike protein S1,synthetic construct
+8K46,pdb_00008k46,RBD,G,nan,B|C,True,2023/07/17,3.37,Spike glycoprotein,vicugna pacos
+8K46,pdb_00008k46,RBD,I,nan,C,True,2023/07/17,3.37,Spike glycoprotein,vicugna pacos
+8K46,pdb_00008k46,RBD,E,nan,A,True,2023/07/17,3.37,Spike glycoprotein,vicugna pacos
+8K5H,pdb_00008k5h,RBD,H,L,A|B,False,2023/07/21,3.22,Spike glycoprotein,homo sapiens
+8K5G,pdb_00008k5g,RBD,H,L,A,False,2023/07/21,3.41,Spike protein S1,homo sapiens
+8TJR,pdb_00008tjr,Env,H,L,AS|B|BO|E|F,False,2023/07/24,3.29,2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp160|Envelope glycoprotein gp41,macaca
+8TJR,pdb_00008tjr,Env,J,K,BF|C|F,False,2023/07/24,3.29,2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp160|Envelope glycoprotein gp41,macaca
+8TJS,pdb_00008tjs,Env,Q,T,B|BI|BK|I,False,2023/07/24,3.31,Envelope glycoprotein gp41|2-acetamido-2-deoxy-beta-D-glucopyranose,macaca
+8TJS,pdb_00008tjs,Env,R,U,BO|BQ|H|I,False,2023/07/24,3.31,2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp41,macaca
+8TJS,pdb_00008tjs,Env,P,S,B|H,False,2023/07/24,3.31,Envelope glycoprotein gp41,macaca
+8TKC,pdb_00008tkc,Env,G,H,A|B|F,False,2023/07/25,3.1,BG505 DS-SOSIP Surface protein gp120|BG505 DS-SOSIP Transmembrane protein gp41,homo sapiens
+8TKC,pdb_00008tkc,Env,I,J,B|C|D,False,2023/07/25,3.1,BG505 DS-SOSIP Transmembrane protein gp41|BG505 DS-SOSIP Surface protein gp120,homo sapiens
+8TKC,pdb_00008tkc,Env,K,L,D|E|F,False,2023/07/25,3.1,BG505 DS-SOSIP Transmembrane protein gp41|BG505 DS-SOSIP Surface protein gp120,homo sapiens
+8TL3,pdb_00008tl3,Env,K,L,D|E|F,False,2023/07/26,3.1,BG505 DS-SOSIP glycoprotein gp41|BG505 DS-SOSIP glycoprotein gp120,homo sapiens
+8TL4,pdb_00008tl4,Env,I,J,B|C|D,False,2023/07/26,3.2,BG505 DS-SOSIP Transmembrane protein gp41|BG505 DS-SOSIP Surface protein gp120,homo sapiens
+8TL4,pdb_00008tl4,Env,G,H,A|B|F,False,2023/07/26,3.2,BG505 DS-SOSIP Surface protein gp120|BG505 DS-SOSIP Transmembrane protein gp41,homo sapiens
+8TL5,pdb_00008tl5,Env,G,H,A|B|O,False,2023/07/26,3.3,BG505 DS-SOSIP Surface protein gp120|BG505 DS-SOSIP Transmembrane protein gp41|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8TL3,pdb_00008tl3,Env,I,J,B|C|D,False,2023/07/26,3.1,BG505 DS-SOSIP glycoprotein gp41|BG505 DS-SOSIP glycoprotein gp120,homo sapiens
+8TL3,pdb_00008tl3,Env,G,H,A|B|F,False,2023/07/26,3.1,BG505 DS-SOSIP glycoprotein gp120|BG505 DS-SOSIP glycoprotein gp41,homo sapiens
+8TL2,pdb_00008tl2,Env,K,L,D|E|F,False,2023/07/26,3.2,BG505 DS-SOSIP Transmembrane protein gp41|BG505 DS-SOSIP Surface protein gp120,homo sapiens
+8TL2,pdb_00008tl2,Env,G,H,A|B|F,False,2023/07/26,3.2,BG505 DS-SOSIP Surface protein gp120|BG505 DS-SOSIP Transmembrane protein gp41,homo sapiens
+8TL5,pdb_00008tl5,Env,I,J,C|D|X,False,2023/07/26,3.3,BG505 DS-SOSIP Surface protein gp120|BG505 DS-SOSIP Transmembrane protein gp41|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8TL4,pdb_00008tl4,Env,K,L,D|E|F,False,2023/07/26,3.2,BG505 DS-SOSIP Transmembrane protein gp41|BG505 DS-SOSIP Surface protein gp120,homo sapiens
+8TL5,pdb_00008tl5,Env,K,L,E|F|j,False,2023/07/26,3.3,BG505 DS-SOSIP Surface protein gp120|BG505 DS-SOSIP Transmembrane protein gp41|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8TM1,pdb_00008tm1,RBD,H,L,A|B,False,2023/07/27,2.79,Spike glycoprotein,homo sapiens
+8TMA,pdb_00008tma,RBD,H,L,A,False,2023/07/29,3.2,Spike glycoprotein,homo sapiens
+8TNH,pdb_00008tnh,Env,J,nan,A|AJ|E,True,2023/08/01,3.32,HIV-1 BG505 DS-SOSIP gp120|2-acetamido-2-deoxy-beta-D-glucopyranose,lama glama
+8TNH,pdb_00008tnh,Env,I,nan,C|E,True,2023/08/01,3.32,HIV-1 BG505 DS-SOSIP gp120,lama glama
+8TNH,pdb_00008tnh,Env,H,nan,A|AQ|C,True,2023/08/01,3.32,HIV-1 BG505 DS-SOSIP gp120|2-acetamido-2-deoxy-beta-D-glucopyranose,lama glama
+8TNU,pdb_00008tnu,Env,H,L,A|AB|E|S|Y|Z,False,2023/08/02,3.36,2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose|BG505 DS-SOSIP Surface protein gp120|Transmembrane protein gp41,macaca mulatta
+8TNU,pdb_00008tnu,Env,J,K,AF|F|X|Y|i,False,2023/08/02,3.36,2-acetamido-2-deoxy-beta-D-glucopyranose|BG505 DS-SOSIP Surface protein gp120|Transmembrane protein gp41|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+8TNU,pdb_00008tnu,Env,B,C,G|I|X|Z,False,2023/08/02,3.36,BG505 DS-SOSIP Surface protein gp120|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|Transmembrane protein gp41,macaca mulatta
+8TO7,pdb_00008to7,Env,G,J,A|B|BO|D,False,2023/08/03,3.39,Transmembrane protein gp41|2-acetamido-2-deoxy-beta-D-glucopyranose|Surface protein gp120,macaca mulatta
+8TO7,pdb_00008to7,Env,H,L,B|BS|C|E,False,2023/08/03,3.39,Transmembrane protein gp41|2-acetamido-2-deoxy-beta-D-glucopyranose|Surface protein gp120,macaca mulatta
+8TO7,pdb_00008to7,Env,I,K,A|BQ|C|F,False,2023/08/03,3.39,Transmembrane protein gp41|2-acetamido-2-deoxy-beta-D-glucopyranose|Surface protein gp120,macaca mulatta
+8TP5,pdb_00008tp5,HA,H,L,A,False,2023/08/04,2.9,Hemagglutinin HA1 chain,homo sapiens
+8TPA,pdb_00008tpa,HA,I,J,G|K,False,2023/08/04,3.0,Hemagglutinin HA1 chain|Hemagglutinin HA2 chain,homo sapiens
+8TPA,pdb_00008tpa,HA,H,L,A|B,False,2023/08/04,3.0,Hemagglutinin HA1 chain|Hemagglutinin HA2 chain,homo sapiens
+8TPA,pdb_00008tpa,HA,D,E,C|F,False,2023/08/04,3.0,Hemagglutinin HA1 chain|Hemagglutinin HA2 chain,homo sapiens
+8TP9,pdb_00008tp9,HA,H,L,A,False,2023/08/04,3.1,Hemagglutinin,homo sapiens
+8TP9,pdb_00008tp9,HA,E,G,C,False,2023/08/04,3.1,Hemagglutinin,homo sapiens
+8TP6,pdb_00008tp6,HA,C,D,B,False,2023/08/04,3.1,Hemagglutinin,homo sapiens
+8TP7,pdb_00008tp7,HA,H,L,B|C|D,False,2023/08/04,2.8,Hemagglutinin|Heavy chain of monoclonal antibody 4-1-1G03,homo sapiens
+8TOX,pdb_00008tox,Env,D,E,A|C|f|k,False,2023/08/04,2.3,Envelope glycoprotein gp41|Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8TP9,pdb_00008tp9,HA,D,F,B,False,2023/08/04,3.1,Hemagglutinin,homo sapiens
+8TOX,pdb_00008tox,Env,J,K,AC|F|I|w,False,2023/08/04,2.3,2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp41|Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8TP7,pdb_00008tp7,HA,E,G,A|B|H,False,2023/08/04,2.8,Hemagglutinin|Heavy chain of monoclonal antibody 4-1-1G03,homo sapiens
+8TP7,pdb_00008tp7,HA,D,F,A|C|E,False,2023/08/04,2.8,Hemagglutinin|Heavy chain of monoclonal antibody 4-1-1G03,homo sapiens
+8TP6,pdb_00008tp6,HA,H,L,A,False,2023/08/04,3.1,Hemagglutinin,homo sapiens
+8TP6,pdb_00008tp6,HA,F,G,E,False,2023/08/04,3.1,Hemagglutinin,homo sapiens
+8TP2,pdb_00008tp2,HA,H,L,C,False,2023/08/04,3.1,Hemagglutinin,homo sapiens
+8TP4,pdb_00008tp4,HA,H,L,C,False,2023/08/04,3.3,Hemagglutinin,homo sapiens
+8TP5,pdb_00008tp5,HA,E,F,C,False,2023/08/04,2.9,Hemagglutinin HA1 chain,homo sapiens
+8TOX,pdb_00008tox,Env,H,L,B|G|O|T,False,2023/08/04,2.3,Envelope glycoprotein gp41|Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8TP5,pdb_00008tp5,HA,J,K,G,False,2023/08/04,2.9,Hemagglutinin HA1 chain,homo sapiens
+8TQ1,pdb_00008tq1,Env,C,D,A|B|F|M,False,2023/08/06,3.3,HIV-1 Envelope Glycoprotein BG505 SOSIP.664 gp120|Transmembrane protein gp41|NHP RM20A3 Fab heavy chain,macaca mulatta
+8TQ1,pdb_00008tq1,Env,G,I,C|E|F|K,False,2023/08/06,3.3,NHP RM20A3 Fab heavy chain|HIV-1 Envelope Glycoprotein BG505 SOSIP.664 gp120|Transmembrane protein gp41,macaca mulatta
+8TQ1,pdb_00008tq1,Env,H,nan,A|E|J|L|S|V,True,2023/08/06,3.3,HIV-1 Envelope Glycoprotein BG505 SOSIP.664 gp120|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,bos taurus
+8TQ1,pdb_00008tq1,Env,M,N,B|G|J|K,False,2023/08/06,3.3,Transmembrane protein gp41|NHP RM20A3 Fab heavy chain|HIV-1 Envelope Glycoprotein BG505 SOSIP.664 gp120,macaca mulatta
+8TQI,pdb_00008tqi,HA,H,L,B,False,2023/08/07,3.24,Hemagglutinin-neuraminidase,homo sapiens
+8TQI,pdb_00008tqi,HA,E,F,B,False,2023/08/07,3.24,Hemagglutinin-neuraminidase,homo sapiens
+8TQI,pdb_00008tqi,HA,I,J,A|C,False,2023/08/07,3.24,Hemagglutinin-neuraminidase|Heavy chain Fab rPIV3-28,homo sapiens
+8TQI,pdb_00008tqi,HA,C,D,A,False,2023/08/07,3.24,Hemagglutinin-neuraminidase,homo sapiens
+8KDM,pdb_00008kdm,RBD,G,F,A,False,2023/08/09,2.87,Spike glycoprotein,homo sapiens
+8KDM,pdb_00008kdm,RBD,E,D,B,False,2023/08/09,2.87,Spike glycoprotein,homo sapiens
+8KDR,pdb_00008kdr,RBD,H,L,A,False,2023/08/10,3.4,Spike glycoprotein,homo sapiens
+8KDS,pdb_00008kds,RBD,G,F,C,False,2023/08/10,3.05,Spike glycoprotein,homo sapiens
+8KDS,pdb_00008kds,RBD,I,H,B,False,2023/08/10,3.05,Spike glycoprotein,homo sapiens
+8KDT,pdb_00008kdt,RBD,H,L,A,False,2023/08/10,3.04,Spike glycoprotein,homo sapiens
+8Q5Y,pdb_00008q5y,RBD,R,L,D|H,False,2023/08/10,2.6,Spike glycoprotein|Monoclonal antibody Mab 23 (Light chain),homo sapiens
+8Q5Y,pdb_00008q5y,RBD,G,H,C|D|E,False,2023/08/10,2.6,Spike glycoprotein,homo sapiens
+8Q5Y,pdb_00008q5y,RBD,B,A,C,False,2023/08/10,2.6,Spike glycoprotein,homo sapiens
+8KDS,pdb_00008kds,RBD,E,D,A,False,2023/08/10,3.05,Spike glycoprotein,homo sapiens
+8KEH,pdb_00008keh,RBD,E,D,A|C,False,2023/08/11,3.21,Spike glycoprotein,homo sapiens
+8KEH,pdb_00008keh,RBD,G,F,B,False,2023/08/11,3.21,Spike glycoprotein,homo sapiens
+8KER,pdb_00008ker,RBD,I,H,C,False,2023/08/13,2.95,Spike glycoprotein,homo sapiens
+8KER,pdb_00008ker,RBD,G,F,B,False,2023/08/13,2.95,Spike glycoprotein,homo sapiens
+8KEQ,pdb_00008keq,RBD,E,D,A,False,2023/08/13,3.14,Spike glycoprotein,homo sapiens
+8KEP,pdb_00008kep,RBD,H,L,A,False,2023/08/13,2.93,Spike glycoprotein,homo sapiens
+8KEO,pdb_00008keo,RBD,I,H,C,False,2023/08/13,2.78,Spike glycoprotein,homo sapiens
+8KEO,pdb_00008keo,RBD,G,F,B,False,2023/08/13,2.78,Spike glycoprotein,homo sapiens
+8KEO,pdb_00008keo,RBD,E,D,A,False,2023/08/13,2.78,Spike glycoprotein,homo sapiens
+8KER,pdb_00008ker,RBD,E,D,A,False,2023/08/13,2.95,Spike glycoprotein,homo sapiens
+8KEQ,pdb_00008keq,RBD,G,F,B,False,2023/08/13,3.14,Spike glycoprotein,homo sapiens
+8TTW,pdb_00008ttw,Env,C,D,A|B|S|T|b,False,2023/08/15,2.96,Envelope glycoprotein gp160|BG505 SOSIP.664 transmembrane protein gp41|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8TTW,pdb_00008ttw,Env,G,H,E|F|U|V|n,False,2023/08/15,2.96,Envelope glycoprotein gp160|BG505 SOSIP.664 transmembrane protein gp41|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8TTW,pdb_00008ttw,Env,K,L,I|J|W|X|z,False,2023/08/15,2.96,Envelope glycoprotein gp160|BG505 SOSIP.664 transmembrane protein gp41|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8TTW,pdb_00008ttw,Env,M,N,A|f,False,2023/08/15,2.96,Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8TTW,pdb_00008ttw,Env,O,P,E|r,False,2023/08/15,2.96,Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8TTW,pdb_00008ttw,Env,Q,R,AD|I,False,2023/08/15,2.96,alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp160,homo sapiens
+8Q7S,pdb_00008q7s,RBD,O,nan,M|S,True,2023/08/16,2.7,Spike protein S1|GLYCEROL,vicugna pacos
+8Q7S,pdb_00008q7s,RBD,H,nan,G,True,2023/08/16,2.7,Spike protein S1,vicugna pacos
+8Q7S,pdb_00008q7s,RBD,N,nan,M,True,2023/08/16,2.7,Spike protein S1,vicugna pacos
+8Q7S,pdb_00008q7s,RBD,L,nan,J,True,2023/08/16,2.7,Spike protein S1,vicugna pacos
+8Q7S,pdb_00008q7s,RBD,B,nan,A,True,2023/08/16,2.7,Spike protein S1,vicugna pacos
+8Q7S,pdb_00008q7s,RBD,C,nan,A,True,2023/08/16,2.7,Spike protein S1,vicugna pacos
+8Q7S,pdb_00008q7s,RBD,E,nan,D,True,2023/08/16,2.7,Spike protein S1,vicugna pacos
+8Q7S,pdb_00008q7s,RBD,F,nan,D|V,True,2023/08/16,2.7,"Spike protein S1|1,2-ETHANEDIOL",vicugna pacos
+8Q7S,pdb_00008q7s,RBD,K,nan,J,True,2023/08/16,2.7,Spike protein S1,vicugna pacos
+8Q7S,pdb_00008q7s,RBD,I,nan,G,True,2023/08/16,2.7,Spike protein S1,vicugna pacos
+8Q94,pdb_00008q94,RBD,C,nan,A,True,2023/08/19,2.5,Spike protein S1,vicugna pacos
+8Q94,pdb_00008q94,RBD,B,nan,A,True,2023/08/19,2.5,Spike protein S1,vicugna pacos
+8Q93,pdb_00008q93,RBD,C,nan,A,True,2023/08/19,3.1,Spike protein S1,vicugna pacos
+8Q95,pdb_00008q95,RBD,C,nan,A,True,2023/08/19,1.6,Spike protein S1,vicugna pacos
+8Q93,pdb_00008q93,RBD,B,nan,A,True,2023/08/19,3.1,Spike protein S1,vicugna pacos
+8Q95,pdb_00008q95,RBD,B,nan,A,True,2023/08/19,1.6,Spike protein S1,vicugna pacos
+8KHD,pdb_00008khd,RBD,H,J,C,False,2023/08/21,3.5,Spike protein S1,homo sapiens
+8KHC,pdb_00008khc,RBD,H,J,A,False,2023/08/21,3.0,Spike glycoprotein,homo sapiens
+8KHC,pdb_00008khc,RBD,F,G,B,False,2023/08/21,3.0,Spike glycoprotein,homo sapiens
+8TX3,pdb_00008tx3,HA,F,K,AG|G|I,False,2023/08/22,2.99,2-acetamido-2-deoxy-beta-D-glucopyranose|Hemagglutinin,homo sapiens
+8TX3,pdb_00008tx3,HA,H,L,C|D,False,2023/08/22,2.99,Hemagglutinin,homo sapiens
+8TX3,pdb_00008tx3,HA,E,J,A|B,False,2023/08/22,2.99,Hemagglutinin,homo sapiens
+8TXM,pdb_00008txm,HA,H,L,A|B|F|G,False,2023/08/23,3.25,Hemagglutinin|MAGNESIUM ION|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8TXU,pdb_00008txu,HA,H,L,A|B,False,2023/08/24,3.22,Hemagglutinin HA1 chain|Hemagglutinin HA2,mus musculus
+8TXT,pdb_00008txt,HA,G,I,A|C|D|M|P|Y,False,2023/08/24,3.19,Hemagglutinin|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8TXP,pdb_00008txp,HA,H,L,A|B|G,False,2023/08/24,2.75,Hemagglutinin|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8TY7,pdb_00008ty7,HA,H,L,A|B|E,False,2023/08/24,3.21,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8TXU,pdb_00008txu,HA,F,K,G|I,False,2023/08/24,3.22,Hemagglutinin HA1 chain|Hemagglutinin HA2,mus musculus
+8TXT,pdb_00008txt,HA,J,K,A|B|E|N|Q|R,False,2023/08/24,3.19,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8TXU,pdb_00008txu,HA,E,J,C|D,False,2023/08/24,3.22,Hemagglutinin HA1 chain|Hemagglutinin HA2,mus musculus
+8TXT,pdb_00008txt,HA,H,L,C|E|F|O|W|X,False,2023/08/24,3.19,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8QH0,pdb_00008qh0,RBD,H,L,A,False,2023/09/06,1.87,Spike protein S1,homo sapiens
+8QH1,pdb_00008qh1,RBD,H,L,E,False,2023/09/06,2.65,Spike glycoprotein,homo sapiens
+8U44,pdb_00008u44,HA,S,T,A|G|I,False,2023/09/08,3.41,Hemagglutinin HA1 chain|Hemagglutinin HA2 chain,homo sapiens
+8U44,pdb_00008u44,HA,V,X,A|B|H,False,2023/09/08,3.41,Hemagglutinin HA1 chain|Hemagglutinin HA2 chain,homo sapiens
+8U44,pdb_00008u44,HA,U,W,G|H|J,False,2023/09/08,3.41,Hemagglutinin HA1 chain|Hemagglutinin HA2 chain,homo sapiens
+8WCG,pdb_00008wcg,RBD,D,nan,A|B|b,True,2023/09/12,2.599,Spike protein S1|aSR347 nanobody,vicugna pacos
+8WCG,pdb_00008wcg,RBD,C,nan,A|B|E,True,2023/09/12,2.599,Spike protein S1|aSR347 nanobody,vicugna pacos
+8WCG,pdb_00008wcg,RBD,b,nan,B|D,True,2023/09/12,2.599,Spike protein S1|aSR29 nanobody,vicugna pacos
+8WCG,pdb_00008wcg,RBD,E,nan,A|C,True,2023/09/12,2.599,Spike protein S1|aSR29 nanobody,vicugna pacos
+8WE4,pdb_00008we4,RBD,H,L,B,False,2023/09/17,2.91,Spike protein S1,homo sapiens
+8WFM,pdb_00008wfm,RBD,E1,E2,F,False,2023/09/19,2.99,Spike protein S1,severe acute respiratory syndrome coronavirus 2
+8WFM,pdb_00008wfm,RBD,A1,A2,B,False,2023/09/19,2.99,Spike protein S1,severe acute respiratory syndrome coronavirus 2
+8WFH,pdb_00008wfh,RBD,E1,E2,A,False,2023/09/19,2.72,Spike protein S1,homo sapiens
+8WFM,pdb_00008wfm,RBD,C1,C2,D,False,2023/09/19,2.99,Spike protein S1,severe acute respiratory syndrome coronavirus 2
+8WFM,pdb_00008wfm,RBD,G1,G2,H,False,2023/09/19,2.99,Spike protein S1,severe acute respiratory syndrome coronavirus 2
+8UG9,pdb_00008ug9,RBD,O,nan,C|F,True,2023/10/05,3.49,Spike glycoprotein|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,vicugna pacos
+8UG9,pdb_00008ug9,RBD,M,nan,A|D,True,2023/10/05,3.49,Spike glycoprotein|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,vicugna pacos
+8UG9,pdb_00008ug9,RBD,N,nan,B|E,True,2023/10/05,3.49,Spike glycoprotein|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,vicugna pacos
+8QRG,pdb_00008qrg,RBD,A,nan,E|F,True,2023/10/07,2.3,Spike protein S1|GLYCEROL,lama glama
+8QRG,pdb_00008qrg,RBD,H,L,D|E|I,False,2023/10/07,2.3,GLYCEROL|Spike protein S1,homo sapiens
+8WPW,pdb_00008wpw,RBD,H,L,R,False,2023/10/10,2.49,Spike protein S1,homo sapiens
+8WPY,pdb_00008wpy,RBD,A,B,E|R,False,2023/10/10,3.02,beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose|Spike protein S1,homo sapiens
+8WPY,pdb_00008wpy,RBD,C,D,R,False,2023/10/10,3.02,Spike protein S1,homo sapiens
+8WPW,pdb_00008wpw,RBD,C,D,R,False,2023/10/10,2.49,Spike protein S1,homo sapiens
+8WPY,pdb_00008wpy,RBD,H,L,R,False,2023/10/10,3.02,Spike protein S1,homo sapiens
+8WPW,pdb_00008wpw,RBD,A,B,E|R,False,2023/10/10,2.49,2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose|Spike protein S1,homo sapiens
+8ULR,pdb_00008ulr,Env,H,L,AK|E|Q|i,False,2023/10/16,3.3,2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8ULR,pdb_00008ulr,Env,I,M,AG|C|Y|j,False,2023/10/16,3.3,2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8ULR,pdb_00008ulr,Env,J,N,A|AB|P|Z,False,2023/10/16,3.3,Envelope glycoprotein gp160|2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8ULS,pdb_00008uls,Env,H,L,A|E|r,False,2023/10/16,3.2,Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8ULS,pdb_00008uls,Env,I,M,A|C|R,False,2023/10/16,3.2,Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8ULS,pdb_00008uls,Env,J,N,C|E|e,False,2023/10/16,3.2,Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8UME,pdb_00008ume,HA,H,L,C,False,2023/10/17,3.1,Hemagglutinin,homo sapiens
+8UME,pdb_00008ume,HA,E,G,B,False,2023/10/17,3.1,Hemagglutinin,homo sapiens
+8UME,pdb_00008ume,HA,D,F,A,False,2023/10/17,3.1,Hemagglutinin,homo sapiens
+8UT3,pdb_00008ut3,HA,F,I,B|C|W,False,2023/10/30,2.8,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8UT4,pdb_00008ut4,HA,I,H,A|E|F|K,False,2023/10/30,3.3,Hemagglutinin HA1 chain|Hemagglutinin HA2 chain|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8UT5,pdb_00008ut5,HA,G,H,A|E|F|K,False,2023/10/30,3.5,Hemagglutinin HA1 chain|Hemagglutinin HA2 chain|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8WYJ,pdb_00008wyj,RBD,Q,R,C|T,False,2023/10/31,3.1,Spike glycoprotein|S309-KC,homo sapiens
+8WYJ,pdb_00008wyj,RBD,I,K,A|O|U,False,2023/10/31,3.1,Spike glycoprotein|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8WYJ,pdb_00008wyj,RBD,H,F,B|G,False,2023/10/31,3.1,Spike glycoprotein|S309-KC,homo sapiens
+8WYJ,pdb_00008wyj,RBD,E,G,B|F|M|N,False,2023/10/31,3.1,Spike glycoprotein|SA55_KC|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8WYJ,pdb_00008wyj,RBD,D,nan,A,True,2023/10/31,3.1,Spike glycoprotein,homo sapiens
+8WYJ,pdb_00008wyj,RBD,S,T,C|R|V|W|X,False,2023/10/31,3.1,Spike glycoprotein|SA55_KC|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8X0X,pdb_00008x0x,RBD,G,K,A,False,2023/11/06,3.45,Spike protein S1,homo sapiens
+8X0X,pdb_00008x0x,RBD,H,L,D|E,False,2023/11/06,3.45,SULFATE ION|Spike protein S1,homo sapiens
+8X0Y,pdb_00008x0y,RBD,E,F,B,False,2023/11/06,1.94,Spike protein S1,homo sapiens
+8X0Y,pdb_00008x0y,RBD,G,I,A,False,2023/11/06,1.94,Spike protein S1,homo sapiens
+8V4F,pdb_00008v4f,RBD,B,D,A,False,2023/11/29,2.68,Spike protein S1,homo sapiens
+8RBY,pdb_00008rby,RBD,B,nan,A,True,2023/12/05,1.9,Spike protein S1,camelus dromedarius
+8XEA,pdb_00008xea,RBD,H,J,D,False,2023/12/11,3.42,Spike glycoprotein,homo sapiens
+8XEA,pdb_00008xea,RBD,G,I,F,False,2023/12/11,3.42,Spike glycoprotein,homo sapiens
+8XE9,pdb_00008xe9,RBD,A,B,C,False,2023/12/11,3.3,Spike protein S2',homo sapiens
+8XEA,pdb_00008xea,RBD,A,B,E,False,2023/12/11,3.42,Spike glycoprotein,homo sapiens
+8VCR,pdb_00008vcr,RBD,D,F,A|C|E|Y,False,2023/12/14,3.0,Spike protein S2|54043-5 Fab Heavy Chain|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8VCR,pdb_00008vcr,RBD,E,G,A|B|H|Z,False,2023/12/14,3.0,Spike protein S2|54043-5 Fab Heavy Chain|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8VCR,pdb_00008vcr,RBD,H,L,AA|B|C|D,False,2023/12/14,3.0,2-acetamido-2-deoxy-beta-D-glucopyranose|Spike protein S2|54043-5 Fab Heavy Chain,homo sapiens
+8VEE,pdb_00008vee,HA,J,K,E|S|U,False,2023/12/18,3.18,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8VEE,pdb_00008vee,HA,G,I,C|P|R,False,2023/12/18,3.18,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8VED,pdb_00008ved,HA,J,K,AF|E|X,False,2023/12/18,2.98,2-acetamido-2-deoxy-beta-D-glucopyranose|Hemagglutinin,homo sapiens
+8VED,pdb_00008ved,HA,H,L,A|S|V,False,2023/12/18,2.98,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8VED,pdb_00008ved,HA,G,I,AA|AB|C|D,False,2023/12/18,2.98,2-acetamido-2-deoxy-beta-D-glucopyranose|Hemagglutinin,homo sapiens
+8VEB,pdb_00008veb,HA,G,I,AA|E,False,2023/12/18,2.97,2-acetamido-2-deoxy-beta-D-glucopyranose|Hemagglutinin,homo sapiens
+8VEE,pdb_00008vee,HA,H,L,A|M|O,False,2023/12/18,3.18,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8VEB,pdb_00008veb,HA,H,L,A|S,False,2023/12/18,2.97,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8VEF,pdb_00008vef,HA,J,K,C|T,False,2023/12/18,3.04,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8VEF,pdb_00008vef,HA,H,L,A|P,False,2023/12/18,3.04,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8VEF,pdb_00008vef,HA,G,I,E|W,False,2023/12/18,3.04,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8VEB,pdb_00008veb,HA,J,K,C|W,False,2023/12/18,2.97,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8XI6,pdb_00008xi6,RBD,D,E,A|C|M,False,2023/12/19,2.3,Spike glycoprotein|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8XI6,pdb_00008xi6,RBD,F,G,A|B|R,False,2023/12/19,2.3,Spike glycoprotein|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8XI6,pdb_00008xi6,RBD,H,I,B|C|W,False,2023/12/19,2.3,Spike glycoprotein|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8RJ7,pdb_00008rj7,RBD,H,nan,G,True,2023/12/20,2.1,Spike protein S1,camelus dromedarius
+8RJ7,pdb_00008rj7,RBD,F,nan,E,True,2023/12/20,2.1,Spike protein S1,camelus dromedarius
+8RJ7,pdb_00008rj7,RBD,D,nan,C,True,2023/12/20,2.1,Spike protein S1,camelus dromedarius
+8RJ7,pdb_00008rj7,RBD,B,nan,A,True,2023/12/20,2.1,Spike protein S1,camelus dromedarius
+8RJ7,pdb_00008rj7,RBD,J,nan,I,True,2023/12/20,2.1,Spike protein S1,camelus dromedarius
+8VFV,pdb_00008vfv,Env,C,D,A|B|F|M,False,2023/12/22,3.3,Envelope glycoprotein gp120|Transmembrane protein gp41|RM20A3 Fab heavy chain,macaca mulatta
+8VFV,pdb_00008vfv,Env,G,I,C|E|F|K,False,2023/12/22,3.3,RM20A3 Fab heavy chain|Envelope glycoprotein gp120|Transmembrane protein gp41,macaca mulatta
+8VFV,pdb_00008vfv,Env,H,L,A|R,False,2023/12/22,3.3,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,mus musculus
+8VFV,pdb_00008vfv,Env,M,N,B|G|J|K,False,2023/12/22,3.3,Transmembrane protein gp41|RM20A3 Fab heavy chain|Envelope glycoprotein gp120,macaca mulatta
+8XK2,pdb_00008xk2,RBD,B,nan,A,True,2023/12/22,3.4,Spike protein S1,synthetic construct
+8XK2,pdb_00008xk2,RBD,H,nan,G,True,2023/12/22,3.4,Spike protein S1,synthetic construct
+8XK2,pdb_00008xk2,RBD,F,nan,E,True,2023/12/22,3.4,Spike protein S1,synthetic construct
+8XK2,pdb_00008xk2,RBD,D,nan,C,True,2023/12/22,3.4,Spike protein S1,synthetic construct
+8XKI,pdb_00008xki,RBD,D,nan,C,True,2023/12/23,3.2,Spike glycoprotein,synthetic construct
+8VIF,pdb_00008vif,RBD,H,L,R,False,2024/01/04,3.1,Spike glycoprotein,homo sapiens
+8XSJ,pdb_00008xsj,RBD,H,L,B,False,2024/01/09,2.61,Spike protein S1,homo sapiens
+8XSF,pdb_00008xsf,RBD,H,L,B,False,2024/01/09,2.16,Spike protein S1,homo sapiens
+8XSE,pdb_00008xse,RBD,M,N,A,False,2024/01/09,2.5,Spike protein S1,homo sapiens
+8XSE,pdb_00008xse,RBD,H,L,A,False,2024/01/09,2.5,Spike protein S1,homo sapiens
+8XSL,pdb_00008xsl,RBD,H,L,A,False,2024/01/09,3.2,Spike glycoprotein,homo sapiens
+8XSL,pdb_00008xsl,RBD,M,N,B,False,2024/01/09,3.2,Spike glycoprotein,homo sapiens
+8XSI,pdb_00008xsi,RBD,H,L,B,False,2024/01/09,2.1,Spike protein S1,homo sapiens
+8VKE,pdb_00008vke,RBD,A,B,C,False,2024/01/09,3.1,Spike glycoprotein,homo sapiens
+8VKE,pdb_00008vke,RBD,H,L,R,False,2024/01/09,3.1,Spike glycoprotein,homo sapiens
+8VPF,pdb_00008vpf,RBD,D,F,AE|B,False,2024/01/16,3.2,2-acetamido-2-deoxy-beta-D-glucopyranose|Spike glycoprotein,homo sapiens
+8VPF,pdb_00008vpf,RBD,E,G,AJ|C,False,2024/01/16,3.2,2-acetamido-2-deoxy-beta-D-glucopyranose|Spike glycoprotein,homo sapiens
+8VPF,pdb_00008vpf,RBD,M,N,A|Z,False,2024/01/16,3.2,Spike glycoprotein|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8XXW,pdb_00008xxw,RBD,H,L,E,False,2024/01/19,3.03,Spike protein S1,mus musculus
+8RRN,pdb_00008rrn,RBD,H,L,A,False,2024/01/23,3.11,Spike protein S1,homo sapiens|severe acute respiratory syndrome coronavirus 2
+8RRN,pdb_00008rrn,RBD,C,D,B,False,2024/01/23,3.11,Spike protein S1,homo sapiens|severe acute respiratory syndrome coronavirus 2
+8Y0Y,pdb_00008y0y,RBD,E3,E2,A|D4,False,2024/01/23,2.86,Spike glycoprotein|123-316 scDb,homo sapiens
+8Y0Y,pdb_00008y0y,RBD,D1,D4,A|E3,False,2024/01/23,2.86,Spike glycoprotein|123-316 scDb,homo sapiens
+8Y4A,pdb_00008y4a,RBD,D,E,A|BF,False,2024/01/30,3.4,Spike glycoprotein|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8Y4A,pdb_00008y4a,RBD,H,L,AO|AR|C,False,2024/01/30,3.4,2-acetamido-2-deoxy-beta-D-glucopyranose|Spike glycoprotein,homo sapiens
+8Y6A,pdb_00008y6a,RBD,C,D,B|H|L,False,2024/02/02,2.72,Spike protein S1|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8VYE,pdb_00008vye,RBD,T,U,BT|O,False,2024/02/08,2.7,2-acetamido-2-deoxy-beta-D-glucopyranose|Spike glycoprotein,homo sapiens
+8VYF,pdb_00008vyf,RBD,H,L,A|D,False,2024/02/08,3.2,Spike glycoprotein|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8VYE,pdb_00008vye,RBD,A,D,AF|K,False,2024/02/08,2.7,2-acetamido-2-deoxy-beta-D-glucopyranose|Spike glycoprotein,homo sapiens
+8VYE,pdb_00008vye,RBD,B,C,E|K,False,2024/02/08,2.7,Spike glycoprotein,homo sapiens
+8VYE,pdb_00008vye,RBD,F,G,E|O,False,2024/02/08,2.7,Spike glycoprotein,homo sapiens
+8VYG,pdb_00008vyg,RBD,A,B,C|R,False,2024/02/08,3.1,2-acetamido-2-deoxy-beta-D-glucopyranose|Spike glycoprotein,homo sapiens
+8VYE,pdb_00008vye,RBD,I,J,AY|E,False,2024/02/08,2.7,2-acetamido-2-deoxy-beta-D-glucopyranose|Spike glycoprotein,homo sapiens
+8VYE,pdb_00008vye,RBD,M,N,BA|E,False,2024/02/08,2.7,2-acetamido-2-deoxy-beta-D-glucopyranose|Spike glycoprotein,homo sapiens
+8VYE,pdb_00008vye,RBD,P,Q,K|O,False,2024/02/08,2.7,Spike glycoprotein,homo sapiens
+8VYE,pdb_00008vye,RBD,R,S,BR|O,False,2024/02/08,2.7,2-acetamido-2-deoxy-beta-D-glucopyranose|Spike glycoprotein,homo sapiens
+8VYE,pdb_00008vye,RBD,H,L,AH|K,False,2024/02/08,2.7,2-acetamido-2-deoxy-beta-D-glucopyranose|Spike glycoprotein,homo sapiens
+8VYF,pdb_00008vyf,RBD,B,C,A|E|F,False,2024/02/08,3.2,Spike glycoprotein|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9ATO,pdb_00009ato,RBD,D,nan,C,True,2024/02/27,3.2,Spike glycoprotein,vicugna pacos
+9ATO,pdb_00009ato,RBD,F,nan,B|C,True,2024/02/27,3.2,Spike glycoprotein,vicugna pacos
+9ATO,pdb_00009ato,RBD,L,nan,A,True,2024/02/27,3.2,Spike glycoprotein,vicugna pacos
+9ATP,pdb_00009atp,RBD,D,nan,A,True,2024/02/27,3.5,Spike glycoprotein,vicugna pacos
+9ATP,pdb_00009atp,RBD,E,nan,B|C,True,2024/02/27,3.5,Spike glycoprotein,vicugna pacos
+9ATP,pdb_00009atp,RBD,L,nan,A|B,True,2024/02/27,3.5,Spike glycoprotein,vicugna pacos
+9AU1,pdb_00009au1,RBD,H,L,D|E|R,False,2024/02/27,2.41,"4-(2-HYDROXYETHYL)-1-PIPERAZINE ETHANESULFONIC ACID|1,2-ETHANEDIOL|SARS-CoV-2 XBB.1.5 RBD",homo sapiens
+9AU1,pdb_00009au1,RBD,M,N,F|R,False,2024/02/27,2.41,2-acetamido-2-deoxy-beta-D-glucopyranose|SARS-CoV-2 XBB.1.5 RBD,homo sapiens
+9ATM,pdb_00009atm,RBD,H,L,I|R,False,2024/02/27,1.9,S2H97 Fab heavy chain|SARS-CoV-2 EG.5 RBD,homo sapiens
+9ATM,pdb_00009atm,RBD,I,M,A|E|H|R,False,2024/02/27,1.9,"1,2-ETHANEDIOL|VIR-7229 Fab heavy chain|SARS-CoV-2 EG.5 RBD",homo sapiens
+8S6M,pdb_00008s6m,RBD,I,M,B|C|F|H|J|O|R,False,2024/02/28,1.67,"1,2-ETHANEDIOL|S2V29 Fab heavy chain|Spike protein S1",homo sapiens
+9AU2,pdb_00009au2,RBD,D,I,C,False,2024/02/28,3.1,Spike glycoprotein,homo sapiens
+9AU2,pdb_00009au2,RBD,F,J,A|B,False,2024/02/28,3.1,Spike glycoprotein,homo sapiens
+8S6M,pdb_00008s6m,RBD,H,L,F|I|R,False,2024/02/28,1.67,"1,2-ETHANEDIOL|S2H97 Fab heavy chain|Spike protein S1",homo sapiens
+8YK4,pdb_00008yk4,RBD,A2,A1,C,False,2024/03/04,3.2,Spike protein S1,homo sapiens
+8YKG,pdb_00008ykg,RBD,F2,F1,B|C,False,2024/03/05,3.28,Spike glycoprotein,homo sapiens
+8YKH,pdb_00008ykh,RBD,A2,A1,B,False,2024/03/05,3.27,Spike glycoprotein,homo sapiens
+8YKG,pdb_00008ykg,RBD,D2,D1,C,False,2024/03/05,3.28,Spike glycoprotein,homo sapiens
+9AZR,pdb_00009azr,HA,H,L,E,False,2024/03/11,2.3,Hemagglutinin HA1 chain,homo sapiens
+9AZV,pdb_00009azv,HA,H,L,E,False,2024/03/11,3.16,Hemagglutinin HA1 chain,homo sapiens
+9AZT,pdb_00009azt,HA,H,L,E,False,2024/03/11,2.94,Hemagglutinin HA1 chain,homo sapiens
+9B2M,pdb_00009b2m,HA,H,L,C|D,False,2024/03/15,3.09,Hemagglutinin HA1 chain|Hemagglutinin HA2 chain,mus sp.
+9B2M,pdb_00009b2m,HA,J,K,G|I,False,2024/03/15,3.09,Hemagglutinin HA1 chain|Hemagglutinin HA2 chain,mus sp.
+9B2M,pdb_00009b2m,HA,E,F,A|B,False,2024/03/15,3.09,Hemagglutinin HA1 chain|Hemagglutinin HA2 chain,mus sp.
+9B2W,pdb_00009b2w,HA,B,C,A|D|M,False,2024/03/17,2.51,Hemagglutinin-neuraminidase|SULFATE ION,homo sapiens
+9B2W,pdb_00009b2w,HA,E,F,A|D,False,2024/03/17,2.51,Hemagglutinin-neuraminidase,homo sapiens
+8YRO,pdb_00008yro,RBD,H,L,D,False,2024/03/21,3.27,Spike glycoprotein,homo sapiens
+8YRO,pdb_00008yro,RBD,E,F,A,False,2024/03/21,3.27,Spike glycoprotein,homo sapiens
+8YRO,pdb_00008yro,RBD,B,C,P,False,2024/03/21,3.27,Spike glycoprotein,homo sapiens
+8YUB,pdb_00008yub,RBD,D,E,C,False,2024/03/27,2.49,Spike protein S2',homo sapiens
+8YUB,pdb_00008yub,RBD,A,B,F,False,2024/03/27,2.49,Spike protein S2',homo sapiens
+9B7G,pdb_00009b7g,HA,Q,P,C|S,False,2024/03/27,2.61,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9B7G,pdb_00009b7g,HA,J,K,B|M,False,2024/03/27,2.61,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9B7G,pdb_00009b7g,HA,H,L,A|E,False,2024/03/27,2.61,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9B7B,pdb_00009b7b,HA,G,H,E|F|N,False,2024/03/27,3.08,"HLA class II histocompatibility antigen, DR alpha chain|Hemagglutinin HA1 chain, HLA class II histocompatibility antigen DR beta chain|SULFATE ION",homo sapiens
+9B7B,pdb_00009b7b,HA,C,D,A|B|M,False,2024/03/27,3.08,"HLA class II histocompatibility antigen, DR alpha chain|Hemagglutinin HA1 chain, HLA class II histocompatibility antigen DR beta chain|SULFATE ION",homo sapiens
+9B82,pdb_00009b82,RBD,I,G,C,False,2024/03/28,3.38,Spike protein S1,homo sapiens
+9B82,pdb_00009b82,RBD,N,M,D,False,2024/03/28,3.38,Spike protein S1,homo sapiens
+9B82,pdb_00009b82,RBD,P,O,E,False,2024/03/28,3.38,Spike protein S1,homo sapiens
+9B82,pdb_00009b82,RBD,R,Q,F,False,2024/03/28,3.38,Spike protein S1,homo sapiens
+9B82,pdb_00009b82,RBD,H,L,A,False,2024/03/28,3.38,Spike protein S1,homo sapiens
+9B82,pdb_00009b82,RBD,K,J,B,False,2024/03/28,3.38,Spike protein S1,homo sapiens
+9B8C,pdb_00009b8c,Env,I,J,A|B|BM|F|M,False,2024/03/29,3.3,Envelope glycoprotein gp120|Transmembrane protein gp41|2-acetamido-2-deoxy-beta-D-glucopyranose|RM20A3 fragment antigen binding heavy chain,macaca mulatta
+9B8B,pdb_00009b8b,Env,H,L,A|AC|C|D|R,False,2024/03/29,3.2,Envelope glycoprotein gp160|2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9B8B,pdb_00009b8b,Env,I,J,B|C|E|M,False,2024/03/29,3.2,Transmembrane protein gp41|Envelope glycoprotein gp160|RM20A3 fragment antigen binding heavy chain,macaca mulatta
+9B8B,pdb_00009b8b,Env,K,G,A|B|BM|F|I,False,2024/03/29,3.2,Envelope glycoprotein gp160|Transmembrane protein gp41|2-acetamido-2-deoxy-beta-D-glucopyranose|RM20A3 fragment antigen binding heavy chain,macaca mulatta
+9B8B,pdb_00009b8b,Env,M,N,BT|D|E|F|K,False,2024/03/29,3.2,2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp160|Transmembrane protein gp41|RM20A3 fragment antigen binding heavy chain,macaca mulatta
+9B8C,pdb_00009b8c,Env,H,L,A|C|D|O|R|U,False,2024/03/29,3.3,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-3)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9B8C,pdb_00009b8c,Env,K,G,BR|D|E|F|I,False,2024/03/29,3.3,2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp120|Transmembrane protein gp41|RM20A3 fragment antigen binding heavy chain,macaca mulatta
+9B8C,pdb_00009b8c,Env,M,N,B|BO|C|E|K,False,2024/03/29,3.3,Transmembrane protein gp41|2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp120|RM20A3 fragment antigen binding heavy chain,macaca mulatta
+8YWE,pdb_00008ywe,RBD,B2,B1,A,False,2024/03/31,2.69,Spike protein S1,homo sapiens
+8YWE,pdb_00008ywe,RBD,C2,C1,A,False,2024/03/31,2.69,Spike protein S1,homo sapiens
+8YWX,pdb_00008ywx,RBD,E,D,A,False,2024/04/01,3.4,Spike protein S2',homo sapiens
+8YWW,pdb_00008yww,RBD,H1,H2,C,False,2024/04/01,2.7,Spike glycoprotein,homo sapiens
+8YWW,pdb_00008yww,RBD,E,D,A,False,2024/04/01,2.7,Spike glycoprotein,homo sapiens
+8YWW,pdb_00008yww,RBD,G,F,B,False,2024/04/01,2.7,Spike glycoprotein,homo sapiens
+9EVZ,pdb_00009evz,Env,H,L,F|I|q,False,2024/04/02,2.92,Envelope glycoprotein gp41|Envelope glycoprotein gp120|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BDF,pdb_00009bdf,HA,C,D,A|S,False,2024/04/11,3.01,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BDF,pdb_00009bdf,HA,B,I,AD|H,False,2024/04/11,3.01,2-acetamido-2-deoxy-beta-D-glucopyranose|Hemagglutinin,homo sapiens
+9BDG,pdb_00009bdg,HA,F,I,A|J,False,2024/04/11,3.01,Hemagglutinin|alpha-D-mannopyranose-(1-6)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BDG,pdb_00009bdg,HA,E,H,C|U,False,2024/04/11,3.01,Hemagglutinin|alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BDG,pdb_00009bdg,HA,D,G,B|O,False,2024/04/11,3.01,Hemagglutinin|alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BDF,pdb_00009bdf,HA,E,J,G|Z,False,2024/04/11,3.01,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8Z2E,pdb_00008z2e,RBD,B,nan,A|E,True,2024/04/12,2.3,2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|Spike protein S1,vicugna pacos
+8Z2E,pdb_00008z2e,RBD,H,L,E,False,2024/04/12,2.3,Spike protein S1,homo sapiens
+9F02,pdb_00009f02,Env,H,L,A|C|F|q,False,2024/04/15,3.02,Transmembrane protein gp41|Envelope glycoprotein gp160|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9F02,pdb_00009f02,Env,I,J,A|E|G|f,False,2024/04/15,3.02,Transmembrane protein gp41|Envelope glycoprotein gp160|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9F02,pdb_00009f02,Env,K,M,E|F|N|h,False,2024/04/15,3.02,Transmembrane protein gp41|Envelope glycoprotein gp160|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BEW,pdb_00009bew,Env,J,K,A|h,False,2024/04/16,3.3,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BEW,pdb_00009bew,Env,Q,R,M|p,False,2024/04/16,3.3,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BEW,pdb_00009bew,Env,O,P,AX|M|d,False,2024/04/16,3.3,2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BEW,pdb_00009bew,Env,H,L,G|Z,False,2024/04/16,3.3,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BEW,pdb_00009bew,Env,F,I,A|AN|V,False,2024/04/16,3.3,Envelope glycoprotein gp120|2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BEW,pdb_00009bew,Env,C,D,AD|G|l,False,2024/04/16,3.3,2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BIO,pdb_00009bio,Env,S,U,G|K|X|y,False,2024/04/23,2.83,Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BIO,pdb_00009bio,Env,P,O,AD|J|K|u,False,2024/04/23,2.83,alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp41|Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-6)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BIO,pdb_00009bio,Env,M,N,C|K|k|z,False,2024/04/23,2.83,Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BIO,pdb_00009bio,Env,I,F,A|C|g|p,False,2024/04/23,2.83,Envelope glycoprotein gp41|Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-6)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BIO,pdb_00009bio,Env,H,L,B|G|Q|b,False,2024/04/23,2.83,Envelope glycoprotein gp41|Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-6)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BIO,pdb_00009bio,Env,D,E,C|G|W|l,False,2024/04/23,2.83,Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BJ4,pdb_00009bj4,RBD,D,E,B|J,False,2024/04/24,3.4,Spike glycoprotein|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BJ3,pdb_00009bj3,RBD,E,F,B|U,False,2024/04/24,3.04,Spike glycoprotein|alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BJ3,pdb_00009bj3,RBD,C,D,A|I,False,2024/04/24,3.04,Spike glycoprotein|alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BJ2,pdb_00009bj2,RBD,H,L,A,False,2024/04/24,2.8,Spike glycoprotein,homo sapiens
+9BJ4,pdb_00009bj4,RBD,F,G,C,False,2024/04/24,3.4,Spike glycoprotein,homo sapiens
+9BJ3,pdb_00009bj3,RBD,H,L,S|e,False,2024/04/24,3.04,Spike glycoprotein|alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BJ4,pdb_00009bj4,RBD,H,L,A|I,False,2024/04/24,3.4,Spike glycoprotein|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9BNP,pdb_00009bnp,Env,H,L,E|Z|a|l,False,2024/05/02,3.17,Envelope glycoprotein Gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)-alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9BNK,pdb_00009bnk,Env,H,L,E|F|G|I|M,False,2024/05/02,3.1,Human immunodeficiency virus 1 envelope glycoprotein Gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+8ZDW,pdb_00008zdw,HA,F,E,C,False,2024/05/03,3.45,Hemagglutinin,mus musculus
+8ZDW,pdb_00008zdw,HA,L,J,H,False,2024/05/03,3.45,Hemagglutinin,mus musculus
+8ZDW,pdb_00008zdw,HA,U,R,A,False,2024/05/03,3.45,Hemagglutinin,mus musculus
+8ZER,pdb_00008zer,RBD,F,nan,E,True,2024/05/06,3.1,Spike protein S1,camelus bactrianus
+8ZER,pdb_00008zer,RBD,H,nan,G,True,2024/05/06,3.1,Spike protein S1,camelus bactrianus
+8ZER,pdb_00008zer,RBD,D,nan,C,True,2024/05/06,3.1,Spike protein S1,camelus bactrianus
+8ZER,pdb_00008zer,RBD,A,nan,B,True,2024/05/06,3.1,Spike protein S1,camelus bactrianus
+8ZER,pdb_00008zer,RBD,J,nan,I,True,2024/05/06,3.1,Spike protein S1,camelus bactrianus
+9BT5,pdb_00009bt5,HA,E,F,B,False,2024/05/14,2.5,Hemagglutinin,homo sapiens
+9BT5,pdb_00009bt5,HA,C,D,A,False,2024/05/14,2.5,Hemagglutinin,homo sapiens
+9FC2,pdb_00009fc2,RBD,B,nan,A|F,True,2024/05/15,1.21,Spike protein S1|ACETATE ION,camelus dromedarius
+9BTL,pdb_00009btl,Env,H,L,E|I|O|X|Y|k,False,2024/05/15,2.96,Envelope glycoprotein Gp120|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9BTV,pdb_00009btv,Env,H,L,A|C|D|E|i|j,False,2024/05/15,3.48,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-6)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9C0V,pdb_00009c0v,HA,H,L,A|B,False,2024/05/27,3.5,Hemagglutinin,homo sapiens
+8ZPQ,pdb_00008zpq,RBD,A,B,E,False,2024/05/31,2.75,Spike protein S1,homo sapiens
+8ZPQ,pdb_00008zpq,RBD,H,L,F,False,2024/05/31,2.75,Spike protein S1,homo sapiens
+9C44,pdb_00009c44,RBD,E,D,B|O,False,2024/06/03,2.6,Spike glycoprotein|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9C44,pdb_00009c44,RBD,F,G,C|S,False,2024/06/03,2.6,Spike glycoprotein|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9C45,pdb_00009c45,RBD,H,L,A|C|D,False,2024/06/03,3.2,Spike glycoprotein|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9C44,pdb_00009c44,RBD,H,L,A|J,False,2024/06/03,2.6,Spike glycoprotein|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8ZRD,pdb_00008zrd,RBD,C,nan,E,True,2024/06/04,2.715,Spike protein S1,lama glama
+8ZRD,pdb_00008zrd,RBD,D,nan,A,True,2024/06/04,2.715,Spike protein S1,lama glama
+9FM1,pdb_00009fm1,HA,E,nan,B|C,True,2024/06/05,2.93,Hemagglutinin,lama glama
+9FM1,pdb_00009fm1,HA,F,nan,A|B,True,2024/06/05,2.93,Hemagglutinin,lama glama
+9FM1,pdb_00009fm1,HA,D,nan,A|C,True,2024/06/05,2.93,Hemagglutinin,lama glama
+9C6Y,pdb_00009c6y,RBD,C,D,F,False,2024/06/10,2.68,Spike protein S2',homo sapiens
+9C6Y,pdb_00009c6y,RBD,A,B,E,False,2024/06/10,2.68,Spike protein S2',homo sapiens
+8ZYF,pdb_00008zyf,RBD,E,C,B|G,False,2024/06/17,2.6,Spike protein S1|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+8ZYF,pdb_00008zyf,RBD,H,D,A,False,2024/06/17,2.6,Spike protein S1,homo sapiens
+9FR3,pdb_00009fr3,RBD,I,nan,D|G,True,2024/06/18,3.3,Spike glycoprotein,lama glama
+9FR3,pdb_00009fr3,RBD,F,nan,D|G,True,2024/06/18,3.3,Spike glycoprotein,lama glama
+9FR3,pdb_00009fr3,RBD,E,nan,B|H,True,2024/06/18,3.3,Spike glycoprotein,lama glama
+9FR3,pdb_00009fr3,RBD,C,nan,A|J,True,2024/06/18,3.3,Spike glycoprotein,lama glama
+9FR4,pdb_00009fr4,RBD,A,nan,B|D,True,2024/06/18,3.1,Spike glycoprotein,lama glama
+9FR4,pdb_00009fr4,RBD,C,nan,B|D,True,2024/06/18,3.1,Spike glycoprotein,lama glama
+9FR3,pdb_00009fr3,RBD,K,nan,B|H,True,2024/06/18,3.3,Spike glycoprotein,lama glama
+9FR3,pdb_00009fr3,RBD,L,nan,A|J,True,2024/06/18,3.3,Spike glycoprotein,lama glama
+9CCI,pdb_00009cci,RBD,B,C,A,False,2024/06/21,2.65,Spike glycoprotein,homo sapiens
+9CCJ,pdb_00009ccj,RBD,H,L,A,False,2024/06/21,2.37,Spike glycoprotein,homo sapiens
+9CFG,pdb_00009cfg,RBD,H,L,A,False,2024/06/27,2.9,Spike protein S1,homo sapiens
+9CFH,pdb_00009cfh,RBD,H,L,A,False,2024/06/27,3.1,Spike protein S1,homo sapiens
+9CFA,pdb_00009cfa,Env,H,L,C|I|O,False,2024/06/27,3.06,germline-targeting HIV-1 gp120 engineered outer domain eODgt8|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|SULFATE ION,homo sapiens
+9CFE,pdb_00009cfe,RBD,A,B,C,False,2024/06/27,3.03,Spike protein S1,homo sapiens
+9CF5,pdb_00009cf5,Env,H,G,E,False,2024/06/27,3.5,Envelope glycoprotein gp120,homo sapiens
+9CF5,pdb_00009cf5,Env,J,I,C,False,2024/06/27,3.5,Envelope glycoprotein gp120,homo sapiens
+9CF5,pdb_00009cf5,Env,L,K,A|X,False,2024/06/27,3.5,Envelope glycoprotein gp120|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9CFF,pdb_00009cff,RBD,H,L,A,False,2024/06/27,3.0,Spike protein S1,homo sapiens
+9CF6,pdb_00009cf6,Env,H,L,G,False,2024/06/27,2.7,Germline-targeting HIV-1 gp120 engineered outer domain eODgt8,homo sapiens
+9CFA,pdb_00009cfa,Env,B,A,D|J,False,2024/06/27,3.06,germline-targeting HIV-1 gp120 engineered outer domain eODgt8|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9CFA,pdb_00009cfa,Env,F,E,G|N,False,2024/06/27,3.06,germline-targeting HIV-1 gp120 engineered outer domain eODgt8|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9IQP,pdb_00009iqp,RBD,B,nan,A|D,True,2024/07/13,1.55,Spike protein S1|SODIUM ION,camelus bactrianus
+9CO9,pdb_00009co9,RBD,E,nan,A,True,2024/07/16,3.44,Spike glycoprotein,vicugna pacos
+9CO9,pdb_00009co9,RBD,D,nan,B|E,True,2024/07/16,3.44,Spike glycoprotein|Nanosota-9,vicugna pacos
+9CO8,pdb_00009co8,RBD,F,nan,B|C|E,True,2024/07/16,2.99,Spike glycoprotein|Nanosota-9,vicugna pacos
+9CO8,pdb_00009co8,RBD,E,nan,B|F,True,2024/07/16,2.99,Spike glycoprotein|Nanosota-9,vicugna pacos
+9CO8,pdb_00009co8,RBD,D,nan,A|E,True,2024/07/16,2.99,Spike glycoprotein|Nanosota-9,vicugna pacos
+9CO7,pdb_00009co7,RBD,E,nan,B,True,2024/07/16,3.32,Spike glycoprotein,vicugna pacos
+9CO7,pdb_00009co7,RBD,D,nan,A|E,True,2024/07/16,3.32,Spike glycoprotein|Nanosota-9,vicugna pacos
+9CO6,pdb_00009co6,RBD,F,nan,B|C,True,2024/07/16,3.01,Spike glycoprotein,vicugna pacos
+9CO6,pdb_00009co6,RBD,E,nan,B,True,2024/07/16,3.01,Spike glycoprotein,vicugna pacos
+9CO6,pdb_00009co6,RBD,D,nan,A|E,True,2024/07/16,3.01,Spike glycoprotein|Nanosota-9,vicugna pacos
+9CPY,pdb_00009cpy,RBD,H,L,A,False,2024/07/18,3.1,Spike protein S1,mus musculus
+9CPY,pdb_00009cpy,RBD,C,D,A,False,2024/07/18,3.1,Spike protein S1,homo sapiens
+9CPX,pdb_00009cpx,RBD,H,L,A,False,2024/07/18,2.7,Spike protein S1,mus musculus
+9CPW,pdb_00009cpw,RBD,C,D,A,False,2024/07/18,3.1,Spike protein S1,homo sapiens
+9CPW,pdb_00009cpw,RBD,H,L,A,False,2024/07/18,3.1,Spike protein S1,mus musculus
+9CPP,pdb_00009cpp,RBD,F,G,A|C|D,False,2024/07/18,3.19,Spike protein S1|CITRIC ACID,homo sapiens
+9CPP,pdb_00009cpp,RBD,H,L,A,False,2024/07/18,3.19,Spike protein S1,mus musculus
+9CPQ,pdb_00009cpq,RBD,F,G,A|E,False,2024/07/18,2.88,Spike protein S1|CITRIC ACID,homo sapiens
+9CPQ,pdb_00009cpq,RBD,H,L,A|C,False,2024/07/18,2.88,Spike protein S1|CITRIC ACID,mus musculus
+9CPR,pdb_00009cpr,RBD,F,G,A|C,False,2024/07/18,3.1,Spike protein S1|CITRIC ACID,homo sapiens
+9CPR,pdb_00009cpr,RBD,H,L,A,False,2024/07/18,3.1,Spike protein S1,mus musculus
+9CPS,pdb_00009cps,RBD,F,G,A|C|D|J,False,2024/07/18,3.03,Spike protein S1|CITRIC ACID,homo sapiens
+9CPX,pdb_00009cpx,RBD,C,D,A,False,2024/07/18,2.7,Spike protein S1,homo sapiens
+9CPS,pdb_00009cps,RBD,H,L,A,False,2024/07/18,3.03,Spike protein S1,mus musculus
+9CPU,pdb_00009cpu,RBD,H,L,A,False,2024/07/18,2.6,Spike protein S1,mus musculus
+9CPV,pdb_00009cpv,RBD,C,D,A,False,2024/07/18,3.0,Spike protein S1,homo sapiens
+9CPV,pdb_00009cpv,RBD,H,L,A,False,2024/07/18,3.0,Spike protein S1,mus musculus
+9CPU,pdb_00009cpu,RBD,F,G,A,False,2024/07/18,2.6,Spike protein S1,homo sapiens
+9CU7,pdb_00009cu7,HA,J,N,A|E|F,False,2024/07/25,2.82,Hemagglutinin HA1|Hemagglutinin HA2,homo sapiens
+9CU7,pdb_00009cu7,HA,I,M,C|D|E,False,2024/07/25,2.82,Hemagglutinin HA1|Hemagglutinin HA2,homo sapiens
+9CU7,pdb_00009cu7,HA,H,L,A|B|C,False,2024/07/25,2.82,Hemagglutinin HA1|Hemagglutinin HA2,homo sapiens
+9D1W,pdb_00009d1w,Env,H,L,A|B|C|D|J|O,False,2024/08/08,3.44,HIV-1 BG505 DS-SOSIP gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9D3D,pdb_00009d3d,Env,H,L,A|B|C|G|R|h,False,2024/08/09,3.41,HIV-1 BG505 DS-SOSIP gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9J5L,pdb_00009j5l,HA,C,B,A|F,False,2024/08/12,2.97,Designed influenza hemagglutinin stem #219 HA1|Designed influenza hemagglutinin stem #219 HA2,homo sapiens
+9J5L,pdb_00009j5l,HA,E,D,A|F,False,2024/08/12,2.97,Designed influenza hemagglutinin stem #219 HA1|Designed influenza hemagglutinin stem #219 HA2,homo sapiens
+9D7P,pdb_00009d7p,Env,H,G,E|p,False,2024/08/16,3.37,Surface protein gp120|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9D7P,pdb_00009d7p,Env,J,I,C|V,False,2024/08/16,3.37,Surface protein gp120|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9DBX,pdb_00009dbx,HA,H,L,A|B|K,False,2024/08/23,2.9,Hemagglutinin HA1 chain|Hemagglutinin HA2 chain|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9DBX,pdb_00009dbx,HA,W,X,C|D|M,False,2024/08/23,2.9,Hemagglutinin HA1 chain|Hemagglutinin HA2 chain|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9DBX,pdb_00009dbx,HA,Y,Z,E|F|N,False,2024/08/23,2.9,Hemagglutinin HA1 chain|Hemagglutinin HA2 chain|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9JEB,pdb_00009jeb,RBD,A1,A2,B,False,2024/09/03,2.3,Spike protein S1,homo sapiens
+9JEB,pdb_00009jeb,RBD,C1,C2,D,False,2024/09/03,2.3,Spike protein S1,homo sapiens
+9DHW,pdb_00009dhw,Env,H,L,C|D|b|f,False,2024/09/04,3.35,Q23.MD39 Surface protein gp120|Q23.MD39 Transmembrane protein gp41|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9DHW,pdb_00009dhw,Env,E,F,A|B|J|T,False,2024/09/04,3.35,Q23.MD39 Surface protein gp120|Q23.MD39 Transmembrane protein gp41|alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-L-fucopyranose-(1-6)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9DHW,pdb_00009dhw,Env,N,M,AK|AL|C|V,False,2024/09/04,3.35,2-acetamido-2-deoxy-beta-D-glucopyranose|Q23.MD39 Surface protein gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9DHY,pdb_00009dhy,RBD,A,B,C|G,False,2024/09/04,2.7,Spike glycoprotein|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9DHY,pdb_00009dhy,RBD,D,E,F|L,False,2024/09/04,2.7,Spike glycoprotein|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9DHY,pdb_00009dhy,RBD,I,J,K|Q,False,2024/09/04,2.7,Spike glycoprotein|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9DIM,pdb_00009dim,Env,E,F,A|B|H|R,False,2024/09/05,3.19,Q23.MD39 Surface protein gp120|Q23.MD39 Transmembrane protein gp41|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9DIM,pdb_00009dim,Env,M,N,C|D|S|b,False,2024/09/05,3.19,Q23.MD39 Surface protein gp120|Q23.MD39 Transmembrane protein gp41|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9DM0,pdb_00009dm0,HA,C,D,A|B|G,False,2024/09/11,2.9,Hemagglutinin,homo sapiens
+9GST,pdb_00009gst,Env,H,L,A|AX|B|G,False,2024/09/16,3.1,Envelope glycoprotein gp160|2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9DN2,pdb_00009dn2,HA,I,M,B,False,2024/09/16,3.24,Hemagglutinin,homo sapiens
+9DN2,pdb_00009dn2,HA,J,N,C,False,2024/09/16,3.24,Hemagglutinin,homo sapiens
+9DN2,pdb_00009dn2,HA,H,L,A,False,2024/09/16,3.24,Hemagglutinin,homo sapiens
+9DO2,pdb_00009do2,HA,H,L,A|R|W,False,2024/09/18,3.45,Hemagglutinin|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9JNO,pdb_00009jno,HA,D,B,A,False,2024/09/23,1.95,Hemagglutinin,homo sapiens
+9DRU,pdb_00009dru,HA,H,L,A|B,False,2024/09/26,2.75,Hemagglutinin HA1 chain|Hemagglutinin HA2 chain,homo sapiens
+9DS1,pdb_00009ds1,HA,H,L,A|B,False,2024/09/26,2.4,Hemagglutinin HA1 chai|Hemagglutinin HA2 chain,homo sapiens
+9DSG,pdb_00009dsg,RBD,H,L,A|C,False,2024/09/27,2.4,Spike protein S1|CITRIC ACID,bos taurus
+9DWE,pdb_00009dwe,HA,H,L,AA|C,False,2024/10/09,2.8,2-acetamido-2-deoxy-beta-D-glucopyranose|Hemagglutinin,homo sapiens
+9DWE,pdb_00009dwe,HA,I,M,B,False,2024/10/09,2.8,Hemagglutinin,homo sapiens
+9DWE,pdb_00009dwe,HA,J,N,A,False,2024/10/09,2.8,Hemagglutinin,homo sapiens
+9E21,pdb_00009e21,RBD,H,L,S,False,2024/10/21,3.1,SARS XBB.1.5 Spike,homo sapiens
+9K6Y,pdb_00009k6y,RBD,H,L,R,False,2024/10/22,2.67,Spike protein S1,homo sapiens
+9K6J,pdb_00009k6j,RBD,A,B,C,False,2024/10/22,2.39,Spike protein S1,homo sapiens
+9E6J,pdb_00009e6j,HA,H,L,A,False,2024/10/30,2.98,Hemagglutinin,macaca mulatta
+9E6J,pdb_00009e6j,HA,I,M,B,False,2024/10/30,2.98,Hemagglutinin,macaca mulatta
+9E6J,pdb_00009e6j,HA,J,N,C,False,2024/10/30,2.98,Hemagglutinin,macaca mulatta
+9EA9,pdb_00009ea9,HA,M,K,B,False,2024/11/10,2.93,Non-toxic nonhemagglutinin type A,mus sp.
+9EBC,pdb_00009ebc,HA,G,H,A,False,2024/11/12,2.87,Hemagglutinin HA1,mus musculus
+9EBC,pdb_00009ebc,HA,I,J,C,False,2024/11/12,2.87,Hemagglutinin HA1,mus musculus
+9EBC,pdb_00009ebc,HA,K,L,E,False,2024/11/12,2.87,Hemagglutinin HA1,mus musculus
+9HJ9,pdb_00009hj9,HA,C,D,B|H,False,2024/11/28,2.06,"Hemagglutinin|1,2-ETHANEDIOL",homo sapiens
+9EKF,pdb_00009ekf,HA,H,L,A|C|J,False,2024/12/02,2.68,Hemagglutinin|N-acetyl-alpha-neuraminic acid-(2-3)-beta-D-galactopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9EKF,pdb_00009ekf,HA,G,K,B|C|F,False,2024/12/02,2.68,Hemagglutinin|N-acetyl-alpha-neuraminic acid-(2-3)-beta-D-galactopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9EKF,pdb_00009ekf,HA,D,I,A|B|E,False,2024/12/02,2.68,Hemagglutinin|N-acetyl-alpha-neuraminic acid-(2-3)-beta-D-galactopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9KVF,pdb_00009kvf,RBD,F,E,G,False,2024/12/05,3.0,Spike protein S1,macaca mulatta
+9KVF,pdb_00009kvf,RBD,C,D,G,False,2024/12/05,3.0,Spike protein S1,macaca mulatta
+9KVK,pdb_00009kvk,RBD,H,L,B|G,False,2024/12/05,3.44,Light chain of nAb 8H12|Spike protein S1,mus musculus
+9KVE,pdb_00009kve,RBD,E,G,C|F,False,2024/12/05,2.98,Spike protein S1|The light chain of 4H1,macaca mulatta
+9KVE,pdb_00009kve,RBD,D,F,C,False,2024/12/05,2.98,Spike protein S1,macaca mulatta
+9KVE,pdb_00009kve,RBD,A,B,C,False,2024/12/05,2.98,Spike protein S1,macaca mulatta
+9KVD,pdb_00009kvd,RBD,E,G,C,False,2024/12/05,3.44,Spike protein S1,macaca mulatta
+9KVD,pdb_00009kvd,RBD,D,F,C,False,2024/12/05,3.44,Spike protein S1,macaca mulatta
+9KVF,pdb_00009kvf,RBD,B,A,G,False,2024/12/05,3.0,Spike protein S1,macaca mulatta
+9KVK,pdb_00009kvk,RBD,A,B,G,False,2024/12/05,3.44,Spike protein S1,mus musculus
+9KVD,pdb_00009kvd,RBD,A,B,C|G,False,2024/12/05,3.44,Spike protein S1|The light chain of 3G5,macaca mulatta
+9KVK,pdb_00009kvk,RBD,C,D,E|G|H,False,2024/12/05,3.44,beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|Spike protein S1|Heavy chain of nAb 3E2,mus musculus
+9KWY,pdb_00009kwy,RBD,C,B,D|G,False,2024/12/06,2.82,beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose|Spike protein S1,mus musculus
+9KZE,pdb_00009kze,RBD,H,L,A,False,2024/12/10,3.4,Spike glycoprotein,homo sapiens
+9KZZ,pdb_00009kzz,RBD,H,L,A,False,2024/12/11,3.18,Spike glycoprotein,homo sapiens
+9KZZ,pdb_00009kzz,RBD,J,N,C,False,2024/12/11,3.18,Spike glycoprotein,homo sapiens
+9L05,pdb_00009l05,RBD,H,L,A,False,2024/12/11,3.24,Spike glycoprotein,homo sapiens
+9L07,pdb_00009l07,RBD,H,L,A,False,2024/12/11,3.28,Spike glycoprotein,homo sapiens
+9KZZ,pdb_00009kzz,RBD,I,M,B,False,2024/12/11,3.18,Spike glycoprotein,homo sapiens
+9MI3,pdb_00009mi3,RBD,E,F,C,False,2024/12/12,3.23,Spike glycoprotein,homo sapiens
+9MI3,pdb_00009mi3,RBD,B,D,A,False,2024/12/12,3.23,Spike glycoprotein,homo sapiens
+9MI0,pdb_00009mi0,Env,P,R,E,False,2024/12/12,2.8,GT1.1 v4.1 SOSIP gp120,homo sapiens
+9MI3,pdb_00009mi3,RBD,H,L,K,False,2024/12/12,3.23,Spike glycoprotein,homo sapiens
+9MI0,pdb_00009mi0,Env,O,Q,D|E|F|G,False,2024/12/12,2.8,Envelope glycoprotein gp160|GT1.1 v4.1 SOSIP gp120|RM20A3 heavy chain Fv,macaca mulatta
+9MI0,pdb_00009mi0,Env,K,N,C,False,2024/12/12,2.8,GT1.1 v4.1 SOSIP gp120,homo sapiens
+9MI0,pdb_00009mi0,Env,J,M,B|C|D|O,False,2024/12/12,2.8,Envelope glycoprotein gp160|GT1.1 v4.1 SOSIP gp120|RM20A3 heavy chain Fv,macaca mulatta
+9MIA,pdb_00009mia,Env,G,I,A|B|F|J,False,2024/12/12,2.8,GT1.1 v4.1 SOSIP gp120|Envelope glycoprotein gp160|RM20A3 heavy chain Fv,macaca mulatta
+9MIA,pdb_00009mia,Env,H,L,A,False,2024/12/12,2.8,GT1.1 v4.1 SOSIP gp120,homo sapiens
+9MIA,pdb_00009mia,Env,J,M,B|C|D|O,False,2024/12/12,2.8,Envelope glycoprotein gp160|GT1.1 v4.1 SOSIP gp120|RM20A3 heavy chain Fv,macaca mulatta
+9MIA,pdb_00009mia,Env,K,N,C,False,2024/12/12,2.8,GT1.1 v4.1 SOSIP gp120,homo sapiens
+9MIA,pdb_00009mia,Env,O,Q,D|E|F|G,False,2024/12/12,2.8,Envelope glycoprotein gp160|GT1.1 v4.1 SOSIP gp120|RM20A3 heavy chain Fv,macaca mulatta
+9MIA,pdb_00009mia,Env,P,R,E,False,2024/12/12,2.8,GT1.1 v4.1 SOSIP gp120,homo sapiens
+9MIB,pdb_00009mib,Env,G,I,A|B|F|J,False,2024/12/12,2.8,GT1.1 v4.1 SOSIP gp120|Envelope glycoprotein gp160|RM20A3 heavy chain Fv,macaca mulatta
+9MIB,pdb_00009mib,Env,H,L,A|C,False,2024/12/12,2.8,GT1.1 v4.1 SOSIP gp120,homo sapiens
+9MII,pdb_00009mii,Env,H,L,A|AF,False,2024/12/12,3.3,HIV-1 Envelope Glycoprotein BG505 SOSIP.664 gp120|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9MIB,pdb_00009mib,Env,K,N,C|E,False,2024/12/12,2.8,GT1.1 v4.1 SOSIP gp120,homo sapiens
+9MIB,pdb_00009mib,Env,O,Q,D|E|F|G,False,2024/12/12,2.8,Envelope glycoprotein gp160|GT1.1 v4.1 SOSIP gp120|RM20A3 heavy chain Fv,macaca mulatta
+9MIB,pdb_00009mib,Env,P,R,A|E,False,2024/12/12,2.8,GT1.1 v4.1 SOSIP gp120,homo sapiens
+9MIC,pdb_00009mic,Env,H,L,C,False,2024/12/12,1.97,eOD-GT8 engineered mutant of gp120,homo sapiens
+9MII,pdb_00009mii,Env,G,I,A|B|D|M,False,2024/12/12,3.3,HIV-1 Envelope Glycoprotein BG505 SOSIP.664 gp120|Envelope glycoprotein gp160|RM20A3 heavy chain Fv,macaca mulatta
+9MI0,pdb_00009mi0,Env,H,L,A,False,2024/12/12,2.8,GT1.1 v4.1 SOSIP gp120,homo sapiens
+9MII,pdb_00009mii,Env,M,N,B|BN|E|F|J,False,2024/12/12,3.3,Envelope glycoprotein gp160|2-acetamido-2-deoxy-beta-D-glucopyranose|HIV-1 Envelope Glycoprotein BG505 SOSIP.664 gp120|RM20A3 heavy chain Fv,macaca mulatta
+9MID,pdb_00009mid,Env,H,L,C,False,2024/12/12,1.74,eOD-GT8 engineered mutant of gp120,homo sapiens
+9MIF,pdb_00009mif,Env,H,L,C,False,2024/12/12,1.93,eOD-GT8 engineered mutant of gp120,homo sapiens
+9MII,pdb_00009mii,Env,J,K,BK|C|D|F|G,False,2024/12/12,3.3,2-acetamido-2-deoxy-beta-D-glucopyranose|HIV-1 Envelope Glycoprotein BG505 SOSIP.664 gp120|Envelope glycoprotein gp160|RM20A3 heavy chain Fv,macaca mulatta
+9MIB,pdb_00009mib,Env,J,M,B|C|D|O,False,2024/12/12,2.8,Envelope glycoprotein gp160|GT1.1 v4.1 SOSIP gp120|RM20A3 heavy chain Fv,macaca mulatta
+9MI0,pdb_00009mi0,Env,G,I,A|B|F|J,False,2024/12/12,2.8,GT1.1 v4.1 SOSIP gp120|Envelope glycoprotein gp160|RM20A3 heavy chain Fv,macaca mulatta
+9L15,pdb_00009l15,RBD,J,N,A|C,False,2024/12/13,2.95,Spike glycoprotein,homo sapiens
+9L15,pdb_00009l15,RBD,I,M,B|H,False,2024/12/13,2.95,Spike glycoprotein|XGi-203 heavy chain,homo sapiens
+9L15,pdb_00009l15,RBD,H,L,A,False,2024/12/13,2.95,Spike glycoprotein,homo sapiens
+9MJ3,pdb_00009mj3,Env,H,L,C,False,2024/12/13,2.2,eOD-GT8 engineered mutant of gp120,homo sapiens
+9L2L,pdb_00009l2l,RBD,O,R,D|F|G,False,2024/12/17,2.98,Spike glycoprotein|XGi-198 heavy chain,homo sapiens
+9L2L,pdb_00009l2l,RBD,G,P,D|F|R,False,2024/12/17,2.98,Spike glycoprotein|XGi-198 light chain,homo sapiens
+9L2L,pdb_00009l2l,RBD,H,L,A|C|N,False,2024/12/17,2.98,Spike glycoprotein|XGi-198 light chain,homo sapiens
+9L2L,pdb_00009l2l,RBD,I,M,B,False,2024/12/17,2.98,Spike glycoprotein,homo sapiens
+9L2L,pdb_00009l2l,RBD,J,N,A|C|H,False,2024/12/17,2.98,Spike glycoprotein|XGi-198 heavy chain,homo sapiens
+9L2L,pdb_00009l2l,RBD,K,Q,E,False,2024/12/17,2.98,Spike glycoprotein,homo sapiens
+9ML4,pdb_00009ml4,RBD,H,L,A,False,2024/12/18,3.3,Spike glycoprotein,oryctolagus cuniculus
+9ML5,pdb_00009ml5,RBD,H,L,A,False,2024/12/18,3.4,Spike glycoprotein,oryctolagus cuniculus
+9ML5,pdb_00009ml5,RBD,M,N,B,False,2024/12/18,3.4,Spike glycoprotein,oryctolagus cuniculus
+9ML6,pdb_00009ml6,RBD,H,L,A,False,2024/12/18,3.5,Spike glycoprotein,oryctolagus cuniculus
+9ML6,pdb_00009ml6,RBD,M,N,B,False,2024/12/18,3.5,Spike glycoprotein,oryctolagus cuniculus
+9ML6,pdb_00009ml6,RBD,P,Q,C,False,2024/12/18,3.5,Spike glycoprotein,oryctolagus cuniculus
+9ML7,pdb_00009ml7,RBD,H,L,A|C,False,2024/12/18,3.2,Spike glycoprotein,oryctolagus cuniculus
+9ML4,pdb_00009ml4,RBD,P,Q,C,False,2024/12/18,3.3,Spike glycoprotein,oryctolagus cuniculus
+9ML8,pdb_00009ml8,RBD,H,L,A,False,2024/12/18,2.4,Spike protein S1,oryctolagus cuniculus
+9ML8,pdb_00009ml8,RBD,M,N,C,False,2024/12/18,2.4,Spike protein S1,oryctolagus cuniculus
+9ML8,pdb_00009ml8,RBD,E,F,B,False,2024/12/18,2.4,Spike protein S1,oryctolagus cuniculus
+9ML9,pdb_00009ml9,RBD,H,L,A|D,False,2024/12/18,2.59,"Spike protein S1|2-AMINO-2-HYDROXYMETHYL-PROPANE-1,3-DIOL",oryctolagus cuniculus
+9ML8,pdb_00009ml8,RBD,P,Q,D,False,2024/12/18,2.4,Spike protein S1,oryctolagus cuniculus
+9ML4,pdb_00009ml4,RBD,M,N,B,False,2024/12/18,3.3,Spike glycoprotein,oryctolagus cuniculus
+9L6C,pdb_00009l6c,RBD,H,L,E,False,2024/12/24,3.33,Spike protein S1,homo sapiens
+9L6C,pdb_00009l6c,RBD,D,F,E,False,2024/12/24,3.33,Spike protein S1,homo sapiens
+9L6C,pdb_00009l6c,RBD,A,B,E,False,2024/12/24,3.33,Spike protein S1,homo sapiens
+9L8Z,pdb_00009l8z,HA,F,E,D,False,2024/12/28,3.448,Hemagglutinin,homo sapiens
+9L8Z,pdb_00009l8z,HA,C,B,A,False,2024/12/28,3.448,Hemagglutinin,homo sapiens
+9MPW,pdb_00009mpw,RBD,H,L,S,False,2024/12/31,3.37,Spike protein S2,homo sapiens
+9MQ1,pdb_00009mq1,HA,H,L,A|B|I,False,2025/01/01,3.37,Hemagglutinin HA1|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9MQ3,pdb_00009mq3,HA,H,L,A|B|I,False,2025/01/01,3.22,Hemagglutinin HA1|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9MQ2,pdb_00009mq2,HA,H,L,B|C|E,False,2025/01/01,3.06,Hemagglutinin HA1|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9MQ9,pdb_00009mq9,HA,J,N,E,False,2025/01/02,3.38,Hemagglutinin HA1 chain,homo sapiens
+9MQA,pdb_00009mqa,HA,H,L,A,False,2025/01/02,3.22,Hemagglutinin HA1 chain,homo sapiens
+9MQA,pdb_00009mqa,HA,J,N,E,False,2025/01/02,3.22,Hemagglutinin HA1 chain,homo sapiens
+9MQD,pdb_00009mqd,HA,H,L,A,False,2025/01/02,3.22,Hemagglutinin HA1 chain,homo sapiens
+9MQD,pdb_00009mqd,HA,I,M,C,False,2025/01/02,3.22,Hemagglutinin HA1 chain,homo sapiens
+9MQD,pdb_00009mqd,HA,J,N,E,False,2025/01/02,3.22,Hemagglutinin HA1 chain,homo sapiens
+9MQ9,pdb_00009mq9,HA,H,L,A,False,2025/01/02,3.38,Hemagglutinin HA1 chain,homo sapiens
+9MQ9,pdb_00009mq9,HA,I,M,C,False,2025/01/02,3.38,Hemagglutinin HA1 chain,homo sapiens
+9MQA,pdb_00009mqa,HA,I,M,C,False,2025/01/02,3.22,Hemagglutinin HA1 chain,homo sapiens
+9LAE,pdb_00009lae,RBD,A,B,G,False,2025/01/02,3.46,Spike protein S1,mus musculus
+9LAE,pdb_00009lae,RBD,H,L,G,False,2025/01/02,3.46,Spike protein S1,mus musculus
+9LBS,pdb_00009lbs,RBD,A,B,E|F,False,2025/01/03,3.41,2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose|Spike protein S1,homo sapiens
+9MQG,pdb_00009mqg,Env,H,L,A|C|D|R|V|W,False,2025/01/03,3.3,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9MQG,pdb_00009mqg,Env,M,N,B|BG|C|E|K,False,2025/01/03,3.3,Transmembrane protein gp41|2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp120|RM20A3 Fab heavy chain,macaca mulatta
+9MQG,pdb_00009mqg,Env,K,G,BL|D|E|F|I,False,2025/01/03,3.3,2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp120|Transmembrane protein gp41|RM20A3 Fab heavy chain,macaca mulatta
+9MQG,pdb_00009mqg,Env,I,J,A|B|BF|F|M,False,2025/01/03,3.3,Envelope glycoprotein gp120|Transmembrane protein gp41|2-acetamido-2-deoxy-beta-D-glucopyranose|RM20A3 Fab heavy chain,macaca mulatta
+9LBS,pdb_00009lbs,RBD,D,C,F,False,2025/01/03,3.41,Spike protein S1,homo sapiens
+9LBS,pdb_00009lbs,RBD,H,L,F,False,2025/01/03,3.41,Spike protein S1,homo sapiens
+9MTL,pdb_00009mtl,HA,M,N,E|F,False,2025/01/11,2.41,Hemagglutinin,sus scrofa
+9MTM,pdb_00009mtm,HA,H,L,A|B,False,2025/01/11,2.49,Hemagglutinin,sus scrofa
+9MTM,pdb_00009mtm,HA,I,J,C|D,False,2025/01/11,2.49,Hemagglutinin,sus scrofa
+9MTM,pdb_00009mtm,HA,M,N,E|F,False,2025/01/11,2.49,Hemagglutinin,sus scrofa
+9MTG,pdb_00009mtg,HA,M,N,C|D,False,2025/01/11,2.52,Hemagglutinin,sus scrofa
+9MTF,pdb_00009mtf,HA,H,L,A|B,False,2025/01/11,2.61,Hemagglutinin (HA1 polypeptide) from influenza H1N1 A/Solomon Island/3/2006|Hemagglutinin (HA2 polypeptide) from influenza H1N1 A/Solomon Island/3/2006,sus scrofa
+9MTF,pdb_00009mtf,HA,I,J,C|D,False,2025/01/11,2.61,Hemagglutinin (HA1 polypeptide) from influenza H1N1 A/Solomon Island/3/2006|Hemagglutinin (HA2 polypeptide) from influenza H1N1 A/Solomon Island/3/2006,sus scrofa
+9MTF,pdb_00009mtf,HA,M,N,E|F,False,2025/01/11,2.61,Hemagglutinin (HA1 polypeptide) from influenza H1N1 A/Solomon Island/3/2006|Hemagglutinin (HA2 polypeptide) from influenza H1N1 A/Solomon Island/3/2006,sus scrofa
+9MTG,pdb_00009mtg,HA,H,L,E|F,False,2025/01/11,2.52,Hemagglutinin,sus scrofa
+9MTG,pdb_00009mtg,HA,I,J,A|B,False,2025/01/11,2.52,Hemagglutinin,sus scrofa
+9MTH,pdb_00009mth,HA,I,J,C|D,False,2025/01/11,2.5,Hemagglutinin (HA1 polypeptide) from influenza H1N1 A/Solomon Island/3/2006|Hemagglutinin (HA2 polypeptide) from influenza H1N1 A/Solomon Island/3/2006,sus scrofa
+9MTL,pdb_00009mtl,HA,I,J,C|D,False,2025/01/11,2.41,Hemagglutinin,sus scrofa
+9MTK,pdb_00009mtk,HA,I,J,C|D,False,2025/01/11,2.54,Hemagglutinin,sus scrofa
+9MTK,pdb_00009mtk,HA,M,N,E|F,False,2025/01/11,2.54,Hemagglutinin,sus scrofa
+9MTH,pdb_00009mth,HA,M,N,E|F,False,2025/01/11,2.5,Hemagglutinin (HA1 polypeptide) from influenza H1N1 A/Solomon Island/3/2006|Hemagglutinin (HA2 polypeptide) from influenza H1N1 A/Solomon Island/3/2006,sus scrofa
+9LH2,pdb_00009lh2,RBD,D,nan,C,True,2025/01/11,2.3,Spike protein S1,vicugna pacos
+9LH2,pdb_00009lh2,RBD,B,nan,A,True,2025/01/11,2.3,Spike protein S1,vicugna pacos
+9MTK,pdb_00009mtk,HA,H,L,A|B,False,2025/01/11,2.54,Hemagglutinin,sus scrofa
+9MTJ,pdb_00009mtj,HA,M,N,C|D,False,2025/01/11,2.65,Hemagglutinin (HA1 polypeptide) from influenza H1N1 A/Solomon Island/3/2006|Hemagglutinin (HA2 polypeptide) from influenza H1N1 A/Solomon Island/3/2006,sus scrofa
+9MTJ,pdb_00009mtj,HA,I,J,E|F,False,2025/01/11,2.65,Hemagglutinin (HA1 polypeptide) from influenza H1N1 A/Solomon Island/3/2006|Hemagglutinin (HA2 polypeptide) from influenza H1N1 A/Solomon Island/3/2006,sus scrofa
+9MTJ,pdb_00009mtj,HA,H,L,A|B,False,2025/01/11,2.65,Hemagglutinin (HA1 polypeptide) from influenza H1N1 A/Solomon Island/3/2006|Hemagglutinin (HA2 polypeptide) from influenza H1N1 A/Solomon Island/3/2006,sus scrofa
+9MTI,pdb_00009mti,HA,M,N,B|C,False,2025/01/11,2.98,Hemagglutinin,sus scrofa
+9MTI,pdb_00009mti,HA,I,J,A|B,False,2025/01/11,2.98,Hemagglutinin,sus scrofa
+9MTI,pdb_00009mti,HA,H,L,A|C,False,2025/01/11,2.98,Hemagglutinin,sus scrofa
+9MTL,pdb_00009mtl,HA,H,L,A|B,False,2025/01/11,2.41,Hemagglutinin,sus scrofa
+9MTH,pdb_00009mth,HA,H,L,A|B,False,2025/01/11,2.5,Hemagglutinin (HA1 polypeptide) from influenza H1N1 A/Solomon Island/3/2006|Hemagglutinin (HA2 polypeptide) from influenza H1N1 A/Solomon Island/3/2006,sus scrofa
+9LHO,pdb_00009lho,HA,T,S,E,False,2025/01/13,3.1,Hemagglutinin,homo sapiens
+9LHO,pdb_00009lho,HA,O,N,C,False,2025/01/13,3.1,Hemagglutinin,homo sapiens
+9LHO,pdb_00009lho,HA,I,H,A,False,2025/01/13,3.1,Hemagglutinin,homo sapiens
+9LP0,pdb_00009lp0,RBD,D,E,C,False,2025/01/23,2.61,Spike glycoprotein,homo sapiens
+9LOY,pdb_00009loy,RBD,H,I,A,False,2025/01/23,2.66,Spike glycoprotein,homo sapiens
+9LP1,pdb_00009lp1,RBD,A,B,C,False,2025/01/23,3.47,Spike protein S1,homo sapiens
+9LOY,pdb_00009loy,RBD,E,F,C,False,2025/01/23,2.66,Spike glycoprotein,homo sapiens
+9N4F,pdb_00009n4f,HA,O,P,C|F,False,2025/02/02,2.71,Hemagglutinin,homo sapiens
+9N4F,pdb_00009n4f,HA,M,N,A|D,False,2025/02/02,2.71,Hemagglutinin,homo sapiens
+9N4F,pdb_00009n4f,HA,H,L,B|E,False,2025/02/02,2.71,Hemagglutinin,homo sapiens
+9N4E,pdb_00009n4e,HA,O,R,E|F,False,2025/02/02,2.6,Hemagglutinin,homo sapiens
+9N4E,pdb_00009n4e,HA,K,M,A|B,False,2025/02/02,2.6,Hemagglutinin,homo sapiens
+9LS3,pdb_00009ls3,RBD,D,E,A,False,2025/02/02,3.4,Spike glycoprotein,homo sapiens
+9LS3,pdb_00009ls3,RBD,F,G,B,False,2025/02/02,3.4,Spike glycoprotein,homo sapiens
+9LS3,pdb_00009ls3,RBD,H,I,C,False,2025/02/02,3.4,Spike glycoprotein,homo sapiens
+9N4E,pdb_00009n4e,HA,Q,P,C|D,False,2025/02/02,2.6,Hemagglutinin,homo sapiens
+9N5Z,pdb_00009n5z,HA,A,B,C,False,2025/02/04,3.2,Hemagglutinin,homo sapiens
+9IB3,pdb_00009ib3,RBD,H,L,A,False,2025/02/11,3.3,Spike glycoprotein,homo sapiens
+9IB1,pdb_00009ib1,RBD,H,L,A,False,2025/02/11,3.2,Spike glycoprotein,homo sapiens
+9NBT,pdb_00009nbt,Env,E,F,A|J|l,False,2025/02/14,2.91,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NBY,pdb_00009nby,Env,R,Q,A|u,False,2025/02/14,3.16,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NBY,pdb_00009nby,Env,P,O,E|n|r,False,2025/02/14,3.16,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NBY,pdb_00009nby,Env,M,N,A|AD|AJ,False,2025/02/14,3.16,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NBY,pdb_00009nby,Env,S,T,D|E|F|o,False,2025/02/14,3.16,Envelope glycoprotein gp41|Envelope glycoprotein gp120|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NBY,pdb_00009nby,Env,L,K,C|DA,False,2025/02/14,3.16,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NBY,pdb_00009nby,Env,I,J,AK|C|E,False,2025/02/14,3.16,alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp120,homo sapiens
+9NBY,pdb_00009nby,Env,H,G,E|f,False,2025/02/14,3.16,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NBT,pdb_00009nbt,Env,C,D,A|Q|Y,False,2025/02/14,2.91,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NBT,pdb_00009nbt,Env,O,P,Q|R|s,False,2025/02/14,2.91,Envelope glycoprotein gp120|Envelope glycoprotein gp41|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NBT,pdb_00009nbt,Env,G,I,J|K|f,False,2025/02/14,2.91,Envelope glycoprotein gp120|Envelope glycoprotein gp41|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NBT,pdb_00009nbt,Env,H,L,A|B|S,False,2025/02/14,2.91,Envelope glycoprotein gp120|Envelope glycoprotein gp41|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NBT,pdb_00009nbt,Env,M,N,J|Q|y,False,2025/02/14,2.91,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9LYO,pdb_00009lyo,RBD,j,i,B,False,2025/02/20,3.07,Spike glycoprotein,homo sapiens
+9LYO,pdb_00009lyo,RBD,n,l,A,False,2025/02/20,3.07,Spike glycoprotein,homo sapiens
+9LYO,pdb_00009lyo,RBD,h,g,C,False,2025/02/20,3.07,Spike glycoprotein,homo sapiens
+9NH7,pdb_00009nh7,HA,F,nan,A|G|J,True,2025/02/24,3.02,Hemagglutinin HA1 chain|Hemagglutinin HA2 chain|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,synthetic construct
+9NH7,pdb_00009nh7,HA,E,nan,B|H|L,True,2025/02/24,3.02,Hemagglutinin HA1 chain|Hemagglutinin HA2 chain|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,synthetic construct
+9NJ6,pdb_00009nj6,HA,H,L,A|C|M,False,2025/02/26,2.36,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NJ3,pdb_00009nj3,HA,Q,P,A|D,False,2025/02/26,2.48,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NJ3,pdb_00009nj3,HA,J,K,B|C|F,False,2025/02/26,2.48,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NJ3,pdb_00009nj3,HA,H,L,A|C|I|N,False,2025/02/26,2.48,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NJ6,pdb_00009nj6,HA,Q,P,B|C|G,False,2025/02/26,2.36,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NJ6,pdb_00009nj6,HA,J,K,A|B|E,False,2025/02/26,2.36,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NJ9,pdb_00009nj9,HA,H,L,A|C|G|N,False,2025/02/27,2.6,Hemagglutinin|alpha-L-fucopyranose-(1-6)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NJ9,pdb_00009nj9,HA,J,K,B|E,False,2025/02/27,2.6,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NJ9,pdb_00009nj9,HA,Q,P,A|D,False,2025/02/27,2.6,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NJA,pdb_00009nja,HA,J,K,B|E,False,2025/02/27,2.5,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NJA,pdb_00009nja,HA,Q,P,C|F,False,2025/02/27,2.5,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NJA,pdb_00009nja,HA,H,L,A|D,False,2025/02/27,2.5,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9NVG,pdb_00009nvg,RBD,H,L,A,False,2025/03/20,3.0,Spike glycoprotein,homo sapiens
+9NW0,pdb_00009nw0,Env,H,L,AO|E|T|b|f|l|u|v,False,2025/03/21,2.9,2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|HIV envelope gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-6)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose,macaca mulatta
+9NVW,pdb_00009nvw,Env,H,L,AR|E|S|b|f|j|r,False,2025/03/21,3.3,2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-6)-alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|HIV envelope gp120|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9NVX,pdb_00009nvx,Env,H,L,S|a|b|d|f|s,False,2025/03/21,3.0,2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|HIV envelope gp120,macaca mulatta
+9NVZ,pdb_00009nvz,Env,H,L,E|U|b|d|f|n|x,False,2025/03/21,3.0,alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|HIV envelope gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9NW1,pdb_00009nw1,Env,H,L,AO|E|U|b|f|m|v,False,2025/03/21,3.1,2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|HIV envelope gp120|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9O2T,pdb_00009o2t,Env,M,N,E|Y|Z,False,2025/04/04,3.4,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|beta-D-galactopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-2)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9O2T,pdb_00009o2t,Env,J,K,C|V|W,False,2025/04/04,3.4,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|beta-D-galactopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-2)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9O2T,pdb_00009o2t,Env,H,L,A|G|I,False,2025/04/04,3.4,Envelope glycoprotein gp120|beta-D-galactopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-2)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9O2S,pdb_00009o2s,Env,J,K,C|Q|R,False,2025/04/04,3.2,Envelope glycoprotein gp120|beta-D-galactopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-2)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9O2R,pdb_00009o2r,Env,H,L,A|G|I,False,2025/04/04,3.0,Envelope glycoprotein gp120|beta-D-galactopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-2)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9O2S,pdb_00009o2s,Env,H,L,A|G|I,False,2025/04/04,3.2,Envelope glycoprotein gp120|beta-D-galactopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-2)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9O8S,pdb_00009o8s,HA,G,J,AQ|C|D|E|R,False,2025/04/16,2.65,2-acetamido-2-deoxy-beta-D-glucopyranose|Hemagglutinin HA1|Hemagglutinin HA2|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9O8S,pdb_00009o8s,HA,I,K,A|AR|D|F|W,False,2025/04/16,2.65,Hemagglutinin HA1|2-acetamido-2-deoxy-beta-D-glucopyranose|Hemagglutinin HA2|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9O8S,pdb_00009o8s,HA,H,L,A|AP|B|C|M,False,2025/04/16,2.65,Hemagglutinin HA1|2-acetamido-2-deoxy-beta-D-glucopyranose|Hemagglutinin HA2|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9O8T,pdb_00009o8t,HA,G,J,C|E|P,False,2025/04/16,3.12,Hemagglutinin HA1|Hemagglutinin HA2|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9O8T,pdb_00009o8t,HA,H,L,A|B|T,False,2025/04/16,3.12,Hemagglutinin HA1|Hemagglutinin HA2|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9O8T,pdb_00009o8t,HA,I,K,D|F|R,False,2025/04/16,3.12,Hemagglutinin HA1|Hemagglutinin HA2|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9O8R,pdb_00009o8r,HA,I,K,AA|C|D|F|U,False,2025/04/16,2.96,2-acetamido-2-deoxy-beta-D-glucopyranose|Hemagglutinin,homo sapiens
+9O8R,pdb_00009o8r,HA,H,L,A|B|D|S|Y,False,2025/04/16,2.96,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9O8Q,pdb_00009o8q,HA,I,K,A|D|F|U,False,2025/04/16,2.62,Hemagglutinin HA1|Hemagglutinin HA2|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9O8Q,pdb_00009o8q,HA,H,L,A|B|C|M,False,2025/04/16,2.62,Hemagglutinin HA1|Hemagglutinin HA2|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9O8Q,pdb_00009o8q,HA,G,J,C|D|E|Q,False,2025/04/16,2.62,Hemagglutinin HA1|Hemagglutinin HA2|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9O8R,pdb_00009o8r,HA,G,J,A|C|E|Q|W,False,2025/04/16,2.96,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OAP,pdb_00009oap,Env,H,L,C,False,2025/04/21,2.8,Germline-targeting HIV-1 gp120 engineered outer domain eOD-GT8-mingly,homo sapiens
+9OAS,pdb_00009oas,Env,Q,R,D|U,False,2025/04/21,2.79,Germline-targeting HIV-1 gp120 engineered outer domain eOD-GT8-mingly-N276|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OAS,pdb_00009oas,Env,J,K,G|M,False,2025/04/21,2.79,2-acetamido-2-deoxy-beta-D-glucopyranose|Germline-targeting HIV-1 gp120 engineered outer domain eOD-GT8-mingly-N276,homo sapiens
+9OAS,pdb_00009oas,Env,H,L,C|O,False,2025/04/21,2.79,Germline-targeting HIV-1 gp120 engineered outer domain eOD-GT8-mingly-N276|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OAO,pdb_00009oao,Env,H,L,C,False,2025/04/21,2.58,Germline-targeting HIV-1 gp120 engineered outer domain eOD-GT8-mingly,homo sapiens
+9OAQ,pdb_00009oaq,Env,H,L,C|D,False,2025/04/21,2.54,Germline-targeting HIV-1 gp120 engineered outer domain eOD-GT8-mingly-N276|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OAR,pdb_00009oar,Env,B,D,A,False,2025/04/21,1.94,Germline-targeting HIV-1 gp120 engineered outer domain eOD-GT8-mingly,homo sapiens
+9OAR,pdb_00009oar,Env,H,L,C,False,2025/04/21,1.94,Germline-targeting HIV-1 gp120 engineered outer domain eOD-GT8-mingly,homo sapiens
+9OAS,pdb_00009oas,Env,E,F,P|X,False,2025/04/21,2.79,Germline-targeting HIV-1 gp120 engineered outer domain eOD-GT8-mingly-N276|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9UPR,pdb_00009upr,RBD,E,nan,C|F,True,2025/04/28,2.77,2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|Spike glycoprotein,vicugna pacos
+9UPR,pdb_00009upr,RBD,B,A,F,False,2025/04/28,2.77,Spike glycoprotein,homo sapiens
+9OGL,pdb_00009ogl,Env,I,J,BA|C|g|h|i,False,2025/04/30,3.1,2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGL,pdb_00009ogl,Env,K,M,B|C|f,False,2025/04/30,3.1,Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGL,pdb_00009ogl,Env,N,O,A|R,False,2025/04/30,3.1,Envelope glycoprotein gp160|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGL,pdb_00009ogl,Env,P,Q,B|Z,False,2025/04/30,3.1,Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-2)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGL,pdb_00009ogl,Env,H,L,A|AN|B,False,2025/04/30,3.1,Envelope glycoprotein gp160|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGL,pdb_00009ogl,Env,F,G,B|a|c,False,2025/04/30,3.1,Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGL,pdb_00009ogl,Env,D,E,A|T|U,False,2025/04/30,3.1,Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGT,pdb_00009ogt,Env,K,N,C|c,False,2025/05/01,3.0,HIV-1 Envelope Glycoprotein BG505 SOSIP.664 gp120|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGU,pdb_00009ogu,Env,P,Q,C|l,False,2025/05/01,3.2,HIV-1 Envelope Glycoprotein BG505 SOSIP.664 gp120|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGU,pdb_00009ogu,Env,R,S,C|o|r,False,2025/05/01,3.2,HIV-1 Envelope Glycoprotein BG505 SOSIP.664 gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGU,pdb_00009ogu,Env,M,L,E|d,False,2025/05/01,3.2,HIV-1 Envelope Glycoprotein BG505 SOSIP.664 gp120|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGU,pdb_00009ogu,Env,J,K,A|V|Z,False,2025/05/01,3.2,HIV-1 Envelope Glycoprotein BG505 SOSIP.664 gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGU,pdb_00009ogu,Env,H,I,A|Y,False,2025/05/01,3.2,HIV-1 Envelope Glycoprotein BG505 SOSIP.664 gp120|alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGT,pdb_00009ogt,Env,P,R,E|j,False,2025/05/01,3.0,HIV-1 Envelope Glycoprotein BG505 SOSIP.664 gp120|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGT,pdb_00009ogt,Env,O,Q,E|h|k,False,2025/05/01,3.0,HIV-1 Envelope Glycoprotein BG505 SOSIP.664 gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGU,pdb_00009ogu,Env,N,O,E|e|i,False,2025/05/01,3.2,HIV-1 Envelope Glycoprotein BG505 SOSIP.664 gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGT,pdb_00009ogt,Env,H,L,A|V,False,2025/05/01,3.0,HIV-1 Envelope Glycoprotein BG505 SOSIP.664 gp120|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGT,pdb_00009ogt,Env,J,M,C|a|d,False,2025/05/01,3.0,HIV-1 Envelope Glycoprotein BG505 SOSIP.664 gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGM,pdb_00009ogm,Env,P,Q,A|B|Y,False,2025/05/01,3.5,Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-2)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGT,pdb_00009ogt,Env,G,I,A|T|W,False,2025/05/01,3.0,HIV-1 Envelope Glycoprotein BG505 SOSIP.664 gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGM,pdb_00009ogm,Env,N,O,A|R,False,2025/05/01,3.5,Envelope glycoprotein gp160|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGM,pdb_00009ogm,Env,K,M,B|C|e,False,2025/05/01,3.5,Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGM,pdb_00009ogm,Env,I,J,AC|C|f|h,False,2025/05/01,3.5,2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGM,pdb_00009ogm,Env,H,L,B,False,2025/05/01,3.5,Envelope glycoprotein gp160,homo sapiens
+9OGM,pdb_00009ogm,Env,F,G,AB|B|Z|b,False,2025/05/01,3.5,2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OGM,pdb_00009ogm,Env,D,E,A|AA|AH|T|U,False,2025/05/01,3.5,Envelope glycoprotein gp160|2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9UTF,pdb_00009utf,RBD,H,L,A,False,2025/05/03,2.95,Spike protein S1,homo sapiens
+9OI2,pdb_00009oi2,HA,I,J,E|F,False,2025/05/06,2.8,Hemagglutinin HA1|Hemagglutinin HA2,homo sapiens
+9OI2,pdb_00009oi2,HA,H,L,A|B,False,2025/05/06,2.8,Hemagglutinin HA1|Hemagglutinin HA2,homo sapiens
+9OI3,pdb_00009oi3,HA,H,L,A|B|C,False,2025/05/06,2.71,Hemagglutinin HA1|Hemagglutinin HA2,homo sapiens
+9OI3,pdb_00009oi3,HA,I,J,A|E|F,False,2025/05/06,2.71,Hemagglutinin HA1|Hemagglutinin HA2,homo sapiens
+9OI3,pdb_00009oi3,HA,M,N,C|D|E,False,2025/05/06,2.71,Hemagglutinin HA1|Hemagglutinin HA2,homo sapiens
+9UXD,pdb_00009uxd,RBD,H,L,B|E|V,False,2025/05/13,3.03,"Spike glycoprotein|Antibody KXD355, light chain|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose",homo sapiens
+9UXE,pdb_00009uxe,RBD,J,K,C|I,False,2025/05/13,3.17,Spike glycoprotein|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OM5,pdb_00009om5,HA,k,l,C|i|n|o|s,False,2025/05/13,3.4,Hemagglutinin|VRC35 Fab heavy chain|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OM5,pdb_00009om5,HA,g,h,A|U|V|Z|e,False,2025/05/13,3.4,Hemagglutinin|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|VRC35 Fab heavy chain,homo sapiens
+9OM5,pdb_00009om5,HA,c,d,E|N|O|S|a,False,2025/05/13,3.4,Hemagglutinin|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|VRC35 Fab heavy chain,homo sapiens
+9UXE,pdb_00009uxe,RBD,D,E,A|B|P,False,2025/05/13,3.17,Spike glycoprotein|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9UXD,pdb_00009uxd,RBD,D,E,A|K|P,False,2025/05/13,3.03,"Spike glycoprotein|Antibody KXD355, light chain|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose",homo sapiens
+9OM5,pdb_00009om5,HA,G,H,A|B|Q|R,False,2025/05/13,3.4,Hemagglutinin|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9UXD,pdb_00009uxd,RBD,J,K,C|E|I|L,False,2025/05/13,3.03,"Spike glycoprotein|Antibody KXD355, light chain|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose",homo sapiens
+9UXE,pdb_00009uxe,RBD,H,L,B|E|V,False,2025/05/13,3.17,"Spike glycoprotein|Antibody KXD355, light chain|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose",homo sapiens
+9OM5,pdb_00009om5,HA,K,L,E|F|q|r,False,2025/05/13,3.4,Hemagglutinin|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OM5,pdb_00009om5,HA,I,J,C|D|X|Y,False,2025/05/13,3.4,Hemagglutinin|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9OOG,pdb_00009oog,Env,H,L,D|E|b|q,False,2025/05/15,3.1,alpha-D-mannopyranose-(1-6)-alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|HIV Env gp120,mus musculus
+9OOG,pdb_00009oog,Env,I,M,E|V|W|d,False,2025/05/15,3.1,alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-6)-alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|HIV Env gp120,mus musculus
+9OOG,pdb_00009oog,Env,J,N,W|f|p|q,False,2025/05/15,3.1,alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|HIV Env gp120|alpha-D-mannopyranose-(1-6)-alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,mus musculus
+9OOM,pdb_00009oom,Env,H,L,D|E|b|f|q,False,2025/05/16,3.5,alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|HIV Env gp120,mus musculus
+9OOM,pdb_00009oom,Env,I,M,E|W|X|b|d,False,2025/05/16,3.5,alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-6)-alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|HIV Env gp120,mus musculus
+9OOM,pdb_00009oom,Env,J,N,X|f|p|q,False,2025/05/16,3.5,alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|HIV Env gp120|alpha-D-mannopyranose-(1-6)-alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,mus musculus
+9OST,pdb_00009ost,HA,J,K,C|E|F,False,2025/05/26,2.64,Hemagglutinin HA1|Hemagglutinin HA2,homo sapiens
+9OSS,pdb_00009oss,HA,H,I,A|B|C,False,2025/05/26,2.76,Hemagglutinin HA1|Hemagglutinin HA2,homo sapiens
+9OSS,pdb_00009oss,HA,J,K,C|D|E,False,2025/05/26,2.76,Hemagglutinin HA1|Hemagglutinin HA2,homo sapiens
+9OST,pdb_00009ost,HA,H,I,A|C|D,False,2025/05/26,2.64,Hemagglutinin HA1|Hemagglutinin HA2,homo sapiens
+9OSU,pdb_00009osu,HA,M,N,C|D,False,2025/05/26,2.67,Hemagglutinin HA1|Hemagglutinin HA2,homo sapiens
+9OSU,pdb_00009osu,HA,I,K,E|F,False,2025/05/26,2.67,Hemagglutinin HA1|Hemagglutinin HA2,homo sapiens
+9OSU,pdb_00009osu,HA,H,L,A|B,False,2025/05/26,2.67,Hemagglutinin HA1|Hemagglutinin HA2,homo sapiens
+9OST,pdb_00009ost,HA,X,Y,B|E|F,False,2025/05/26,2.64,Hemagglutinin HA2|Hemagglutinin HA1,homo sapiens
+9OST,pdb_00009ost,HA,R,S,A|B|D,False,2025/05/26,2.64,Hemagglutinin HA1|Hemagglutinin HA2,homo sapiens
+9OST,pdb_00009ost,HA,O,P,C|D|F,False,2025/05/26,2.64,Hemagglutinin HA1|Hemagglutinin HA2,homo sapiens
+9OST,pdb_00009ost,HA,M,N,A|B|E,False,2025/05/26,2.64,Hemagglutinin HA1|Hemagglutinin HA2,homo sapiens
+9OSS,pdb_00009oss,HA,M,N,A|E|F,False,2025/05/26,2.76,Hemagglutinin HA1|Hemagglutinin HA2,homo sapiens
+9VH5,pdb_00009vh5,HA,I,nan,G|H,True,2025/06/16,2.7,Hemagglutinin,vicugna pacos
+9VH5,pdb_00009vh5,HA,F,nan,D|E,True,2025/06/16,2.7,Hemagglutinin,vicugna pacos
+9VH5,pdb_00009vh5,HA,C,nan,A|B,True,2025/06/16,2.7,Hemagglutinin,vicugna pacos
+9VH4,pdb_00009vh4,HA,F,nan,D|E,True,2025/06/16,2.8,Hemagglutinin HA1 chain|Hemagglutinin,vicugna pacos
+9VH4,pdb_00009vh4,HA,C,nan,A|B,True,2025/06/16,2.8,Hemagglutinin HA1 chain|Hemagglutinin,vicugna pacos
+9VH4,pdb_00009vh4,HA,I,nan,G|H,True,2025/06/16,2.8,Hemagglutinin HA1 chain|Hemagglutinin,vicugna pacos
+9P6E,pdb_00009p6e,Env,O,Q,B|E|F|J,False,2025/06/18,2.7,Envelope glycoprotein gp41|Envelope glycoprotein gp120|RM20A3 heavy chain,macaca mulatta
+9P6E,pdb_00009p6e,Env,K,N,C|W,False,2025/06/18,2.7,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9P6E,pdb_00009p6e,Env,J,M,C|D|F|G,False,2025/06/18,2.7,Envelope glycoprotein gp120|Envelope glycoprotein gp41|RM20A3 heavy chain,macaca mulatta
+9P6E,pdb_00009p6e,Env,G,I,A|B|D|O,False,2025/06/18,2.7,Envelope glycoprotein gp120|Envelope glycoprotein gp41|RM20A3 heavy chain,macaca mulatta
+9P6E,pdb_00009p6e,Env,P,R,E|a,False,2025/06/18,2.7,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9P6E,pdb_00009p6e,Env,H,L,A|S,False,2025/06/18,2.7,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9RN6,pdb_00009rn6,RBD,B,nan,A,True,2025/06/19,2.4,"Spike protein S2',Chimeric protein mimic of SARS-CoV-2 Spike HR1",vicugna pacos
+9P6G,pdb_00009p6g,Env,P,R,E|a,False,2025/06/19,2.7,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9P6G,pdb_00009p6g,Env,O,Q,B|E|F|J,False,2025/06/19,2.7,Envelope glycoprotein gp41|Envelope glycoprotein gp120|RM20A3 heavy chain,macaca mulatta
+9P6G,pdb_00009p6g,Env,K,N,C|W,False,2025/06/19,2.7,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9P6G,pdb_00009p6g,Env,J,M,C|D|F|G,False,2025/06/19,2.7,Envelope glycoprotein gp120|Envelope glycoprotein gp41|RM20A3 heavy chain,macaca mulatta
+9P6G,pdb_00009p6g,Env,H,L,A|S,False,2025/06/19,2.7,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9P6G,pdb_00009p6g,Env,G,I,A|B|D|O,False,2025/06/19,2.7,Envelope glycoprotein gp120|Envelope glycoprotein gp41|RM20A3 heavy chain,macaca mulatta
+9RN6,pdb_00009rn6,RBD,C,nan,A,True,2025/06/19,2.4,"Spike protein S2',Chimeric protein mimic of SARS-CoV-2 Spike HR1",vicugna pacos
+9P9T,pdb_00009p9t,HA,H,L,A|AB|G,False,2025/06/24,3.33,Hemagglutinin HA1|2-acetamido-2-deoxy-beta-D-glucopyranose,mus musculus
+9P9S,pdb_00009p9s,HA,H,L,A|G,False,2025/06/24,3.41,Hemagglutinin HA1|2-acetamido-2-deoxy-beta-D-glucopyranose,mus musculus
+9P9R,pdb_00009p9r,HA,H,L,A|E|I|J,False,2025/06/24,3.14,Hemagglutinin HA1|2-acetamido-2-deoxy-beta-D-glucopyranose,mus musculus
+9P9T,pdb_00009p9t,HA,J,N,AD|E|Q,False,2025/06/24,3.33,2-acetamido-2-deoxy-beta-D-glucopyranose|Hemagglutinin HA1,mus musculus
+9P9T,pdb_00009p9t,HA,I,M,AC|C|O,False,2025/06/24,3.33,2-acetamido-2-deoxy-beta-D-glucopyranose|Hemagglutinin HA1,mus musculus
+9PIT,pdb_00009pit,Env,H,L,B|E|S,False,2025/07/11,3.1,Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9PIV,pdb_00009piv,Env,P,K,C|D|F|I|J,False,2025/07/11,3.5,Envelope glycoprotein gp41 - BG505 MD39|Envelope glycoprotein gp160|RM19R light chain Fv|RM19R heavy chain Fv,macaca mulatta
+9PIV,pdb_00009piv,Env,O,I,A|C|E|G|P,False,2025/07/11,3.5,Envelope glycoprotein gp41 - BG505 MD39|Envelope glycoprotein gp160|RM19R light chain Fv|RM19R heavy chain Fv,macaca mulatta
+9PIV,pdb_00009piv,Env,N,R,B|F|k,False,2025/07/11,3.5,Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9PIV,pdb_00009piv,Env,M,Q,E|F|d,False,2025/07/11,3.5,Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9PIV,pdb_00009piv,Env,J,G,A|B|D|K|O,False,2025/07/11,3.5,Envelope glycoprotein gp41 - BG505 MD39|Envelope glycoprotein gp160|RM19R light chain Fv|RM19R heavy chain Fv,macaca mulatta
+9PIV,pdb_00009piv,Env,H,L,B|E|W,False,2025/07/11,3.5,Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9PIT,pdb_00009pit,Env,P,K,C|D|F|I|J,False,2025/07/11,3.1,Envelope glycoprotein gp41 - BG505 MD39|Envelope glycoprotein gp160|RM19R light chain Fv|RM19R heavy chain Fv,macaca mulatta
+9PIT,pdb_00009pit,Env,O,I,A|C|E|G|P,False,2025/07/11,3.1,Envelope glycoprotein gp41 - BG505 MD39|Envelope glycoprotein gp160|RM19R light chain Fv|RM19R heavy chain Fv,macaca mulatta
+9PIT,pdb_00009pit,Env,N,R,B|F|o,False,2025/07/11,3.1,Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9PIT,pdb_00009pit,Env,M,Q,E|F|d,False,2025/07/11,3.1,Envelope glycoprotein gp160|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9PIT,pdb_00009pit,Env,J,G,A|B|D|K|O,False,2025/07/11,3.1,Envelope glycoprotein gp41 - BG505 MD39|Envelope glycoprotein gp160|RM19R light chain Fv|RM19R heavy chain Fv,macaca mulatta
+9PNN,pdb_00009pnn,Env,H,L,A|B|G|M,False,2025/07/21,3.5,Envelope glycoprotein BG505 DS-SOSIP gp41|Envelope glycoprotein BG505 DS-SOSIP gp120|alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9PNU,pdb_00009pnu,Env,H,L,C|E|G|I|T|j,False,2025/07/21,3.01,459C-OPT probe RnS DS-SOSIP gp120|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9PNN,pdb_00009pnn,Env,D,E,A|C|F|b,False,2025/07/21,3.5,Envelope glycoprotein BG505 DS-SOSIP gp41|Envelope glycoprotein BG505 DS-SOSIP gp120|alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9PNN,pdb_00009pnn,Env,J,K,B|F|I|q,False,2025/07/21,3.5,Envelope glycoprotein BG505 DS-SOSIP gp41|Envelope glycoprotein BG505 DS-SOSIP gp120|alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9W14,pdb_00009w14,RBD,C,B,A|G,False,2025/07/25,2.33,beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose|Spike protein S1,mus musculus
+9PSO,pdb_00009pso,RBD,F,G,B|C|D|E|I|J|N,False,2025/07/25,2.62,"SULFATE ION|1,2-ETHANEDIOL|Spike protein S1 receptor binding domain|DI(HYDROXYETHYL)ETHER",homo sapiens
+9PSP,pdb_00009psp,RBD,M,N,D|U,False,2025/07/25,2.81,DI(HYDROXYETHYL)ETHER|Spike protein S1 receptor binding domain,homo sapiens
+9PSP,pdb_00009psp,RBD,K,W,E|F|G|T,False,2025/07/25,2.81,DI(HYDROXYETHYL)ETHER|Spike protein S1 receptor binding domain,homo sapiens
+9PSP,pdb_00009psp,RBD,H,L,P|T,False,2025/07/25,2.81,PENTAETHYLENE GLYCOL|Spike protein S1 receptor binding domain,mus musculus
+9PSP,pdb_00009psp,RBD,A,B,Q|U,False,2025/07/25,2.81,TRIETHYLENE GLYCOL|Spike protein S1 receptor binding domain,mus musculus
+9PSO,pdb_00009pso,RBD,H,L,E,False,2025/07/25,2.62,Spike protein S1 receptor binding domain,mus musculus
+9PSN,pdb_00009psn,RBD,Q,R,AC|T,False,2025/07/25,2.54,TETRAETHYLENE GLYCOL|Spike protein S1 receptor binding domain,mus musculus
+9PSN,pdb_00009psn,RBD,O,P,AB|E,False,2025/07/25,2.54,TETRAETHYLENE GLYCOL|Spike protein S1 receptor binding domain,mus musculus
+9PSN,pdb_00009psn,RBD,M,N,T|X,False,2025/07/25,2.54,Spike protein S1 receptor binding domain|DI(HYDROXYETHYL)ETHER,homo sapiens
+9PSN,pdb_00009psn,RBD,J,K,C|E|F|I|S|U,False,2025/07/25,2.54,"1,2-ETHANEDIOL|Spike protein S1 receptor binding domain|DI(HYDROXYETHYL)ETHER",homo sapiens
+9PW4,pdb_00009pw4,RBD,C,D,A,False,2025/08/04,2.85,Spike protein S1,homo sapiens
+9PW4,pdb_00009pw4,RBD,E,F,A|B,False,2025/08/04,2.85,Spike protein S1|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,mus musculus
+9SAT,pdb_00009sat,RBD,H,L,R,False,2025/08/07,2.56,Spike protein S1,homo sapiens
+9Q09,pdb_00009q09,Env,K,M,AH|AJ|I|T|t,False,2025/08/12,3.23,2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|BG505 SOSIP.664 gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9Q09,pdb_00009q09,Env,H,L,G|R|a|r|y,False,2025/08/12,3.23,BG505 SOSIP.664 gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9Q09,pdb_00009q09,Env,d,e,A|N|X,False,2025/08/12,3.23,BG505 SOSIP.664 gp120|alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9Q09,pdb_00009q09,Env,h,l,G|Q|w,False,2025/08/12,3.23,BG505 SOSIP.664 gp120|alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9Q09,pdb_00009q09,Env,k,m,I|U|u,False,2025/08/12,3.23,BG505 SOSIP.664 gp120|alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9Q09,pdb_00009q09,Env,D,E,A|AB|S|j|s,False,2025/08/12,3.23,BG505 SOSIP.664 gp120|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9Q0W,pdb_00009q0w,Env,G,H,A|B|F|O,False,2025/08/13,3.0,HIV-1 BG505 DS-SOSIP gp120|BG505 DS-SOSIP GP41|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca
+9Q0W,pdb_00009q0w,Env,I,J,B|C|D,False,2025/08/13,3.0,BG505 DS-SOSIP GP41|HIV-1 BG505 DS-SOSIP gp120,macaca
+9Q0W,pdb_00009q0w,Env,K,L,D|E|F|j,False,2025/08/13,3.0,BG505 DS-SOSIP GP41|HIV-1 BG505 DS-SOSIP gp120|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca
+9Q24,pdb_00009q24,HA,G,H,F,False,2025/08/14,3.25,Hemagglutinin glycoprotein,homo sapiens
+9Q1Z,pdb_00009q1z,HA,A,B,F,False,2025/08/14,3.05,Hemagglutinin glycoprotein,homo sapiens
+9Q1Z,pdb_00009q1z,HA,C,E,D,False,2025/08/14,3.05,Hemagglutinin glycoprotein,homo sapiens
+9Q24,pdb_00009q24,HA,D,E,A,False,2025/08/14,3.25,Hemagglutinin glycoprotein,homo sapiens
+9Q20,pdb_00009q20,HA,D,E,F,False,2025/08/14,3.25,Hemagglutinin glycoprotein,homo sapiens
+9Q24,pdb_00009q24,HA,B,C,A,False,2025/08/14,3.25,Hemagglutinin glycoprotein,homo sapiens
+9Q24,pdb_00009q24,HA,I,J,F,False,2025/08/14,3.25,Hemagglutinin glycoprotein,homo sapiens
+9Q20,pdb_00009q20,HA,A,B,C,False,2025/08/14,3.25,Hemagglutinin glycoprotein,homo sapiens
+9Q3S,pdb_00009q3s,Env,k,m,AF|I|v,False,2025/08/19,3.01,alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|BG505 SOSIP.664 gp120|alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9Q3S,pdb_00009q3s,Env,h,l,G|N|Y,False,2025/08/19,3.01,BG505 SOSIP.664 gp120|alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9Q3S,pdb_00009q3s,Env,d,e,A|b|s,False,2025/08/19,3.01,BG505 SOSIP.664 gp120|alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9Q3S,pdb_00009q3s,Env,K,M,BA|I|y,False,2025/08/19,3.01,2-acetamido-2-deoxy-beta-D-glucopyranose|BG505 SOSIP.664 gp120|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9Q3S,pdb_00009q3s,Env,H,L,AQ|G|Q,False,2025/08/19,3.01,2-acetamido-2-deoxy-beta-D-glucopyranose|BG505 SOSIP.664 gp120|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9Q3S,pdb_00009q3s,Env,D,E,A|AV|g,False,2025/08/19,3.01,BG505 SOSIP.664 gp120|2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9Y41,pdb_00009y41,HA,H,L,G,False,2025/09/02,2.89,Hemagglutinin,homo sapiens
+9Y41,pdb_00009y41,HA,A,B,C,False,2025/09/02,2.89,Hemagglutinin,homo sapiens
+9Y3X,pdb_00009y3x,HA,H,L,E,False,2025/09/02,3.39,Hemagglutinin,homo sapiens
+9Y3Z,pdb_00009y3z,HA,H,L,A|E|F,False,2025/09/02,2.15,Hemagglutinin|PHOSPHATE ION,homo sapiens
+9Y9V,pdb_00009y9v,Env,k,m,AS|F|I,False,2025/09/15,2.98,2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|BG505 SOSIP.664 gp120,homo sapiens
+9Y9V,pdb_00009y9v,Env,h,l,AG|G|p,False,2025/09/15,2.98,2-acetamido-2-deoxy-beta-D-glucopyranose|BG505 SOSIP.664 gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9Y9V,pdb_00009y9v,Env,d,e,A|AM|O,False,2025/09/15,2.98,BG505 SOSIP.664 gp120|2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9Y9V,pdb_00009y9v,Env,K,M,AB|AU|I|T,False,2025/09/15,2.98,2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose|BG505 SOSIP.664 gp120,macaca mulatta
+9Y9V,pdb_00009y9v,Env,H,L,AI|G|c|r,False,2025/09/15,2.98,2-acetamido-2-deoxy-beta-D-glucopyranose|BG505 SOSIP.664 gp120|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9Y9V,pdb_00009y9v,Env,D,E,A|AO|Q|u,False,2025/09/15,2.98,BG505 SOSIP.664 gp120|2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9SSM,pdb_00009ssm,RBD,H,K,R,False,2025/09/26,2.7,Spike glycoprotein,homo sapiens
+9YHQ,pdb_00009yhq,Env,M,N,BQ|E|O,False,2025/09/30,3.0,2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9YHR,pdb_00009yhr,Env,J,K,AY|F|U,False,2025/09/30,3.1,2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,human immunodeficiency virus 1|macaca mulatta
+9YHQ,pdb_00009yhq,Env,H,L,BP|G|W,False,2025/09/30,3.0,2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9YHO,pdb_00009yho,Env,M,N,E|O,False,2025/09/30,3.2,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9YHO,pdb_00009yho,Env,J,K,F|S,False,2025/09/30,3.2,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9YHO,pdb_00009yho,Env,H,L,G|W,False,2025/09/30,3.2,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9YHR,pdb_00009yhr,Env,H,L,BL|G|Z,False,2025/09/30,3.1,2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,human immunodeficiency virus 1|macaca mulatta
+9YHR,pdb_00009yhr,Env,M,N,AL|E|P,False,2025/09/30,3.1,2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,human immunodeficiency virus 1|macaca mulatta
+9YHQ,pdb_00009yhq,Env,J,K,BO|F|S,False,2025/09/30,3.0,2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9YIG,pdb_00009yig,Env,H,L,G|R,False,2025/10/01,3.4,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9YIG,pdb_00009yig,Env,M,N,E|I,False,2025/10/01,3.4,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9YIG,pdb_00009yig,Env,J,K,F|P,False,2025/10/01,3.4,Envelope glycoprotein gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9YMK,pdb_00009ymk,Env,G,I,A|B|BE|D|O,False,2025/10/10,2.7,BG505 MD39 SOSIP gp120|BG505 MD39 SOSIP gp41|2-acetamido-2-deoxy-beta-D-glucopyranose|RM20A3 Fab heavy chain,macaca mulatta
+9YMK,pdb_00009ymk,Env,H,L,A|S|T,False,2025/10/10,2.7,BG505 MD39 SOSIP gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9YMK,pdb_00009ymk,Env,J,M,BG|C|D|F|G,False,2025/10/10,2.7,2-acetamido-2-deoxy-beta-D-glucopyranose|BG505 MD39 SOSIP gp120|BG505 MD39 SOSIP gp41|RM20A3 Fab heavy chain,macaca mulatta
+9YMK,pdb_00009ymk,Env,K,N,C|X|Y,False,2025/10/10,2.7,BG505 MD39 SOSIP gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9YMK,pdb_00009ymk,Env,O,Q,B|BI|E|F|J,False,2025/10/10,2.7,BG505 MD39 SOSIP gp41|2-acetamido-2-deoxy-beta-D-glucopyranose|BG505 MD39 SOSIP gp120|RM20A3 Fab heavy chain,macaca mulatta
+9YMK,pdb_00009ymk,Env,P,R,E|c|d,False,2025/10/10,2.7,BG505 MD39 SOSIP gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9YML,pdb_00009yml,Env,G,I,A|AZ|B|D|O,False,2025/10/10,3.2,BG505 MD39 SOSIP gp120|2-acetamido-2-deoxy-beta-D-glucopyranose|BG505 MD39 SOSIP gp41|RM20A3 Fab heavy chain,macaca mulatta
+9YML,pdb_00009yml,Env,H,L,A|AA|AD|T,False,2025/10/10,3.2,BG505 MD39 SOSIP gp120|2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9YML,pdb_00009yml,Env,K,N,AI|AL|C|d,False,2025/10/10,3.2,2-acetamido-2-deoxy-beta-D-glucopyranose|BG505 MD39 SOSIP gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9YML,pdb_00009yml,Env,O,Q,B|BD|E|F|J,False,2025/10/10,3.2,BG505 MD39 SOSIP gp41|2-acetamido-2-deoxy-beta-D-glucopyranose|BG505 MD39 SOSIP gp120|RM20A3 Fab heavy chain,macaca mulatta
+9YML,pdb_00009yml,Env,P,R,AQ|AT|E|n,False,2025/10/10,3.2,2-acetamido-2-deoxy-beta-D-glucopyranose|BG505 MD39 SOSIP gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9YML,pdb_00009yml,Env,J,M,BB|C|D|F|G,False,2025/10/10,3.2,2-acetamido-2-deoxy-beta-D-glucopyranose|BG505 MD39 SOSIP gp120|BG505 MD39 SOSIP gp41|RM20A3 Fab heavy chain,macaca mulatta
+9YPB,pdb_00009ypb,RBD,D,E,A,False,2025/10/13,3.5,Spike glycoprotein,homo sapiens
+9YPB,pdb_00009ypb,RBD,F,G,B,False,2025/10/13,3.5,Spike glycoprotein,homo sapiens
+9X61,pdb_00009x61,HA,D,E,A|I|M,False,2025/10/14,2.99,Hemagglutinin HA1 chain|alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9YPR,pdb_00009ypr,RBD,D,E,B,False,2025/10/14,3.46,Spike glycoprotein,homo sapiens
+9YPR,pdb_00009ypr,RBD,G,F,A,False,2025/10/14,3.46,Spike glycoprotein,homo sapiens
+9X61,pdb_00009x61,HA,H,L,B|P|Q,False,2025/10/14,2.99,Hemagglutinin HA1 chain|alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9X5X,pdb_00009x5x,HA,J,K,A|O|V,False,2025/10/14,2.76,Hemagglutinin HA1 chain|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9X60,pdb_00009x60,HA,H,L,A|U,False,2025/10/14,3.09,Hemagglutinin HA1 chain|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9X60,pdb_00009x60,HA,F,G,AC|C,False,2025/10/14,3.09,2-acetamido-2-deoxy-beta-D-glucopyranose|Hemagglutinin HA1 chain,homo sapiens
+9X5W,pdb_00009x5w,HA,G,I,C|T,False,2025/10/14,2.76,Hemagglutinin HA1 chain|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9X5W,pdb_00009x5w,HA,H,L,A|P,False,2025/10/14,2.76,Hemagglutinin HA1 chain|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9X5W,pdb_00009x5w,HA,J,K,E|X,False,2025/10/14,2.76,Hemagglutinin HA1 chain|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9X5X,pdb_00009x5x,HA,G,I,C|R|Z,False,2025/10/14,2.76,Hemagglutinin HA1 chain|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9X5X,pdb_00009x5x,HA,H,L,AD|E|U,False,2025/10/14,2.76,2-acetamido-2-deoxy-beta-D-glucopyranose|Hemagglutinin HA1 chain|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9X61,pdb_00009x61,HA,J,K,C|T|U,False,2025/10/14,2.99,Hemagglutinin HA1 chain|alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9X5Y,pdb_00009x5y,HA,C,D,A|AD|Q,False,2025/10/14,2.65,Hemagglutinin HA1 chain|2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9X5Y,pdb_00009x5y,HA,H,L,AG|E|U,False,2025/10/14,2.65,2-acetamido-2-deoxy-beta-D-glucopyranose|Hemagglutinin HA1 chain|alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9X5Y,pdb_00009x5y,HA,J,K,AA|G|M,False,2025/10/14,2.65,2-acetamido-2-deoxy-beta-D-glucopyranose|Hemagglutinin HA1 chain|alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9X5Z,pdb_00009x5z,HA,H,L,C|J,False,2025/10/14,2.59,Hemagglutinin HA1 chain|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9X60,pdb_00009x60,HA,D,E,B|Y,False,2025/10/14,3.09,Hemagglutinin HA1 chain|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9YQ6,pdb_00009yq6,HA,G,H,A|F,False,2025/10/15,2.95,Hemagglutinin-neuraminidase,homo sapiens
+9YQ6,pdb_00009yq6,HA,I,J,F,False,2025/10/15,2.95,Hemagglutinin-neuraminidase,homo sapiens
+9YQO,pdb_00009yqo,Env,M,N,A|f|z,False,2025/10/15,3.26,HIV-1 envelope glycoprotein gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9YQO,pdb_00009yqo,Env,I,J,AK|O|k,False,2025/10/15,3.26,alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|HIV-1 envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9YQO,pdb_00009yqo,Env,L,K,AC|O,False,2025/10/15,3.26,alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|HIV-1 envelope glycoprotein gp120,homo sapiens
+9YQO,pdb_00009yqo,Env,R,Q,A|X,False,2025/10/15,3.26,HIV-1 envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9YQO,pdb_00009yqo,Env,F,E,G|m,False,2025/10/15,3.26,HIV-1 envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9YQ6,pdb_00009yq6,HA,D,E,A,False,2025/10/15,2.95,Hemagglutinin-neuraminidase,homo sapiens
+9YQO,pdb_00009yqo,Env,C,D,G|V|u,False,2025/10/15,3.26,HIV-1 envelope glycoprotein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9YQ6,pdb_00009yq6,HA,B,C,A|F,False,2025/10/15,2.95,Hemagglutinin-neuraminidase,homo sapiens
+9YTS,pdb_00009yts,HA,G,H,A|F|L,False,2025/10/21,3.29,Hemagglutinin-neuraminidase|alpha-L-fucopyranose-(1-6)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9YTS,pdb_00009yts,HA,I,J,F,False,2025/10/21,3.29,Hemagglutinin-neuraminidase,homo sapiens
+9YTS,pdb_00009yts,HA,D,E,A,False,2025/10/21,3.29,Hemagglutinin-neuraminidase,homo sapiens
+9YTS,pdb_00009yts,HA,C,B,F|K,False,2025/10/21,3.29,Hemagglutinin-neuraminidase|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9YYU,pdb_00009yyu,RBD,I,M,B|C,False,2025/10/29,3.3,Spike glycoprotein,homo sapiens
+9YYU,pdb_00009yyu,RBD,H,L,A|B,False,2025/10/29,3.3,Spike glycoprotein,homo sapiens
+9YYU,pdb_00009yyu,RBD,J,N,A|C,False,2025/10/29,3.3,Spike glycoprotein,homo sapiens
+9Z12,pdb_00009z12,RBD,H,L,A,False,2025/11/03,3.2,Spike protein S2,homo sapiens
+9Z18,pdb_00009z18,RBD,H,L,A,False,2025/11/03,2.9,Spike protein S2,homo sapiens
+9Z1M,pdb_00009z1m,RBD,F,nan,B,True,2025/11/04,3.06,KP.3 spike,vicugna pacos
+9Z1M,pdb_00009z1m,RBD,D,nan,A|E,True,2025/11/04,3.06,KP.3 spike|Nanosota-9B,vicugna pacos
+9Z1M,pdb_00009z1m,RBD,E,nan,B|F,True,2025/11/04,3.06,KP.3 spike|Nanosota-9B,vicugna pacos
+9Z1N,pdb_00009z1n,RBD,E,nan,B,True,2025/11/04,3.44,KP.3 spike,vicugna pacos
+9Z9L,pdb_00009z9l,Env,H,L,C|D|W|X,False,2025/11/18,3.49,Q23.MD39 Surface protein gp120|Q23.MD39 Transmembrane protein gp41|beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9Z9L,pdb_00009z9l,Env,K,J,C|Y|h|r,False,2025/11/18,3.49,Q23.MD39 Surface protein gp120|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)-alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9Z9L,pdb_00009z9l,Env,E,F,A|B|M|V,False,2025/11/18,3.49,Q23.MD39 Surface protein gp120|Q23.MD39 Transmembrane protein gp41|alpha-D-mannopyranose-(1-3)-alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-[alpha-L-fucopyranose-(1-6)]2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9ZB5,pdb_00009zb5,HA,C,E,F,False,2025/11/20,3.29,Hemagglutinin-neuraminidase,homo sapiens
+9ZB5,pdb_00009zb5,HA,D,H,J,False,2025/11/20,3.29,Hemagglutinin-neuraminidase,homo sapiens
+9ZB5,pdb_00009zb5,HA,M,N,F|J,False,2025/11/20,3.29,Hemagglutinin-neuraminidase,homo sapiens
+9ZB5,pdb_00009zb5,HA,G,I,F|J,False,2025/11/20,3.29,Hemagglutinin-neuraminidase,homo sapiens
+9XSX,pdb_00009xsx,HA,B,C,A,False,2025/11/21,2.98,hemagglutinin,homo sapiens
+9XTH,pdb_00009xth,HA,B,C,A,False,2025/11/22,3.01,hemagglutinin,homo sapiens
+9ZDU,pdb_00009zdu,RBD,H,L,A,False,2025/11/26,2.6,Spike protein S1,homo sapiens
+9ZRX,pdb_00009zrx,Env,A,B,S|b|d|f|i|n,False,2025/12/21,3.3,alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope gp120|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9ZRZ,pdb_00009zrz,Env,A,B,AC|S|b|d|f,False,2025/12/21,2.9,2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope gp120,macaca mulatta
+9ZRY,pdb_00009zry,Env,A,B,AK|G|b|d|f|k|l,False,2025/12/21,2.9,2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|Envelope gp120|2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|alpha-D-mannopyranose-(1-3)-[alpha-D-mannopyranose-(1-6)]alpha-D-mannopyranose-(1-6)-[alpha-D-mannopyranose-(1-3)]beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,macaca mulatta
+9ZV0,pdb_00009zv0,HA,D,I,B|C|F|W,False,2025/12/29,3.24,Hemagglutinin|N-acetyl-alpha-neuraminic acid-(2-3)-beta-D-galactopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9ZV0,pdb_00009zv0,HA,G,K,A|B|E|X,False,2025/12/29,3.24,Hemagglutinin|N-acetyl-alpha-neuraminic acid-(2-3)-beta-D-galactopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9ZV0,pdb_00009zv0,HA,H,L,A|C|J|V,False,2025/12/29,3.24,Hemagglutinin|N-acetyl-alpha-neuraminic acid-(2-3)-beta-D-galactopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-2)-alpha-D-mannopyranose-(1-3)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9ZV4,pdb_00009zv4,HA,H,L,B|T,False,2025/12/29,3.15,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9ZV4,pdb_00009zv4,HA,D,G,A|O|P,False,2025/12/29,3.15,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9ZV1,pdb_00009zv1,HA,I,K,A|N,False,2025/12/29,2.7,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9ZV1,pdb_00009zv1,HA,H,L,C|M,False,2025/12/29,2.7,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9ZV4,pdb_00009zv4,HA,I,K,C|W|X,False,2025/12/29,3.15,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9ZV1,pdb_00009zv1,HA,D,G,B|O,False,2025/12/29,2.7,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9ZVH,pdb_00009zvh,HA,I,K,B,False,2025/12/30,2.93,Hemagglutinin,homo sapiens
+9ZVH,pdb_00009zvh,HA,D,G,A,False,2025/12/30,2.93,Hemagglutinin,homo sapiens
+9ZVH,pdb_00009zvh,HA,H,L,C,False,2025/12/30,2.93,Hemagglutinin,homo sapiens
+9ZV9,pdb_00009zv9,HA,H,L,C|Y,False,2025/12/30,2.79,Hemagglutinin|alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9ZVL,pdb_00009zvl,HA,D,F,A,False,2025/12/30,3.48,Hemagglutinin,homo sapiens
+9ZV9,pdb_00009zv9,HA,G,K,B|W,False,2025/12/30,2.79,Hemagglutinin|alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+9ZVL,pdb_00009zvl,HA,H,L,C,False,2025/12/30,3.48,Hemagglutinin,homo sapiens
+9ZVL,pdb_00009zvl,HA,E,G,B,False,2025/12/30,3.48,Hemagglutinin,homo sapiens
+9ZV9,pdb_00009zv9,HA,D,I,A|X,False,2025/12/30,2.79,Hemagglutinin|alpha-D-mannopyranose-(1-6)-beta-D-mannopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose-(1-4)-2-acetamido-2-deoxy-beta-D-glucopyranose,homo sapiens
+11OQ,pdb_000011oq,RBD,H,L,A,False,2026/03/06,3.2,SARS-CoV-2 Omicron BA.1 spike protein,homo sapiens
+11OL,pdb_000011ol,RBD,H,L,A,False,2026/03/06,3.2,SARS-CoV-2 Omicron BA.4 spike protein,homo sapiens
+24KR,pdb_000024kr,HA,F,nan,C|S,True,2026/03/08,2.53,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose,synthetic construct
+24KR,pdb_000024kr,HA,E,nan,B|P,True,2026/03/08,2.53,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose,synthetic construct
+24KR,pdb_000024kr,HA,D,nan,A|J,True,2026/03/08,2.53,Hemagglutinin|2-acetamido-2-deoxy-beta-D-glucopyranose,synthetic construct

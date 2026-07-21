@@ -1,0 +1,17 @@
+# 대용량 데이터는 /mnt/data/admuser/msadepth/ (레포에 넣지 않음)
+structures/
+targets/
+runs_*/
+ladders/
+results_*/
+out_*/
+*.cif
+*.pdb
+*.a3m
+*.pt
+*.gz
+sabdab2_summary.csv
+# 파이썬 캐시
+__pycache__/
+*.pyc
+.DS_Store
