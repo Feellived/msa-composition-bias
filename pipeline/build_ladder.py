@@ -14,7 +14,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--a3m", required=True)
     ap.add_argument("--outdir", required=True)
-    ap.add_argument("--rungs", type=int, default=6)
+    ap.add_argument("--rungs", type=int, default=12)   # 12단 = 깊이-반응 곡선 촘촘(geomspace라 얕은 구간 집중)
     ap.add_argument("--min-rows", type=int, default=4,
                     help="최심 rung 서열수(1=순수 single-seq는 Boltz 데이터로더 폭주 → 금지, 기본 4)")
     ap.add_argument("--seed", type=int, default=0)
