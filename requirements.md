@@ -31,7 +31,7 @@ pip install biopython pandas numpy DockQ
 |---|---|---|---|
 | Boltz-2 | `boltz` | `pip install boltz` | `--use_msa_server` 내장 / 여기선 사다리 a3m 주입 |
 | Protenix-base | `protenix` | `pip install protenix` | **base(2021-09) 체크포인트** 사용(`PROT_MODEL`). 2025-06 변이체는 leaky, 금지 |
-| Chai-1 | `chai` | `pip install chai_lab` | (러너 미구현 — 추후) |
+| Chai-1 | `chai` | `pip install chai_lab` | `CHAI_ENV`로 지정. MSA=항원 `aligned.pqt`(make_input이 chai_lab 변환기로 생성), 항체 single-seq. 첫 실행은 스모크 권장 |
 
 - Protenix 실행 env: `PROTENIX_ROOT_DIR`(가중치 경로)·`LAYERNORM_TYPE=torch` 설정(`run_sweep.sh`가 처리).
 - 물리 생성기(HADDOCK·SnugDock)는 이 파이프라인 범위 밖(계획서상 decorrelated 생성기, 보조).
