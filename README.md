@@ -74,7 +74,8 @@ SMOKE=1 bash run_sweep.sh boltz 1      # 타이밍 스모크
 bash run_sweep.sh boltz 11             # 밤샘 / 54 = 주말
 ```
 
-자세한 서버 실행 흐름 = [`pipeline/README.md`](pipeline/README.md).
+자세한 서버 실행 흐름 = [`pipeline/README.md`](pipeline/README.md) · 데이터 획득·저장(provenance) = [`pipeline/DATA.md`](pipeline/DATA.md).
+원천 데이터(SAbDab summary) 다운로드 = `bash pipeline/fetch_sabdab.sh` (구조는 `fetch_structures.py`가 RCSB에서). 대용량은 `/mnt/data` 권장(홈 디스크 보호).
 
 ## 레포 구조
 
