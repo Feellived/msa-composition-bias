@@ -61,12 +61,9 @@ cd ~/projects && git clone https://github.com/Feellived/bk21-msa-depth-bias.git
 cd bk21-msa-depth-bias/pipeline        # 스크립트·매니페스트가 여기 (기본 경로로 동작)
 conda activate boltz                   # biopython 필요
 
-# 준비 (GPU 불필요)
+# 준비 (GPU 불필요) — A/B·C 49개 전부 이 레포 안에서 처리(자기완결)
 python fetch_structures.py --manifest pilot_lean_full.csv --outdir structures
 python prep_targets.py    --csv pilot_lean_full.csv --struct structures --outdir targets
-
-# C(9종)는 기존 consensus_docking/runs_diverse의 MSA 재활용 → 위치 지정
-export DIVERSE=~/projects/bk21-antibody-ml/consensus_docking/runs_diverse
 
 # MSA + Neff80 사다리 — 먼저 한 타깃 스모크 → 전체
 ONLY=8q7s_O bash gen_msa.sh
@@ -89,15 +86,13 @@ bash run_sweep.sh boltz 11             # 밤샘 / 54 = 주말
 │   ├── prep_targets·gen_msa·build_ladder·make_input    입력·MSA·사다리
 │   ├── run_sweep.sh                                    시간-박스 dispatcher
 │   └── *.csv (pilot_lean_full·sweep_targets 등)        확정 세트 매니페스트
-├── guided/                    HADDOCK-guided co-folder rescue (Boltz·Protenix·tFold)
 └── report/                    보고서 · 그림 (작업 중)
 ```
 
 ## 상태
 
-- [x] 데이터셋 설계·검증·lock (49 복합체) · 에피토프 분류기 6/6 참조 검증
+- [x] 데이터셋 설계·검증·lock (49 복합체, A/B·C 전부 self-contained) · 에피토프 분류기 6/6 참조 검증
 - [x] Neff80 사다리 빌더 · 생성 dispatcher(시간-박스 재개형) · 입력 생성기(다사슬 항원)
-- [x] guided co-folder (HADDOCK 패치 → Boltz/Protenix/tFold) — Boltz 8XSI rescue 확인
 - [ ] 전체 depth-sweep 생성 (Boltz → Protenix → Chai, 청크)
 - [ ] depth-response 분석 (rescue 특이성 · sweet-spot · 선택 · 편향센서)
 - [ ] wet 검증 루프 (alanine scanning · BLI epitope binning)
