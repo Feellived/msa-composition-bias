@@ -57,18 +57,24 @@ flowchart LR
 > 코드 = 이 레포 / 대용량(구조·MSA·pose) = `/mnt/data/admuser/msadepth/` (`run_sweep.sh`의 `DATA` 환경변수).
 
 ```bash
-# 준비 (GPU 불필요)
-conda activate boltz          # biopython 필요
-python pipeline/fetch_structures.py --manifest manifests/pilot_lean_full.csv --outdir structures
-python pipeline/prep_targets.py --csv manifests/pilot_lean_full.csv --struct structures --outdir targets
+cd ~/projects && git clone https://github.com/Feellived/bk21-msa-depth-bias.git
+cd bk21-msa-depth-bias/pipeline        # 스크립트·매니페스트가 여기 (기본 경로로 동작)
+conda activate boltz                   # biopython 필요
 
-# MSA + Neff80 사다리 — 먼저 한 타깃 스모크
-ONLY=8q7s_O bash pipeline/gen_msa.sh
-bash pipeline/gen_msa.sh              # 전체
+# 준비 (GPU 불필요)
+python fetch_structures.py --manifest pilot_lean_full.csv --outdir structures
+python prep_targets.py    --csv pilot_lean_full.csv --struct structures --outdir targets
+
+# C(9종)는 기존 consensus_docking/runs_diverse의 MSA 재활용 → 위치 지정
+export DIVERSE=~/projects/bk21-antibody-ml/consensus_docking/runs_diverse
+
+# MSA + Neff80 사다리 — 먼저 한 타깃 스모크 → 전체
+ONLY=8q7s_O bash gen_msa.sh
+bash gen_msa.sh
 
 # 생성 (GPU) — 시간-박스 청크, self-heal 재개
-SMOKE=1 bash pipeline/run_sweep.sh boltz 1     # 타이밍 스모크
-bash pipeline/run_sweep.sh boltz 11            # 밤샘 / 54 = 주말
+SMOKE=1 bash run_sweep.sh boltz 1      # 타이밍 스모크
+bash run_sweep.sh boltz 11             # 밤샘 / 54 = 주말
 ```
 
 자세한 서버 실행 흐름 = [`pipeline/README.md`](pipeline/README.md).
@@ -78,12 +84,12 @@ bash pipeline/run_sweep.sh boltz 11            # 밤샘 / 54 = 주말
 ```
 ├── README.md                 이 문서
 ├── plan/research_plan.md      연구 계획서(배경·가설·방법·예상결과·참고문헌)
-├── pipeline/                  depth-sweep 본체 (데이터셋 구축 + 생성)
-│   ├── build_manifest·classify_epitope·select_pilot   데이터셋
+├── pipeline/                  depth-sweep 본체 (스크립트 + 매니페스트 동거, 여기서 실행)
+│   ├── build_manifest·classify_epitope·select_pilot   데이터셋 구축
 │   ├── prep_targets·gen_msa·build_ladder·make_input    입력·MSA·사다리
-│   └── run_sweep.sh                                    시간-박스 dispatcher
+│   ├── run_sweep.sh                                    시간-박스 dispatcher
+│   └── *.csv (pilot_lean_full·sweep_targets 등)        확정 세트 매니페스트
 ├── guided/                    HADDOCK-guided co-folder rescue (Boltz·Protenix·tFold)
-├── manifests/                 확정 세트 CSV (pilot_lean_full·sweep_targets 등)
 └── report/                    보고서 · 그림 (작업 중)
 ```
 
