@@ -49,7 +49,7 @@ flowchart LR
 ```
 
 **생성 모델** — MSA co-folder: **Boltz-2 · Chai-1 · Protenix-base**(2021-09) + 물리: **HADDOCK · SnugDock**(MSA 미사용, decorrelated 생성기).
-**깊이 축** — full → 최소 4서열(순수 single-seq는 co-folder 데이터로더 폭주 → 바닥 4), **Neff80**(80% identity 기준 잔기별 유효서열 수의 median) 기준 **geomspace 12단**(로그균등 → 얕은 구간 촘촘, sweet spot 해상도↑).
+**깊이 축** — full → **single-seq**, **Neff80**(80% identity 기준 잔기별 유효서열 수의 median) 기준 **geomspace 12단**(로그균등 → 얕은 구간 촘촘, sweet spot 해상도↑). single-seq(편향 완전제거 극단점)는 Chai(PLM 내장)·Protenix가 실행하고, Boltz만 데이터로더 폭주로 skip(`MIN_MSA`).
 **지표** — merged-chain DockQ(3-tier 0.23/0.49/0.80) · epitope recall · over-representation overlap · 항체 내부 CA-RMSD.
 
 ## Quickstart (서버)
