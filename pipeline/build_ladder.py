@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""full a3m → rung-인덱스 사다리(rung0=full … rung{R-1}=single-seq). 사슬 간 정렬 위해 인덱스로.
-halving 스케줄: 행수 [N, N/2, N/4, …, 1]. 각 rung의 실측 Neff80 기록.
-사용: python build_ladder.py --a3m msa/A.a3m --outdir ladder/A --rungs 6 [--seed 0]
+"""full a3m → rung-인덱스 사다리(rung0=full … 최심=min_rows 서열). 사슬 간 정렬 위해 인덱스로.
+스케줄: geomspace(N → min_rows), 로그균등 → 얕은 구간까지 촘촘.
+⚠️ 순수 single-seq(1행)는 Boltz 데이터로더가 폭주(수십GB)·stall → 최심 rung을 min_rows(기본 4)로 바닥.
+각 rung의 실측 Neff80 기록.
+사용: python build_ladder.py --a3m msa/A.a3m --outdir ladder/A --rungs 6 [--min-rows 4] [--seed 0]
 출력: ladder/A/rung{k}.a3m + ladder/A/neff.tsv (rung, n_rows, neff80)
 """
 import argparse, os
@@ -13,19 +15,21 @@ def main():
     ap.add_argument("--a3m", required=True)
     ap.add_argument("--outdir", required=True)
     ap.add_argument("--rungs", type=int, default=6)
+    ap.add_argument("--min-rows", type=int, default=4,
+                    help="최심 rung 서열수(1=순수 single-seq는 Boltz 데이터로더 폭주 → 금지, 기본 4)")
     ap.add_argument("--seed", type=int, default=0)
     a = ap.parse_args()
     os.makedirs(a.outdir, exist_ok=True)
     headers, seqs = NL.read_raw(a.a3m)
     N = len(seqs)
-    # halving 행수(중복 제거, 내림차순), 마지막은 1(single-seq=query만)
-    counts = []
-    c = N
-    for _ in range(a.rungs - 1):
-        counts.append(max(1, int(round(c)))); c /= 2.0
-    counts.append(1)
+    # geomspace(N → floor) 로그균등. ⚠️ 순수 single-seq(1) 금지: 최소 min_rows 서열 바닥(Boltz 폭주 회피).
+    FLOOR = max(1, min(a.min_rows, N))
+    if N <= FLOOR:
+        counts = [N] * a.rungs                              # depth range 없음(작은 MSA) — 전부 full
+    else:
+        counts = [int(round(x)) for x in np.geomspace(N, FLOOR, a.rungs)]
     counts = sorted(set(counts), reverse=True)
-    while len(counts) < a.rungs: counts.append(1)   # N이 작아 겹치면 1로 채움(뒤에서 dedup)
+    while len(counts) < a.rungs: counts.append(FLOOR)       # 반올림 중복 시 floor로 채움
     counts = counts[:a.rungs]
     rng = np.random.default_rng(a.seed)
     rows = []
