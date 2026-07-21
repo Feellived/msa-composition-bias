@@ -36,9 +36,9 @@ case "$COF" in
     conda activate "${PROT_ENV:-protenix}" 2>/dev/null
     export PROTENIX_ROOT_DIR="${PROTENIX_ROOT_DIR:-/mnt/data/admuser/protenix_weights}" LAYERNORM_TYPE=torch
     command -v protenix >/dev/null || { say "!! protenix 없음"; exit 1; }
-    # 모든 Protenix 공개 체크포인트 = 학습컷오프 2021-09-30(AF3정렬) → post-2023-06 세트에 leakage-free.
-    # 표의 2025/2026은 출시일일 뿐(컷오프 아님). 기본=권장·최강 v1.0.0.
-    PROT_MODEL="${PROT_MODEL:-protenix_base_default_v1.0.0}"
+    # ⚠️ leakage: protenix_base_20250630_v1.0.0 = 학습컷오프 2025-06-30(post-2023-06 테스트셋 암기) → 금지.
+    # 기본=protenix-v2: 컷오프 2021-09-30(leakage-free) + 최신(2026-04-08) + 항체-항원 최강(v1 대비 DockQ>0.23 +9~13%p, 5seed가 v1 1000seed 능가).
+    PROT_MODEL="${PROT_MODEL:-protenix-v2}"
     MIN_MSA="${MIN_MSA:-1}"   # single-seq도 실행(공진화 0 극단점 = 편향 완전제거)
     EXT="json"
     # 커널 JIT 회피 3중: LAYERNORM_TYPE=torch(env) + 삼각커널 torch + fusion off → 무인 실행 시 컴파일 실패-루프 방지
