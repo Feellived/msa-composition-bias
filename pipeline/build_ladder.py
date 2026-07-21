@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""full a3m → rung-인덱스 사다리(rung0=full … 최심=min_rows 서열). 사슬 간 정렬 위해 인덱스로.
+"""full a3m → rung-인덱스 사다리(rung0=full … 최심=min_rows 서열, 기본 1=single-seq). 사슬 간 정렬 위해 인덱스로.
 스케줄: geomspace(N → min_rows), 로그균등 → 얕은 구간까지 촘촘.
-⚠️ 순수 single-seq(1행)는 Boltz 데이터로더가 폭주(수십GB)·stall → 최심 rung을 min_rows(기본 4)로 바닥.
+single-seq(1)는 편향 완전제거 극단점 — Chai(PLM)·Protenix엔 유효. Boltz만 데이터로더 폭주라 run_sweep이 MIN_MSA로 skip.
 각 rung의 실측 Neff80 기록.
-사용: python build_ladder.py --a3m msa/A.a3m --outdir ladder/A --rungs 6 [--min-rows 4] [--seed 0]
+사용: python build_ladder.py --a3m msa/A.a3m --outdir ladder/A --rungs 12 [--min-rows 1] [--seed 0]
 출력: ladder/A/rung{k}.a3m + ladder/A/neff.tsv (rung, n_rows, neff80)
 """
 import argparse, os
@@ -15,14 +15,14 @@ def main():
     ap.add_argument("--a3m", required=True)
     ap.add_argument("--outdir", required=True)
     ap.add_argument("--rungs", type=int, default=12)   # 12단 = 깊이-반응 곡선 촘촘(geomspace라 얕은 구간 집중)
-    ap.add_argument("--min-rows", type=int, default=4,
-                    help="최심 rung 서열수(1=순수 single-seq는 Boltz 데이터로더 폭주 → 금지, 기본 4)")
+    ap.add_argument("--min-rows", type=int, default=1,
+                    help="최심 rung 서열수(기본 1=single-seq; Boltz의 single-seq 폭주는 run_sweep MIN_MSA가 skip)")
     ap.add_argument("--seed", type=int, default=0)
     a = ap.parse_args()
     os.makedirs(a.outdir, exist_ok=True)
     headers, seqs = NL.read_raw(a.a3m)
     N = len(seqs)
-    # geomspace(N → floor) 로그균등. ⚠️ 순수 single-seq(1) 금지: 최소 min_rows 서열 바닥(Boltz 폭주 회피).
+    # geomspace(N → floor) 로그균등. floor=min_rows(기본1=single-seq). Boltz single-seq 폭주는 run_sweep MIN_MSA skip이 처리.
     FLOOR = max(1, min(a.min_rows, N))
     if N <= FLOOR:
         counts = [N] * a.rungs                              # depth range 없음(작은 MSA) — 전부 full
