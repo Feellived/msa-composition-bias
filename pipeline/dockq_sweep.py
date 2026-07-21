@@ -123,7 +123,7 @@ def main():
     ap.add_argument("--targets-dir", default="targets")
     ap.add_argument("--data", default=os.environ.get("DATA", "/mnt/data/admuser/msadepth"))
     ap.add_argument("--models", nargs="+", default=["boltz", "protenix"])
-    ap.add_argument("--rungs", type=int, default=6)
+    ap.add_argument("--rungs", type=int, default=12)
     ap.add_argument("--out", default="results/dockq_sweep.csv")
     a = ap.parse_args()
     if not (subprocess.run(["which", "DockQ"], capture_output=True).returncode == 0):
