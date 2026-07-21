@@ -79,12 +79,33 @@ def _extract(model, cj, td, name, use_crop):
     if not ab or not any(ag): return None
     out = os.path.join(td, f"{name}.pdb"); merged_pdb(ag, ab, out); return out
 
+def _chain_res(model, cid):
+    return seqca(model[cid])[1] if cid in model else None
+
 def native_merged(cj, native_path, td):
+    """native = prep이 기록한 정확한 원본 사슬(src_chains)로 추출 → 다중 copy에서 오짝(항원 copy1 + 항체 copy2) 방지."""
     if not os.path.exists(native_path): return None
-    return _extract(load(native_path), cj, td, "nat", use_crop=True)   # native는 crop(RBD)
+    nm = load(native_path); src = cj.get("src_chains", {})
+    crops = {c.get("src"): c.get("crop") for c in cj["chains"] if c["role"] == "antigen"}
+    ag = []
+    for cid in src.get("antigen", []):
+        rr = _chain_res(nm, cid)
+        if rr is None:                                   # 원본 사슬 못 찾으면 서열매칭 fallback
+            seq = next((c["seq"] for c in cj["chains"] if c.get("src") == cid), None)
+            if seq: rr = best(nm, seq)[2]
+        if not rr: continue
+        crop = crops.get(cid)
+        if crop: rr = [r for r in rr if crop[0] <= r.id[1] <= crop[1]]
+        ag.append(rr)
+    ab = []
+    for cid in list(src.get("H", [])) + list(src.get("L", [])):
+        rr = _chain_res(nm, cid)
+        if rr: ab.append(rr)
+    if not any(ag) or not ab: return None
+    out = os.path.join(td, "nat.pdb"); merged_pdb(ag, ab, out); return out
 
 def pose_merged(cj, pose_path, td):
-    return _extract(load(pose_path), cj, td, "pose", use_crop=False)    # pose는 이미 crop된 서열
+    return _extract(load(pose_path), cj, td, "pose", use_crop=False)    # pose는 서열매칭(모델별 사슬ID 다름) + 이미 crop된 서열
 
 def neff_of(target, ladders):
     for tsv in sorted(glob.glob(os.path.join(ladders, target, "*", "neff.tsv"))):
