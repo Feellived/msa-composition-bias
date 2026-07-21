@@ -6,7 +6,7 @@
 set -uo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"; cd "$HERE" || exit 1
 HOURS="${1:-22}"
-export PROT_MODEL="${PROT_MODEL:-protenix-v2}"   # 컷오프 2021-09-30(leakage-free)·최신·항체항원 최강. (20250630=2025컷오프=leaky 금지)
+export PROT_MODEL="${PROT_MODEL:-protenix_base_default_v1.0.0}"   # 컷오프 2021-09-30=leakage-free(공식 권장·AF3 능가). 20250630=2025컷오프=leaky 금지. v2는 다운로드 403이라 보류
 say(){ echo "[$(date '+%m-%d %H:%M:%S')] [run_all] $*"; }
 START=$(date +%s); DEADLINE=$(( START + HOURS*3600 ))
 
