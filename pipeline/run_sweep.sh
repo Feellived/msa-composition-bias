@@ -29,7 +29,9 @@ case "$COF" in
     conda activate "${PROT_ENV:-protenix}" 2>/dev/null
     export PROTENIX_ROOT_DIR="${PROTENIX_ROOT_DIR:-/mnt/data/admuser/protenix_weights}" LAYERNORM_TYPE=torch
     command -v protenix >/dev/null || { say "!! protenix 없음"; exit 1; }
-    : "${PROT_MODEL:?Protenix base(2021-09) 모델명 지정: PROT_MODEL=... (2025 leaky 금지)}"
+    # 모든 Protenix 공개 체크포인트 = 학습컷오프 2021-09-30(AF3정렬) → post-2023-06 세트에 leakage-free.
+    # 표의 2025/2026은 출시일일 뿐(컷오프 아님). 기본=권장·최강 v1.0.0.
+    PROT_MODEL="${PROT_MODEL:-protenix_base_default_v1.0.0}"
     EXT="json"
     RUN(){ ( cd "$2" && protenix pred -i "$1" -o results -n "$PROT_MODEL" -s "$SEED" -e "$SAMP" \
              --trimul_kernel torch --triatt_kernel torch >"$3" 2>&1 ); }
