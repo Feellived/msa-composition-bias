@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # Boltz → Protenix 순차 실행 (총 예산 공유). run_sweep.sh를 두 번 부르되 deadline을 나눠 씀.
-# Protenix는 base(2021-09) 체크포인트 필수: PROT_MODEL 지정 안 하면 그 단계에서 멈춤(2025 변이체 leaky).
-#   PROT_MODEL=<base모델명> bash run_all.sh 22          # 총 22시간(밤샘~주말), Boltz 먼저 → 남는 시간 Protenix
-#   PROT_MODEL=<...> PROT_ENV=protenix PROTENIX_ROOT_DIR=/mnt/data/admuser/protenix_weights bash run_all.sh 40
+# Protenix 기본모델=protenix_base_default_v1.0.0 (학습컷오프 2021-09-30=leakage-free). 바꾸려면 PROT_MODEL 지정.
+#   bash run_all.sh 22                                  # 총 22시간(밤샘~주말), Boltz 먼저 → 남는 시간 Protenix
+#   PROT_ENV=protenix PROTENIX_ROOT_DIR=/mnt/data/admuser/protenix_weights bash run_all.sh 40
 set -uo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"; cd "$HERE" || exit 1
 HOURS="${1:-22}"
-: "${PROT_MODEL:?Protenix base(2021-09) 모델명 필요: PROT_MODEL=... bash run_all.sh <HOURS> (2025 leaky 금지)}"
+export PROT_MODEL="${PROT_MODEL:-protenix_base_default_v1.0.0}"   # 모든 공개 체크포인트 컷오프 2021-09-30(출시일≠컷오프)
 say(){ echo "[$(date '+%m-%d %H:%M:%S')] [run_all] $*"; }
 START=$(date +%s); DEADLINE=$(( START + HOURS*3600 ))
 
