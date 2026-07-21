@@ -11,7 +11,7 @@ HERE="$(cd "$(dirname "$0")" && pwd)"          # .../consensus_docking/dataset
 cd "$HERE" || exit 1
 COF="${1:?boltz|protenix|chai}"; HOURS="${2:-11}"
 DATA="${DATA:-/mnt/data/admuser/msadepth}"      # ⚠️ 대용량 출력 = /mnt/data(홈 금지)
-LADDIR="$DATA/ladders"; RUNGS="${RUNGS:-6}"; SAMP="${SAMP:-5}"; SEED="${SEED:-0}"; SMOKE="${SMOKE:-0}"
+LADDIR="$DATA/ladders"; RUNGS="${RUNGS:-12}"; SAMP="${SAMP:-5}"; SEED="${SEED:-0}"; SMOKE="${SMOKE:-0}"   # 12단(깊이 촘촘)
 DIVERSE="${DIVERSE:-$HERE/../runs_diverse}"      # C 재활용 위치(서버 확인)
 LIST="${LIST:-$HERE/sweep_targets.csv}"
 say(){ echo "[$(date '+%m-%d %H:%M:%S')] $*"; }
