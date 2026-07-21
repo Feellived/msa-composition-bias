@@ -16,14 +16,20 @@ DIVERSE="${DIVERSE:-$HERE/../runs_diverse}"      # C 재활용 위치(서버 확
 LIST="${LIST:-$HERE/sweep_targets.csv}"
 say(){ echo "[$(date '+%m-%d %H:%M:%S')] $*"; }
 DEADLINE=$(( $(date +%s) + HOURS*3600 ))
+# ⚠️ 홈(/) 보호: 기본이 홈(~/.cache, ~/.boltz)인 캐시들을 전부 /mnt/data로 — 홈 디스크 full 재발 방지
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$DATA/.cache}"          # ~/.cache 전반(torch_extensions 포함 다수)
+export TORCH_EXTENSIONS_DIR="${TORCH_EXTENSIONS_DIR:-$DATA/.cache/torch_ext}"
+export HF_HOME="${HF_HOME:-$DATA/.cache/hf}" PIP_CACHE_DIR="${PIP_CACHE_DIR:-$DATA/.cache/pip}"
+mkdir -p "$XDG_CACHE_HOME" "$TORCH_EXTENSIONS_DIR" "$HF_HOME"
 source ~/miniconda3/etc/profile.d/conda.sh 2>/dev/null
 
 case "$COF" in
   boltz)
     conda activate boltz 2>/dev/null
     command -v boltz >/dev/null || { say "!! boltz 없음"; exit 1; }
+    export BOLTZ_CACHE="${BOLTZ_CACHE:-$DATA/boltz_cache}"; mkdir -p "$BOLTZ_CACHE"   # 가중치·CCD: 홈(~/.boltz) 대신 /mnt/data
     EXT="yaml"
-    RUN(){ ( cd "$2" && boltz predict "$1" --out_dir results --no_kernels --diffusion_samples "$SAMP" >"$3" 2>&1 ); }
+    RUN(){ ( cd "$2" && boltz predict "$1" --out_dir results --cache "$BOLTZ_CACHE" --no_kernels --diffusion_samples "$SAMP" >"$3" 2>&1 ); }
     DONE(){ find "$1/results" -name '*_model_*.cif' 2>/dev/null | grep -q .; } ;;
   protenix)
     conda activate "${PROT_ENV:-protenix}" 2>/dev/null
@@ -40,6 +46,7 @@ case "$COF" in
   chai)
     conda activate "${CHAI_ENV:-chai}" 2>/dev/null
     command -v chai-lab >/dev/null || { say "!! chai-lab 없음 (conda activate ${CHAI_ENV:-chai})"; exit 1; }
+    export CHAI_DOWNLOADS_DIR="${CHAI_DOWNLOADS_DIR:-$DATA/chai_downloads}"; mkdir -p "$CHAI_DOWNLOADS_DIR"   # 가중치: 홈 대신 /mnt/data
     EXT="fasta"    # make_input(chai)가 FASTA + $out/msa/*.aligned.pqt(항원, 파일명=서열해시) 생성. 항체=pqt없음→single-seq
     # chai-lab fold는 출력 폴더가 이미 있으면 실패 → 미완성 results 제거 후 실행(DONE이면 여기 안 옴)
     RUN(){ rm -rf "$2/results"; ( cd "$2" && chai-lab fold --msa-directory "$2/msa" "$1" results >"$3" 2>&1 ); }
