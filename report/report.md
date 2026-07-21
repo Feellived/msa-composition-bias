@@ -31,12 +31,6 @@
 ### 3.6 편향 센서 (E5)
 - (예정) 예측 자리 이탈 신호 ↔ 그룹 라벨 상관.
 
-### 3.7 (보조) HADDOCK-guided co-folder
-- **guided-Boltz** — 8XSI(숨은 부위) 0.04 → 0.556 rescue. 강한 구속(force)일 때만·Full이 실패하는 cryptic에서만 값어치.
-- **guided-Protenix** — win 0개(soft pocket + 항체 single-seq). 흔한 부위(8SIT·9ML9)는 오히려 파괴.
-- **guided-tFold** — ICF(계면 텐서) 주입, 실행 중.
-- (해석) 결국 병목은 '만들기'가 아니라 '고르기' → 재랭커(E4)가 핵심.
-
 ## 4. 논의
 - 정직한 위치(방법 선점, 기여=결합·적용·wet).
 - 한계(표본 ~49, case study).
