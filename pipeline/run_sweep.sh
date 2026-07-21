@@ -33,8 +33,9 @@ case "$COF" in
     # 표의 2025/2026은 출시일일 뿐(컷오프 아님). 기본=권장·최강 v1.0.0.
     PROT_MODEL="${PROT_MODEL:-protenix_base_default_v1.0.0}"
     EXT="json"
+    # 커널 JIT 회피 3중: LAYERNORM_TYPE=torch(env) + 삼각커널 torch + fusion off → 무인 실행 시 컴파일 실패-루프 방지
     RUN(){ ( cd "$2" && protenix pred -i "$1" -o results -n "$PROT_MODEL" -s "$SEED" -e "$SAMP" \
-             --trimul_kernel torch --triatt_kernel torch >"$3" 2>&1 ); }
+             --trimul_kernel torch --triatt_kernel torch --enable_fusion False >"$3" 2>&1 ); }
     DONE(){ find "$1/results" -name '*sample*.cif' 2>/dev/null | grep -q .; } ;;
   chai)
     conda activate "${CHAI_ENV:-chai}" 2>/dev/null
