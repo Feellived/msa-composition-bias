@@ -7,24 +7,17 @@ rng=np.random.RandomState(42)
 d=pd.read_csv("dockq_sweep_boltz.csv")
 col={"A":"#2c7fb8","B":"#d95f0e","C":"#7a7a7a"}; lab={"A":"A 우세부위","B":"B 비우세","C":"C 대조"}
 
-# ---------- (1) 그룹평균 꺾은선 (부트스트랩 95% CI) + DockQ 임계선 ----------
+# ---------- (1) 그룹평균 꺾은선 + DockQ 임계선 ----------
 dd=d[d.rung<=9]
-def boot(vals,B=2000):
-    if len(vals)<2: return vals.mean(), vals.mean(), vals.mean()
-    m=[rng.choice(vals,len(vals),replace=True).mean() for _ in range(B)]
-    return vals.mean(), np.percentile(m,2.5), np.percentile(m,97.5)
 fig,ax=plt.subplots(figsize=(8,5))
 for ab in ["A","B","C"]:
     g=dd[dd.ab==ab]; n=g.target.nunique()
-    xs=sorted(g.rung.unique()); mean=[];lo=[];hi=[]
-    for r in xs:
-        m,l,h=boot(g[g.rung==r].best_dockq.values); mean.append(m);lo.append(l);hi.append(h)
-    ax.plot(xs,mean,"-o",color=col[ab],ms=5,label=f"{lab[ab]} (n={n})")
-    ax.fill_between(xs,lo,hi,color=col[ab],alpha=.18)
+    m=g.groupby("rung").best_dockq.mean()
+    ax.plot(m.index,m.values,"-o",color=col[ab],ms=6,lw=2,label=f"{lab[ab]} (n={n})")
 for y,t in [(0.23,"acceptable 0.23"),(0.49,"medium 0.49"),(0.80,"high 0.80")]:
     ax.axhline(y,color="grey",lw=.7,ls="--"); ax.text(9.05,y,t,fontsize=7,va="center",color="grey")
-ax.set_xlabel("rung  (0 = full MSA → 9 = 얕음)"); ax.set_ylabel("DockQ (best-of-5 pose)")
-ax.set_title("Boltz MSA depth-sweep — 그룹별 DockQ 평균 (부트스트랩 95% CI)",fontsize=11)
+ax.set_xlabel("rung  (0 = full MSA → 9 = 얕음)"); ax.set_ylabel("DockQ 평균 (best-of-5 pose)")
+ax.set_title("Boltz MSA depth-sweep — 그룹별 DockQ 평균",fontsize=11)
 ax.set_ylim(0,1); ax.legend(fontsize=9,loc="upper right"); ax.grid(alpha=.25)
 plt.tight_layout(); plt.savefig("dockq_agg_lines.png",dpi=140); print("saved dockq_agg_lines.png")
 
