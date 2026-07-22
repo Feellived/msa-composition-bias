@@ -5,8 +5,10 @@
 - RBD는 native를 chains.json의 crop 범위로 잘라 pose(크롭됨)와 맞춤.
 경로: pose=$DATA/<model>/<target>/rung<r>/results/**.cif · native=targets/<target>/native.cif · Neff80=$DATA/ladders/<target>/<chain>/neff.tsv
 사용(DockQ+biopython env): python dockq_sweep.py [--models boltz protenix] [--out results/dockq_sweep.csv]
+  ⭐ 이어달리기: --out CSV에 이미 있는 (target,model,rung)은 skip(재실행 값쌈). 강제 재채점=--rescore.
+  ⭐ 생성과 동시 관찰: --watch 300  → 5분마다 새로 나온 pose만 채점·append (Ctrl-C 종료). protenix(GPU)와 병행(CPU) 안전.
 """
-import argparse, csv, glob, json, os, re, subprocess, tempfile
+import argparse, csv, glob, json, os, re, subprocess, tempfile, time
 from Bio.PDB import MMCIFParser, PDBParser, PDBIO
 from Bio.PDB.Structure import Structure
 from Bio.PDB.Model import Model as BModel
@@ -17,6 +19,7 @@ from Bio.Data.IUPACData import protein_letters_3to1
 T3 = {k.upper(): v for k, v in protein_letters_3to1.items()}
 _al = PairwiseAligner(); _al.mode = "global"
 _al.match_score = 1; _al.mismatch_score = -1; _al.open_gap_score = -3; _al.extend_gap_score = -0.5
+COLS = ["target", "group", "ab", "model", "rung", "neff80", "best_dockq", "n_pose"]
 
 def load(p): return (MMCIFParser(QUIET=True) if p.endswith(".cif") else PDBParser(QUIET=True)).get_structure("x", p)[0]
 
@@ -117,6 +120,46 @@ def neff_of(target, ladders):
         return m
     return {}
 
+def write_csv(out, rows_by_key):
+    os.makedirs(os.path.dirname(out) or ".", exist_ok=True)
+    with open(out, "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=COLS); w.writeheader()
+        for k in sorted(rows_by_key, key=lambda x: (x[1], x[0], x[2])):   # model,target,rung 순
+            w.writerow(rows_by_key[k])
+
+def score_pass(a, rows_by_key):
+    """poses 있는데 아직 안 채점된 (target,model,rung)만 채점 → rows_by_key에 추가. 신규 건수 반환."""
+    new = 0
+    for r in csv.DictReader(open(a.list)):
+        tgt = r["target"]; cjp = os.path.join(a.targets_dir, tgt, "chains.json")
+        if not os.path.exists(cjp): continue
+        pend = [(model, rung) for model in a.models for rung in range(a.rungs)
+                if (tgt, model, rung) not in rows_by_key]
+        if not pend: continue
+        cj = json.load(open(cjp)); native = os.path.join(a.targets_dir, tgt, "native.cif")
+        nmap = neff_of(tgt, os.path.join(a.data, "ladders"))
+        with tempfile.TemporaryDirectory() as td:
+            natm = native_merged(cj, native, td)
+            if natm is None: print(f"{tgt}: native merge 실패"); continue
+            for model, rung in pend:
+                poses = glob.glob(os.path.join(a.data, model, tgt, f"rung{rung}", "results", "**", "*.cif"), recursive=True)
+                if not poses: continue
+                bq = None
+                for pose in poses:
+                    try:
+                        pm = pose_merged(cj, pose, td)
+                        if pm is None: continue
+                        q = dockq(pm, natm)
+                        if q is not None and (bq is None or q > bq): bq = q
+                    except Exception: continue
+                if bq is None: continue
+                rows_by_key[(tgt, model, rung)] = dict(target=tgt, group=r["group"], ab=r["ab"], model=model,
+                    rung=rung, neff80=nmap.get(rung, ""), best_dockq=round(bq, 3), n_pose=len(poses))
+                new += 1
+                print(f"  {tgt:14} {model:8} rung{rung} Neff80={nmap.get(rung,'?')} DockQ={bq:.3f} ({len(poses)} pose)")
+        write_csv(a.out, rows_by_key)   # 타깃마다 flush → 중간에 끊겨도 보존, 실시간 관찰
+    return new
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--list", default="sweep_targets.csv")
@@ -125,39 +168,25 @@ def main():
     ap.add_argument("--models", nargs="+", default=["boltz", "protenix"])
     ap.add_argument("--rungs", type=int, default=12)
     ap.add_argument("--out", default="results/dockq_sweep.csv")
+    ap.add_argument("--watch", type=int, default=0, help="초. >0이면 그 간격으로 반복 채점(생성과 동시 관찰). Ctrl-C 종료")
+    ap.add_argument("--rescore", action="store_true", help="--out 무시하고 전부 재채점")
     a = ap.parse_args()
-    if not (subprocess.run(["which", "DockQ"], capture_output=True).returncode == 0):
+    if subprocess.run(["which", "DockQ"], capture_output=True).returncode != 0:
         raise SystemExit("!! DockQ 없음 — DockQ 있는 env에서 실행 (pip install DockQ)")
-    rows = []
-    for r in csv.DictReader(open(a.list)):
-        tgt = r["target"]; cjp = os.path.join(a.targets_dir, tgt, "chains.json")
-        if not os.path.exists(cjp): continue
-        cj = json.load(open(cjp)); native = os.path.join(a.targets_dir, tgt, "native.cif")
-        nmap = neff_of(tgt, os.path.join(a.data, "ladders"))
-        with tempfile.TemporaryDirectory() as td:
-            natm = native_merged(cj, native, td)
-            if natm is None: print(f"{tgt}: native merge 실패"); continue
-            for model in a.models:
-                for rung in range(a.rungs):
-                    poses = glob.glob(os.path.join(a.data, model, tgt, f"rung{rung}", "results", "**", "*.cif"), recursive=True)
-                    if not poses: continue
-                    bq = None
-                    for pose in poses:
-                        try:
-                            pm = pose_merged(cj, pose, td)
-                            if pm is None: continue
-                            q = dockq(pm, natm)
-                            if q is not None and (bq is None or q > bq): bq = q
-                        except Exception: continue
-                    if bq is None: continue
-                    rows.append(dict(target=tgt, group=r["group"], ab=r["ab"], model=model, rung=rung,
-                                     neff80=nmap.get(rung, ""), best_dockq=round(bq, 3), n_pose=len(poses)))
-                    print(f"  {tgt:14} {model:8} rung{rung} Neff80={nmap.get(rung,'?')} DockQ={bq:.3f} ({len(poses)} pose)")
-    os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
-    with open(a.out, "w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=["target", "group", "ab", "model", "rung", "neff80", "best_dockq", "n_pose"])
-        w.writeheader(); w.writerows(rows)
-    print(f"\n→ {a.out} ({len(rows)}행). 성공기준 DockQ 0.23/0.49/0.80. 다음: analyze_depth.py (데이터 쌓이면).")
+
+    rows_by_key = {}
+    if os.path.exists(a.out) and not a.rescore:
+        for row in csv.DictReader(open(a.out)):
+            rows_by_key[(row["target"], row["model"], int(row["rung"]))] = row
+        print(f"기존 {len(rows_by_key)}건 로드 → 이미 채점된 건 skip (강제=--rescore)")
+
+    while True:
+        n = score_pass(a, rows_by_key)
+        print(f"\n→ {a.out} (누적 {len(rows_by_key)}행, 이번 패스 신규 {n}). 성공기준 DockQ 0.23/0.49/0.80.")
+        if a.watch <= 0: break
+        print(f"[watch] {a.watch}s 대기 후 새 pose 확인... (Ctrl-C로 종료)")
+        try: time.sleep(a.watch)
+        except KeyboardInterrupt: print("\n중단."); break
 
 if __name__ == "__main__":
     main()
