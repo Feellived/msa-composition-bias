@@ -64,31 +64,39 @@ def epitope(ag_chains, ab_residues, cutoff):
                 if ns.search(atom.coord, cutoff): epi.add((ckey, pm[i])); break
     return epi
 
+def antigen_refs(cj):  return [c["seq"] for c in cj["chains"] if c["role"] == "antigen"]           # 순서대로
+def antibody_refs(cj): return [c["seq"] for c in cj["chains"] if c["role"] in ("heavy", "light")]
+
 def native_true(cj, native_path, cutoff):
     if not os.path.exists(native_path): return None
     nm = load(native_path)
-    ag = []
-    for c in cj["chains"]:
-        if c["role"] != "antigen": continue
-        src = c.get("src")
-        if src in nm: ag.append((src, seqca(nm[src])[1], c["seq"]))
-    ab_src = [c.get("src") for c in cj["chains"] if c["role"] in ("heavy", "light")]
-    ab = [r for cid in ab_src if cid in nm for r in seqca(nm[cid])[1]]
+    src = cj.get("src_chains", {})                                       # dockq_sweep처럼 native 사슬ID는 src_chains
+    ag_ids = [str(x) for x in src.get("antigen", [])]
+    ag = []                                                              # 항원: src_chains 우선, 없으면 서열매칭(index 키)
+    for i, ref in enumerate(antigen_refs(cj)):
+        cid = ag_ids[i] if i < len(ag_ids) else None
+        rr = seqca(nm[cid])[1] if (cid and cid in nm) else best(nm, ref)[2]
+        if rr: ag.append((i, rr, ref))
+    ab_ids = [str(x) for x in list(src.get("H", [])) + list(src.get("L", []))]
+    ab = [r for cid in ab_ids if cid in nm for r in seqca(nm[cid])[1]]
+    if not ab:                                                           # fallback: 서열매칭
+        used = set()
+        for ref in antibody_refs(cj):
+            cid, _, rr = best(nm, ref, exclude=used)
+            if cid: used.add(cid); ab.extend(rr)
     if not ag or not ab: return None
-    return epitope(ag, ab, cutoff), sum(1 for c in cj["chains"] if c["role"] == "antigen")
+    return epitope(ag, ab, cutoff), len(antigen_refs(cj))
 
 def pose_pred(cj, pose_path, cutoff):
     m = load(pose_path); used = set(); ag = []
-    for c in cj["chains"]:
-        if c["role"] != "antigen": continue
-        cid, _, rr = best(m, c["seq"], exclude=used)
+    for i, ref in enumerate(antigen_refs(cj)):                          # 항원: 서열매칭, index 키(native와 일치)
+        cid, _, rr = best(m, ref, exclude=used)
         if cid is None: continue
-        used.add(cid); ag.append((c.get("src"), rr, c["seq"]))
+        used.add(cid); ag.append((i, rr, ref))
     ab = []
-    for c in cj["chains"]:
-        if c["role"] in ("heavy", "light"):
-            cid, _, rr = best(m, c["seq"], exclude=used)
-            if cid: used.add(cid); ab.extend(rr)
+    for ref in antibody_refs(cj):
+        cid, _, rr = best(m, ref, exclude=used)
+        if cid: used.add(cid); ab.extend(rr)
     if not ag or not ab: return None
     return epitope(ag, ab, cutoff)
 
