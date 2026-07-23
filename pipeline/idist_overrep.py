@@ -135,6 +135,7 @@ def do_extract(a):
 # ---------- stage: 임베딩 + 이웃수 ----------
 def do_score(a):
     from ppiref.comparison import IDist
+    from pathlib import Path                       # IDist.embed는 Path 객체를 요구(ppi.stem)
     idx = list(csv.DictReader(open(os.path.join(a.work, "iface_index.csv"))))
     fams = sorted({r["family"] for r in idx if r["kind"] == "test"})
     out = []
@@ -144,12 +145,12 @@ def do_score(a):
         if not ref:
             print(f"  [{fam}] 레퍼런스 0 → 스킵(과대표집 미측정)"); continue
         idist = IDist(near_duplicate_threshold=NEAR_DUP)
-        idist.embed_parallel([r["iface"] for r in ref])
+        idist.embed_parallel([Path(r["iface"]) for r in ref])
         E = idist.get_embeddings()                      # index=계면 id, 값=임베딩 벡터
         ref_mat = np.asarray(E.values, dtype=float)
         print(f"  [{fam}] 레퍼런스 {len(ref_mat)}개 임베딩, 테스트 {len(test)}개 채점")
         for t in test:
-            q = np.asarray(idist.embed(t["iface"], store=False), dtype=float).ravel()
+            q = np.asarray(idist.embed(Path(t["iface"]), store=False), dtype=float).ravel()
             if q.shape[0] != ref_mat.shape[1]: print(f"    dim 불일치 {t['id']}"); continue
             d = np.linalg.norm(ref_mat - q, axis=1)
             counts = {f"n_{rad}": int((d <= rad).sum()) for rad in RADII}
