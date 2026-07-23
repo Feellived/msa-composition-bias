@@ -83,14 +83,20 @@ def merge_ref(cif, ag_chain, hchain, lchain, out):
 
 # ---------- PPIRef 계면 추출 ----------
 def extract_iface(pdb, out_dir):
+    base = os.path.splitext(os.path.basename(pdb))[0]
+    pid = base.replace("_", "-")   # ⚠️ PPIExtractor는 pdb_id의 '_'를 '-'로 치환해 저장(chain 구분자 '_'와 충돌 방지)
+    def find():
+        for pat in (f"{pid}_A_B.pdb", f"{pid}_B_A.pdb", f"{base}_A_B.pdb", f"{base}_B_A.pdb"):
+            h = glob.glob(os.path.join(out_dir, "**", pat), recursive=True)
+            if h: return h[0]
+        return None
+    got = find()
+    if got: return got                       # 이미 추출됨 → PPIExtractor 재호출 스킵(재실행 빠름)
     from ppiref.extraction import PPIExtractor
     ex = PPIExtractor(out_dir=out_dir, kind="heavy", radius=RADIUS, bsa=False)
     try: ex.extract(pdb, partners=["A", "B"])
     except Exception as e: print(f"    extract 실패 {os.path.basename(pdb)}: {e}"); return None
-    base = os.path.splitext(os.path.basename(pdb))[0]
-    hits = glob.glob(os.path.join(out_dir, "**", f"{base}_A_B.pdb"), recursive=True) \
-        or glob.glob(os.path.join(out_dir, "**", f"{base}_B_A.pdb"), recursive=True)
-    return hits[0] if hits else None
+    return find()
 
 # ---------- stage: 병합 + 계면 추출 ----------
 def do_extract(a):
