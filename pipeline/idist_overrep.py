@@ -28,7 +28,10 @@ from Bio.PDB.Chain import Chain as BChain
 
 RADIUS = 6.0
 NEAR_DUP = 0.04                 # 6Å 계면 전용(공식 보정값). 10Å면 0.03.
-RADII = [0.04, 0.08, 0.15, 0.30]  # 0.04=near-dup(보정), 나머지=탐색용(비보정, 등급 참고만)
+# 실측 거리 스케일(진단: 동일 항원군 계면 간 거리 min 0.03 ~ max 0.14) — 0.15·0.30은 포화(전부 근접)라 무의미.
+# → near-dup(0.04) 주변을 촘촘히 + min_dist·최근접평균(연속값)을 주 과대표집 신호로.
+RADII = [0.02, 0.03, 0.04, 0.05, 0.06]
+KNN = 5                         # 최근접 k개 평균거리 = best-of-N 잡음에 덜 민감한 연속 과대표집 신호
 
 # ---------- 구조 병합 (dockq_sweep.merged_pdb 재사용) ----------
 def load(p): return (MMCIFParser(QUIET=True) if p.endswith(".cif") else PDBParser(QUIET=True)).get_structure("x", p)[0]
@@ -133,35 +136,60 @@ def do_extract(a):
     print(f"→ {a.work}/iface_index.csv ({len(idx)}개)")
 
 # ---------- stage: 임베딩 + 이웃수 ----------
+def embed_refs(fam, ref, cache, reembed):
+    """항원군 레퍼런스 계면 임베딩 → (ref_mat[valid], ref_ids[valid]). NaN 행 제거 + npz 캐시(재실행 시 재임베딩 생략)."""
+    from ppiref.comparison import IDist
+    from pathlib import Path
+    if os.path.exists(cache) and not reembed:
+        z = np.load(cache, allow_pickle=False)
+        print(f"  [{fam}] 캐시 로드: valid ref {len(z['mat'])} ({os.path.basename(cache)})")
+        return z["mat"], list(z["ids"])
+    idist = IDist(near_duplicate_threshold=NEAR_DUP)
+    idist.embed_parallel([Path(r["iface"]) for r in ref])
+    E = idist.get_embeddings()                          # index=계면 id, 값=임베딩 벡터(dim=20)
+    ids = list(E.index); mat = np.asarray(E.values, dtype=float)
+    valid = np.isfinite(mat).all(axis=1)                # ⚠️ embed_parallel은 실패 계면을 NaN 행으로 반환 → 제거
+    mat = mat[valid]; ids = [i for i, v in zip(ids, valid) if v]
+    dropped = int((~valid).sum())
+    np.savez(cache, mat=mat, ids=np.array(ids))         # 문자열 배열(pickle 불필요)
+    print(f"  [{fam}] 임베딩 {len(valid)}개 중 NaN {dropped}개 제거 → valid {len(mat)}, 캐시 저장")
+    return mat, ids
+
 def do_score(a):
     from ppiref.comparison import IDist
     from pathlib import Path                       # IDist.embed는 Path 객체를 요구(ppi.stem)
     idx = list(csv.DictReader(open(os.path.join(a.work, "iface_index.csv"))))
     fams = sorted({r["family"] for r in idx if r["kind"] == "test"})
+    idist_q = IDist(near_duplicate_threshold=NEAR_DUP)   # 테스트 계면 임베딩 전용
     out = []
     for fam in fams:
         ref = [r for r in idx if r["kind"] == "ref" and r["family"] == fam]
         test = [r for r in idx if r["kind"] == "test" and r["family"] == fam]
         if not ref:
             print(f"  [{fam}] 레퍼런스 0 → 스킵(과대표집 미측정)"); continue
-        idist = IDist(near_duplicate_threshold=NEAR_DUP)
-        idist.embed_parallel([Path(r["iface"]) for r in ref])
-        E = idist.get_embeddings()                      # index=계면 id, 값=임베딩 벡터
-        ref_mat = np.asarray(E.values, dtype=float)
-        print(f"  [{fam}] 레퍼런스 {len(ref_mat)}개 임베딩, 테스트 {len(test)}개 채점")
+        ref_mat, ref_ids = embed_refs(fam, ref, os.path.join(a.work, f"refemb_{fam}.npz"), a.reembed)
+        if len(ref_mat) == 0:
+            print(f"  [{fam}] valid ref 0 → 스킵"); continue
+        print(f"  [{fam}] 테스트 {len(test)}개 채점")
         for t in test:
-            q = np.asarray(idist.embed(Path(t["iface"]), store=False), dtype=float).ravel()
-            if q.shape[0] != ref_mat.shape[1]: print(f"    dim 불일치 {t['id']}"); continue
+            q = np.asarray(idist_q.embed(Path(t["iface"]), store=False), dtype=float).ravel()
+            if q.shape[0] != ref_mat.shape[1] or not np.isfinite(q).all():
+                print(f"    스킵 {t['id']} (dim 불일치/NaN)"); continue
             d = np.linalg.norm(ref_mat - q, axis=1)
+            k = min(KNN, len(d)); knn = float(np.sort(d)[:k].mean())
             counts = {f"n_{rad}": int((d <= rad).sum()) for rad in RADII}
+            j = int(np.argmin(d))
             out.append(dict(target=t["id"], family=fam, ab=t["ab"], n_ref=len(ref_mat),
-                            min_dist=round(float(d.min()), 4), **counts))
-            print(f"    {t['id']:12} {t['ab']}  near-dup(≤0.04)={counts['n_0.04']}  ≤0.15={counts['n_0.15']}  min_d={d.min():.3f}")
+                            min_dist=round(float(d[j]), 4), nearest=ref_ids[j], mean_knn=round(knn, 4),
+                            frac_ndup=round(counts["n_0.04"] / len(ref_mat), 4), **counts))
+            print(f"    {t['id']:12} {t['ab']}  min_d={d[j]:.3f}(→{ref_ids[j]})  knn5={knn:.3f}  "
+                  f"ndup0.04={counts['n_0.04']}({out[-1]['frac_ndup']:.0%})")
     os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
-    cols = ["target", "family", "ab", "n_ref", "min_dist"] + [f"n_{r}" for r in RADII]
+    cols = ["target", "family", "ab", "n_ref", "min_dist", "nearest", "mean_knn", "frac_ndup"] + [f"n_{r}" for r in RADII]
     with open(a.out, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=cols); w.writeheader(); w.writerows(out)
-    print(f"\n→ {a.out} ({len(out)}행). 다음: idist_analyze.py 로 A/B 대비 + 깊이-취약성 상관.")
+    print(f"\n→ {a.out} ({len(out)}행). 주 신호 = min_dist(작을수록 과대표집)·mean_knn·frac_ndup. "
+          f"다음: idist_analyze.py 로 A/B 대비 + 깊이-취약성 상관.")
 
 def main():
     p = argparse.ArgumentParser()
@@ -172,6 +200,7 @@ def main():
     p.add_argument("--ref-struct", dest="ref_struct", default="ref_structures")
     p.add_argument("--work", default=os.path.join(os.environ.get("DATA", "/mnt/data/admuser/msadepth"), "idist"))
     p.add_argument("--out", default="results/overrep_idist.csv")
+    p.add_argument("--reembed", action="store_true", help="refemb 캐시 무시하고 레퍼런스 재임베딩")
     a = p.parse_args()
     if a.stage in ("extract", "all"): do_extract(a)
     if a.stage in ("score", "all"): do_score(a)
