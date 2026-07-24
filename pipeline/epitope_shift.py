@@ -33,6 +33,8 @@ oracle 정의(프로젝트 관행 재사용 — Phase 0의 'oracle vs ipTM-pick'
 경로: pose=$DATA/<model>/<t>/rung<r>/results/**.cif · native=targets/<t>/native.cif · chains.json=targets/<t>/chains.json
 사용(biopython+scipy env; classify_epitope 가 UniProt fetch):
   python epitope_shift.py [--models boltz] [--rungs 12] [--cutoff 5.0] [--out results/epitope_shift.csv]
+  ⚠️ 모델별로 --out 파일을 따로 두고 한 번에 한 모델씩 실행 권장(예: epitope_shift_boltz.csv·epitope_shift_protenix.csv).
+     각 행에 model 컬럼이 있어 나중에 analyze_epitope_shift.py로 합쳐서 모델 간 비교 가능.
 """
 import argparse, csv, glob, math, os
 import numpy as np
@@ -207,7 +209,7 @@ def main():
                     if mm: ms.append(mm)
                 if not ms: continue
                 oracle = max(ms, key=lambda z: z["recall"])       # recall 기준 고정 pose (cherry-pick 방지)
-                row = dict(target=tgt, family=fam, ab=ab, label=r.get("label", ""), rung=rung,
+                row = dict(target=tgt, model=model, family=fam, ab=ab, label=r.get("label", ""), rung=rung,
                           neff80=nmap.get(rung, ""), n_pose=len(ms), n_pop=n_pop,
                           native_overrep=fmt(native_or),
                           mean_overrep=fmt(nanmean([m["overrep"] for m in ms])),
@@ -227,7 +229,7 @@ def main():
                       f"overrep(mean)={row['mean_overrep']} recall(mean)={row['mean_recall']} "
                       f"pop_rank(mean)={row['mean_pop_rank']} dcc_pop(mean)={row['mean_dcc_pop']} (n_pop={n_pop})")
     os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
-    cols = ["target","family","ab","label","rung","neff80","n_pose","n_pop",
+    cols = ["target","model","family","ab","label","rung","neff80","n_pose","n_pop",
             "native_overrep","mean_overrep","oracle_overrep","mean_recall","oracle_recall",
             "mean_true_rank","oracle_true_rank","mean_pop_rank","oracle_pop_rank",
             "mean_dcc_true","oracle_dcc_true","mean_dcc_pop","oracle_dcc_pop"]
