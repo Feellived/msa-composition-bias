@@ -16,6 +16,8 @@ Boltz에서 했던 것과 정확히 같은 5가지 분석 + 모델 2개 이상�
 
 사용: python analyze_epitope_shift.py --csv results/epitope_shift_boltz.csv results/epitope_shift_protenix.csv
       [--out-dir results/analysis] [--excess 0.3]
+⚠️ model 컬럼 없는 구파일(model 컬럼 추가 전에 만든 결과)은 파일명에서 모델명을 추론함
+   (예: epitope_shift_boltz.csv → "boltz"). 그러니 구파일은 이 이름 규칙에 맞게 미리 mv/cp 해둘 것.
 """
 import argparse, csv, math, os
 from collections import defaultdict
