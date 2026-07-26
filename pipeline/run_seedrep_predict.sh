@@ -15,7 +15,7 @@ OUTROOT="${OUTROOT:-$DATA/seedrep_pred}"
 LIST="${LIST:-$HERE/sweep_targets.csv}"
 DIVERSE="${DIVERSE:-$HERE/../runs_diverse}"
 SAMP="${SAMP:-5}"; SEED="${SEED:-0}"; SMOKE="${SMOKE:-0}"
-ANCHORS="${ANCHORS:-8wpy_AB 8k3k_D 8k46_I 9y0a_AB}"
+ANCHORS="${ANCHORS:-8wpy_AB 8k3k_D 8k46_I 9y0a_AB 8y6a_CD 8ulr_HL}"
 say(){ echo "[$(date '+%m-%d %H:%M:%S')] $*"; }
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$DATA/.cache}" TORCH_EXTENSIONS_DIR="${TORCH_EXTENSIONS_DIR:-$DATA/.cache/torch_ext}"
 export HF_HOME="${HF_HOME:-$DATA/.cache/hf}" PIP_CACHE_DIR="${PIP_CACHE_DIR:-$DATA/.cache/pip}"
@@ -61,7 +61,7 @@ while IFS=, read -r target pdb group ab dirtype ag_chains label; do
       done
       [ "$ok" = 1 ] || { say "  skip $target $depth $s (항원사슬 a3m 불완전)"; continue; }
       out="$OUTROOT/$COF/$target/$depth/$s"
-      if DONE "$out"; then n_ok=$((n_ok+1)); [ "$SMOKE" = 1 ] && { say "이미 됨 → smoke OK"; exit 0; }; continue; fi
+      if DONE "$out"; then n_ok=$((n_ok+1)); continue; fi   # SMOKE도 done은 건너뛰고 '미완 1건'을 실제 실행해 러너/env 검증
       mkdir -p "$out"; inp="$out/input.$EXT"
       python "$HERE/make_input.py" --cofolder "$COF" --chains "$cj" --ag-a3m "$map" --dir "$out" --out "$inp" >"$out/makeinput.log" 2>&1 \
         || { say "  !! make_input 실패 $target $depth $s (로그 $out/makeinput.log)"; n_fail=$((n_fail+1)); [ "$SMOKE" = 1 ] && exit 1; continue; }
@@ -73,4 +73,6 @@ while IFS=, read -r target pdb group ab dirtype ag_chains label; do
     done
   done
 done < <(tail -n +2 "$LIST")
+# SMOKE인데 여기까지 왔다 = 미완 항목이 없었음(전부 done) → 파이프라인 이미 완료 = OK
+[ "$SMOKE" = 1 ] && { say "SMOKE: 미완 항목 없음(전부 done) → OK"; exit 0; }
 say "완료 $COF: run=$n_run ok=$n_ok fail=$n_fail → $OUTROOT/$COF/"
