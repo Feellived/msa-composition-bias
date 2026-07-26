@@ -22,25 +22,34 @@
 #   ANCHORS="8wpy_AB" bash run_track_a_seedrep.sh   # 한 앵커만
 #   REPLICAS=5 OUT=seedrep bash run_track_a_seedrep.sh
 # ══════════════════════════════════════════════════════════════════════════════
-set -euo pipefail
+set -uo pipefail                       # ⚠️ -e 금지: 앵커 하나 실패해도 나머지 계속(무인 실행 안전)
+cd "$(cd "$(dirname "$0")" && pwd)"     # cwd 독립 → seedrep/은 항상 pipeline/ 기준
+# ⚠️ 형제 스크립트처럼 self-activate: seed_replicate.py = numpy + neff_ladder(로컬). ambient python 의존 금지.
+source ~/miniconda3/etc/profile.d/conda.sh 2>/dev/null
+conda activate "${SEEDREP_ENV:-protenix}" 2>/dev/null
+PY="${PY:-python3}"
+"$PY" -c 'import numpy' 2>/dev/null || { echo "!! numpy 없는 python — conda env 활성화 실패(SEEDREP_ENV=numpy 보유 env 지정). seed a3m 0개 방지 위해 즉시 중단."; exit 1; }
 
 DATA="${DATA:-/mnt/data/admuser/msadepth}"
 LADDIR="$DATA/ladders"
 OUT="${OUT:-seedrep}"                 # pipeline/seedrep/<target>_<chain>/
 REPLICAS="${REPLICAS:-5}"
-# 앵커 = 살아있는 신호(에피토프-이탈)가 실재하는 사례 + 9y0a_AB(DockQ 교차확인, 이미 게이트 통과)
-ANCHORS="${ANCHORS:-8wpy_AB 8k3k_D 8k46_I 9y0a_AB}"
+# 앵커 = 후보 전부(에피토프-이탈 3 + DockQ rescue 3). 사용자 "후보 전부" 지시 반영.
+ANCHORS="${ANCHORS:-8wpy_AB 8k3k_D 8k46_I 9y0a_AB 8y6a_CD 8ulr_HL}"
 
-pick_depths(){  # neff.tsv(rung n_rows neff80) → full·1 제외 얕은~중간 3개 행수, 쉼표구분
+pick_depths(){  # neff.tsv(rung n_rows neff80) → full·1 제외 얕은~중간 2개 행수(6앵커라 GPU 절약)
   python3 - "$1" <<'PY'
 import sys
-rows=[int(l.split()[1]) for l in open(sys.argv[1]).read().splitlines()[1:] if l.split()]
+try:
+    rows=[int(l.split()[1]) for l in open(sys.argv[1]).read().splitlines()[1:] if l.split()]
+except Exception:
+    print(""); sys.exit()
 if not rows: print(""); sys.exit()
 vals=sorted({r for r in rows if 1 < r < max(rows)}, reverse=True)
 if not vals: print(""); sys.exit()
-if len(vals)<=3: print(",".join(map(str,vals)))
+if len(vals)<=2: print(",".join(map(str,vals)))
 else:
-    idx=sorted({int(len(vals)*f) for f in (0.2,0.5,0.8)})
+    idx=sorted({int(len(vals)*f) for f in (0.3,0.7)})
     print(",".join(str(vals[i]) for i in idx))
 PY
 }
@@ -57,9 +66,13 @@ for t in $ANCHORS; do
     [ -n "$depths" ] || { echo "  skip $t/$ch (유효 깊이 없음 — MSA 너무 얕음)"; continue; }
     fullrows=$(sed -n '2p' "$neff" | awk '{print $2}')
     echo "  → $t/$ch  full=${fullrows}행  seedrep 깊이=$depths"
-    python seed_replicate.py --a3m "$full" --depths "$depths" \
-        --replicas "$REPLICAS" --outdir "$OUT/${t}_${ch}"
+    "$PY" seed_replicate.py --a3m "$full" --depths "$depths" \
+        --replicas "$REPLICAS" --outdir "$OUT/${t}_${ch}" \
+      || echo "  !! seed_replicate 실패 $t/$ch — 건너뜀(나머지 계속)"
   done
 done
+ngen=$(find "$OUT" -name 'seed*.a3m' 2>/dev/null | wc -l)
+echo "생성된 seed a3m 총 $ngen개."
+[ "$ngen" -eq 0 ] && echo "⚠️ 하나도 안 생김 — ladders 경로($LADDIR) 확인 필요."
 echo "완료 → pipeline/$OUT/<target>_<chain>/d<depth>/seed{0..N}.a3m + neff.tsv"
 echo "다음(GPU, tFold 후): 각 seed a3m → make_input.py → Protenix/Chai 예측 → epitope-recall 채점."
