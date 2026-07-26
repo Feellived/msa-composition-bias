@@ -18,8 +18,11 @@
 set -uo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"; cd "$HERE"
 say(){ echo "[$(date '+%m-%d %H:%M:%S')] $*"; }
+# 앵커·GPU 임계값 단일 소스(하위 스크립트가 상속)
+export ANCHORS="${ANCHORS:-8wpy_AB 8k3k_D 8k46_I 9y0a_AB 8y6a_CD 8ulr_HL}"
+GPU_FREE_MB="${GPU_FREE_MB:-30000}"     # 이만큼 여유 생기면(tFold 종료) 예측 시작
 
-say "======== Track A 밤샘 시작 ========"
+say "======== Track A 밤샘 시작 (앵커: $ANCHORS) ========"
 
 # ① Phase 0(pose_features.py) 종료 대기
 if pgrep -f pose_features.py >/dev/null 2>&1; then
@@ -30,15 +33,23 @@ say "① Phase0 종료 확인."
 
 # ② seed_replicate (CPU) — a3m 생성. 이미 있으면 seed_replicate가 알아서 건너뜀/재생성(무해).
 say "② seed_replicate(CPU) 실행..."
-bash run_track_a_seedrep.sh || { say "!! seed_replicate 실패 — 중단(로그 확인)"; exit 1; }
+bash run_track_a_seedrep.sh
+ngen=$(find seedrep -name 'seed*.a3m' 2>/dev/null | wc -l)
+if [ "$ngen" -eq 0 ]; then say "!! seedrep a3m 0개 생성 — ladders 확인 필요, 중단"; exit 1; fi
+say "② seed a3m $ngen개 생성."
 
-# ③ GPU 유휴 대기(tFold 등 종료). nvidia-smi 컴퓨트앱 비면 통과.
+# ③ GPU 여유 대기 + '그 여유 GPU를 고정'. 최대 free만 보고 통과하면 예측이 기본 cuda:0(바쁜 GPU0)로 가 OOM →
+#   여유 임계 넘는 첫 GPU의 index를 잡아 CUDA_VISIBLE_DEVICES로 export(하위 예측이 상속). 단일 GPU면 index=0 무해.
 if command -v nvidia-smi >/dev/null 2>&1; then
-  say "③ GPU 비길 대기(tFold 등)..."
-  while nvidia-smi --query-compute-apps=pid --format=csv,noheader 2>/dev/null | grep -q .; do
-    say "   GPU 사용 중 — 5분 후 재확인"; sleep 300
+  say "③ GPU 여유(≥${GPU_FREE_MB}MB) 대기..."
+  while :; do
+    gpu=$(nvidia-smi --query-gpu=index,memory.free --format=csv,noheader,nounits 2>/dev/null \
+          | awk -F',' -v thr="$GPU_FREE_MB" '{gsub(/ /,"",$1);gsub(/ /,"",$2)} $2+0>=thr{print $1; exit}')
+    if [[ "$gpu" =~ ^[0-9]+$ ]]; then break; fi
+    say "   여유(≥${GPU_FREE_MB}MB) GPU 없음(tFold 등 사용 중) — 5분 후 재확인"; sleep 300
   done
-  say "③ GPU 유휴 확인."
+  export CUDA_VISIBLE_DEVICES="$gpu"
+  say "③ GPU 여유 확인 → CUDA_VISIBLE_DEVICES=$gpu 고정."
 else
   say "③ ⚠️ nvidia-smi 없음 — GPU 상태 확인 불가, 그대로 진행."
 fi
