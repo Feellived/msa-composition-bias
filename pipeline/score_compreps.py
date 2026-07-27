@@ -26,6 +26,46 @@ def fisher(a, b, c, d):
                for x in range(a, min(n1, k) + 1)) / math.comb(n1 + n2, k)
 
 
+def heterogeneity_p(counts, sizes, max_states=3_000_000):
+    """'모든 조성의 성공률이 같다'는 귀무가설의 정확검정(다변량 초기하).
+
+    통계량 = 조성별 성공수의 제곱합(클수록 조성 간에 갈림). 성공 총수를 실행들에
+    무작위 배분했을 때 관측만큼 치우칠 확률을 낸다. ⚠️ 조성당 반복이 2회 이상이어야 의미 있다.
+    """
+    S = sum(counts); obs = sum(c * c for c in counts); n = len(sizes)
+    states = 1
+    for x in sizes:
+        states *= (x + 1)
+    if states > max_states:                      # 너무 크면 몬테카를로(재현 위해 고정 시드)
+        import random
+        rnd = random.Random(0); runs = []
+        for i, sz in enumerate(sizes):
+            runs += [i] * sz
+        lab = [1] * S + [0] * (len(runs) - S)
+        ge = tot = 0
+        for _ in range(200_000):
+            rnd.shuffle(lab)
+            c = [0] * n
+            for r, l in zip(runs, lab):
+                c[r] += l
+            tot += 1
+            if sum(x * x for x in c) >= obs:
+                ge += 1
+        return ge / tot
+    tot = [0]; ge = [0]
+    def rec(i, rem, w, sq):
+        if i == n:
+            if rem == 0:
+                tot[0] += w
+                if sq >= obs:
+                    ge[0] += w
+            return
+        for k in range(0, min(sizes[i], rem) + 1):
+            rec(i + 1, rem - k, w * math.comb(sizes[i], k), sq + k * k)
+    rec(0, S, 1, 0)
+    return ge[0] / tot[0] if tot[0] else float("nan")
+
+
 def ranks_of(vals):
     idx = sorted(range(len(vals)), key=lambda i: vals[i])
     r = [0.0] * len(vals)
@@ -104,6 +144,24 @@ def main():
             print(f"{tgt if nm=='원래' else '':11}{nm:>7}{len(v):>5}{st.median(v):>8.3f}"
                   f"{f'{min(v):.2f}~{max(v):.2f}':>14}"
                   f"{sum(1 for x in v if x>=0.49):>7}{sum(1 for x in v if x>=0.23):>7}")
+        # 조성별 성공률 — 반복이 2회 이상일 때만 이질성 검정이 의미 있다
+        bycomp = defaultdict(list)
+        for k, v in runs.items():
+            if not k.startswith("seedfull"):
+                bycomp[k.split("_r")[0]].append(max(v))
+        reps = [len(v) for v in bycomp.values()]
+        if bycomp and min(reps) >= 2:
+            names = sorted(bycomp)
+            cnt = [sum(1 for x in bycomp[c] if x >= .49) for c in names]
+            ph = heterogeneity_p(cnt, [len(bycomp[c]) for c in names])
+            det = " ".join(f"{c.replace('seed','')}:{k}/{len(bycomp[c])}" for c, k in zip(names, cnt))
+            print(f"{'':11}  조성별 성공  {det}")
+            print(f"{'':11}  → ⭐조성 간 이질성 정확검정 p = {ph:.4f}"
+                  f"   {'(조성이 성공률을 좌우함)' if ph < 0.05 else '(조성 간 차이 불충분)'}")
+        else:
+            ph = float("nan")
+            print(f"{'':11}  (조성당 반복 {min(reps) if reps else 0}회 — 이질성 검정 불가, 2회 이상 필요)")
+
         p49 = fisher(sum(1 for x in red if x >= .49), sum(1 for x in red if x < .49),
                      sum(1 for x in full if x >= .49), sum(1 for x in full if x < .49))
         p23 = fisher(sum(1 for x in red if x >= .23), sum(1 for x in red if x < .23),
@@ -119,7 +177,7 @@ def main():
                          succ49_full=sum(1 for x in full if x >= .49), succ49_red=sum(1 for x in red if x >= .49),
                          succ23_full=sum(1 for x in full if x >= .23), succ23_red=sum(1 for x in red if x >= .23),
                          p_fisher49=round(p49, 4), p_fisher23=round(p23, 4),
-                         p_ranktest=round(pmw, 4), verdict=verdict))
+                         p_ranktest=round(pmw, 4), p_heterogeneity=(round(ph,4) if ph==ph else ''), verdict=verdict))
     if rows:
         os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
         with open(a.out, "w", newline="") as fh:
