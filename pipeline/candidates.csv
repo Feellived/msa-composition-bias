@@ -1,0 +1,7 @@
+target,model,rung,comps,reps,full_reps,note
+8k3k_D,protenix,2,0 1 2 3 4 5 6 7,4,10,B군 class4 · 흔한자리 0.96→0.17 · 8칸 · 최우선
+8tx3_FK,protenix,1,0 1 2 3 4 5 6 7,4,10,B군 stem · 흔한자리 1.00→0.05 · 6칸
+8k46_I,protenix,4,0 1 2 3 4 5 6 7,4,10,B군 class4 · 흔한자리 0.67→0.27 · 4칸
+8xsj_HL,protenix,6,0 1 2 3 4,1,5,B군 class3 · 7칸 · 예비검정 수준
+8y6a_CD,protenix,7,0 1 2 3 4,1,5,B군 class3 · 6칸 · 예비검정 수준
+8wpy_AB,protenix,11,0 1 2 3 4,1,5,B군 class3 · 3칸 · 얕은 칸이라 주의
