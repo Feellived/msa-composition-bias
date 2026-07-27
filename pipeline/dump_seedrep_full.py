@@ -65,6 +65,13 @@ def main():
     ap.add_argument("--csv-out", default="results/seedrep_poses.csv")
     a = ap.parse_args()
 
+    # --only 를 쓰면 그 후보 행만 남아 원자료를 통째로 덮어쓴다(다른 후보 채점 결과 소실).
+    # → 기본 파일명일 때는 후보별 파일로 자동 분리한다.
+    if a.only and a.csv_out == ap.get_default("csv_out"):
+        a.csv_out = f"results/seedrep_poses_{a.only}.csv"
+        print(f"[안내] --only 사용 → 원자료를 {a.csv_out} 로 따로 씁니다"
+              f" (results/seedrep_poses.csv 보존). 전체 갱신은 --only 없이 실행.\n")
+
     grp = {r["target"]: r.get("group", "") for r in csv.DictReader(open(a.list))}
     pf = load_pf(a.pf)
     outroot = os.path.join(a.data, "seedrep_cand")
