@@ -6,6 +6,8 @@
 #   ② 성공률·통계           score_compreps.py     → 세 지표로 각각(원래 vs 얕은 + 조성 간 이질성)
 #        ②-a DockQ(자세 정확도)  ②-b 진짜 자리 겹침  ②-c 흔한 자리 겹침(낮을수록 편향 이탈)
 #   ③ 기제(결합자리 이동)   epitope_cluster.py    → 성공/실패 자리 겹침·크기
+#   ④ 핵심 통계             site_reproducibility.py → (조성 내)/(조성 간) 결합자리 겹침 + 뒤섞기 검정
+#                                                     + 서로 구별되는 자리 후보 개수와 각 후보의 진짜 자리 덮음
 #
 # ⚠️ ②의 이질성 검정은 **조성당 반복 2회 이상**일 때만 나온다(예비검정은 1회라 안 나옴).
 #    예비검정에서 유망하면 반복을 늘려 다시 돌릴 것.
@@ -34,6 +36,8 @@ for T in "$@"; do
   python score_compreps.py --csv "$csv" --label overrep --lower-better --succ-th 0.3
   echo "── ③ 기제(결합자리) ──"
   python epitope_cluster.py --csv "$csv" --data "$DATA/compreps"
+  echo "── ④ 핵심: 조성이 자리를 정하나 + 후보 몇 개 ──"
+  python site_reproducibility.py --csv "$csv" --data "$DATA/compreps"
 done
 echo ""
-echo "요약표: results/compreps_summary.csv · 그림용: results/epitope_cluster_<타깃>.csv"
+echo "요약표: results/compreps_summary.csv · 그림용: results/epitope_cluster_<타깃>.csv · 후보표: results/site_repro_<타깃>.csv"
