@@ -59,10 +59,16 @@ def main():
         if c not in a3m: raise SystemExit(f"항원 사슬 {c} a3m 경로 없음: --ag-a3m")
 
     if a.cofolder == "boltz":
-        # 각 항원 사슬 = 자기 depth a3m, 항체 = empty(single-seq). Boltz는 a3m 쿼리줄 무시 → 원본 그대로 사용.
+        # ⚠️ 2026-07-27 수정: "Boltz는 a3m 쿼리줄을 무시한다"는 가정이 **틀렸다**.
+        #    Boltz도 쿼리줄을 검증하며, 불일치하면 'MSA does not match input sequence, creating dummy'
+        #    경고와 함께 **MSA를 통째로 버리고 단일서열 모드로 예측한다**(종료코드는 정상 → 조용히 실패).
+        #    실제로 depth-sweep boltz 실행 496건 전부가 이 상태였다. → protenix/chai와 동일하게 정제 후 전달.
+        outdir = a.dir or os.path.dirname(a.out); os.makedirs(outdir, exist_ok=True)
         L = ["version: 1", "sequences:"]
         for c in d["chains"]:
-            msa = os.path.abspath(a3m[c["id"]]) if c["id"] in ag else "empty"
+            msa = (os.path.abspath(clean_a3m(os.path.abspath(a3m[c["id"]]),
+                                             os.path.join(outdir, f"ag_{c['id']}_clean.a3m")))
+                   if c["id"] in ag else "empty")   # boltz는 out 폴더로 cd 후 실행 → 반드시 절대경로
             L += ["  - protein:", f"      id: {c['id']}", f'      sequence: "{c["seq"]}"', f"      msa: {msa}"]
         open(a.out, "w").write("\n".join(L) + "\n")
 
