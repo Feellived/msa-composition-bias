@@ -7,6 +7,7 @@ Neff80 = θ=0.8로 가중한 per-residue Neff의 median (AF 방식; NEFFy/AF2 su
 사용: python neff_ladder.py --a3m runs/<t>/msa_<t>/A.a3m --outdir ladders/<t> --rungs 8
 """
 import argparse, os, numpy as np
+import re
 
 def read_a3m_match_columns(path):
     """a3m -> (N,L) uint8. 소문자/'.'(insertion) 제거, 대문자+'-'(match)만."""
@@ -47,12 +48,25 @@ def write_a3m(path, headers, seqs, idx):
             f.write(f">{headers[i]}\n{seqs[i]}\n")
 
 def read_raw(path):
+    """a3m 원본을 (헤더, 서열)로 읽는다.
+
+    ⚠️ 2026-07-27 버그 수정: ColabFold a3m은 첫 줄이 메타 주석(`#<길이>\t<개수>`)이다.
+    이전 판은 (a) 주석 줄을 서열로 취급했고 (b) 첫 `>`에서 h가 None이라 cur을 비우지
+    않아, 주석이 **질의 서열 앞에 그대로 붙었다**(예: `#440\t1NLWVT...`).
+    그 결과 boltz는 "MSA does not match input sequence"로 MSA를 통째로 버리고,
+    Protenix는 질의행만 밀린 정렬을 그대로 썼다. 아래 두 줄이 그 수정이다.
+    """
     headers, seqs, cur, h = [], [], [], None
     for line in open(path):
         line = line.rstrip("\n")
         if not line: continue
+        if line[0] == "#":                    # 메타 주석(`#<길이>\t<개수>`)
+            rest = re.sub(r"^#\d+\t\d+", "", line)
+            if not rest: continue             # 단독 주석 줄 → 버림(원본 a3m의 정상 형태)
+            line = rest                       # 서열이 뒤에 붙어 있으면(옛 손상 파일) 서열만 살림
         if line[0] == ">":
-            if h is not None: headers.append(h); seqs.append("".join(cur)); cur = []
+            if h is not None: headers.append(h); seqs.append("".join(cur))
+            cur = []                          # h가 None일 때도 반드시 초기화
             h = line[1:]
         else: cur.append(line)
     if h is not None: headers.append(h); seqs.append("".join(cur))
