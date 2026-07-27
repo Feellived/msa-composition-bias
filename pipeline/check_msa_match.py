@@ -20,17 +20,29 @@ Protenix는 같은 상황에서 경고를 안 낼 수 있으므로 **로그가 �
   python check_msa_match.py --only 8ulr_HL 9azr_HL
   python check_msa_match.py --list sweep_targets.csv --data /mnt/data/admuser/msadepth
 """
-import argparse, csv, json, os, sys
+import argparse, csv, json, os, re, sys
 
 AA = set("ACDEFGHIKLMNPQRSTVWYXBZUO")
 
 
 def read_a3m_query(path):
-    """a3m 첫 레코드의 서열(정렬 문자 제거)."""
+    """a3m 첫 레코드의 서열(정렬 문자 제거).
+
+    ⚠️ ColabFold a3m은 첫 줄이 메타 주석(`#<길이>\t<개수>`)이므로 건너뛴다. 또한 옛 사다리
+    파일은 그 주석이 질의 서열 앞에 붙어 있으므로(2026-07-27 버그), 서열 맨 앞의 군더더기도
+    떼고 비교한다 — 그래야 "진짜 서열이 다른가"와 "머리말만 붙었나"를 구분할 수 있다.
+    """
     seq, started = [], False
     with open(path) as f:
         for ln in f:
             ln = ln.rstrip("\n")
+            if not ln:
+                continue
+            if ln.startswith("#"):
+                rest = re.sub(r"^#\d+\t\d+", "", ln)
+                if not rest:                   # 단독 주석 줄(원본 a3m의 정상 형태) → 무시
+                    continue
+                ln = ln                        # 서열이 뒤에 붙은 손상 형태 → 그대로 두고 아래서 감지
             if ln.startswith(">"):
                 if started:
                     break
@@ -38,8 +50,10 @@ def read_a3m_query(path):
                 continue
             if started:
                 seq.append(ln)
-    s = "".join(seq)
-    return "".join(c for c in s.upper() if c not in "-.")
+    raw = "".join(seq)
+    clean = re.sub(r"^#\d+\s*\d*", "", raw)    # 서열 앞에 붙어버린 주석을 뗀 것
+    norm = lambda s: "".join(c for c in s.upper() if c not in "-.")
+    return norm(raw), norm(clean)
 
 
 def find_chain_seqs(cj):
@@ -129,35 +143,47 @@ def main():
             if not os.path.exists(ap3):
                 print(f"{t:12}{c:>5}{'-':>12}{'없음':>8}{'?':>9}  a3m 없음")
                 continue
-            q = read_a3m_query(ap3)
+            q, qc = read_a3m_query(ap3)
             ref = seqs.get(c, "")
             if not ref:
                 print(f"{t:12}{c:>5}{'?':>12}{len(q):>8}{'?':>9}  chains.json에 이 사슬 서열 없음")
                 continue
-            same = (q == ref)
-            note = ""
-            if not same:
-                if len(q) != len(ref):
-                    note = f"길이 다름 (차이 {abs(len(q)-len(ref))})"
-                else:
-                    d = sum(1 for x, y in zip(q, ref) if x != y)
-                    note = f"길이 같고 {d}곳 다름 ({100*(1-d/len(q)):.1f}% 동일)"
+            if q == ref:
+                verdict, note = "OK", ""
+            elif qc == ref:
+                verdict = "머리말오염"
+                note = f"앞 {len(q)-len(qc)}글자 군더더기 — 서열은 정확. fix_a3m_query.py로 복구 가능"
                 bad.append((t, c, note))
-            print(f"{t:12}{c:>5}{len(ref):>12}{len(q):>8}{('OK' if same else 'MISMATCH'):>9}  {note}")
-            out.append(dict(target=t, chain=c, len_input=len(ref), len_a3m=len(q),
-                            match=int(same), note=note))
+            else:
+                verdict = "MISMATCH"
+                if len(qc) != len(ref):
+                    note = f"⚠️ 서열 자체가 다름 (길이 차 {abs(len(qc)-len(ref))})"
+                else:
+                    d = sum(1 for x, y in zip(qc, ref) if x != y)
+                    note = f"⚠️ 서열 자체가 다름 ({d}곳, {100*(1-d/len(qc)):.1f}% 동일)"
+                bad.append((t, c, note))
+            print(f"{t:12}{c:>5}{len(ref):>12}{len(q):>8}{verdict:>11}  {note}")
+            out.append(dict(target=t, chain=c, len_input=len(ref), len_a3m_raw=len(q),
+                            len_a3m_clean=len(qc), verdict=verdict, note=note))
 
     print("\n" + "=" * 78)
-    if bad:
-        print(f"⚠️ 불일치 {len(bad)}건 — 아래 타깃의 MSA 실험은 무효로 봐야 함:")
-        seen = set()
-        for t, c, n in bad:
-            if t not in seen:
-                seen.add(t)
-            print(f"   {t} / 사슬 {c} — {n}")
-        print(f"\n   영향받는 타깃 {len(seen)}개: {', '.join(sorted(seen))}")
-    else:
-        print("✅ 불일치 없음 — 검사한 범위에서 MSA는 정상적으로 입력과 맞음.")
+    head = [r for r in out if r["verdict"] == "머리말오염"]
+    real = [r for r in out if r["verdict"] == "MISMATCH"]
+    okn = [r for r in out if r["verdict"] == "OK"]
+    print(f"정상 {len(okn)} · 머리말오염 {len(head)} · 서열자체다름 {len(real)}")
+    if head:
+        ts = sorted({r["target"] for r in head})
+        print(f"\n[머리말 오염] 타깃 {len(ts)}개 — 서열은 맞고 앞에 군더더기만 붙음(복구 가능):")
+        print("   " + ", ".join(ts))
+        print("   → python fix_a3m_query.py  (dry-run 확인 후 --apply)")
+        print("   ⚠️ 이 입력으로 만든 예측은 다시 돌려야 함(boltz는 MSA를 버렸고 Protenix는 밀린 정렬을 씀).")
+    if real:
+        ts = sorted({r["target"] for r in real})
+        print(f"\n[서열 자체가 다름] 타깃 {len(ts)}개 — 복구 불가, a3m 재생성 필요:")
+        for r in real:
+            print(f"   {r['target']} / {r['chain']} — {r['note']}")
+    if not head and not real:
+        print("✅ 전부 정상 — MSA 질의행이 입력 서열과 일치.")
 
     if out:
         os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
