@@ -112,16 +112,24 @@ def mannwhitney(x, y):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--csv", nargs="+", default=["results/compreps_*.csv"])
-    ap.add_argument("--label", default="dockq", choices=["dockq", "recall"])
+    ap.add_argument("--label", default="dockq", choices=["dockq", "recall", "overrep", "n_contact"],
+                    help="overrep=예측 중 흔한 자리 비율(낮을수록 좋음, --lower-better와 함께)")
+    ap.add_argument("--lower-better", action="store_true",
+                    help="값이 낮을수록 좋은 지표(overrep 등)일 때. 부호를 뒤집어 검정")
+    ap.add_argument("--succ-th", type=float, default=None,
+                    help="성공 문턱(기본 dockq/recall=0.49). overrep이면 '이 값 미만'이 성공")
     ap.add_argument("--out", default="results/compreps_summary.csv")
     a = ap.parse_args()
+    SGN = -1.0 if a.lower_better else 1.0          # 낮을수록 좋으면 부호 반전 후 동일 로직
+    TH = a.succ_th if a.succ_th is not None else 0.49
     files = sorted({p for pat in a.csv for p in glob.glob(pat)})
     if not files:
         raise SystemExit("!! CSV를 못 찾음. dump_seedrep_full.py를 먼저 실행할 것.")
 
-    print(f"단위 = 실행 1회(자세 중 최고).  지표 = {a.label}\n")
+    print(f"단위 = 실행 1회(자세 중 {'최저' if a.lower_better else '최고'}).  지표 = {a.label}"
+          f"{'  (낮을수록 좋음)' if a.lower_better else ''}  성공 문턱 {'<' if a.lower_better else '≥'}{TH}\n")
     print(f"{'target':11}{'조건':>7}{'실행':>5}{'중앙값':>8}{'최소~최대':>14}"
-          f"{'≥0.49':>7}{'≥0.23':>7}")
+          f"{'성공':>7}{'강한성공':>7}")
     print("-" * 62)
     rows = []
     for fp in files:
@@ -135,15 +143,17 @@ def main():
                 pass
         if not runs:
             print(f"{os.path.basename(fp):11}  (자료 없음)"); continue
-        full = [max(v) for k, v in runs.items() if k.startswith("seedfull")]
-        red = [max(v) for k, v in runs.items() if not k.startswith("seedfull")]
+        pick = min if a.lower_better else max
+        full = [pick(v) for k, v in runs.items() if k.startswith("seedfull")]
+        red = [pick(v) for k, v in runs.items() if not k.startswith("seedfull")]
         if not full or not red:
             print(f"{tgt:11}  한쪽 조건이 없음 (원래 {len(full)}회 · 얕은 {len(red)}회) — 건너뜀")
             continue
         for nm, v in (("원래", full), ("얕은", red)):
+            ok1 = sum(1 for x in v if (x < TH if a.lower_better else x >= TH))
+            ok2 = sum(1 for x in v if (x < TH/2 if a.lower_better else x >= 0.23))
             print(f"{tgt if nm=='원래' else '':11}{nm:>7}{len(v):>5}{st.median(v):>8.3f}"
-                  f"{f'{min(v):.2f}~{max(v):.2f}':>14}"
-                  f"{sum(1 for x in v if x>=0.49):>7}{sum(1 for x in v if x>=0.23):>7}")
+                  f"{f'{min(v):.2f}~{max(v):.2f}':>14}{ok1:>7}{ok2:>7}")
         # 조성별 성공률 — 반복이 2회 이상일 때만 이질성 검정이 의미 있다
         bycomp = defaultdict(list)
         for k, v in runs.items():
@@ -152,7 +162,7 @@ def main():
         reps = [len(v) for v in bycomp.values()]
         if bycomp and min(reps) >= 2:
             names = sorted(bycomp)
-            cnt = [sum(1 for x in bycomp[c] if x >= .49) for c in names]
+            cnt = [sum(1 for x in bycomp[c] if (x < TH if a.lower_better else x >= TH)) for c in names]
             ph = heterogeneity_p(cnt, [len(bycomp[c]) for c in names])
             det = " ".join(f"{c.replace('seed','')}:{k}/{len(bycomp[c])}" for c, k in zip(names, cnt))
             print(f"{'':11}  조성별 성공  {det}")
@@ -162,13 +172,15 @@ def main():
             ph = float("nan")
             print(f"{'':11}  (조성당 반복 {min(reps) if reps else 0}회 — 이질성 검정 불가, 2회 이상 필요)")
 
-        p49 = fisher(sum(1 for x in red if x >= .49), sum(1 for x in red if x < .49),
-                     sum(1 for x in full if x >= .49), sum(1 for x in full if x < .49))
-        p23 = fisher(sum(1 for x in red if x >= .23), sum(1 for x in red if x < .23),
-                     sum(1 for x in full if x >= .23), sum(1 for x in full if x < .23))
-        pmw = mannwhitney(red, full)
+        gp = (lambda x: x < TH) if a.lower_better else (lambda x: x >= TH)
+        gp2 = (lambda x: x < TH/2) if a.lower_better else (lambda x: x >= 0.23)
+        p49 = fisher(sum(1 for x in red if gp(x)), sum(1 for x in red if not gp(x)),
+                     sum(1 for x in full if gp(x)), sum(1 for x in full if not gp(x)))
+        p23 = fisher(sum(1 for x in red if gp2(x)), sum(1 for x in red if not gp2(x)),
+                     sum(1 for x in full if gp2(x)), sum(1 for x in full if not gp2(x)))
+        pmw = mannwhitney([SGN * x for x in red], [SGN * x for x in full])
         verdict = ("✅ 얕은 쪽이 유의하게 높음" if min(p49, p23, pmw) < 0.05
-                   else ("△ 방향은 맞으나 유의하지 않음" if st.median(red) > st.median(full)
+                   else ("△ 방향은 맞으나 유의하지 않음" if SGN * st.median(red) > SGN * st.median(full)
                          else "✗ 차이 없음/반대"))
         print(f"{'':11}  → 성공수 검정 p(0.49)={p49:.3f} · p(0.23)={p23:.3f} · "
               f"점수순위 p={pmw:.4f}   {verdict}\n")
