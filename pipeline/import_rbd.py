@@ -25,18 +25,19 @@ import argparse, csv, glob, json, os, re, shutil, sys, urllib.request
 #   B = 진짜 결합자리가 인기 부위 **밖** (편향이 풀리면 좋아져야 함)
 #   A = 진짜 결합자리가 인기 부위와 겹침 (편향이 풀리면 오히려 나빠져야 함 = 반대방향 대조군)
 SITE = {
-    "9zdu": ("코어",              "B"),
-    "9ml9": ("코어",              "B"),
-    "8siq": ("코어",              "B"),
-    "8sit": ("코어",              "B"),
-    "8sis": ("코어와 그 밖",       "B"),
-    "8xsi": ("숨은면",            "B"),
-    "9ml8": ("숨은면",            "B"),
-    "8sdf": ("숨은면",            "B"),
-    "9sbb": ("그 밖",             "B"),
-    "8p5m": ("인기 부위 가장자리", "A"),   # ★ 반대방향 대조군
-    "8sdh": ("미기록",            "?"),   # 노션 표에 없던 폴더 — 분류 확인 필요
+    "9zdu": ("offhot:코어",              "B"),
+    "9ml9": ("offhot:코어",              "B"),
+    "8siq": ("offhot:코어",              "B"),
+    "8sit": ("offhot:코어",              "B"),
+    "8sis": ("offhot:코어와그밖",         "B"),
+    "8xsi": ("offhot:숨은면",            "B"),
+    "9ml8": ("offhot:숨은면",            "B"),
+    "8sdf": ("offhot:숨은면",            "B"),
+    "9sbb": ("offhot:그밖",              "B"),
+    "8p5m": ("offhot:인기부위가장자리",   "A"),   # ★ 반대방향 대조군
+    # 8sdh 는 노션 표에 없고 분류 미기록 → 2026-07-27 사용자 지시로 제외.
 }
+SKIP = {"8sdh"}
 
 AA = set("ACDEFGHIKLMNPQRSTVWYXBZUO")
 PAT = re.compile(r"^#\d+\t\d+")
@@ -140,19 +141,50 @@ def main():
         sys.exit(f"!! 원본 폴더 없음: {a.src}")
 
     rows = list(csv.DictReader(open(a.list))) if os.path.exists(a.list) else []
-    fields = list(rows[0].keys()) if rows else ["target", "pdb", "group", "ab_chains", "AB", "ag_chains"]
+    fields = list(rows[0].keys()) if rows else ["target", "pdb", "group", "ab", "dirtype", "ag_chains", "label"]
     have = {r["target"] for r in rows}
     groups = sorted({r.get("group", "") for r in rows if r.get("group")})
+    dirtypes = sorted({r.get("dirtype", "") for r in rows if r.get("dirtype")})
     print(f"[{'실제 기록' if a.apply else 'dry-run — 아무것도 쓰지 않음'}]  원본 {a.src}")
     print(f"sweep_targets.csv 열: {fields}")
-    print(f"기존 group 값들: {groups}\n")
+    print(f"기존 group 값들: {groups} · dirtype: {dirtypes}\n")
     grp = a.group or (groups[0] if len(groups) == 1 else "")
+    dtype = dirtypes[0] if len(dirtypes) == 1 else "targets"
+
+    # ── chains.json 형식 대조 ────────────────────────────────────────────
+    # 기존 타깃의 chains.json을 본보기로 삼아 최상위 키가 같은지 확인한다.
+    # 형식이 다르면 채점 코드가 조용히 실패할 수 있으므로 반드시 눈으로 본다.
+    def trunc(o, n=24):
+        if isinstance(o, str) and len(o) > n:
+            return o[:n] + f"...({len(o)})"
+        if isinstance(o, dict):
+            return {k: trunc(v, n) for k, v in o.items()}
+        if isinstance(o, list):
+            return [trunc(v, n) for v in o]
+        return o
+
+    tmpl_keys = None
+    for r in rows:
+        tp = os.path.join(a.targets_dir, r["target"], "chains.json")
+        if not os.path.exists(tp):
+            continue
+        try:
+            tj = json.load(open(tp))
+            tmpl_keys = set(tj) if isinstance(tj, dict) else None
+            print(f"[본보기] targets/{r['target']}/chains.json")
+            print("  " + json.dumps(trunc(tj), ensure_ascii=False)[:900] + "\n")
+        except Exception as e:
+            print(f"[본보기] 읽기 실패: {e}\n")
+        break
 
     new = []
     for pdb in sorted(os.listdir(a.src)):
         d = os.path.join(a.src, pdb)
         cjp = os.path.join(d, "chains.json")
         if not os.path.isdir(d) or not os.path.exists(cjp):
+            continue
+        if pdb in SKIP:
+            print(f"■ {pdb:14} 건너뜀 — 붙는자리 분류가 없어 제외(2026-07-27 결정)\n")
             continue
         try:
             cj = json.load(open(cjp))
@@ -188,6 +220,14 @@ def main():
                 print(f"    a3m  {c}: {a3ms[c][1]:>6}개 서열  ←  {os.path.relpath(a3ms[c][0], d)}")
             else:
                 print(f"    a3m  {c}: ❌ 질의서열과 맞는 a3m을 못 찾음 — 새로 만들어야 함")
+        if tmpl_keys is not None and isinstance(cj, dict):
+            # 사슬 ID 키(A·H·L 등)는 타깃마다 다른 게 정상이므로 비교에서 뺀다.
+            lack = {k for k in tmpl_keys - set(cj) - {"AB", "site_class", "source"}
+                    if len(k) > 4}
+            if lack:
+                print(f"    ⚠️ 본보기 chains.json에 있는데 여기 없는 키: {sorted(lack)}"
+                      f" — 채점 코드가 이 키를 읽으면 실패한다. 확인 후 진행할 것.")
+
         if name in have:
             print()
             continue
@@ -226,12 +266,19 @@ def main():
                         fh.write(f">{h}\n{s}\n")
                 print(f"    rung0.a3m 기록 ({len(ss)}개 서열)")
 
+        # sweep_targets.csv 실제 열: target,pdb,group,ab,dirtype,ag_chains,label
+        #   ab      = A/B 표식(항체 사슬이 아님 — 8q7s_O가 A, 8y6a_CD가 B)
+        #   label   = 붙는자리 분류(기존은 class1/2(RBM) 같은 Barnes 분류)
+        #   ag_chains = 항원 사슬. 항체 사슬은 타깃 이름 접미사에 이미 들어 있다.
         row = {k: "" for k in fields}
         for k, v in (("target", name), ("pdb", pdb), ("group", grp),
-                     ("ab_chains", "|".join(ab)), ("ag_chains", "|".join(ag)),
-                     ("AB", abflag), ("site_class", site)):
+                     ("ab", abflag), ("dirtype", dtype),
+                     ("ag_chains", "|".join(ag)), ("label", site)):
             if k in row:
                 row[k] = v
+        miss = [k for k in fields if not row[k]]
+        if miss:
+            print(f"    ⚠️ 값을 못 채운 열: {miss}")
         new.append(row)
         print()
 
