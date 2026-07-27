@@ -18,7 +18,7 @@
 #   cd ~/projects/bk21-msa-depth-bias/pipeline && git pull
 #   SMOKE=1 bash run_fullmsa_control.sh
 #   bash run_fullmsa_control.sh 2>&1 | tee fullctl_$(date +%m%d).log
-#   # 채점: python dump_seedrep_full.py --data-sub fullmsa_ctl   (또는 score 스크립트)
+#   # 채점: 결과가 쌓인 뒤 별도 채점(자세 40개를 DockQ로 매겨 성공 개수를 센다)
 # ══════════════════════════════════════════════════════════════════════════════
 set -uo pipefail
 cd "$(cd "$(dirname "$0")" && pwd)"
