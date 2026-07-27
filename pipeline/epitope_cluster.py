@@ -138,6 +138,12 @@ def main():
     print(f"  실패 실행끼리   {mn:.3f}  (쌍 {nn_}개){x(mn, ch_ng)}   ← 우연보다 높으면 '선호하는 잘못된 자리' 존재")
     print(f"  성공 vs 실패    {(st.mean(cross) if cross else float('nan')):.3f}  ← 낮으면 서로 다른 자리\n")
 
+    # 흔한 자리(그 항원에서 항체가 자주 붙는 부위)와의 비교 — B군에서 '편향 이탈'을 직접 본다
+    try:
+        pop = set(PF.ES.popular_refset(cj, cj.get("antigen_grp", "")) or [])
+    except Exception:
+        pop = set()
+
     cs, cn = consensus([r["ep"] for r in ok]), consensus([r["ep"] for r in ng])
     print(f"  접촉면 평균 크기  성공 {st.mean(len(r['ep']) for r in ok) if ok else float('nan'):.0f}잔기"
           f" · 실패 {st.mean(len(r['ep']) for r in ng) if ng else float('nan'):.0f}잔기"
@@ -146,6 +152,19 @@ def main():
     print(f"  성공 합의자리 {len(cs):3d}개 · 진짜와 겹침 {jac(cs,true):.3f} · 진짜 잔기 포함률 {(len(cs&true)/len(true) if true else 0):.3f}")
     print(f"  실패 합의자리 {len(cn):3d}개 · 진짜와 겹침 {jac(cn,true):.3f} · 진짜 잔기 포함률 {(len(cn&true)/len(true) if true else 0):.3f}")
     print(f"  성공 합의자리 vs 실패 합의자리 겹침 {jac(cs,cn):.3f}\n")
+
+    if pop:
+        ab = str(cj.get("AB", "?"))
+        print(f"[흔한 자리와의 비교]  이 복합체는 {ab}군"
+              + ("(진짜 자리 = 흔한 자리 → '편향 이탈' 서사 부적합)" if ab == "A"
+                 else "(진짜 자리가 흔한 자리와 다름 → '편향 이탈'을 직접 볼 수 있음)" if ab == "B" else ""))
+        print(f"  흔한 자리 {len(pop)}잔기 · 진짜 자리와 겹침 {jac(pop, true):.3f}")
+        mo_p = st.mean([jac(r["ep"], pop) for r in ok]) if ok else float("nan")
+        mn_p = st.mean([jac(r["ep"], pop) for r in ng]) if ng else float("nan")
+        print(f"  성공 실행의 예측 ↔ 흔한 자리  {mo_p:.3f}")
+        print(f"  실패 실행의 예측 ↔ 흔한 자리  {mn_p:.3f}"
+              + ("   ← 실패가 더 높으면 '흔한 자리로 쏠렸다'" if mn_p > mo_p else "   (실패가 더 낮음 = 흔한 자리 쏠림 아님)"))
+        print()
 
     verdict = []
     if mn >= 0.5 and mn > mo * 0.8:
@@ -163,11 +182,12 @@ def main():
     with open(out, "w", newline="") as fh:
         w = csv.writer(fh)
         w.writerow(["run", "dockq", "recall", "n_pred", "jac_to_true",
-                    "jac_to_fail_consensus", "jac_to_succ_consensus", "success"])
+                    "jac_to_fail_consensus", "jac_to_succ_consensus", "jac_to_popular", "success"])
         for r in sorted(recs, key=lambda x: -x["dockq"]):
             w.writerow([r["run"], round(r["dockq"], 3), round(r["recall"], 3) if r["recall"] == r["recall"] else "",
                         len(r["ep"]), round(jac(r["ep"], true), 3),
-                        round(jac(r["ep"], cn), 3), round(jac(r["ep"], cs), 3), int(r["ok"])])
+                        round(jac(r["ep"], cn), 3), round(jac(r["ep"], cs), 3),
+                        (round(jac(r["ep"], pop), 3) if pop else ""), int(r["ok"])])
     print(f"\n→ {out}  (그림용: '실패 자리와의 겹침' vs DockQ 로 이동을 그릴 수 있음)")
 
 
