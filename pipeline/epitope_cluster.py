@@ -121,12 +121,27 @@ def main():
     mn, nn_ = mean_pairwise([r["ep"] for r in ng])
     cross = [jac(x["ep"], y["ep"]) for x in ok for y in ng]
     cross = [v for v in cross if v == v]
-    print("[예측 자리끼리 얼마나 겹치나 — 자카드 0~1]")
-    print(f"  성공 실행끼리   {mo:.3f}  (쌍 {no_}개)")
-    print(f"  실패 실행끼리   {mn:.3f}  (쌍 {nn_}개)   ← 높으면 '선호하는 잘못된 자리' 존재")
+    # 우연 수준: 같은 크기 접촉면을 항원 표면에서 무작위로 잡았을 때의 기대 겹침
+    nag = sum(len(c.get("seq", "")) for c in cj.get("chains", []) if c.get("role") == "antigen") or 0
+    def chance(sets):
+        if not sets or not nag:
+            return float("nan")
+        m = st.mean(len(x) for x in sets)
+        inter = m * m / nag
+        return inter / (2 * m - inter) if (2 * m - inter) > 0 else float("nan")
+    ch_ok, ch_ng = chance([r["ep"] for r in ok]), chance([r["ep"] for r in ng])
+
+    print(f"[예측 자리끼리 얼마나 겹치나 — 자카드 0~1]   (항원 {nag}잔기 기준 우연 수준과 비교)")
+    def x(v, c):
+        return f"  (우연 {c:.3f}의 {v/c:.1f}배)" if c == c and c > 0 else ""
+    print(f"  성공 실행끼리   {mo:.3f}  (쌍 {no_}개){x(mo, ch_ok)}")
+    print(f"  실패 실행끼리   {mn:.3f}  (쌍 {nn_}개){x(mn, ch_ng)}   ← 우연보다 높으면 '선호하는 잘못된 자리' 존재")
     print(f"  성공 vs 실패    {(st.mean(cross) if cross else float('nan')):.3f}  ← 낮으면 서로 다른 자리\n")
 
     cs, cn = consensus([r["ep"] for r in ok]), consensus([r["ep"] for r in ng])
+    print(f"  접촉면 평균 크기  성공 {st.mean(len(r['ep']) for r in ok) if ok else float('nan'):.0f}잔기"
+          f" · 실패 {st.mean(len(r['ep']) for r in ng) if ng else float('nan'):.0f}잔기"
+          f"   ← 실패가 훨씬 넓으면 '펼쳐 붙음'\n")
     print("[합의 자리 — 그 무리의 절반 이상 실행에 등장한 잔기]")
     print(f"  성공 합의자리 {len(cs):3d}개 · 진짜와 겹침 {jac(cs,true):.3f} · 진짜 잔기 포함률 {(len(cs&true)/len(true) if true else 0):.3f}")
     print(f"  실패 합의자리 {len(cn):3d}개 · 진짜와 겹침 {jac(cn,true):.3f} · 진짜 잔기 포함률 {(len(cn&true)/len(true) if true else 0):.3f}")
