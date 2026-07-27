@@ -154,7 +154,9 @@ def main():
                         allrows.append(dict(target=t, model=model, depth=depth, seed=s,
                                             pose=os.path.basename(p),
                                             dockq=(round(q, 4) if q is not None else ""),
-                                            recall=(round(met["recall"], 4) if met else "")))
+                                            recall=(round(met["recall"], 4) if met else ""),
+                                            overrep=(round(met["overrep"], 4) if met and met["overrep"] == met["overrep"] else ""),
+                                            n_contact=(met["n_contact"] if met else "")))
                     if not vals:
                         print(f"     {s:7}(자세 없음)")
                         continue
