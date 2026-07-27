@@ -75,12 +75,17 @@ while IFS=, read -r target model peak_rung replicas obs_dq obs_rec; do
   setup_model "$model" || { say "skip $target ($model 준비 실패)"; continue; }
 
   # ①·② 각 항원 사슬을 peak 깊이 × N seed 재추첨
+  # ⚠️ 사슬마다 서열 개수가 다르다(예: 8txu_HL A=413, B=579). 그래서 사슬별 깊이를 따로 기억한다.
+  #    (예전 버그: 첫 사슬의 깊이 폴더 이름으로 모든 사슬을 찾아 다중사슬 항원이 통째로 skip 됨)
+  DEPTHS=()   # AGC와 같은 순서(인덱스 배열 = bash 3.2에서도 동작)
   ok=1
-  for c in "${AGC[@]}"; do
+  for i in "${!AGC[@]}"; do
+    c="${AGC[$i]}"
     full="$LADDIR/$target/$c/rung0.a3m"; peaka="$LADDIR/$target/$c/rung${peak_rung}.a3m"
     [ -f "$full" ] && [ -f "$peaka" ] || { say "  !! $target/$c rung0/rung$peak_rung a3m 없음"; ok=0; break; }
     depth=$(grep -c '^>' "$peaka" 2>/dev/null || echo 0)
     [ "$depth" -ge 1 ] || { say "  !! $target/$c rung$peak_rung 서열 0"; ok=0; break; }
+    DEPTHS[$i]="$depth"
     say "$target/$c: peak rung$peak_rung = ${depth}서열 × ${replicas} seed 재추첨"
     python seed_replicate.py --a3m "$full" --depths "$depth" --replicas "$replicas" \
         --outdir "seedrep_cand/${target}_${c}" >/dev/null \
@@ -88,28 +93,27 @@ while IFS=, read -r target model peak_rung replicas obs_dq obs_rec; do
   done
   [ "$ok" = 1 ] || continue
 
-  # ③ c0 기준 depth/seed 순회 → 각 사슬 같은 depth/seed로 map 구성 → 예측
-  c0="${AGC[0]}"; base="seedrep_cand/${target}_${c0}"
-  for ddir in "$base"/d*/; do
-    [ -d "$ddir" ] || continue; depth="$(basename "$ddir")"
-    for a3m0 in "$ddir"seed*.a3m; do
-      [ -e "$a3m0" ] || continue; s="$(basename "$a3m0" .a3m)"
-      map=""; okk=1
-      for c in "${AGC[@]}"; do
-        f="seedrep_cand/${target}_${c}/${depth}/${s}.a3m"
-        [ -f "$f" ] || { okk=0; break; }; map="${map:+$map,}$c=$f"
-      done
-      [ "$okk" = 1 ] || { say "  skip $target $depth $s (사슬 a3m 불완전)"; continue; }
-      out="$OUTROOT/$model/$target/$depth/$s"
-      if DONE "$out"; then continue; fi
-      mkdir -p "$out"; inp="$out/input.$EXT"
-      python make_input.py --cofolder "$model" --chains "$cj" --ag-a3m "$map" --dir "$out" --out "$inp" >"$out/mk.log" 2>&1 \
-        || { say "  !! make_input 실패 $target $depth $s (로그 $out/mk.log)"; continue; }
-      say "run $model $target $depth $s ..."
-      if RUN "$inp" "$out" "$out/run.log" && DONE "$out"; then say "  OK $target $depth $s"
-      else say "  !! 실패 $target $depth $s → $out/run.log (tail: $(tail -1 "$out/run.log" 2>/dev/null))"; fi
-      [ "$SMOKE" = 1 ] && { say "SMOKE=1 → 1건 후 종료. 확인: $out/results"; exit 0; }
+  # ③ seed 축으로 순회(사슬마다 깊이는 달라도 seed 번호는 공통) → 각 사슬 자기 깊이 폴더에서 같은 seed를 꺼내 map 구성
+  c0="${AGC[0]}"; d0="d${DEPTHS[0]}"; base="seedrep_cand/${target}_${c0}/$d0"
+  for a3m0 in "$base"/seed*.a3m; do
+    [ -e "$a3m0" ] || continue; s="$(basename "$a3m0" .a3m)"
+    map=""; okk=1
+    for i in "${!AGC[@]}"; do
+      c="${AGC[$i]}"
+      f="seedrep_cand/${target}_${c}/d${DEPTHS[$i]}/${s}.a3m"
+      [ -f "$f" ] || { say "  !! $target $s: $c 사슬 a3m 없음($f)"; okk=0; break; }
+      map="${map:+$map,}$c=$f"
     done
+    [ "$okk" = 1 ] || continue
+    out="$OUTROOT/$model/$target/$d0/$s"
+    if DONE "$out"; then continue; fi
+    mkdir -p "$out"; inp="$out/input.$EXT"
+    python make_input.py --cofolder "$model" --chains "$cj" --ag-a3m "$map" --dir "$out" --out "$inp" >"$out/mk.log" 2>&1 \
+      || { say "  !! make_input 실패 $target $d0 $s (로그 $out/mk.log)"; continue; }
+    say "run $model $target $d0 $s ..."
+    if RUN "$inp" "$out" "$out/run.log" && DONE "$out"; then say "  OK $target $d0 $s"
+    else say "  !! 실패 $target $d0 $s → $out/run.log (tail: $(tail -1 "$out/run.log" 2>/dev/null))"; fi
+    [ "$SMOKE" = 1 ] && { say "SMOKE=1 → 1건 후 종료. 확인: $out/results"; exit 0; }
   done
 done < "$CAND"
 say "완료. 채점: python score_seedrep_cand.py  (DockQ env)"
