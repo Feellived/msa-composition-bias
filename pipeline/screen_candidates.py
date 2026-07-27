@@ -36,6 +36,9 @@ def main():
     ap.add_argument("--label", default="dockq", choices=["dockq", "recall"])
     ap.add_argument("--succ", type=float, default=0.49)
     ap.add_argument("--top", type=int, default=0, help="상위 N개만 출력(0=전부)")
+    ap.add_argument("--targets-dir", default="targets")
+    ap.add_argument("--offsite-first", action="store_true",
+                    help="B군(드문 자리에 붙는 항체)을 위로 — '편향 이탈' 이야기를 하려면 B군이 필요")
     ap.add_argument("--out", default="results/screen_candidates.csv")
     a = ap.parse_args()
 
@@ -52,6 +55,15 @@ def main():
         n = f(r.get("neff80"))
         if n is not None:
             neff[t][rg] = n
+
+    def grp_of(t):
+        """chains.json의 AB(A=흔한 자리 on-site / B=드문 자리 off-site)와 결합자리 이름."""
+        fp = os.path.join(a.targets_dir, t, "chains.json")
+        try:
+            cj = json.load(open(fp))
+            return str(cj.get("AB", "?")), str(cj.get("label", ""))
+        except Exception:
+            return "?", ""
 
     rows = []
     for t, bk in best.items():
