@@ -108,13 +108,20 @@ def main():
     ap.add_argument("--label", default="dockq", choices=["dockq", "recall"])
     ap.add_argument("--scope", default="rung0", choices=["rung0", "all"],
                     help="rung0=배포(full MSA)만 / all=전 pose(깊이 섭동 포함)")
+    ap.add_argument("--targets", default="",
+                    help="쉼표/공백 구분. 지정 시 그 복합체만(=케이스 스터디 렌즈). "
+                         "blanket 49타깃은 rescue 없는 타깃에 희석됨 — 앵커만 보려면 여기 지정.")
+    ap.add_argument("--detail", action="store_true", help="타깃별 선택값 표(특정 복합체 깊이 보기)")
     ap.add_argument("--succ", type=float, default=0.49)
     a = ap.parse_args()
     rows = load(a.csv)
     if a.scope == "rung0":
         rows = [r for r in rows if r["rung"] in ("0", "0.0")]
+    if a.targets:
+        want = set(a.targets.replace(",", " ").split())
+        rows = [r for r in rows if r["target"] in want]
     if not rows:
-        raise SystemExit("!! 해당 scope에 pose 없음")
+        raise SystemExit("!! 해당 scope/targets에 pose 없음")
     lab = a.label
 
     print(f"== Phase 1 make-or-break | label={lab} | scope={a.scope} | 성공≥{a.succ} ==")
@@ -134,6 +141,7 @@ def main():
     print(f"  {'selector':13}{'n':>4}{'mean':>8}{'hit@'+format(a.succ,'g'):>9}"
           f"{'hit@0.23':>9}{'regret':>8}{'win_vs_iptm':>12}  배포?")
     print("  " + "-" * 70)
+    allpicks = {}
     for name, feat, mx, dep in SELECTORS:
         picks = {}
         for t in targets:
@@ -144,6 +152,7 @@ def main():
                 picks[t] = sum(vs) / len(vs) if vs else None
             else:
                 picks[t] = pick(byt[t], feat, lab, mx)
+        allpicks[name] = picks
         ok = [t for t in targets if picks[t] is not None]
         if not ok:
             continue
@@ -156,6 +165,17 @@ def main():
         wt = [t for t in ok if ipk[t] is not None]
         win = (sum(1 for t in wt if picks[t] > ipk[t] + 1e-9) / len(wt)) if wt else float("nan")
         print(f"  {name:13}{len(ok):>4}{mean:8.3f}{h49:9.2f}{h23:9.2f}{mreg:8.3f}{win:12.2f}  {'✅' if dep else '—'}")
+
+    if a.detail:
+        cols = [c for c in ("oracle", "iptm", "ptm", "plddt", "n_contact",
+                            "dcc_pop", "overrep_lo", "pop_rank_lo") if c in allpicks]
+        print(f"\n[타깃별 상세] 값 = 각 선택기가 고른 pose의 {lab}  (oracle=천장, iptm보다 높은 배포피처가 그 복합체의 rescue)")
+        print("  " + "target".ljust(11) + "".join(c[:8].rjust(9) for c in cols))
+        for t in targets:
+            def g(nm):
+                v = allpicks[nm].get(t)
+                return f"{v:.3f}" if v is not None else "-"
+            print("  " + t.ljust(11) + "".join(g(c).rjust(9) for c in cols))
 
     print("\n판정 가이드:")
     print("  · 배포가능(✅) 피처 중 iptm행보다 mean↑ · regret↓ · win>0.50 인 것 → 무학습 재랭커 성립(GO).")
