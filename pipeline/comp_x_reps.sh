@@ -22,6 +22,8 @@
 #   # 다른 복합체 예비검정(조성 5개 1회씩 + 원래 5회) — RUNG 주면 조성 a3m을 자동 생성
 #   RUNG=3 TARGET=9azr_HL COMPS="0 1 2 3 4" REPS=1 bash comp_x_reps.sh
 #   RUNG=3 TARGET=9azr_HL COMPS="full"      REPS=5 bash comp_x_reps.sh
+#   # 조성 a3m만 만들고 GPU 실행 없이 종료(스모크 검증용)
+#   GEN_ONLY=1 RUNG=2 TARGET=8t4a_PR REPLICAS=6 bash comp_x_reps.sh
 # ══════════════════════════════════════════════════════════════════════════════
 set -uo pipefail
 cd "$(cd "$(dirname "$0")" && pwd)"
@@ -30,7 +32,7 @@ TARGET="${TARGET:-8ulr_HL}"; MODEL="${MODEL:-protenix}"
 RUNG="${RUNG:-}"                 # 지정 시 이 rung 깊이로 조성 a3m 자동 생성(없을 때만)
 REPLICAS="${REPLICAS:-8}"        # 자동 생성할 조성 개수
 COMPS="${COMPS:-0 1 2 3 4 5 6 7}"; REPS="${REPS:-4}"
-SAMP="${SAMP:-5}"; SEED="${SEED:-0}"; SMOKE="${SMOKE:-0}"
+SAMP="${SAMP:-5}"; SEED="${SEED:-0}"; SMOKE="${SMOKE:-0}"; GEN_ONLY="${GEN_ONLY:-0}"
 LIST="${LIST:-sweep_targets.csv}"
 say(){ echo "[$(date '+%m-%d %H:%M:%S')] $*"; }
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$DATA/.cache}" TORCH_EXTENSIONS_DIR="${TORCH_EXTENSIONS_DIR:-$DATA/.cache/torch_ext}"
@@ -69,6 +71,14 @@ for i in "${!AGC[@]}"; do
 done
 DEPTH="${DEPTHS[0]}"
 say "타깃 $TARGET · 모델 $MODEL · 깊이 $DEPTH · 조성 [$COMPS] × 반복 $REPS"
+# GEN_ONLY=1 : 조성 a3m만 만들고 GPU 실행 전에 종료(스모크에서 조성 검증용)
+if [ "$GEN_ONLY" = "1" ]; then
+  for i in "${!AGC[@]}"; do
+    say "  조성 폴더: seedrep_cand/${TARGET}_${AGC[$i]}/${DEPTHS[$i]}"
+  done
+  say "GEN_ONLY=1 → 예측하지 않고 종료."
+  exit 0
+fi
 
 case "$MODEL" in
   protenix)
