@@ -88,11 +88,14 @@ PY
 [ "${#ROWS[@]}" -gt 0 ] || { say "!! $CSV 에 status=run 인 행이 없다"; exit 1; }
 
 # ── 이미 끝난 실행 수 세기 ────────────────────────────────────────────────────
-done_runs(){   # $1=target $2=model  → 산출물이 있는 실행 폴더 수
-  local t="$1" m="$2" base n=0 d
+done_runs(){   # $1=target $2=model $3=서열수 → 이번 깊이에서 산출물이 있는 실행 폴더 수
+  # ⚠️ 예전에는 "$base"/*/ 로 모든 깊이를 셌다. 같은 타깃 아래 이전 실험의 다른 깊이
+  #    폴더가 남아 있으면 진행률이 부풀고, 그 수가 목표에 닿으면 이번 실행을 통째로
+  #    건너뛴다(2026-07-28 발견). 이번 검정의 깊이 폴더 d<서열수>만 센다.
+  local t="$1" m="$2" nr="$3" base n=0 d
   base="$DATA/compreps/seedrep_cand/$m/$t"
-  [ -d "$base" ] || { echo 0; return; }
-  for d in "$base"/*/seed*_r*/; do
+  [ -d "$base/d${nr}" ] || { echo 0; return; }
+  for d in "$base/d${nr}"/seed*_r*/; do
     [ -d "$d" ] || continue
     find "$d/results" -name '*sample*.cif' -o -name '*_model_*.cif' 2>/dev/null | grep -q . && n=$((n+1))
   done
@@ -110,7 +113,7 @@ for row in "${ROWS[@]}"; do
   IFS=$'\t' read -r t grp model rung nrows ncomp nreps nfull stratum neffpk <<< "$row"
   if [ -n "$ONLY" ] && [[ " $ONLY " != *" $t "* ]]; then continue; fi
   want=$(( ncomp * nreps + nfull ))
-  have=$(done_runs "$t" "$model")
+  have=$(done_runs "$t" "$model" "$nrows")
   if [ "$have" -ge "$want" ]; then st="완료 ($have/$want) — 건너뜀"
   elif [ "$have" -gt 0 ]; then st="이어서 ($have/$want)"; PLAN+=("$row"); TOTAL=$((TOTAL+want-have))
   else st="새로 ($want회)"; PLAN+=("$row"); TOTAL=$((TOTAL+want)); fi
@@ -179,7 +182,7 @@ GATEPY
   RUNG="$rung" TARGET="$t" MODEL="$model" \
     COMPS="full" REPS="$nfull" bash comp_x_reps.sh || say "  !! 원래 MSA 단계에서 오류(로그 확인)"
 
-  have=$(done_runs "$t" "$model"); want=$(( ncomp * nreps + nfull ))
+  have=$(done_runs "$t" "$model" "$nrows"); want=$(( ncomp * nreps + nfull ))
   say "  $t 완료 — 실행 $have/$want"
   n_done=$((n_done+1))
 done
