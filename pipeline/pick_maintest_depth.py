@@ -41,6 +41,10 @@ from collections import defaultdict
 SUCC_RECALL = 0.40      # 진짜 결합자리를 이만큼 덮으면 성공 (사전 확정 = 판정 기준)
 SUCC_DOCKQ = 0.23       # 참고 표시용 문턱(자세 품질). 판정에는 쓰지 않는다.
 SUCC_DOCKQ2 = 0.49      # 참고 표시용 문턱(CAPRI Medium)
+NEFF_RICH = 50.0        # Neff80이 이 값 미만이면 '조성 다양성 없음' 층으로 표시(2026-07-28 추가).
+                        # 근거: 공진화 신호 붕괴선이 Neff≈30이고, full MSA에서 이미 그 근처면
+                        # 서열 수를 고정한 채 조성만 바꿔도 들어가는 정보가 거의 같다.
+                        # 이는 성적이 아니라 **입력의 성질**로 나누는 것이라 판정 기준이 아니다.
 ANCHOR_ROWS = 1746      # 8ulr에서 효과가 확인된 서열 수
 N_COMP, N_REPS, N_FULL = 6, 4, 8       # 본 검정 설계 (2026-07-28 확정)
 
@@ -53,8 +57,8 @@ def f(x):
         return None
 
 
-def ladder_rows(data, target):
-    """{rung: 서열수} — $DATA/ladders/<타깃>/<사슬>/neff.tsv 에서. 사슬이 여럿이면 첫 사슬."""
+def ladder_rows(data, target, col=1):
+    """{rung: 값} — neff.tsv(rung, n_rows, neff80)에서. col=1 줄 수 · col=2 Neff80. 사슬이 여럿이면 첫 사슬."""
     base = os.path.join(data, "ladders", target)
     if not os.path.isdir(base):
         return {}
@@ -67,8 +71,11 @@ def ladder_rows(data, target):
             if i == 0:
                 continue
             q = ln.split()
-            if len(q) >= 2:
-                out[int(q[0])] = int(q[1])
+            if len(q) > col:
+                try:
+                    out[int(q[0])] = float(q[col])
+                except ValueError:
+                    pass
         if out:
             return out
     return {}
@@ -141,6 +148,7 @@ def main():
     ref, picked = {}, {}
     for t in tgts:
         nr = ladder_rows(a.data, t)
+        nf = ladder_rows(a.data, t, col=2)
         hits, missing = {}, []
         d23, d49, rec_all, dq_all, ov = {}, {}, [], [], {}
         for k in range(a.rungs):
@@ -157,7 +165,7 @@ def main():
             d49[k] = sum(1 for x in dd if x >= SUCC_DOCKQ2)
             if oo:
                 ov[k] = sum(oo) / len(oo)
-        ref[t] = dict(rec_max=(max(rec_all) if rec_all else float("nan")),
+        ref[t] = dict(neff0=nf.get(0), neff=nf, rec_max=(max(rec_all) if rec_all else float("nan")),
                       dq_max=(max(dq_all) if dq_all else float("nan")),
                       d23=d23, d49=d49, ov=ov)
         grp = meta[t].get("group", "")
@@ -218,12 +226,15 @@ def main():
             n_incomplete += 1
             continue
         n_run += 1
-        print(f"{t:13}{grp:4}{len(hits):<4}{strip:30}{('rung'+str(pick)):>8}{nr.get(pick,0):>8}   본 검정 · {why}")
+        print(f"{t:13}{grp:4}{len(hits):<4}{strip:30}{('rung'+str(pick)):>8}{int(nr.get(pick,0)):>8}   본 검정 · {why}")
         picked[t] = pick
         R = ref.get(t, {})
-        rows.append(dict(target=t, group=grp, model=a.model, rung=pick, n_rows=nr.get(pick, ""),
+        rows.append(dict(target=t, group=grp, model=a.model, rung=pick, n_rows=int(nr.get(pick, 0)) or "",
                          n_comp=N_COMP, n_reps=N_REPS, n_full=N_FULL, status="run",
                          metric=MET, thr=THR,
+                         neff0=(f"{R['neff0']:.1f}" if R.get("neff0") is not None else ""),
+                         neff_pick=(f"{R['neff'][pick]:.1f}" if R.get("neff", {}).get(pick) is not None else ""),
+                         stratum=("" if R.get("neff0") is None else ("rich" if R["neff0"] >= NEFF_RICH else "poor")),
                          recall_max=(f"{R.get('rec_max', float('nan')):.2f}"),
                          dockq_max=(f"{R.get('dq_max', float('nan')):.2f}"),
                          dq23_pick=R.get("d23", {}).get(pick, ""),
@@ -235,8 +246,8 @@ def main():
     if ref:
         print("\n" + "-" * 116)
         print("[참고 지표 — 판정에는 쓰지 않는다] 후보 전체. 두 지표가 어긋나면 그 자체가 보고 대상이다.")
-        print(f"{'타깃':13}{'군':4}{'recall최고':>9}{'DockQ최고':>10}   "
-              f"{'DockQ≥0.23 성공수 (0~11칸)':32}{'인기자리 겹침 rung0→고른칸':>26}   상태")
+        print(f"{'타깃':13}{'군':4}{'Neff80 rung0→고른칸':>20}{'층':>8}"
+              f"{'recall최고':>9}{'DockQ최고':>10}   {'인기자리 겹침 rung0→고른칸':>26}   상태")
         print("-" * 116)
         for t in tgts:
             R = ref.get(t)
@@ -250,11 +261,27 @@ def main():
             ovs = (f"{o0:.2f} → {op:.2f}" if (o0 is not None and op is not None)
                    else (f"{o0:.2f} → -" if o0 is not None else "-"))
             st = ("본 검정 rung%s" % pk) if pk is not None else "제외"
-            print(f"{t:13}{grp:4}{R['rec_max']:>9.2f}{R['dq_max']:>10.2f}   "
-                  f"{d23s:32}{ovs:>26}   {st}")
+            n0 = R.get("neff0"); npk = R.get("neff", {}).get(pk) if pk is not None else None
+            nfs = (f"{n0:.0f} → {npk:.0f}" if (n0 is not None and npk is not None)
+                   else (f"{n0:.0f} → -" if n0 is not None else "-"))
+            stratum = ("-" if n0 is None else ("다양성있음" if n0 >= NEFF_RICH else "다양성없음"))
+            print(f"{t:13}{grp:4}{nfs:>20}{stratum:>8}"
+                  f"{R['rec_max']:>9.2f}{R['dq_max']:>10.2f}   {ovs:>26}   {st}")
+        rich = [t for t in tgts if ref.get(t, {}).get("neff0") is not None
+                and ref[t]["neff0"] >= NEFF_RICH and picked.get(t) is not None]
+        poor = [t for t in tgts if ref.get(t, {}).get("neff0") is not None
+                and ref[t]["neff0"] < NEFF_RICH and picked.get(t) is not None]
+        print(f"\n  [층] 본 검정 대상 중 다양성있음(Neff80 rung0 ≥ {NEFF_RICH:.0f}) {len(rich)}개 · "
+              f"다양성없음 {len(poor)}개")
+        if poor:
+            print("       다양성없음: " + " ".join(poor))
+            print("       ⚠️ full MSA에서 이미 공진화 붕괴선(Neff≈30) 근처다. 서열 수를 고정한 채 조성만 "
+                  "바꿔도 들어가는 정보가 거의 같아, 효과가 없어도 가설의 반증이 되지 않는다.")
+        print("       → 제외하지 말고 층별로 빈도를 따로 낼 것(층이 결과를 가르면 그것이 기제 설명이 된다).")
         print("\n  · recall최고 / DockQ최고 = 그 타깃의 전 칸·전 구조 통틀어 최고값. "
               "판정 문턱을 못 넘은 이유가 '거의 근접'인지 '전혀 못 찾음'인지를 가른다.")
-        print("  · DockQ≥0.23 성공수 = 자세 품질 축의 칸별 성공 개수. recall 쪽 띠와 비교해 축이 어긋나는지 본다.")
+        print("  · Neff80 = 80% 동일성으로 묶은 유효 서열 수. 원 줄 수와 크게 다를 수 있다"
+          "(코로나 RBD는 2.8만 줄이 유효 28개).")
         print("  · 인기자리 겹침 = 예측 접촉 중 과대표집 부위 비율의 칸 평균. 내려가면 인기 자리에서 벗어난 것"
               "(C군은 정의가 없어 빈칸).")
 
