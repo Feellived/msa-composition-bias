@@ -142,12 +142,32 @@ for row in "${PLAN[@]}"; do
   say "───── $t (군 $grp · $model · rung$rung · ${nrows}서열 · Neff80 ${neffpk:--} · ${stratum:--}) · 남은 예산 $((rem/60))분"
 
   if [ $GATE -eq 1 ]; then
-    if ! python check_msa_match.py --only "$t" >"/tmp/gate_$t.log" 2>&1; then
-      say "  !! MSA 게이트 실패 → 건너뜀. /tmp/gate_$t.log 확인"; n_skip=$((n_skip+1)); continue
-    fi
-    if grep -qiE '오염|mismatch|불일치|다름' "/tmp/gate_$t.log"; then
-      say "  !! MSA 질의행 이상 감지 → 건너뜀. /tmp/gate_$t.log 확인"; n_skip=$((n_skip+1)); continue
-    fi
+    # 판정은 낱말 검색이 아니라 결과 표(CSV)의 verdict 열로 한다.
+    # check_msa_match.py 는 요약줄 "정상 N · 머리말오염 N · 서열자체다름 N" 을 항상 찍으므로,
+    # '오염'·'다름' 같은 낱말을 grep 하면 정상인 타깃까지 전부 실패로 잡힌다(2026-07-28에 겪음).
+    python check_msa_match.py --only "$t" --out "/tmp/gate_$t.csv" >"/tmp/gate_$t.log" 2>&1
+    verdict=$(python3 - "/tmp/gate_$t.csv" <<'GATEPY'
+import csv, os, sys
+p = sys.argv[1]
+if not os.path.exists(p):
+    print("NOCSV"); raise SystemExit
+rows = list(csv.DictReader(open(p)))
+if not rows:
+    print("EMPTY"); raise SystemExit
+bad = [r for r in rows if r.get("verdict") != "OK"]
+if bad:
+    print("BAD " + " ".join(f"{r['chain']}:{r['verdict']}" for r in bad))
+else:
+    print(f"OK {len(rows)}")
+GATEPY
+    )
+    case "$verdict" in
+      OK\ *)  say "  MSA 게이트 통과 (항원 사슬 ${verdict#OK }개 질의행 일치)" ;;
+      BAD\ *) say "  !! MSA 질의행 이상 → 건너뜀: ${verdict#BAD }  · /tmp/gate_$t.log"
+              n_skip=$((n_skip+1)); continue ;;
+      *) say "  !! MSA 게이트를 판정할 수 없음($verdict) → 건너뜀. /tmp/gate_$t.log 확인"
+         n_skip=$((n_skip+1)); continue ;;
+    esac
   fi
 
   comps=$(seq -s' ' 0 $((ncomp-1)))
