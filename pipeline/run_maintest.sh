@@ -29,6 +29,10 @@
 #   ONLY="8sis_HL 9zdu_HL" bash run_maintest.sh --apply
 #   bash run_maintest.sh --apply --skip-gate  # 게이트 생략(권장하지 않음)
 #
+# 출력은 항상 $DATA/logs/maintest_<시각>.log 에도 저장된다(MTLOG 로 바꿀 수 있음).
+# tmux가 죽어도 이 파일로 어디까지 갔는지 확인할 수 있고, 같은 명령을 다시 넣으면
+# 완료된 타깃을 건너뛰고 이어서 간다.
+#
 # 끝나면 타깃마다:  bash analyze_target.sh <타깃>
 # ══════════════════════════════════════════════════════════════════════════════
 set -uo pipefail
@@ -46,6 +50,17 @@ for arg in "$@"; do
     *) echo "!! 모르는 인자: $arg"; exit 1 ;;
   esac
 done
+# 출력을 화면과 파일에 동시에 남긴다. 40시간짜리라 tmux가 죽으면 화면 기록이 통째로
+# 날아간다(계산 결과는 디스크에 남지만, 어느 타깃이 왜 건너뛰어졌는지가 사라진다).
+# 자기 자신을 tee 파이프로 다시 부르는 방식 — 마지막 줄까지 확실히 저장되고 종료 코드도 보존.
+if [ -z "${MT_TEED:-}" ]; then
+  MTLOG="${MTLOG:-$DATA/logs/maintest_$(date +%m%d_%H%M%S).log}"
+  mkdir -p "$(dirname "$MTLOG")" 2>/dev/null || MTLOG="/tmp/$(basename "$MTLOG")"
+  MT_TEED=1 MTLOG="$MTLOG" bash "$0" "$@" 2>&1 | tee -a "$MTLOG"
+  rc=${PIPESTATUS[0]}
+  echo "[로그] $MTLOG"
+  exit "$rc"
+fi
 say(){ echo "[$(date '+%m-%d %H:%M:%S')] $*"; }
 
 [ -f "$CSV" ] || { say "!! $CSV 없음. 먼저 python pick_maintest_depth.py 를 돌릴 것"; exit 1; }
