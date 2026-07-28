@@ -5,8 +5,14 @@
 # 를 comp_x_reps.sh로 돌린다. 설계값(N·M·F)과 깊이는 CSV에 이미 적혀 있으므로
 # 여기서 바꾸지 않는다 — 판정 기준을 사후에 옮겼다는 반박을 받지 않기 위함.
 #
-# 순서: RBD(세트 3, 전수) → 음성 대조 → 나머지.  이유는 빈도(M/10)를 내는 세트가
-#       RBD뿐이라 GPU 예산이 끊겨도 그 숫자는 확보되게 하려는 것.
+# 순서(2026-07-28 확정): Env → C → RBD → HA.  근거는 아래.
+#   ① Env — 확정 사례 8ulr과 같은 항원 계열이고 조성 다양성 regime도 같다(Neff80 수천).
+#      "8ulr이 재현되는가"를 가장 직접 묻는 자리라 먼저 본다.
+#   ② C  — 과대표집되지 않은 항원. 효과가 과대표집 항원에 국한되는지(적용 범위)를 가른다.
+#   ③ RBD — 조성 다양성 없음 층 전체(Neff80 rung0 ≈ 28). 빠르고, 여기까지 오면 한 층이
+#      통째로 완결되며 세트 3의 편향 없는 빈도(M/10)도 확보된다.
+#   ④ HA — 항원이 커서 가장 느리다.
+#   ORDER 환경변수로 뒤집을 수 있다(예: ORDER="RBD C Env HA").
 #
 # 안전장치
 #   · 기본 dry-run. 실제 실행은 --apply (GPU를 하루 단위로 점유하므로).
@@ -31,6 +37,7 @@ DATA="${DATA:-/mnt/data/admuser/msadepth}"
 CSV="${CSV:-maintest.csv}"
 HOURS="${HOURS:-12}"
 ONLY="${ONLY:-}"
+ORDER="${ORDER:-Env C RBD HA}"
 APPLY=0; GATE=1
 for arg in "$@"; do
   case "$arg" in
@@ -48,20 +55,19 @@ BUDGET=$(python3 -c "print(int(float('$HOURS')*3600))")
 left(){ echo $(( BUDGET - ($(date +%s) - START) )); }
 
 # ── CSV에서 status=run 인 행만, RBD → 음성대조 → 나머지 순으로 정렬 ──────────────
-NEG="9azr_HL 8k5g_HL"
 ROWS=()
-while IFS= read -r __ln; do ROWS+=("$__ln"); done < <(python3 - "$CSV" "$NEG" <<'PY'
+while IFS= read -r __ln; do ROWS+=("$__ln"); done < <(python3 - "$CSV" "$ORDER" <<'PY'
 import csv, sys
-neg = set(sys.argv[2].split())
+order = sys.argv[2].split()
 rows = [r for r in csv.DictReader(open(sys.argv[1])) if r.get("status") == "run"]
 def key(r):
-    g = 0 if r.get("group") == "RBD" else (1 if r["target"] in neg else 2)
-    return (g, r["target"])
+    g = r.get("group", "")
+    return (order.index(g) if g in order else len(order), r["target"])
 for r in sorted(rows, key=key):
     print("\t".join([r["target"], r.get("group",""), r.get("model","protenix"),
                      str(r["rung"]), str(r.get("n_rows","")),
                      str(r.get("n_comp") or 6), str(r.get("n_reps") or 4),
-                     str(r.get("n_full") or 8)]))
+                     str(r.get("n_full") or 8), r.get("stratum", ""), r.get("neff_pick", "")]))
 PY
 )
 [ "${#ROWS[@]}" -gt 0 ] || { say "!! $CSV 에 status=run 인 행이 없다"; exit 1; }
@@ -80,23 +86,27 @@ done_runs(){   # $1=target $2=model  → 산출물이 있는 실행 폴더 수
 
 echo
 if [ $APPLY -eq 1 ]; then say "[실제 실행] 예산 ${HOURS}시간"; else say "[dry-run — 아무것도 실행하지 않음]"; fi
-printf '%-14s %-5s %-10s %-7s %-9s %-14s %s\n' 타깃 군 모델 칸 서열수 "설계(조성×반복+원래)" 상태
-printf -- '-%.0s' {1..96}; echo
+printf '%-13s %-4s %-8s %-7s %-8s %-8s %-11s %-13s %s\n' \
+  타깃 군 모델 칸 서열수 Neff80 층 "설계" 상태
+printf -- '-%.0s' {1..108}; echo
 
 PLAN=(); TOTAL=0
 for row in "${ROWS[@]}"; do
-  IFS=$'\t' read -r t grp model rung nrows ncomp nreps nfull <<< "$row"
+  IFS=$'\t' read -r t grp model rung nrows ncomp nreps nfull stratum neffpk <<< "$row"
   if [ -n "$ONLY" ] && [[ " $ONLY " != *" $t "* ]]; then continue; fi
   want=$(( ncomp * nreps + nfull ))
   have=$(done_runs "$t" "$model")
   if [ "$have" -ge "$want" ]; then st="완료 ($have/$want) — 건너뜀"
   elif [ "$have" -gt 0 ]; then st="이어서 ($have/$want)"; PLAN+=("$row"); TOTAL=$((TOTAL+want-have))
   else st="새로 ($want회)"; PLAN+=("$row"); TOTAL=$((TOTAL+want)); fi
-  printf '%-14s %-5s %-10s %-7s %-9s %-14s %s\n' \
-    "$t" "$grp" "$model" "rung$rung" "$nrows" "${ncomp}×${nreps}+${nfull}" "$st"
+  case "$stratum" in rich) sl="다양성있음";; poor) sl="다양성없음";; *) sl="-";; esac
+  printf '%-13s %-4s %-8s %-7s %-8s %-8s %-11s %-13s %s\n' \
+    "$t" "$grp" "$model" "rung$rung" "$nrows" "${neffpk:--}" "$sl" "${ncomp}×${nreps}+${nfull}" "$st"
 done
 echo
-say "돌릴 타깃 ${#PLAN[@]}개 · 남은 실행 약 ${TOTAL}회"
+say "돌릴 타깃 ${#PLAN[@]}개 · 남은 실행 약 ${TOTAL}회 · 순서 [$ORDER]"
+say "※ 층은 성적이 아니라 입력의 Neff80으로 나눈 것이다. 층별 빈도를 따로 내되,"
+say "  이 자료에서는 층이 항원 계열과 거의 겹치므로 '조성 다양성 때문'과 '항원 계열 때문'을 분리할 수 없다."
 [ "${#PLAN[@]}" -gt 0 ] || { say "전부 완료 상태다. analyze_target.sh 로 넘어갈 것."; exit 0; }
 
 if [ $APPLY -eq 0 ]; then
@@ -109,12 +119,12 @@ fi
 # ── 실행 ─────────────────────────────────────────────────────────────────────
 n_done=0; n_skip=0
 for row in "${PLAN[@]}"; do
-  IFS=$'\t' read -r t grp model rung nrows ncomp nreps nfull <<< "$row"
+  IFS=$'\t' read -r t grp model rung nrows ncomp nreps nfull stratum neffpk <<< "$row"
   rem=$(left)
   if [ "$rem" -le 600 ]; then
     say "예산 소진 — 남은 타깃은 다음 실행에서 이어간다(이어달리기 지원)."; break
   fi
-  say "───── $t (군 $grp · $model · rung$rung · ${nrows}서열) · 남은 예산 $((rem/60))분"
+  say "───── $t (군 $grp · $model · rung$rung · ${nrows}서열 · Neff80 ${neffpk:--} · ${stratum:--}) · 남은 예산 $((rem/60))분"
 
   if [ $GATE -eq 1 ]; then
     if ! python check_msa_match.py --only "$t" >"/tmp/gate_$t.log" 2>&1; then
