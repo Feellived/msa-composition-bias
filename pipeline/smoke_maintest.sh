@@ -23,6 +23,10 @@
 #   bash smoke_maintest.sh --gpu        # Phase B까지 (권장, 15~20분)
 #   TARGETS="8t4a_PR 8u44_ST" bash smoke_maintest.sh --gpu
 #   bash smoke_maintest.sh --gpu --keep # 스모크 산출물 남김(기본은 남김. 지우지 않는다)
+#   bash smoke_maintest.sh --recheck    # 이미 돈 스모크를 GPU 없이 재판정(터미널을 닫아 판정을
+#                                       #   놓쳤을 때. 산출물이 없는 타깃만 새로 돈다)
+#
+# 출력은 항상 $DATA/logs/smoke_<시각>.log 에도 저장된다(SMKLOG 로 바꿀 수 있음).
 #
 # 하나라도 실패하면 종료 코드 1. 본 검정을 시작하지 말 것.
 # ══════════════════════════════════════════════════════════════════════════════
@@ -32,14 +36,26 @@ DATA="${DATA:-/mnt/data/admuser/msadepth}"
 CSV="${CSV:-maintest.csv}"
 LIST="${LIST:-sweep_targets.csv}"
 TARGETS="${TARGETS:-}"
-GPU=0
+GPU=0; RECHECK=0
 for arg in "$@"; do
   case "$arg" in
     --gpu) GPU=1 ;;
+    --recheck) GPU=1; RECHECK=1 ;;
     --keep) : ;;
     *) echo "!! 모르는 인자: $arg"; exit 1 ;;
   esac
 done
+# 출력은 화면과 파일에 동시에 남긴다 — 터미널이 닫혀도 판정을 다시 볼 수 있게.
+# 자기 자신을 tee 파이프로 한 번 다시 부르는 방식. 프로세스 치환(exec > >(tee))은
+# 부모가 먼저 끝나 마지막 줄이 잘릴 수 있어 쓰지 않는다. 종료 코드는 PIPESTATUS로 보존.
+if [ -z "${SMK_TEED:-}" ]; then
+  SMKLOG="${SMKLOG:-$DATA/logs/smoke_$(date +%m%d_%H%M%S).log}"
+  mkdir -p "$(dirname "$SMKLOG")" 2>/dev/null || SMKLOG="/tmp/$(basename "$SMKLOG")"
+  SMK_TEED=1 SMKLOG="$SMKLOG" bash "$0" "$@" 2>&1 | tee -a "$SMKLOG"
+  rc=${PIPESTATUS[0]}
+  echo "[로그] $SMKLOG"
+  exit "$rc"
+fi
 say(){ echo "[$(date '+%H:%M:%S')] $*"; }
 PASS=0; FAIL=0; WARN=0
 ok(){   PASS=$((PASS+1)); printf '   [OK]   %s\n' "$*"; }
@@ -185,18 +201,26 @@ for T in $TARGETS; do
   R=$(row_of "$T"); IFS=$'\t' read -r RUNG NROWS NCOMP NREPS NFULL GRP STRAT NEFFPK <<< "$R"
   AG=$(agch_of "$T"); IFS='|' read -ra AGC <<< "$AG"
 
-  t0=$(date +%s)
-  SMOKE=1 RUNG="$RUNG" TARGET="$T" REPLICAS="$NCOMP" COMPS="0" REPS=1 \
-    bash comp_x_reps.sh >"/tmp/smk_run_$T.log" 2>&1
-  dt=$(( $(date +%s) - t0 ))
-
   dsub=$(ls -d "seedrep_cand/${T}_${AGC[0]}"/d* 2>/dev/null | head -1)
-  DEP=$(basename "$dsub")
+  DEP=$(basename "${dsub:-none}")
   out="$DATA/compreps/seedrep_cand/protenix/$T/$DEP/seed0_r0"
+
+  # 이미 산출물이 있으면(=스모크를 이미 돌렸으면) GPU를 다시 쓰지 않고 그 파일로 재판정한다.
+  have=$(find "$out/results" -name '*sample*.cif' 2>/dev/null | wc -l | tr -d ' ')
+  if [ "$RECHECK" -eq 1 ] && [ "${have:-0}" -ge 1 ]; then
+    dt=0; say "  (재확인 모드 — 기존 산출물로 판정, GPU 미사용)"
+  else
+    if [ "$RECHECK" -eq 1 ]; then say "  (재확인 모드지만 산출물이 없어 새로 돈다)"; fi
+    t0=$(date +%s)
+    SMOKE=1 RUNG="$RUNG" TARGET="$T" REPLICAS="$NCOMP" COMPS="0" REPS=1 \
+      bash comp_x_reps.sh >"/tmp/smk_run_$T.log" 2>&1
+    dt=$(( $(date +%s) - t0 ))
+  fi
 
   # ① 산출물
   npose=$(find "$out/results" -name '*sample*.cif' 2>/dev/null | wc -l | tr -d ' ')
-  [ "$npose" -ge 1 ] && ok "예측 산출물 $npose개 · 소요 ${dt}초" \
+  [ "$dt" -gt 0 ] && dts="소요 ${dt}초" || dts="기존 산출물"
+  [ "$npose" -ge 1 ] && ok "예측 산출물 $npose개 · $dts" \
                      || { bad "산출물 없음 → $out/run.log · /tmp/smk_run_$T.log"; continue; }
   [ "$npose" -eq 5 ] || warn "산출물이 5개가 아니다($npose개) — SAMP 설정 확인"
 
