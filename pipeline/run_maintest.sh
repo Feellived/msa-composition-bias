@@ -1,0 +1,145 @@
+#!/usr/bin/env bash
+# ══════════════════════════════════════════════════════════════════════════════
+# [본 검정 실행기] pick_maintest_depth.py가 만든 maintest.csv를 읽어 타깃마다
+#   조성 N가지 × 반복 M회  +  원래 MSA F회
+# 를 comp_x_reps.sh로 돌린다. 설계값(N·M·F)과 깊이는 CSV에 이미 적혀 있으므로
+# 여기서 바꾸지 않는다 — 판정 기준을 사후에 옮겼다는 반박을 받지 않기 위함.
+#
+# 순서: RBD(세트 3, 전수) → 음성 대조 → 나머지.  이유는 빈도(M/10)를 내는 세트가
+#       RBD뿐이라 GPU 예산이 끊겨도 그 숫자는 확보되게 하려는 것.
+#
+# 안전장치
+#   · 기본 dry-run. 실제 실행은 --apply (GPU를 하루 단위로 점유하므로).
+#   · HOURS 예산 — 타깃 하나를 시작하기 전에 남은 시간을 확인하고, 모자라면 멈춘다.
+#     (타깃 중간에 죽이지 않는다. comp_x_reps.sh 자체가 이어달리기라 다음에 이어서 감)
+#   · check_msa_match.py 게이트 — MSA 질의행이 어긋난 채로 조용히 단일서열 예측이
+#     되는 사고(2026-07-27 boltz)를 막는다. --skip-gate 로만 건너뛸 수 있다.
+#   · 이미 끝난 타깃은 건너뛴다(출력 폴더의 실행 수를 세어 판단).
+#
+# 사용:
+#   bash run_maintest.sh                      # 무엇을 돌릴지만 출력
+#   bash run_maintest.sh --apply              # 실제 실행 (기본 예산 12시간)
+#   HOURS=6 bash run_maintest.sh --apply
+#   ONLY="8sis_HL 9zdu_HL" bash run_maintest.sh --apply
+#   bash run_maintest.sh --apply --skip-gate  # 게이트 생략(권장하지 않음)
+#
+# 끝나면 타깃마다:  bash analyze_target.sh <타깃>
+# ══════════════════════════════════════════════════════════════════════════════
+set -uo pipefail
+cd "$(cd "$(dirname "$0")" && pwd)"
+DATA="${DATA:-/mnt/data/admuser/msadepth}"
+CSV="${CSV:-maintest.csv}"
+HOURS="${HOURS:-12}"
+ONLY="${ONLY:-}"
+APPLY=0; GATE=1
+for arg in "$@"; do
+  case "$arg" in
+    --apply) APPLY=1 ;;
+    --skip-gate) GATE=0 ;;
+    *) echo "!! 모르는 인자: $arg"; exit 1 ;;
+  esac
+done
+say(){ echo "[$(date '+%m-%d %H:%M:%S')] $*"; }
+
+[ -f "$CSV" ] || { say "!! $CSV 없음. 먼저 python pick_maintest_depth.py 를 돌릴 것"; exit 1; }
+
+START=$(date +%s)
+BUDGET=$(python3 -c "print(int(float('$HOURS')*3600))")
+left(){ echo $(( BUDGET - ($(date +%s) - START) )); }
+
+# ── CSV에서 status=run 인 행만, RBD → 음성대조 → 나머지 순으로 정렬 ──────────────
+NEG="9azr_HL 8k5g_HL"
+ROWS=()
+while IFS= read -r __ln; do ROWS+=("$__ln"); done < <(python3 - "$CSV" "$NEG" <<'PY'
+import csv, sys
+neg = set(sys.argv[2].split())
+rows = [r for r in csv.DictReader(open(sys.argv[1])) if r.get("status") == "run"]
+def key(r):
+    g = 0 if r.get("group") == "RBD" else (1 if r["target"] in neg else 2)
+    return (g, r["target"])
+for r in sorted(rows, key=key):
+    print("\t".join([r["target"], r.get("group",""), r.get("model","protenix"),
+                     str(r["rung"]), str(r.get("n_rows","")),
+                     str(r.get("n_comp") or 6), str(r.get("n_reps") or 4),
+                     str(r.get("n_full") or 8)]))
+PY
+)
+[ "${#ROWS[@]}" -gt 0 ] || { say "!! $CSV 에 status=run 인 행이 없다"; exit 1; }
+
+# ── 이미 끝난 실행 수 세기 ────────────────────────────────────────────────────
+done_runs(){   # $1=target $2=model  → 산출물이 있는 실행 폴더 수
+  local t="$1" m="$2" base n=0 d
+  base="$DATA/compreps/seedrep_cand/$m/$t"
+  [ -d "$base" ] || { echo 0; return; }
+  for d in "$base"/*/seed*_r*/; do
+    [ -d "$d" ] || continue
+    find "$d/results" -name '*sample*.cif' -o -name '*_model_*.cif' 2>/dev/null | grep -q . && n=$((n+1))
+  done
+  echo "$n"
+}
+
+echo
+if [ $APPLY -eq 1 ]; then say "[실제 실행] 예산 ${HOURS}시간"; else say "[dry-run — 아무것도 실행하지 않음]"; fi
+printf '%-14s %-5s %-10s %-7s %-9s %-14s %s\n' 타깃 군 모델 칸 서열수 "설계(조성×반복+원래)" 상태
+printf -- '-%.0s' {1..96}; echo
+
+PLAN=(); TOTAL=0
+for row in "${ROWS[@]}"; do
+  IFS=$'\t' read -r t grp model rung nrows ncomp nreps nfull <<< "$row"
+  if [ -n "$ONLY" ] && [[ " $ONLY " != *" $t "* ]]; then continue; fi
+  want=$(( ncomp * nreps + nfull ))
+  have=$(done_runs "$t" "$model")
+  if [ "$have" -ge "$want" ]; then st="완료 ($have/$want) — 건너뜀"
+  elif [ "$have" -gt 0 ]; then st="이어서 ($have/$want)"; PLAN+=("$row"); TOTAL=$((TOTAL+want-have))
+  else st="새로 ($want회)"; PLAN+=("$row"); TOTAL=$((TOTAL+want)); fi
+  printf '%-14s %-5s %-10s %-7s %-9s %-14s %s\n' \
+    "$t" "$grp" "$model" "rung$rung" "$nrows" "${ncomp}×${nreps}+${nfull}" "$st"
+done
+echo
+say "돌릴 타깃 ${#PLAN[@]}개 · 남은 실행 약 ${TOTAL}회"
+[ "${#PLAN[@]}" -gt 0 ] || { say "전부 완료 상태다. analyze_target.sh 로 넘어갈 것."; exit 0; }
+
+if [ $APPLY -eq 0 ]; then
+  echo
+  say "실제로 돌리려면:  bash run_maintest.sh --apply"
+  say "끝난 뒤 분석:     for t in <타깃들>; do bash analyze_target.sh \$t; done"
+  exit 0
+fi
+
+# ── 실행 ─────────────────────────────────────────────────────────────────────
+n_done=0; n_skip=0
+for row in "${PLAN[@]}"; do
+  IFS=$'\t' read -r t grp model rung nrows ncomp nreps nfull <<< "$row"
+  rem=$(left)
+  if [ "$rem" -le 600 ]; then
+    say "예산 소진 — 남은 타깃은 다음 실행에서 이어간다(이어달리기 지원)."; break
+  fi
+  say "───── $t (군 $grp · $model · rung$rung · ${nrows}서열) · 남은 예산 $((rem/60))분"
+
+  if [ $GATE -eq 1 ]; then
+    if ! python check_msa_match.py --only "$t" >"/tmp/gate_$t.log" 2>&1; then
+      say "  !! MSA 게이트 실패 → 건너뜀. /tmp/gate_$t.log 확인"; n_skip=$((n_skip+1)); continue
+    fi
+    if grep -qiE '오염|mismatch|불일치|다름' "/tmp/gate_$t.log"; then
+      say "  !! MSA 질의행 이상 감지 → 건너뜀. /tmp/gate_$t.log 확인"; n_skip=$((n_skip+1)); continue
+    fi
+  fi
+
+  comps=$(seq -s' ' 0 $((ncomp-1)))
+  say "  ① 조성 $ncomp가지 × 반복 $nreps회"
+  RUNG="$rung" TARGET="$t" MODEL="$model" REPLICAS="$ncomp" \
+    COMPS="$comps" REPS="$nreps" bash comp_x_reps.sh || say "  !! 조성 단계에서 오류(로그 확인)"
+
+  say "  ② 원래 MSA $nfull회"
+  RUNG="$rung" TARGET="$t" MODEL="$model" \
+    COMPS="full" REPS="$nfull" bash comp_x_reps.sh || say "  !! 원래 MSA 단계에서 오류(로그 확인)"
+
+  have=$(done_runs "$t" "$model"); want=$(( ncomp * nreps + nfull ))
+  say "  $t 완료 — 실행 $have/$want"
+  n_done=$((n_done+1))
+done
+
+echo
+say "═══ 종료: 타깃 $n_done개 진행 · 게이트 실패로 건너뜀 $n_skip개 · 경과 $(( ($(date +%s)-START)/60 ))분"
+say "다음: 타깃마다  bash analyze_target.sh <타깃>"
+say "      판정 기준은 인수인계서 Ⅱ 6.4절(결과를 보기 전에 확정한 것)을 따른다."
