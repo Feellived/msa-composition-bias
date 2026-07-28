@@ -38,7 +38,9 @@
 import argparse, csv, os
 from collections import defaultdict
 
-SUCC_RECALL = 0.40      # 진짜 결합자리를 이만큼 덮으면 성공
+SUCC_RECALL = 0.40      # 진짜 결합자리를 이만큼 덮으면 성공 (사전 확정 = 판정 기준)
+SUCC_DOCKQ = 0.23       # 참고 표시용 문턱(자세 품질). 판정에는 쓰지 않는다.
+SUCC_DOCKQ2 = 0.49      # 참고 표시용 문턱(CAPRI Medium)
 ANCHOR_ROWS = 1746      # 8ulr에서 효과가 확인된 서열 수
 N_COMP, N_REPS, N_FULL = 6, 4, 8       # 본 검정 설계 (2026-07-28 확정)
 
@@ -82,6 +84,10 @@ def main():
     ap.add_argument("--group", default="")
     ap.add_argument("--only", nargs="*", default=[])
     ap.add_argument("--out", default="maintest.csv")
+    ap.add_argument("--metric", default="recall", choices=["recall", "dockq"],
+                    help="판정에 쓸 지표. 기본 recall(사전 확정). dockq는 민감도 확인 전용")
+    ap.add_argument("--thr", type=float, default=None,
+                    help="성공 문턱. 생략 시 recall=0.40 / dockq=0.49")
     a = ap.parse_args()
 
     meta = {r["target"]: r for r in csv.DictReader(open(a.list))}
@@ -89,8 +95,8 @@ def main():
     for r in csv.DictReader(open(a.pf)):
         if r["model"] != a.model:
             continue
-        v = f(r.get("recall"))
-        per[r["target"]][int(float(r["rung"]))].append(v)
+        per[r["target"]][int(float(r["rung"]))].append(
+            {k: f(r.get(k)) for k in ("recall", "dockq", "overrep")})
 
     tgts = [t for t in meta if t in per]
     if a.group:
@@ -119,20 +125,41 @@ def main():
             "   (참고: --only 에 아무것도 안 넘기면 필터가 통째로 무시되어 전체가 나온다. "
             "이름을 넘겼는데 이 메시지가 보이면 셸에서 인자가 빈 채로 전달된 것이다.)")
 
-    print(f"판독 규칙: 칸마다 구조 5개 중 결합자리 덮음 ≥{SUCC_RECALL} 인 개수를 센다.")
-    print(f"           1~4개인 칸(중간 지대) 중 서열이 가장 많은 칸을 고른다.\n")
+    MET = a.metric
+    THR = a.thr if a.thr is not None else (SUCC_RECALL if MET == "recall" else SUCC_DOCKQ2)
+    label = {"recall": "결합자리 덮음(recall)", "dockq": "자세 품질(DockQ)"}[MET]
+    print(f"판독 규칙: 칸마다 구조 5개 중 {label} ≥{THR} 인 개수를 센다.")
+    print(f"           1~4개인 칸(중간 지대) 중 서열이 가장 많은 칸을 고른다. rung0(원래 MSA)은 제외.")
+    if MET != "recall" or a.thr is not None:
+        print("⚠️ 사전 확정 기준(recall ≥ 0.40)이 아니다 — 민감도 확인용 실행이다. "
+              "이 결과로 본 검정 명단을 바꾸지 말 것.")
+    print()
     print(f"{'타깃':13}{'군':4}{'칸':4}{'칸별 성공 구조수 (0~11칸)':30}{'고른 칸':>8}{'서열':>8}   판정")
     print("-" * 104)
 
     rows, n_run, n_skip_none, n_skip_all, n_incomplete = [], 0, 0, 0, 0
+    ref, picked = {}, {}
     for t in tgts:
         nr = ladder_rows(a.data, t)
         hits, missing = {}, []
+        d23, d49, rec_all, dq_all, ov = {}, {}, [], [], {}
         for k in range(a.rungs):
-            v = [x for x in per[t].get(k, []) if x is not None]
+            rows_k = per[t].get(k, [])
+            v = [x[MET] for x in rows_k if x.get(MET) is not None]
             if not v:
                 missing.append(k); continue
-            hits[k] = sum(1 for x in v if x >= SUCC_RECALL)
+            hits[k] = sum(1 for x in v if x >= THR)
+            rr = [x["recall"] for x in rows_k if x.get("recall") is not None]
+            dd = [x["dockq"] for x in rows_k if x.get("dockq") is not None]
+            oo = [x["overrep"] for x in rows_k if x.get("overrep") is not None]
+            rec_all += rr; dq_all += dd
+            d23[k] = sum(1 for x in dd if x >= SUCC_DOCKQ)
+            d49[k] = sum(1 for x in dd if x >= SUCC_DOCKQ2)
+            if oo:
+                ov[k] = sum(oo) / len(oo)
+        ref[t] = dict(rec_max=(max(rec_all) if rec_all else float("nan")),
+                      dq_max=(max(dq_all) if dq_all else float("nan")),
+                      d23=d23, d49=d49, ov=ov)
         grp = meta[t].get("group", "")
         strip = "".join(str(hits.get(k, "·")) for k in range(a.rungs))
         if missing:
@@ -144,14 +171,28 @@ def main():
         if tot == 0:
             n_skip_none += 1
             print(f"{t:13}{grp:4}{len(hits):<4}{strip:30}{'-':>8}{'-':>8}   건너뜀 · 어느 깊이에서도 안 됨(실패로 계상)")
+            R = ref.get(t, {})
             rows.append(dict(target=t, group=grp, model=a.model, rung="", n_rows="",
-                             n_comp="", n_reps="", n_full="", status="no_response"))
+                             n_comp="", n_reps="", n_full="", status="no_response",
+                             metric=MET, thr=THR,
+                             recall_max=(f"{R.get('rec_max', float('nan')):.2f}"),
+                             dockq_max=(f"{R.get('dq_max', float('nan')):.2f}"),
+                             dq23_pick="", dq49_pick="",
+                             overrep_full=(f"{R['ov'][0]:.2f}" if R.get("ov", {}).get(0) is not None else ""),
+                             overrep_pick=""))
             continue
         if all(h == 5 for h in hits.values()):
             n_skip_all += 1
             print(f"{t:13}{grp:4}{len(hits):<4}{strip:30}{'-':>8}{'-':>8}   건너뜀 · 모든 깊이에서 성공(구제 불필요)")
+            R = ref.get(t, {})
             rows.append(dict(target=t, group=grp, model=a.model, rung="", n_rows="",
-                             n_comp="", n_reps="", n_full="", status="always_ok"))
+                             n_comp="", n_reps="", n_full="", status="always_ok",
+                             metric=MET, thr=THR,
+                             recall_max=(f"{R.get('rec_max', float('nan')):.2f}"),
+                             dockq_max=(f"{R.get('dq_max', float('nan')):.2f}"),
+                             dq23_pick="", dq49_pick="",
+                             overrep_full=(f"{R['ov'][0]:.2f}" if R.get("ov", {}).get(0) is not None else ""),
+                             overrep_pick=""))
             continue
 
         # rung0 = 원래 MSA 전체(comp_x_reps.sh가 rung0.a3m을 그대로 seedfull.a3m으로 복사한다).
@@ -178,8 +219,44 @@ def main():
             continue
         n_run += 1
         print(f"{t:13}{grp:4}{len(hits):<4}{strip:30}{('rung'+str(pick)):>8}{nr.get(pick,0):>8}   본 검정 · {why}")
+        picked[t] = pick
+        R = ref.get(t, {})
         rows.append(dict(target=t, group=grp, model=a.model, rung=pick, n_rows=nr.get(pick, ""),
-                         n_comp=N_COMP, n_reps=N_REPS, n_full=N_FULL, status="run"))
+                         n_comp=N_COMP, n_reps=N_REPS, n_full=N_FULL, status="run",
+                         metric=MET, thr=THR,
+                         recall_max=(f"{R.get('rec_max', float('nan')):.2f}"),
+                         dockq_max=(f"{R.get('dq_max', float('nan')):.2f}"),
+                         dq23_pick=R.get("d23", {}).get(pick, ""),
+                         dq49_pick=R.get("d49", {}).get(pick, ""),
+                         overrep_full=(f"{R['ov'][0]:.2f}" if R.get("ov", {}).get(0) is not None else ""),
+                         overrep_pick=(f"{R['ov'][pick]:.2f}" if R.get("ov", {}).get(pick) is not None else "")))
+
+    # ── 참고 지표: 판정에 쓰지 않지만 선별을 눈으로 확인하기 위한 전 후보 일람 ──────
+    if ref:
+        print("\n" + "-" * 116)
+        print("[참고 지표 — 판정에는 쓰지 않는다] 후보 전체. 두 지표가 어긋나면 그 자체가 보고 대상이다.")
+        print(f"{'타깃':13}{'군':4}{'recall최고':>9}{'DockQ최고':>10}   "
+              f"{'DockQ≥0.23 성공수 (0~11칸)':32}{'인기자리 겹침 rung0→고른칸':>26}   상태")
+        print("-" * 116)
+        for t in tgts:
+            R = ref.get(t)
+            if not R:
+                continue
+            grp = meta[t].get("group", "")
+            d23s = "".join(str(R["d23"].get(k, "·")) for k in range(a.rungs))
+            pk = picked.get(t)
+            o0 = R["ov"].get(0)
+            op = R["ov"].get(pk) if pk is not None else None
+            ovs = (f"{o0:.2f} → {op:.2f}" if (o0 is not None and op is not None)
+                   else (f"{o0:.2f} → -" if o0 is not None else "-"))
+            st = ("본 검정 rung%s" % pk) if pk is not None else "제외"
+            print(f"{t:13}{grp:4}{R['rec_max']:>9.2f}{R['dq_max']:>10.2f}   "
+                  f"{d23s:32}{ovs:>26}   {st}")
+        print("\n  · recall최고 / DockQ최고 = 그 타깃의 전 칸·전 구조 통틀어 최고값. "
+              "판정 문턱을 못 넘은 이유가 '거의 근접'인지 '전혀 못 찾음'인지를 가른다.")
+        print("  · DockQ≥0.23 성공수 = 자세 품질 축의 칸별 성공 개수. recall 쪽 띠와 비교해 축이 어긋나는지 본다.")
+        print("  · 인기자리 겹침 = 예측 접촉 중 과대표집 부위 비율의 칸 평균. 내려가면 인기 자리에서 벗어난 것"
+              "(C군은 정의가 없어 빈칸).")
 
     print("\n" + "=" * 104)
     print(f"본 검정 대상 {n_run}개 · 어느 깊이에서도 안 됨 {n_skip_none}개 · 모든 깊이 성공 {n_skip_all}개"
