@@ -10,6 +10,11 @@
     · 그 밖                                    → **본 검정 대상.** 깊이는 0.4 이상이
       **1~4개인 칸**(되기도 하고 안 되기도 하는 중간 지대) 중 **서열이 가장 많은 칸**.
       그런 칸이 없으면 서열 수가 **1746개**(8ulr에서 효과가 확인된 수)에 가장 가까운 칸.
+    · ⚠️ rung0은 후보에서 제외한다(2026-07-28 추가). rung0 = 원래 MSA 전체이고
+      comp_x_reps.sh가 그것을 그대로 대조군(seedfull.a3m)으로 쓴다. 거기서 조성을 재추첨하면
+      전체에서 전체를 뽑는 것이라 조성이 전부 같아지고 조성군=대조군이 되어 이질성 검정이
+      정의되지 않는다. 이는 결과를 보고 기준을 옮기는 것이 아니라 **실행 불가능한 선택지를
+      막는 것**이며, 검정 방식·성공 기준·설계값(6조성×4반복+원래8)은 그대로다.
 
 왜 결과를 보고 깊이를 골라도 되나: 조성 간 이질성 검정은 **그 실험의 총 성공 횟수를
 조건으로 삼기 때문에**, 그 깊이에서 성공률이 얼마인지는 검정에서 상쇄된다. 게다가 본 검정은
@@ -149,13 +154,28 @@ def main():
                              n_comp="", n_reps="", n_full="", status="always_ok"))
             continue
 
-        mid = [k for k, h in hits.items() if 1 <= h <= 4]
+        # rung0 = 원래 MSA 전체(comp_x_reps.sh가 rung0.a3m을 그대로 seedfull.a3m으로 복사한다).
+        # 거기서 조성을 재추첨하면 전체에서 전체를 뽑는 것이라 여섯 조성이 같은 집합이 되고,
+        # 조성군과 대조군도 같아져 이질성 검정이 정의되지 않는다. 그래서 후보에서 제외한다.
+        # (결과를 보고 기준을 옮기는 것이 아니라, 규칙이 실행 불가능한 선택지를 허용하던 것을
+        #  막는 것이다. 검정 방식·성공 기준·설계값은 그대로다.)
+        cand = [k for k in hits if k >= 1]
+        mid = [k for k in cand if 1 <= hits[k] <= 4]
         if mid:
             pick = max(mid, key=lambda k: nr.get(k, 0))
             why = "중간 지대"
-        else:
-            pick = min(hits, key=lambda k: abs(nr.get(k, 10**9) - ANCHOR_ROWS))
+            if 1 <= hits.get(0, 0) <= 4 and nr.get(0, 0) > nr.get(pick, 0):
+                why += " (rung0은 원래 MSA라 제외)"
+        elif cand:
+            pick = min(cand, key=lambda k: abs(nr.get(k, 10**9) - ANCHOR_ROWS))
             why = f"중간 지대 없음 → 서열 {ANCHOR_ROWS}에 가장 가까운 칸"
+            if hits.get(0, 0) > 0:
+                why += " ⚠️ 성공이 rung0(원래 MSA)에만 있음"
+        else:
+            print(f"{t:13}{grp:4}{len(hits):<4}{strip:30}{'-':>8}{'-':>8}   "
+                  f"건너뜀 · rung1 이상이 없음(사다리 미완성)")
+            n_incomplete += 1
+            continue
         n_run += 1
         print(f"{t:13}{grp:4}{len(hits):<4}{strip:30}{('rung'+str(pick)):>8}{nr.get(pick,0):>8}   본 검정 · {why}")
         rows.append(dict(target=t, group=grp, model=a.model, rung=pick, n_rows=nr.get(pick, ""),
