@@ -22,6 +22,13 @@
   python pick_maintest_depth.py --group RBD            # 코로나 세트만
   python pick_maintest_depth.py --only 8sis_HL 9zdu_HL
   python pick_maintest_depth.py --out maintest.csv     # 실행기가 읽을 명단
+
+--only 로 지정한 이름이 표에 안 나오면 이유를 구분해 알린다(조용히 빈 표를 내지 않는다):
+  · sweep_targets.csv 에는 있으나 pose_features.csv 에 없음 → 아직 채점 안 됨(먼저 pose_features.py)
+  · sweep_targets.csv 에 아예 없음                        → 이름 오타
+  · --group 에 걸러짐
+대상이 하나도 안 남으면 종료 코드 1로 멈춘다. (--only 에 아무것도 안 넘기면 필터가 통째로
+무시되어 전체가 나오므로, 셸에서 인자가 비어 전달되는 경우를 위 오타 경고가 잡아준다.)
 """
 import argparse, csv, os
 from collections import defaultdict
@@ -85,7 +92,27 @@ def main():
         tgts = [t for t in tgts if meta[t].get("group") == a.group]
     if a.only:
         tgts = [t for t in tgts if t in a.only]
+        # 조용히 빈 표를 내지 않도록, 요청한 이름이 왜 빠졌는지를 구분해 알린다.
+        no_score = [t for t in a.only if t in meta and t not in per]
+        if no_score:
+            print(f"⚠️ 채점 결과가 없는 타깃 {len(no_score)}개 — 먼저 "
+                  f"pose_features.py --models {a.model} 를 돌릴 것:")
+            print("   " + " ".join(no_score) + "\n")
+        unknown = [t for t in a.only if t not in meta]
+        if unknown:
+            print(f"⚠️ {a.list} 에 없는 이름 {len(unknown)}개: {' '.join(unknown)}\n")
+        dropped = [t for t in a.only if t in per and t in meta and t not in tgts]
+        if dropped and a.group:
+            print(f"⚠️ --group {a.group} 에 걸러진 타깃 {len(dropped)}개: {' '.join(dropped)}\n")
     tgts.sort()
+    if not tgts:
+        raise SystemExit(
+            "!! 판독할 타깃이 없다. 위 경고를 먼저 해결할 것."
+            if a.only else
+            f"!! 판독할 타깃이 없다. {a.pf} 에 model={a.model} 인 행이 없거나 "
+            f"--group {a.group!r} 에 걸리는 타깃이 없다.\n"
+            "   (참고: --only 에 아무것도 안 넘기면 필터가 통째로 무시되어 전체가 나온다. "
+            "이름을 넘겼는데 이 메시지가 보이면 셸에서 인자가 빈 채로 전달된 것이다.)")
 
     print(f"판독 규칙: 칸마다 구조 5개 중 결합자리 덮음 ≥{SUCC_RECALL} 인 개수를 센다.")
     print(f"           1~4개인 칸(중간 지대) 중 서열이 가장 많은 칸을 고른다.\n")
