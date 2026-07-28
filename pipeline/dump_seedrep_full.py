@@ -62,6 +62,8 @@ def main():
     ap.add_argument("--targets-dir", default="targets")
     ap.add_argument("--cutoff", type=float, default=5.0)
     ap.add_argument("--only", default="")
+    ap.add_argument("--maintest", default="maintest.csv",
+                    help="--cand 에 없는 타깃은 여기(본 검정 명단)에서 찾아 채점한다")
     ap.add_argument("--csv-out", default="results/seedrep_poses.csv")
     a = ap.parse_args()
 
@@ -72,12 +74,35 @@ def main():
         print(f"[안내] --only 사용 → 원자료를 {a.csv_out} 로 따로 씁니다"
               f" (results/seedrep_poses.csv 보존). 전체 갱신은 --only 없이 실행.\n")
 
+    # 채점 대상 만들기.
+    #   원래는 seedrep_cand.csv(예전 후보 5개)만 돌았다 → 본 검정 29개 타깃은 한 번도
+    #   순회되지 않아 결과 파일이 안 생기고, 그런데 경고도 없었다(조용한 실패).
+    #   이제 --cand 에 없으면 maintest.csv 의 status=run 행으로 채점한다.
+    cand_rows = list(csv.DictReader(open(a.cand))) if os.path.exists(a.cand) else []
+    known = {r["target"] for r in cand_rows}
+    if a.only and a.only not in known:
+        got = None
+        if os.path.exists(a.maintest):
+            for r in csv.DictReader(open(a.maintest)):
+                if r.get("target") == a.only and r.get("status") == "run":
+                    got = dict(target=r["target"], model=r.get("model") or "protenix",
+                               peak_rung=r.get("rung") or "0",
+                               replicas=r.get("n_comp") or "6", obs_dq="", obs_rec="")
+                    break
+        if got is None:
+            print(f"!! {a.only} 는 {a.cand} 에도 {a.maintest} 에도 없다 — 채점할 대상이 없다.")
+            print(f"   본 검정 타깃이면 pick_maintest_depth.py 로 {a.maintest} 를 먼저 만들 것.")
+            raise SystemExit(2)
+        cand_rows.append(got)
+        print(f"[안내] {a.only} 는 {a.cand} 에 없어 {a.maintest} 의 본 검정 행으로 채점한다"
+              f" (모델 {got['model']} · 깊이단계 {got['peak_rung']}).\n")
+
     grp = {r["target"]: r.get("group", "") for r in csv.DictReader(open(a.list))}
     pf = load_pf(a.pf)
     outroot = os.path.join(a.data, "seedrep_cand")
     allrows = []
 
-    for r in csv.DictReader(open(a.cand)):
+    for r in cand_rows:
         t, model, peak = r["target"], r["model"], int(r["peak_rung"])
         if a.only and t != a.only:
             continue
@@ -196,6 +221,11 @@ def main():
             w = csv.DictWriter(fh, fieldnames=list(allrows[0].keys()))
             w.writeheader(); w.writerows(allrows)
         print(f"→ 자세 단위 원자료 {a.csv_out} ({len(allrows)}행)")
+    else:
+        print("!! 채점된 자세가 한 개도 없다 — 결과 파일을 쓰지 않았다.")
+        print("   흔한 원인: ① 예측 폴더가 비었다 ② targets/<타깃>/native.cif 가 없다")
+        print("             ③ chains.json 의 사슬 배정이 예측 산출물과 안 맞는다")
+        raise SystemExit(3)
     print("\n판정 질문: ②가 ③ 안에 있나(당연 — 같은 추첨)가 아니라, ③ 분포가 ①보다 위에 있나.")
 
 
