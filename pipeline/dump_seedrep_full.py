@@ -161,7 +161,7 @@ def main():
                 depth = os.path.basename(ddir)
                 sdirs = sorted(glob.glob(os.path.join(ddir, "seed*")))
                 print(f"\n[③ seed 복제 · {depth}]  seed {len(sdirs)}개 × 자세 5개 = 전부 나열")
-                print(f"     {'seed':7}{'자세별 DockQ (5개)':46}{'best':>7}{'recall@best':>12}{'max rec':>9}")
+                print(f"     {'실행':13}{'자세별 DockQ (5개)':46}{'best':>7}{'recall@best':>12}{'max rec':>9}")
                 print("     " + "-" * 82)
                 bests, brecs = [], []
                 for sdir in sdirs:
@@ -183,17 +183,17 @@ def main():
                                             overrep=(round(met["overrep"], 4) if met and met["overrep"] == met["overrep"] else ""),
                                             n_contact=(met["n_contact"] if met else "")))
                     if not vals:
-                        print(f"     {s:7}(자세 없음)")
+                        print(f"     {s:13}(자세 없음)")
                         continue
                     dqs = [v[0] for v in vals if v[0] is not None]
                     if not dqs:
-                        print(f"     {s:7}(채점 실패)")
+                        print(f"     {s:13}(채점 실패)")
                         continue
                     bi = max(range(len(vals)), key=lambda i: (vals[i][0] is not None, vals[i][0] or -1))
                     bq, brec = vals[bi][0], vals[bi][1]
                     recs = [v[1] for v in vals if v[1] is not None]
                     mark = " ★" if (bq is not None and bq >= SUCC) else "  "
-                    print(f"     {s:7}" + "  ".join(f"{g(v[0],2)}" for v in vals).ljust(46)
+                    print(f"     {s:13}" + "  ".join(f"{g(v[0],2)}" for v in vals).ljust(46)
                           + f"{g(bq,3):>7}{mark}{g(brec,2):>10}{g(max(recs) if recs else None,2):>9}")
                     bests.append(bq)
                     if brec is not None:
