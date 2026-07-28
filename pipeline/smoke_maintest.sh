@@ -286,9 +286,11 @@ PY
 )
     cnt=$(echo "$n" | head -1)
     [ "${cnt:-0}" -ge 1 ] && { ok "채점 통과 — 값이 있는 자세 $cnt개"; echo "$n" | tail -n +2 | sed 's/^/       /'; } \
-                          || bad "채점 결과가 비었거나 전부 NaN → /tmp/smk_score_$T.log"
+                          || { bad "채점 결과가 비었거나 전부 NaN → /tmp/smk_score_$T.log"
+                               grep -vE '^\s*$' "/tmp/smk_score_$T.log" 2>/dev/null | tail -4 | sed 's/^/          | /'; }
   else
     bad "채점 산출 없음 → /tmp/smk_score_$T.log"
+    grep -vE '^\s*$' "/tmp/smk_score_$T.log" 2>/dev/null | tail -4 | sed 's/^/          | /'
   fi
 done
 
