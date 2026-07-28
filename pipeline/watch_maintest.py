@@ -33,10 +33,16 @@ def rows(csv_path):
         return [r for r in csv.DictReader(fh) if r.get("status") == "run"]
 
 
-def scan(base):
-    """실행 폴더별 (자세 수, 마지막 수정 시각)."""
+def scan(base, depth=None):
+    """실행 폴더별 (자세 수, 마지막 수정 시각).
+
+    depth 를 주면 그 깊이 폴더(d<서열수>)만 센다. 같은 타깃 아래에 예전 실험의 다른
+    깊이 폴더가 남아 있는 경우가 많은데, 그것까지 세면 진행률이 부풀고 완료 판정이
+    잘못 내려진다(2026-07-28에 발견 — 22시간 전 실행분이 이번 진행률에 섞였다).
+    """
+    pat = depth if depth else "d*"
     out = []
-    for d in sorted(glob.glob(os.path.join(base, "d*", "seed*_r*"))):
+    for d in sorted(glob.glob(os.path.join(base, pat, "seed*_r*"))):
         cifs = glob.glob(os.path.join(d, "results", "**", "*sample*.cif"), recursive=True)
         mt = max((os.path.getmtime(c) for c in cifs), default=os.path.getmtime(d))
         out.append((d, len(cifs), mt))
@@ -77,6 +83,7 @@ def main():
         rs = rows(a.csv)
         print("\033[2J\033[H" if a.loop else "", end="")
         print(f"[{time.strftime('%m-%d %H:%M:%S')}] 본 검정 진행 상황  ({a.csv})\n")
+        print("세는 대상 = maintest.csv 의 깊이 폴더(d<서열수>)뿐. 예전 실험의 다른 깊이는 제외한다.\n")
         print(f"{'타깃':13}{'군':5}{'진행':24}{'실행':>10}  {'자세':>6}  상태")
         print("-" * 78)
 
@@ -86,7 +93,12 @@ def main():
             t = r["target"]; model = r.get("model") or "protenix"
             want = int(r.get("n_comp") or 6) * int(r.get("n_reps") or 4) + int(r.get("n_full") or 8)
             base = os.path.join(a.data, "compreps", "seedrep_cand", model, t)
-            runs = scan(base) if os.path.isdir(base) else []
+            depth = "d" + str(r.get("n_rows") or "").strip()
+            runs = scan(base, depth) if os.path.isdir(base) else []
+            other = 0
+            if os.path.isdir(base):
+                other = len([x for x in scan(base) if not x[0].startswith(
+                    os.path.join(base, depth) + os.sep)])
             full = [x for x in runs if x[1] >= 5]
             part = [x for x in runs if 1 <= x[1] < 5]
             zero = [x for x in runs if x[1] == 0]
@@ -107,6 +119,8 @@ def main():
             if zero:
                 empties.append((t, len(zero)))
                 st += f" · 빈 실행 {len(zero)}개"
+            if other:
+                st += f" · [다른 깊이 {other}개는 제외]"
 
             for d, n, _ in runs:
                 lg = os.path.join(d, "run.log")
