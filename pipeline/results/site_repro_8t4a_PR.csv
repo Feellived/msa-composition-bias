@@ -1,0 +1,5 @@
+target,model,depth,within,between,ratio,perm_p,n_cand,cand,n_comp,n_res,true_covered,precision,comps
+8t4a_PR,protenix,d1824,0.3486,0.2667,1.307,0.001,4,1,4,90,1.0,0.1778,"seed0,seed1,seed2,seed5"
+8t4a_PR,protenix,d1824,0.3486,0.2667,1.307,0.001,4,2,1,65,0.8125,0.2,seed3
+8t4a_PR,protenix,d1824,0.3486,0.2667,1.307,0.001,4,3,1,110,0.8125,0.1182,seed4
+8t4a_PR,protenix,d1824,0.3486,0.2667,1.307,0.001,4,4,1,62,0.875,0.2258,seedfull

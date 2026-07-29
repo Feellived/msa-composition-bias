@@ -1,0 +1,11 @@
+run,dockq,recall,n_pred,jac_to_true,jac_to_fail_consensus,jac_to_succ_consensus,jac_to_popular,success
+seed3_r0,0.356,0.774,31,0.75,0.667,nan,0.405,0
+seed1_r0,0.219,0.613,28,0.395,0.629,nan,0.263,0
+seed0_r0,0.205,0.679,28,0.514,0.629,nan,0.347,0
+seed4_r0,0.155,0.645,31,0.556,0.579,nan,0.405,0
+seed2_r0,0.149,0.75,36,0.564,0.667,nan,0.362,0
+seedfull_r3,0.132,0.645,24,0.69,0.767,nan,0.329,0
+seedfull_r1,0.119,0.625,25,0.562,0.742,nan,0.307,0
+seedfull_r2,0.11,0.613,31,0.514,0.765,nan,0.368,0
+seedfull_r0,0.09,0.731,25,0.667,0.688,nan,0.307,0
+seedfull_r4,0.09,0.586,21,0.643,0.724,nan,0.288,0

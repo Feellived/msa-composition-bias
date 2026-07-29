@@ -1,0 +1,2 @@
+target,n_full,n_red,med_full,med_red,succ49_full,succ49_red,succ23_full,succ23_red,p_fisher49,p_fisher23,p_ranktest,p_heterogeneity,verdict
+8k5h_HL,8,24,0.432,0.362,3,1,8,23,0.9818,1.0,0.9868,0.0003,✗ 차이 없음/반대
