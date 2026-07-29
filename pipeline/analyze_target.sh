@@ -30,7 +30,16 @@ for T in "$@"; do
   if [ -s "$csv" ] && [ "${REDO:-0}" != "1" ]; then
     echo "  (자세 단위 채점 결과가 이미 있다 — 재계산 생략. 강제로 다시 하려면 REDO=1)" | tee -a "$log"
   else
-    python dump_seedrep_full.py --data "$DATA/compreps" --only "$T" --csv-out "$csv" > "results/dump_${T}.txt" 2>&1
+    # DEPTH=d90 로 깊이 폴더를 못박을 수 있다. 안 주면 maintest.csv 의 n_rows 로 고른다.
+    # 깊이 폴더가 여럿인데 어느 것인지 못 정하면 dump 가 종료코드 4로 멈춘다(섞이는 것보다 낫다).
+    python dump_seedrep_full.py --data "$DATA/compreps" --only "$T" \
+           ${DEPTH:+--depth "$DEPTH"} --csv-out "$csv" > "results/dump_${T}.txt" 2>&1
+    rc=$?
+    if [ "$rc" = "4" ]; then
+      echo "  !! 깊이 폴더가 여러 개라 멈췄다 — 설계가 다른 실행이 섞이는 것을 막은 것." | tee -a "$log"
+      grep -E "깊이 폴더|--depth" "results/dump_${T}.txt" | sed 's/^/     /' | tee -a "$log"
+      echo "     예: DEPTH=d90 bash analyze_target.sh $T" | tee -a "$log"; continue
+    fi
   fi
   if [ ! -s "$csv" ]; then
     echo "  !! 자료 없음 (예측이 아직 없거나 실패) — results/dump_${T}.txt 확인" | tee -a "$log"; continue
