@@ -1,0 +1,2 @@
+target,n_full,n_red,med_full,med_red,succ49_full,succ49_red,succ23_full,succ23_red,p_fisher49,p_fisher23,p_ranktest,p_heterogeneity,verdict
+8k3k_D,8,24,0.105,0.52,0,15,0,20,0.0003,0.0,0.0028,0.0013,✅ 얕은 쪽이 유의하게 높음
