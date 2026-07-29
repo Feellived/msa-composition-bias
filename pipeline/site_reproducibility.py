@@ -212,7 +212,9 @@ def main():
         # 잔기 키 = (항원 사슬 순번, 그 사슬 참조서열에서의 0-based 위치).
         # 유도 재도킹은 여기서 1-based 서열 위치로 바꿔 쓴다(sites_to_pocket.py).
         sites.append(dict(cand=ci, n_comp=len(ix), comps=names.split(","),
-                          residues=sorted([list(k) for k in u]),
+                          # ⚠️ 잔기 위치는 posmap(서열정렬)에서 온 numpy 정수다. 그대로 두면
+                          #    json 이 "int64 is not JSON serializable" 로 죽는다(2026-07-29).
+                          residues=sorted([[int(x) for x in k] for k in u]),
                           # ⚠️ 아래 둘은 정답 구조를 본 값이다. 보고용이며 '고르는 데' 쓰면 안 된다.
                           #    rank_sites.py 는 읽을 때 이 키를 버리고 그 사실을 화면에 알린다.
                           true_covered=round(rec, 4), precision=round(pre, 4),
@@ -244,7 +246,9 @@ def main():
                        n_true_res=len(true), perm_p=round(p, 5),
                        within=round(win, 4), between=round(btw, 4),
                        candidates=sites),
-                  open(sp, "w"), indent=1)
+                  open(sp, "w"), indent=1,
+                  # numpy 스칼라가 또 새어 들어와도 죽지 않도록(위 캐스팅이 1차 방어).
+                  default=lambda o: int(o) if hasattr(o, "__int__") else float(o))
         nfull = sum(1 for s in sites if s["from_full_msa"])
         print(f"→ {sp}  (후보 {len(sites)}개 · 잔기 목록 포함 · 원래 MSA가 속한 후보 {nfull}개)")
 
