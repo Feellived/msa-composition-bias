@@ -39,6 +39,7 @@ set -uo pipefail
 cd "$(cd "$(dirname "$0")" && pwd)"
 DATA="${DATA:-/mnt/data/admuser/msadepth}"
 CSV="${CSV:-maintest.csv}"
+LIST="${LIST:-sweep_targets.csv}"
 HOURS="${HOURS:-12}"
 ONLY="${ONLY:-}"
 ORDER="${ORDER:-Env C RBD HA}"
@@ -91,14 +92,33 @@ PY
 [ "${#ROWS[@]}" -gt 0 ] || { say "!! $CSV 에 status=run 인 행이 없다"; exit 1; }
 
 # ── 이미 끝난 실행 수 세기 ────────────────────────────────────────────────────
-done_runs(){   # $1=target $2=model $3=서열수 → 이번 깊이에서 산출물이 있는 실행 폴더 수
+depth_of(){   # $1=target $2=칸번호 → 깊이 폴더 이름 d<서열수>
+  # ⚠️ maintest.csv 의 서열 수(neff.tsv 유래)와 실제 폴더 이름이 어긋날 수 있다.
+  #    폴더는 comp_x_reps.sh 가 a3m 의 '>' 줄을 직접 세어 만든다(8sit_HL 에서 4034 대 4035
+  #    로 하나 차이가 났고, 그 바람에 다 끝난 32회를 0회로 세었다).
+  #    → 여기서도 생성기와 똑같은 방법으로 구해 출처를 하나로 맞춘다.
+  local t="$1" r="$2" ch f
+  ch=$(python3 - "$LIST" "$t" <<'DEPTHPY'
+import csv, sys
+for row in csv.DictReader(open(sys.argv[1])):
+    if row.get("target") == sys.argv[2]:
+        print((row.get("ag_chains") or "A").split("|")[0]); break
+DEPTHPY
+)
+  [ -n "$ch" ] || ch="A"
+  f="$DATA/ladders/$t/$ch/rung${r}.a3m"
+  [ -f "$f" ] || { echo ""; return; }
+  echo "d$(grep -c '^>' "$f" | tr -d ' ')"
+}
+
+done_runs(){   # $1=target $2=model $3=깊이폴더(d<서열수>) → 그 깊이의 산출물 있는 실행 수
   # ⚠️ 예전에는 "$base"/*/ 로 모든 깊이를 셌다. 같은 타깃 아래 이전 실험의 다른 깊이
   #    폴더가 남아 있으면 진행률이 부풀고, 그 수가 목표에 닿으면 이번 실행을 통째로
   #    건너뛴다(2026-07-28 발견). 이번 검정의 깊이 폴더 d<서열수>만 센다.
-  local t="$1" m="$2" nr="$3" base n=0 d
+  local t="$1" m="$2" dep="$3" base n=0 d
   base="$DATA/compreps/seedrep_cand/$m/$t"
-  [ -d "$base/d${nr}" ] || { echo 0; return; }
-  for d in "$base/d${nr}"/seed*_r*/; do
+  [ -n "$dep" ] && [ -d "$base/$dep" ] || { echo 0; return; }
+  for d in "$base/$dep"/seed*_r*/; do
     [ -d "$d" ] || continue
     find "$d/results" -name '*sample*.cif' -o -name '*_model_*.cif' 2>/dev/null | grep -q . && n=$((n+1))
   done
@@ -116,7 +136,11 @@ for row in "${ROWS[@]}"; do
   IFS=$'\t' read -r t grp model rung nrows ncomp nreps nfull stratum neffpk <<< "$row"
   if [ -n "$ONLY" ] && [[ " $ONLY " != *" $t "* ]]; then continue; fi
   want=$(( ncomp * nreps + nfull ))
-  have=$(done_runs "$t" "$model" "$nrows")
+  dep=$(depth_of "$t" "$rung")
+  if [ -n "$dep" ] && [ "$dep" != "d${nrows}" ]; then
+    say "  ※ $t: 계획표 서열 수 ${nrows} 와 실제 깊이 폴더 ${dep} 가 다르다 — 실제 폴더를 따른다."
+  fi
+  have=$(done_runs "$t" "$model" "$dep")
   if [ "$have" -ge "$want" ]; then st="완료 ($have/$want) — 건너뜀"
   elif [ "$have" -gt 0 ]; then st="이어서 ($have/$want)"; PLAN+=("$row"); TOTAL=$((TOTAL+want-have))
   else st="새로 ($want회)"; PLAN+=("$row"); TOTAL=$((TOTAL+want)); fi
@@ -145,7 +169,8 @@ for row in "${PLAN[@]}"; do
   # 예산은 타깃 경계에서만 본다(타깃을 중간에 끊지 않는다). 그래서 "10분 넘게 남았으면
   # 시작" 같은 기준으로는 77분짜리 타깃을 38분 남기고 시작해 예산을 크게 넘긴다.
   # → 이 타깃에 실제로 필요한 시간을 어림해서, 모자라면 시작하지 않는다.
-  have0=$(done_runs "$t" "$model" "$nrows")
+  dep=$(depth_of "$t" "$rung")
+  have0=$(done_runs "$t" "$model" "$dep")
   want0=$(( ncomp * nreps + nfull ))
   left_runs=$(( want0 - have0 ))
   [ "$left_runs" -gt 0 ] || left_runs=0
@@ -201,7 +226,7 @@ GATEPY
   RUNG="$rung" TARGET="$t" MODEL="$model" \
     COMPS="full" REPS="$nfull" bash comp_x_reps.sh || say "  !! 원래 MSA 단계에서 오류(로그 확인)"
 
-  have=$(done_runs "$t" "$model" "$nrows"); want=$(( ncomp * nreps + nfull ))
+  have=$(done_runs "$t" "$model" "$dep"); want=$(( ncomp * nreps + nfull ))
   # 실행 1회 소요 시간을 실측해 다음 타깃의 예산 판단에 쓴다(군마다 항원 크기가 달라
   # 1회가 2분에서 4분까지 벌어진다).
   did=$(( have - have0 ))
