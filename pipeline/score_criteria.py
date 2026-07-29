@@ -98,7 +98,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--maintest", default="maintest.csv")
     ap.add_argument("--set4", default="sweep_targets.csv", help="세트 4 명단(49종)")
-    ap.add_argument("--set3", default="", help="세트 3 명단(10종). 공백 구분 문자열 또는 파일 경로")
+    ap.add_argument("--set3", default="set3_targets.csv",
+                    help="세트 3 명단(10종). 파일 경로 또는 공백 구분 문자열. "
+                         "PDB ID 만 있어도 되고(복합체 식별자의 앞부분으로 대조), "
+                         "세트 4 분모에서는 자동으로 뺀다")
     ap.add_argument("--exclude", default="8ulr_HL",
                     help="설계가 달라 같은 표에 못 넣는 복합체(공백 구분)")
     ap.add_argument("--csv-out", default="results/criteria.csv")
@@ -115,9 +118,21 @@ def main():
     set4 = set()
     if os.path.exists(a.set4):
         set4 = {r["target"] for r in csv.DictReader(open(a.set4))}
-    set3 = set()
+    # 세트 3 — PDB ID 로 적혀 있으므로 복합체 식별자(<pdb>_<사슬>)의 앞부분과 대조한다.
+    set3_pdb = set()
     if a.set3:
-        set3 = set(open(a.set3).read().split()) if os.path.exists(a.set3) else set(a.set3.split())
+        if os.path.exists(a.set3):
+            for r in csv.DictReader(open(a.set3)):
+                if r.get("pdb"):
+                    set3_pdb.add(r["pdb"].strip().lower())
+        else:
+            set3_pdb = {x.strip().lower().split("_")[0] for x in a.set3.split()}
+    def in_set3(t):
+        return t.split("_")[0].lower() in set3_pdb
+    # ⚠️ sweep_targets.csv 는 세트 4(49종)에 세트 3(10종)이 더해진 59행이다.
+    #    세트 4 분모는 49 여야 하므로 세트 3 멤버를 뺀다(사전 확정 명단 크기를 지킨다).
+    set4 = {t for t in set4 if not in_set3(t)}
+    set3 = {t for t in meta if in_set3(t)}
 
     rows = []
     for t in sorted(meta):
@@ -216,17 +231,17 @@ def main():
     # ── 명단·층·군별 빈도 ─────────────────────────────────────────────────────
     print()
     print("■ 빈도 — 이질성이 유의한 복합체 수를 각 명단의 분모로 나눈 값")
-    for name, members in (("세트 3", set3), ("세트 4", set4)):
+    for name, members, denom in (("세트 3", set3, len(set3_pdb)), ("세트 4", set4, len(set4))):
         if not members:
             print("  %s: 명단이 없어 계산하지 않음 (--set3 로 넘길 것)" % name)
             continue
         inset = [r for r in done if r["target"] in members]
         s = sum(1 for r in inset if r["het_p"] is not None and r["het_p"] < SIG)
         print("  %s(분모 %d): 채점 %d개 중 유의 %d  →  %d/%d = %.3f"
-              % (name, len(members), len(inset), s, s, len(members), s / len(members)))
-        if len(inset) < len(members):
-            print("     ※ 분모는 명단 전체다. 본 검정에 안 들어간 %d개는 '유의하지 않음'으로 세는 것과"
-                  " 같다(안전한 방향)." % (len(members) - len(inset)))
+              % (name, denom, len(inset), s, s, denom, s / denom))
+        if len(inset) < denom:
+            print("     ※ 분모는 사전 확정 명단 전체다. 본 검정에 안 들어간 %d개는 '유의하지 않음'으로"
+                  " 세는 것과 같다(안전한 방향)." % (denom - len(inset)))
     for key, lab, denom in (("stratum", "층", None), ("group", "군", None)):
         g = defaultdict(lambda: [0, 0])
         for r in done:
