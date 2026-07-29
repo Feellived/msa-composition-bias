@@ -47,6 +47,43 @@ say(){ echo "[$(date '+%m-%d %H:%M:%S')] $*"; }
 START=$(date +%s); BUDGET=$(python3 -c "print(int(float('$HOURS')*3600))")
 left(){ echo $(( BUDGET - ($(date +%s) - START) )); }
 
+# ── 항원 사슬 명단 준비 ───────────────────────────────────────────────────────
+# comp_x_reps.sh 는 항원 사슬을 $LIST(기본 sweep_targets.csv)의 ag_chains 열에서 읽고,
+# 없으면 그 자리에서 종료한다. 그런데 세트 3 복합체(8sit_HL·8siq_HL·8sis_HL·8xsi_HL)는
+# sweep_targets.csv 에 없다 → 그대로 부르면 즉시 죽는다.
+# 그래서 필요한 행만 모은 임시 명단을 만들어 넘긴다. 없는 행은 targets/<타깃>/chains.json 의
+# role=="antigen" 에서 직접 만든다(같은 정보의 다른 출처라 값이 달라질 여지가 없다).
+LIST_SRC="${LIST:-sweep_targets.csv}"
+TMPLIST="$(mktemp -t maintest_boltz_list.XXXXXX.csv)"
+trap 'rm -f "$TMPLIST"' EXIT
+MISSING=$(LIST_SRC="$LIST_SRC" TMPLIST="$TMPLIST" TARGETS="$TARGETS" python3 <<'PY'
+import csv, json, os
+src, out, tg = os.environ["LIST_SRC"], os.environ["TMPLIST"], os.environ["TARGETS"].split()
+have = {}
+if os.path.exists(src):
+    for r in csv.DictReader(open(src)):
+        have[r["target"]] = r
+cols = ["target", "pdb", "group", "ab", "dirtype", "ag_chains", "label"]
+miss = []
+with open(out, "w", newline="") as fh:
+    w = csv.DictWriter(fh, fieldnames=cols, extrasaction="ignore"); w.writeheader()
+    for t in tg:
+        if t in have:
+            w.writerow(have[t]); continue
+        cj = os.path.join("targets", t, "chains.json")
+        if not os.path.exists(cj):
+            miss.append(t); continue
+        d = json.load(open(cj))
+        ag = [str(c["id"]) for c in d.get("chains", []) if c.get("role") == "antigen"]
+        if not ag:
+            miss.append(t); continue
+        w.writerow(dict(target=t, pdb=t.split("_")[0], group="", ab="",
+                        dirtype="targets", ag_chains="|".join(ag), label=""))
+print(" ".join(miss))
+PY
+)
+[ -z "$MISSING" ] || say "!! 항원 사슬을 못 찾은 복합체(건너뜀): $MISSING"
+
 say "$([ $APPLY -eq 1 ] && echo '[실제 실행]' || echo '[dry-run — 아무것도 실행하지 않음]') 모델 boltz · 예산 ${HOURS}시간"
 echo
 printf '%-13s %-7s %-8s %-14s %s\n' 타깃 칸 서열수 설계 상태
@@ -65,6 +102,7 @@ PY
     printf '%-13s %s\n' "$T" "!! maintest.csv 에 status=run 인 행이 없다 — 건너뜀"; continue
   fi
   IFS=$'\t' read -r RUNG NROWS NCOMP NREPS NFULL <<< "$ROW"
+  grep -q "^$T," "$TMPLIST" || { printf '%-13s %s\n' "$T" "!! 항원 사슬 미확인 — 건너뜀"; continue; }
   WANT=$(( NCOMP * NREPS + NFULL ))
   # 이미 끝난 실행 수(boltz 쪽만)
   BASE="$DATA/compreps/seedrep_cand/boltz/$T"
@@ -87,12 +125,12 @@ PY
   COMPLIST=$(python3 -c "print(' '.join(str(i) for i in range($NCOMP)))")
 
   say "  ① 조성 $NCOMP가지 × 반복 $NREPS회 (boltz)"
-  MODEL=boltz RUNG="$RUNG" TARGET="$T" REPLICAS="$NCOMP" COMPS="$COMPLIST" REPS="$NREPS" \
-    bash comp_x_reps.sh || say "  ! 조성 실행에서 오류 — 로그 확인"
+  MODEL=boltz LIST="$TMPLIST" RUNG="$RUNG" TARGET="$T" REPLICAS="$NCOMP" COMPS="$COMPLIST" REPS="$NREPS" \
+    bash comp_x_reps.sh </dev/null || say "  ! 조성 실행에서 오류 — 로그 확인"
 
   say "  ② 원래 MSA $NFULL회 (boltz)"
-  MODEL=boltz RUNG="$RUNG" TARGET="$T" COMPS="full" REPS="$NFULL" \
-    bash comp_x_reps.sh || say "  ! 원래 MSA 실행에서 오류 — 로그 확인"
+  MODEL=boltz LIST="$TMPLIST" RUNG="$RUNG" TARGET="$T" COMPS="full" REPS="$NFULL" \
+    bash comp_x_reps.sh </dev/null || say "  ! 원래 MSA 실행에서 오류 — 로그 확인"
 done
 
 echo
