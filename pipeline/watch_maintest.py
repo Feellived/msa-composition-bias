@@ -28,6 +28,33 @@ WARN_PAT = re.compile(
     re.I)
 
 
+def depth_of(data, listcsv, target, rung):
+    """깊이 폴더 이름 d<서열수>. 생성기(comp_x_reps.sh)와 똑같이 a3m의 '>' 줄을 센다.
+
+    maintest.csv 의 서열 수(neff.tsv 유래)를 그대로 쓰면 어긋나는 타깃이 있다
+    (8sit_HL: 계획표 4034 대 실제 폴더 d4035). 그러면 다 끝난 실행을 0회로 세고
+    같은 계산을 쓰는 실행기가 32회를 통째로 다시 돌린다.
+    """
+    ch = "A"
+    try:
+        with open(listcsv) as fh:
+            for r in csv.DictReader(fh):
+                if r.get("target") == target:
+                    ch = (r.get("ag_chains") or "A").split("|")[0]
+                    break
+    except OSError:
+        pass
+    f = os.path.join(data, "ladders", target, ch, f"rung{rung}.a3m")
+    if not os.path.exists(f):
+        return None
+    n = 0
+    with open(f, errors="replace") as fh:
+        for ln in fh:
+            if ln.startswith(">"):
+                n += 1
+    return f"d{n}"
+
+
 def rows(csv_path):
     with open(csv_path) as fh:
         return [r for r in csv.DictReader(fh) if r.get("status") == "run"]
@@ -64,6 +91,7 @@ def bar(done, want, w=22):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--csv", default="maintest.csv")
+    ap.add_argument("--list", default="sweep_targets.csv")
     ap.add_argument("--data", default=os.environ.get("DATA", "/mnt/data/admuser/msadepth"))
     ap.add_argument("--loop", action="store_true")
     ap.add_argument("--every", type=int, default=60)
@@ -93,7 +121,9 @@ def main():
             t = r["target"]; model = r.get("model") or "protenix"
             want = int(r.get("n_comp") or 6) * int(r.get("n_reps") or 4) + int(r.get("n_full") or 8)
             base = os.path.join(a.data, "compreps", "seedrep_cand", model, t)
-            depth = "d" + str(r.get("n_rows") or "").strip()
+            depth = depth_of(a.data, a.list, t, r.get("rung", "")) \
+                or ("d" + str(r.get("n_rows") or "").strip())
+            mismatch = depth != "d" + str(r.get("n_rows") or "").strip()
             runs = scan(base, depth) if os.path.isdir(base) else []
             other = 0
             if os.path.isdir(base):
@@ -121,6 +151,8 @@ def main():
                 st += f" · 빈 실행 {len(zero)}개"
             if other:
                 st += f" · [다른 깊이 {other}개는 제외]"
+            if mismatch:
+                st += f" · ※계획표 서열수 {r.get('n_rows')} ≠ 실제 폴더 {depth}"
 
             for d, n, _ in runs:
                 lg = os.path.join(d, "run.log")
