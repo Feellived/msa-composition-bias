@@ -43,6 +43,9 @@ HOURS="${HOURS:-12}"
 ONLY="${ONLY:-}"
 ORDER="${ORDER:-Env C RBD HA}"
 APPLY=0; GATE=1
+# 실행 1회에 걸리는 시간(초). 첫 타깃은 이 값으로 예산을 판단하고, 이후에는 실측으로 갱신.
+EST="${EST:-180}"
+OVERRUN="${OVERRUN:-0}"   # 1이면 예산이 모자라도 다음 타깃을 시작한다(예전 동작)
 for arg in "$@"; do
   case "$arg" in
     --apply) APPLY=1 ;;
@@ -139,10 +142,26 @@ n_done=0; n_skip=0
 for row in "${PLAN[@]}"; do
   IFS=$'\t' read -r t grp model rung nrows ncomp nreps nfull stratum neffpk <<< "$row"
   rem=$(left)
-  if [ "$rem" -le 600 ]; then
-    say "예산 소진 — 남은 타깃은 다음 실행에서 이어간다(이어달리기 지원)."; break
+  # 예산은 타깃 경계에서만 본다(타깃을 중간에 끊지 않는다). 그래서 "10분 넘게 남았으면
+  # 시작" 같은 기준으로는 77분짜리 타깃을 38분 남기고 시작해 예산을 크게 넘긴다.
+  # → 이 타깃에 실제로 필요한 시간을 어림해서, 모자라면 시작하지 않는다.
+  have0=$(done_runs "$t" "$model" "$nrows")
+  want0=$(( ncomp * nreps + nfull ))
+  left_runs=$(( want0 - have0 ))
+  [ "$left_runs" -gt 0 ] || left_runs=0
+  need=$(( left_runs * EST ))
+  if [ "$rem" -le 600 ] || { [ "$need" -gt "$rem" ] && [ "$OVERRUN" != "1" ]; }; then
+    if [ "$need" -gt "$rem" ] && [ "$rem" -gt 600 ]; then
+      say "다음 타깃 $t 은 약 $((need/60))분 필요한데 예산이 $((rem/60))분 남았다 → 시작하지 않는다."
+      say "  (타깃을 중간에 끊지 않기 위함. 예산을 넘겨서라도 돌리려면 OVERRUN=1)"
+    else
+      say "예산 소진 — 남은 타깃은 다음 실행에서 이어간다(이어달리기 지원)."
+    fi
+    break
   fi
-  say "───── $t (군 $grp · $model · rung$rung · ${nrows}서열 · Neff80 ${neffpk:--} · ${stratum:--}) · 남은 예산 $((rem/60))분"
+  t_start=$(date +%s)
+  say "───── $t (군 $grp · $model · rung$rung · ${nrows}서열 · Neff80 ${neffpk:--} · ${stratum:--})"
+  say "  남은 예산 $((rem/60))분 · 이 타깃 예상 $((need/60))분 (남은 실행 ${left_runs}회 × 1회 $((EST/60))분 $((EST%60))초)"
 
   if [ $GATE -eq 1 ]; then
     # 판정은 낱말 검색이 아니라 결과 표(CSV)의 verdict 열로 한다.
@@ -183,6 +202,14 @@ GATEPY
     COMPS="full" REPS="$nfull" bash comp_x_reps.sh || say "  !! 원래 MSA 단계에서 오류(로그 확인)"
 
   have=$(done_runs "$t" "$model" "$nrows"); want=$(( ncomp * nreps + nfull ))
+  # 실행 1회 소요 시간을 실측해 다음 타깃의 예산 판단에 쓴다(군마다 항원 크기가 달라
+  # 1회가 2분에서 4분까지 벌어진다).
+  did=$(( have - have0 ))
+  if [ "$did" -gt 0 ]; then
+    EST=$(( ($(date +%s) - t_start) / did ))
+    [ "$EST" -ge 30 ] || EST=30
+    say "  실행 1회 약 $((EST/60))분 $((EST%60))초 (다음 타깃 예산 판단에 사용)"
+  fi
   say "  $t 완료 — 실행 $have/$want"
   n_done=$((n_done+1))
 done
