@@ -120,17 +120,20 @@ echo "$OKLIST"
 TGTS=$(cat results/demo_candidates.txt 2>/dev/null)
 say "데모 후보: ${TGTS:-없음}  (results/demo_candidates.txt)"
 
-# ── 4) (선택) boltz 'ours' 훑기 ───────────────────────────────────────────────
+# ── 4) (선택) boltz 훑기 — 반드시 noconstraint 와 함께 ────────────────────────
+#   ⚠️ 'ours' 만 훑으면 안 된다. 2026-07-29 에 8sit_HL 이 ours 에서 DockQ 0.787 로 대박처럼
+#      보였는데, 제약 없는 팔이 0.818 이었다 = boltz 가 원래 혼자 푸는 복합체였다.
+#      제약 없는 팔보다 나아야 우리 기여다.
 if [ "$SCREEN" = "1" ] && [ -n "$TGTS" ]; then
   if [ -d "$CD" ]; then
-    say "boltz 'ours' 훑기 시작 (타깃 $(echo $TGTS | wc -w)개)"
-    ( cd "$CD" && ARMS=ours MODELS=boltz bash scripts/run_demo_guided.sh "$TGTS" ) || say "! 훑기 중 오류"
+    say "boltz 훑기 시작(noconstraint + ours) (타깃 $(echo $TGTS | wc -w)개)"
+    ( cd "$CD" && ARMS="noconstraint ours" MODELS=boltz bash scripts/run_demo_guided.sh "$TGTS" ) || say "! 훑기 중 오류"
     ( cd "$CD" && python scripts/dockq_demo.py --targets "$TGTS" --models boltz ) || say "! 채점 중 오류"
   else
     say "! $CD 없음 — 훑기 건너뜀"
   fi
 else
   say "훑기는 하지 않았다. 하려면:"
-  say "  cd $CD && ARMS=ours MODELS=boltz bash scripts/run_demo_guided.sh \"$TGTS\""
+  say "  cd $CD && ARMS=\"noconstraint ours\" MODELS=boltz bash scripts/run_demo_guided.sh \"$TGTS\""
 fi
 say "완료."
