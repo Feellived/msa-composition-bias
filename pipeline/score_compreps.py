@@ -144,6 +144,12 @@ def main():
         if not runs:
             print(f"{os.path.basename(fp):11}  (자료 없음)"); continue
         pick = min if a.lower_better else max
+        # 값이 하나도 없는 실행은 뺀다. 예전에는 빈 리스트에 max()를 걸어 ValueError로 죽었다 —
+        # DockQ 환경 없이 돌리면 dockq 열이 통째로 비어서 실제로 그렇게 된다(2026-07-29).
+        runs = {k: v for k, v in runs.items() if v}
+        if not runs:
+            print(f"{tgt or os.path.basename(fp):11}  '{a.label}' 값이 한 개도 없다 — 채점 환경 확인"
+                  f" (dockq 지표면 conda activate DockQ)"); continue
         full = [pick(v) for k, v in runs.items() if k.startswith("seedfull")]
         red = [pick(v) for k, v in runs.items() if not k.startswith("seedfull")]
         if not full or not red:

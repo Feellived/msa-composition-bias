@@ -35,6 +35,11 @@ for T in "$@"; do
     python dump_seedrep_full.py --data "$DATA/compreps" --only "$T" \
            ${DEPTH:+--depth "$DEPTH"} --csv-out "$csv" > "results/dump_${T}.txt" 2>&1
     rc=$?
+    if [ "$rc" = "5" ]; then
+      echo "  !! DockQ 값이 하나도 안 나왔다 — DockQ 환경 밖에서 돌린 것 같다." | tee -a "$log"
+      echo "     conda activate DockQ 후 다시 실행할 것 (recall·overrep 만으로는 ③④가 안 된다)." | tee -a "$log"
+      continue
+    fi
     if [ "$rc" = "4" ]; then
       echo "  !! 깊이 폴더가 여러 개라 멈췄다 — 설계가 다른 실행이 섞이는 것을 막은 것." | tee -a "$log"
       grep -E "깊이 폴더|--depth" "results/dump_${T}.txt" | sed 's/^/     /' | tee -a "$log"
