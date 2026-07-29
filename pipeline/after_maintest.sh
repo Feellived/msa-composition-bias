@@ -92,9 +92,9 @@ while IFS=$'\t' read -r t act have want deps; do
   [ -n "$t" ] || continue
   case "$act" in
     skip|special) continue ;;
-    new)  say "── $t 채점 (새로)";       bash analyze_target.sh "$t"        || { FAIL=$((FAIL+1)); continue; }; NEW=$((NEW+1)) ;;
+    new)  say "── $t 채점 (새로)";       bash analyze_target.sh "$t" </dev/null || { FAIL=$((FAIL+1)); continue; }; NEW=$((NEW+1)) ;;
     redo) say "── $t 재채점 (실행 $have ≠ 설계 $want 또는 깊이 $deps개)"
-          REDO=1 bash analyze_target.sh "$t"                                || { FAIL=$((FAIL+1)); continue; }; REDONE=$((REDONE+1)) ;;
+          REDO=1 bash analyze_target.sh "$t" </dev/null || { FAIL=$((FAIL+1)); continue; }; REDONE=$((REDONE+1)) ;;
   esac
 done <<< "$PLAN"
 say "채점 끝 — 새로 $NEW · 재채점 $REDONE · 실패 $FAIL"
