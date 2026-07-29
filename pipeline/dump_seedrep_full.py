@@ -255,6 +255,17 @@ def main():
                               f"실패한 seed {(sum(lo)/len(lo)) if lo else float('nan'):.2f} (n={len(lo)})")
         print()
 
+    # ⚠️ DockQ 도구가 없으면(= DockQ conda 환경 밖) dockq 열만 통째로 비고, recall·overrep 은
+    #    자체 계산이라 멀쩡히 나온다. 그대로 CSV를 쓰면 뒤 단계가 조용히 무너진다 —
+    #    score_compreps 는 빈 리스트에 max()로 죽고, epitope_cluster·site_reproducibility 는
+    #    대표 자세를 DockQ 최고값으로 고르므로 "계산된 실행이 없음"이 된다(2026-07-29 실제 발생).
+    #    반쪽짜리 파일을 남기면 다음 실행이 재계산을 건너뛰므로, 아예 쓰지 않고 멈춘다.
+    if allrows and not any(r["dockq"] != "" for r in allrows):
+        print(f"!! 자세 {len(allrows)}개를 훑었는데 DockQ 값이 한 개도 없다 (recall 은 계산됨).")
+        print("   → DockQ 도구를 못 찾은 것이다. conda activate DockQ 후 다시 실행할 것.")
+        print("   반쪽짜리 원자료를 남기지 않으려고 파일을 쓰지 않았다.")
+        raise SystemExit(5)
+
     if allrows:
         os.makedirs(os.path.dirname(a.csv_out) or ".", exist_ok=True)
         with open(a.csv_out, "w", newline="") as fh:
