@@ -27,6 +27,9 @@ WAIT_SEC="${WAIT_SEC:-300}"
 SCREEN="${SCREEN:-0}"
 NOWAIT="${NOWAIT:-0}"
 CD="${CD:-$HOME/projects/bk21-antibody-ml/consensus_docking}"
+# ⚠️ 채점에는 DockQ 도구가 필요하다. tmux 가 물려받은 env 에 없으면 dockq 열만 조용히 비고
+#    자리겹침만 나온다(2026-07-30 실제로 그랬다). 그래서 env 를 명시해 부른다.
+DOCKQ_ENV="${DOCKQ_ENV:-boltz}"
 # ⚠️ 설계가 일괄 규격과 다른 복합체는 실행 수 대조에서 빼야 한다.
 #    8ulr_HL = 확정 실험(조성 8 × 반복 5 + 예산 맞춘 통제 → 42회). maintest.csv 에는
 #    일괄 설계(32)가 적혀 있어 '낡음'으로 오탐된다. 재채점해도 같은 자료를 다시 읽을 뿐이지만
@@ -43,6 +46,13 @@ if [ -z "${AM_TEED:-}" ]; then
 fi
 say(){ echo "[$(date '+%m-%d %H:%M:%S')] [뒤처리] $*"; }
 [ -f "$CSV" ] || { say "!! $CSV 없음"; exit 1; }
+# 게이트: 채점 env 에 DockQ 도구가 실제로 있는지 먼저 본다.
+if ! conda run -n "$DOCKQ_ENV" bash -c 'command -v DockQ >/dev/null' 2>/dev/null; then
+  say "!! env '$DOCKQ_ENV' 에서 DockQ 를 못 찾았다 — 채점하면 dockq 열이 통째로 빈다."
+  say "   DOCKQ_ENV=<올바른 env> 로 다시 실행할 것. 확인: conda run -n <env> which DockQ"
+  exit 1
+fi
+say "채점 env = $DOCKQ_ENV (DockQ 확인됨)"
 
 # ── 1) 예측이 끝나기를 기다린다 ───────────────────────────────────────────────
 busy(){ pgrep -f "comp_x_reps.sh" >/dev/null || pgrep -f "run_maintest.sh --apply" >/dev/null; }
@@ -92,9 +102,9 @@ while IFS=$'\t' read -r t act have want deps; do
   [ -n "$t" ] || continue
   case "$act" in
     skip|special) continue ;;
-    new)  say "── $t 채점 (새로)";       bash analyze_target.sh "$t" </dev/null || { FAIL=$((FAIL+1)); continue; }; NEW=$((NEW+1)) ;;
+    new)  say "── $t 채점 (새로)";       conda run -n "$DOCKQ_ENV" --no-capture-output bash analyze_target.sh "$t" </dev/null || { FAIL=$((FAIL+1)); continue; }; NEW=$((NEW+1)) ;;
     redo) say "── $t 재채점 (실행 $have ≠ 설계 $want 또는 깊이 $deps개)"
-          REDO=1 bash analyze_target.sh "$t" </dev/null || { FAIL=$((FAIL+1)); continue; }; REDONE=$((REDONE+1)) ;;
+          REDO=1 conda run -n "$DOCKQ_ENV" --no-capture-output bash analyze_target.sh "$t" </dev/null || { FAIL=$((FAIL+1)); continue; }; REDONE=$((REDONE+1)) ;;
   esac
 done <<< "$PLAN"
 say "채점 끝 — 새로 $NEW · 재채점 $REDONE · 실패 $FAIL"
@@ -128,7 +138,7 @@ if [ "$SCREEN" = "1" ] && [ -n "$TGTS" ]; then
   if [ -d "$CD" ]; then
     say "boltz 훑기 시작(noconstraint + ours) (타깃 $(echo $TGTS | wc -w)개)"
     ( cd "$CD" && ARMS="noconstraint ours" MODELS=boltz bash scripts/run_demo_guided.sh "$TGTS" ) || say "! 훑기 중 오류"
-    ( cd "$CD" && python scripts/dockq_demo.py --targets "$TGTS" --models boltz ) || say "! 채점 중 오류"
+    ( cd "$CD" && conda run -n "$DOCKQ_ENV" --no-capture-output python scripts/dockq_demo.py --targets "$TGTS" --models boltz ) || say "! 채점 중 오류"
   else
     say "! $CD 없음 — 훑기 건너뜀"
   fi
