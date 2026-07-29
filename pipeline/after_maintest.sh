@@ -27,6 +27,11 @@ WAIT_SEC="${WAIT_SEC:-300}"
 SCREEN="${SCREEN:-0}"
 NOWAIT="${NOWAIT:-0}"
 CD="${CD:-$HOME/projects/bk21-antibody-ml/consensus_docking}"
+# ⚠️ 설계가 일괄 규격과 다른 복합체는 실행 수 대조에서 빼야 한다.
+#    8ulr_HL = 확정 실험(조성 8 × 반복 5 + 예산 맞춘 통제 → 42회). maintest.csv 에는
+#    일괄 설계(32)가 적혀 있어 '낡음'으로 오탐된다. 재채점해도 같은 자료를 다시 읽을 뿐이지만
+#    확정 결과 파일을 건드릴 이유가 없다.
+SPECIAL="${SPECIAL:-8ulr_HL}"
 APPLY=0
 for a in "$@"; do case "$a" in --apply) APPLY=1 ;; *) echo "!! 모르는 인자: $a"; exit 1 ;; esac; done
 
@@ -52,8 +57,9 @@ fi
 
 # ── 2) 채점 — 설계값과 실행 수가 다르면 강제 재채점 ───────────────────────────
 say "채점 대상 판정 (설계값 = 조성 수 × 반복 수 + 원래 MSA 횟수)"
-PLAN=$(python3 - "$CSV" <<'PY'
+PLAN=$(SPECIAL="$SPECIAL" python3 - "$CSV" <<'PY'
 import csv, os, sys
+special = set(os.environ.get("SPECIAL", "").split())
 for r in csv.DictReader(open(sys.argv[1])):
     if r.get("status") != "run":
         continue
@@ -65,14 +71,16 @@ for r in csv.DictReader(open(sys.argv[1])):
         rows = list(csv.DictReader(open(p)))
         have = len({x["seed"] for x in rows})
         deps = len({x["depth"] for x in rows})
-    if not os.path.exists(p):        act = "new"
-    elif have != want or deps != 1:  act = "redo"
-    else:                            act = "skip"
+    if not os.path.exists(p):          act = "new"
+    elif t in special:                 act = "special"   # 설계가 달라 실행 수 대조를 안 한다
+    elif have != want or deps != 1:    act = "redo"
+    else:                              act = "skip"
     print(f"{t}\t{act}\t{have}\t{want}\t{deps}")
 PY
 )
-echo "$PLAN" | awk -F'\t' 'BEGIN{printf "  %-12s %-6s %s\n","타깃","조치","실행/설계·깊이수"}
-  {printf "  %-12s %-6s %s/%s·%s%s\n",$1,$2,$3,$4,$5,($2=="redo"?"   ← 낡음, 강제 재채점":"")}'
+echo "$PLAN" | awk -F'\t' 'BEGIN{printf "  %-12s %-8s %s\n","타깃","조치","실행/설계·깊이수"}
+  {n=($2=="redo"?"   ← 낡음, 강제 재채점":($2=="special"?"   ← 설계가 달라 그대로 둠":""));
+   printf "  %-12s %-8s %s/%s·%s%s\n",$1,$2,$3,$4,$5,n}'
 
 if [ $APPLY -eq 0 ]; then
   say "dry-run 끝. 실제로 하려면 --apply"
@@ -83,7 +91,7 @@ NEW=0; REDONE=0; FAIL=0
 while IFS=$'\t' read -r t act have want deps; do
   [ -n "$t" ] || continue
   case "$act" in
-    skip) continue ;;
+    skip|special) continue ;;
     new)  say "── $t 채점 (새로)";       bash analyze_target.sh "$t"        || { FAIL=$((FAIL+1)); continue; }; NEW=$((NEW+1)) ;;
     redo) say "── $t 재채점 (실행 $have ≠ 설계 $want 또는 깊이 $deps개)"
           REDO=1 bash analyze_target.sh "$t"                                || { FAIL=$((FAIL+1)); continue; }; REDONE=$((REDONE+1)) ;;
