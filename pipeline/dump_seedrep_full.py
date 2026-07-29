@@ -63,7 +63,13 @@ def main():
     ap.add_argument("--cutoff", type=float, default=5.0)
     ap.add_argument("--only", default="")
     ap.add_argument("--maintest", default="maintest.csv",
-                    help="--cand 에 없는 타깃은 여기(본 검정 명단)에서 찾아 채점한다")
+                    help="본 검정 명단. --only 는 이 명단(status=run)을 먼저 본다")
+    ap.add_argument("--cand-first", action="store_true",
+                    help="옛 후보 명단(--cand)을 우선한다. 옛 arm 결과를 다시 볼 때만 쓸 것")
+    ap.add_argument("--depth", default="",
+                    help="깊이 폴더를 하나로 못박는다(예: d90 또는 90). 폴더가 여럿이면 필수")
+    ap.add_argument("--all-depths", action="store_true",
+                    help="깊이 폴더 여러 개를 한 표에 합친다. 설계가 다른 실행이 섞이므로 권장하지 않음")
     ap.add_argument("--csv-out", default="results/seedrep_poses.csv")
     a = ap.parse_args()
 
@@ -75,27 +81,39 @@ def main():
               f" (results/seedrep_poses.csv 보존). 전체 갱신은 --only 없이 실행.\n")
 
     # 채점 대상 만들기.
-    #   원래는 seedrep_cand.csv(예전 후보 5개)만 돌았다 → 본 검정 29개 타깃은 한 번도
-    #   순회되지 않아 결과 파일이 안 생기고, 그런데 경고도 없었다(조용한 실패).
-    #   이제 --cand 에 없으면 maintest.csv 의 status=run 행으로 채점한다.
+    #   ⚠️ 명단이 둘이다 — seedrep_cand.csv(옛 후보 5개, 일부는 폐기된 boltz arm)와
+    #      maintest.csv(본 검정). 두 명단에 같은 타깃이 있으면 어느 쪽을 쓰느냐로
+    #      모델·깊이가 달라진다. 예전에는 옛 후보를 우선해서, 본 검정 타깃인데도
+    #      없어진 boltz 폴더를 찾다가 "자료 없음"으로 끝났다(2026-07-29 9y0a_AB).
+    #   → --only 는 본 검정 명단을 먼저 본다. 옛 arm을 보려면 --cand-first.
     cand_rows = list(csv.DictReader(open(a.cand))) if os.path.exists(a.cand) else []
     known = {r["target"] for r in cand_rows}
-    if a.only and a.only not in known:
-        got = None
-        if os.path.exists(a.maintest):
-            for r in csv.DictReader(open(a.maintest)):
-                if r.get("target") == a.only and r.get("status") == "run":
-                    got = dict(target=r["target"], model=r.get("model") or "protenix",
-                               peak_rung=r.get("rung") or "0",
-                               replicas=r.get("n_comp") or "6", obs_dq="", obs_rec="")
-                    break
-        if got is None:
-            print(f"!! {a.only} 는 {a.cand} 에도 {a.maintest} 에도 없다 — 채점할 대상이 없다.")
+
+    def from_maintest(name):
+        if not os.path.exists(a.maintest):
+            return None
+        for r in csv.DictReader(open(a.maintest)):
+            if r.get("target") == name and r.get("status") == "run":
+                return dict(target=r["target"], model=r.get("model") or "protenix",
+                            peak_rung=r.get("rung") or "0",
+                            replicas=r.get("n_comp") or "6", obs_dq="", obs_rec="",
+                            # 본 검정이 쓴 깊이(서열 수). 같은 타깃 밑에 옛 arm 깊이 폴더가
+                            # 같이 있을 때 어느 쪽이 본 검정인지 가리는 데 쓴다.
+                            depth_hint=(r.get("n_rows") or ""))
+        return None
+
+    if a.only:
+        got = None if a.cand_first else from_maintest(a.only)
+        if got is not None:
+            if a.only in known:
+                print(f"[안내] {a.only} 는 두 명단에 다 있다 → 본 검정({a.maintest}) 행을 쓴다."
+                      f" 옛 후보 행으로 보려면 --cand-first.")
+                cand_rows = [r for r in cand_rows if r["target"] != a.only]
+            cand_rows.append(got)
+        elif a.only not in known:
+            print(f"!! {a.only} 는 {a.cand} 에도 {a.maintest}(status=run) 에도 없다 — 채점할 대상이 없다.")
             print(f"   본 검정 타깃이면 pick_maintest_depth.py 로 {a.maintest} 를 먼저 만들 것.")
             raise SystemExit(2)
-        cand_rows.append(got)
-        print(f"[안내] {a.only} 는 {a.cand} 에 없어 {a.maintest} 의 본 검정 행으로 채점한다"
-              f" (모델 {got['model']} · 깊이단계 {got['peak_rung']}).\n")
 
     grp = {r["target"]: r.get("group", "") for r in csv.DictReader(open(a.list))}
     pf = load_pf(a.pf)
@@ -157,6 +175,28 @@ def main():
                 print(f"\n[③ seed 복제] 예측 폴더 없음: {base}")
                 print("     → 미실행. run_seedrep_cand.sh 로그에서 이 후보의 메시지를 확인할 것.\n")
                 continue
+            # ⚠️ 깊이 폴더가 둘 이상이면 설계가 다른 실행(옛 arm + 본 검정)이 한 타깃 밑에
+            #    같이 있는 것이다. 아래 채점기들은 깊이를 보지 않고 폴더 이름(seedfull/c#_r#)으로만
+            #    묶으므로, 그대로 두면 두 설계가 한 표에 섞인 채 이질성 검정에 들어간다
+            #    (2026-07-29 8k5g_HL d58+d90 · 8q7s_C d35+d86). 조용히 섞지 말고 여기서 멈춘다.
+            if len(ddirs) > 1 and not a.all_depths:
+                want = (a.depth or r.get("depth_hint") or "").strip()
+                if want and not want.startswith("d"):
+                    want = "d" + want
+                keep = [d for d in ddirs if os.path.basename(d) == want]
+                if keep:
+                    src = "--depth" if a.depth else f"{a.maintest} 의 n_rows"
+                    print(f"\n[③ seed 복제] 깊이 폴더 {len(ddirs)}개 발견 "
+                          f"({', '.join(os.path.basename(d) for d in ddirs)})"
+                          f" → {want} 만 쓴다 ({src}).")
+                    ddirs = keep
+                else:
+                    print(f"\n[③ seed 복제] !! 깊이 폴더가 여러 개다: "
+                          f"{', '.join(os.path.basename(d) for d in ddirs)}")
+                    print("     설계가 다른 실행이 섞여 있을 수 있어 그대로 채점하지 않는다.")
+                    print(f"     어느 것이 본 검정인지 정해서 다시 실행할 것 — 예: --depth {os.path.basename(ddirs[-1])}")
+                    print("     (정말 합쳐서 보려면 --all-depths)")
+                    raise SystemExit(4)
             for ddir in ddirs:
                 depth = os.path.basename(ddir)
                 sdirs = sorted(glob.glob(os.path.join(ddir, "seed*")))
