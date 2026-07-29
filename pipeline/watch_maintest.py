@@ -47,10 +47,18 @@ def depth_of(data, listcsv, target, rung):
     f = os.path.join(data, "ladders", target, ch, f"rung{rung}.a3m")
     if not os.path.exists(f):
         return None
+    # 생성기(comp_x_reps.sh)는 grep -c '^>' 로 센다. 같은 계산을 파이썬으로 다시 구현하면
+    # 파일에 따라 한 줄씩 어긋난다(8sit_HL: grep 4035 대 파이썬 4034 → 폴더 d4035 를 못 찾음).
+    # 그래서 같은 명령을 그대로 부른다 — 정의상 항상 일치한다.
+    try:
+        out = subprocess.run(["grep", "-c", "^>", f], capture_output=True, text=True)
+        return f"d{int(out.stdout.strip())}"
+    except Exception:
+        pass
     n = 0
-    with open(f, errors="replace") as fh:
+    with open(f, "rb") as fh:
         for ln in fh:
-            if ln.startswith(">"):
+            if ln.startswith(b">"):
                 n += 1
     return f"d{n}"
 
@@ -124,6 +132,13 @@ def main():
             depth = depth_of(a.data, a.list, t, r.get("rung", "")) \
                 or ("d" + str(r.get("n_rows") or "").strip())
             mismatch = depth != "d" + str(r.get("n_rows") or "").strip()
+            # 그래도 그 폴더가 없고 실제 출력 폴더가 딱 하나면 그것을 따른다.
+            # (세는 방법이 또 어긋나더라도 표시가 틀리지 않도록 하는 마지막 안전장치)
+            if os.path.isdir(base) and not os.path.isdir(os.path.join(base, depth)):
+                cands = [os.path.basename(x) for x in glob.glob(os.path.join(base, "d*"))
+                         if os.path.isdir(x)]
+                if len(cands) == 1:
+                    depth = cands[0]; mismatch = True
             runs = scan(base, depth) if os.path.isdir(base) else []
             other = 0
             if os.path.isdir(base):
