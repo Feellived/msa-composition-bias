@@ -41,7 +41,8 @@ for a in "$@"; do case "$a" in --apply) APPLY=1 ;; *) echo "!! 모르는 인자:
 if [ -z "${AM_TEED:-}" ]; then
   AMLOG="${AMLOG:-$DATA/logs/after_maintest_$(date +%m%d_%H%M%S).log}"
   mkdir -p "$(dirname "$AMLOG")" 2>/dev/null || AMLOG="/tmp/$(basename "$AMLOG")"
-  AM_TEED=1 bash "$0" "$@" 2>&1 | tee -a "$AMLOG"
+  echo "[로그] $AMLOG   ← 다른 창에서:  tail -f $AMLOG"
+  AM_TEED=1 AMLOG="$AMLOG" bash "$0" "$@" 2>&1 | tee -a "$AMLOG"
   rc=${PIPESTATUS[0]}; echo "[로그] $AMLOG"; exit "$rc"
 fi
 say(){ echo "[$(date '+%m-%d %H:%M:%S')] [뒤처리] $*"; }
@@ -88,15 +89,22 @@ for r in csv.DictReader(open(sys.argv[1])):
         rows = list(csv.DictReader(open(p)))
         have = len({x["seed"] for x in rows})
         deps = len({x["depth"] for x in rows})
+    # ⚠️ compreps CSV 만 보면 안 된다. analyze_target.sh 는 채점(dump) → 통계 → 결합자리 순으로
+    #    돌고, 중간에 끊기면 compreps CSV 는 온전한데 하위 산출물이 없는 상태가 된다.
+    #    그 상태를 'skip' 으로 판정하면 그 복합체는 영원히 채점되지 않고 조용히 빠진다.
+    down = [f"results/summary_{t}_recall.csv", f"results/summary_{t}_dockq.csv",
+            f"results/site_repro_{t}.csv", f"results/sites_{t}.json"]
+    missing_down = [os.path.basename(x) for x in down if not os.path.exists(x)]
     if not os.path.exists(p):          act = "new"
     elif t in special:                 act = "special"   # 설계가 달라 실행 수 대조를 안 한다
     elif have != want or deps != 1:    act = "redo"
+    elif missing_down:                 act = "redo"      # 하위 산출물이 빠졌다(중단된 흔적)
     else:                              act = "skip"
-    print(f"{t}\t{act}\t{have}\t{want}\t{deps}")
+    print(f"{t}\t{act}\t{have}\t{want}\t{deps}\t{','.join(missing_down)}")
 PY
 )
 echo "$PLAN" | awk -F'\t' 'BEGIN{printf "  %-12s %-8s %s\n","타깃","조치","실행/설계·깊이수"}
-  {n=($2=="redo"?"   ← 낡음, 강제 재채점":($2=="special"?"   ← 설계가 달라 그대로 둠":""));
+  {n=($2=="redo"?($6!=""?"   ← 하위 산출물 없음("$6") 재채점":"   ← 낡음, 강제 재채점"):($2=="special"?"   ← 설계가 달라 그대로 둠":""));
    printf "  %-12s %-8s %s/%s·%s%s\n",$1,$2,$3,$4,$5,n}'
 
 if [ $APPLY -eq 0 ]; then
@@ -104,17 +112,23 @@ if [ $APPLY -eq 0 ]; then
   exit 0
 fi
 
-NEW=0; REDONE=0; FAIL=0
-while IFS=$'\t' read -r t act have want deps; do
+TODO=$(echo "$PLAN" | awk -F'\t' '$2=="new"||$2=="redo"' | wc -l | tr -d ' ')
+say "채점할 복합체 ${TODO}개 (하나에 5~8분 걸린다 — DockQ 를 자세 160개에 대해 돌린다)"
+T0=$(date +%s); I=0; NEW=0; REDONE=0; FAIL=0
+while IFS=$'\t' read -r t act have want deps miss; do
   [ -n "$t" ] || continue
-  case "$act" in
-    skip|special) continue ;;
-    new)  say "── $t 채점 (새로)";       bash analyze_target.sh "$t" </dev/null || { FAIL=$((FAIL+1)); continue; }; NEW=$((NEW+1)) ;;
-    redo) say "── $t 재채점 (실행 $have ≠ 설계 $want 또는 깊이 $deps개)"
-          REDO=1 bash analyze_target.sh "$t" </dev/null || { FAIL=$((FAIL+1)); continue; }; REDONE=$((REDONE+1)) ;;
-  esac
+  case "$act" in skip|special) continue ;; esac
+  I=$((I+1)); TS=$(date +%s)
+  if [ "$act" = "new" ]; then
+    say "[$I/$TODO] $t 채점 시작 (새로) · 경과 $(( (TS-T0)/60 ))분"
+    bash analyze_target.sh "$t" </dev/null && NEW=$((NEW+1)) || FAIL=$((FAIL+1))
+  else
+    say "[$I/$TODO] $t 재채점 시작 (실행 $have/설계 $want · 깊이 $deps${miss:+ · 없던 파일 $miss}) · 경과 $(( (TS-T0)/60 ))분"
+    REDO=1 bash analyze_target.sh "$t" </dev/null && REDONE=$((REDONE+1)) || FAIL=$((FAIL+1))
+  fi
+  say "[$I/$TODO] $t 끝 ($(( ($(date +%s)-TS)/60 ))분 걸림)"
 done <<< "$PLAN"
-say "채점 끝 — 새로 $NEW · 재채점 $REDONE · 실패 $FAIL"
+say "채점 끝 — 새로 $NEW · 재채점 $REDONE · 실패 $FAIL · 총 $(( ($(date +%s)-T0)/60 ))분"
 
 # ── 3) 데모가 성립하는 복합체 목록 ────────────────────────────────────────────
 say "데모 성립 여부 (고른 후보 ≠ 원래 MSA 자리여야 대조가 성립)"
