@@ -24,20 +24,39 @@ for T in "$@"; do
   echo ""
   echo "████████████████ $T ████████████████"
   csv="results/compreps_${T}.csv"
-  python dump_seedrep_full.py --data "$DATA/compreps" --only "$T" --csv-out "$csv" > "results/dump_${T}.txt" 2>&1
-  if [ ! -s "$csv" ]; then
-    echo "  !! 자료 없음 (예측이 아직 없거나 실패) — results/dump_${T}.txt 확인"; continue
+  log="results/analyze_${T}.txt"
+  : > "$log"                      # 화면에 나오는 통계를 파일로도 남긴다(터미널을 잃어도 보존)
+  # 자세 단위 채점(DockQ 160회)이 제일 비싸다 — 이미 있으면 다시 계산하지 않는다.
+  if [ -s "$csv" ] && [ "${REDO:-0}" != "1" ]; then
+    echo "  (자세 단위 채점 결과가 이미 있다 — 재계산 생략. 강제로 다시 하려면 REDO=1)" | tee -a "$log"
+  else
+    python dump_seedrep_full.py --data "$DATA/compreps" --only "$T" --csv-out "$csv" > "results/dump_${T}.txt" 2>&1
   fi
-  echo "── ②-a 자세 정확도(DockQ, 높을수록 좋음) ──"
-  python score_compreps.py --csv "$csv" --label dockq
-  echo "── ②-b 진짜 결합자리 겹침(높을수록 좋음) ──"
-  python score_compreps.py --csv "$csv" --label recall --succ-th 0.4
-  echo "── ②-c 흔한 자리 겹침(낮을수록 좋음 = 편향 이탈) ──"
-  python score_compreps.py --csv "$csv" --label overrep --lower-better --succ-th 0.3
-  echo "── ③ 기제(결합자리) ──"
-  python epitope_cluster.py --csv "$csv" --data "$DATA/compreps"
-  echo "── ④ 핵심: 조성이 자리를 정하나 + 후보 몇 개 ──"
-  python site_reproducibility.py --csv "$csv" --data "$DATA/compreps"
+  if [ ! -s "$csv" ]; then
+    echo "  !! 자료 없음 (예측이 아직 없거나 실패) — results/dump_${T}.txt 확인" | tee -a "$log"; continue
+  fi
+  # ⚠️ --out 을 지정하지 않으면 세 지표가 전부 results/compreps_summary.csv 한 파일에
+  #    덮어써져, 타깃 29개 x 지표 3종 = 87번 중 마지막 하나만 남는다(2026-07-29 발견).
+  echo "── ②-a 자세 정확도(DockQ, 높을수록 좋음) ──" | tee -a "$log"
+  python score_compreps.py --csv "$csv" --label dockq \
+         --out "results/summary_${T}_dockq.csv" 2>&1 | tee -a "$log"
+  echo "── ②-b 진짜 결합자리 겹침(높을수록 좋음) ──" | tee -a "$log"
+  python score_compreps.py --csv "$csv" --label recall --succ-th 0.4 \
+         --out "results/summary_${T}_recall.csv" 2>&1 | tee -a "$log"
+  echo "── ②-c 흔한 자리 겹침(낮을수록 좋음 = 편향 이탈) ──" | tee -a "$log"
+  python score_compreps.py --csv "$csv" --label overrep --lower-better --succ-th 0.3 \
+         --out "results/summary_${T}_overrep.csv" 2>&1 | tee -a "$log"
+  echo "── ③ 기제(결합자리) ──" | tee -a "$log"
+  python epitope_cluster.py --csv "$csv" --data "$DATA/compreps" 2>&1 | tee -a "$log"
+  echo "── ④ 핵심: 조성이 자리를 정하나 + 후보 몇 개 ──" | tee -a "$log"
+  python site_reproducibility.py --csv "$csv" --data "$DATA/compreps" 2>&1 | tee -a "$log"
 done
 echo ""
-echo "요약표: results/compreps_summary.csv · 그림용: results/epitope_cluster_<타깃>.csv · 후보표: results/site_repro_<타깃>.csv"
+echo "타깃마다 남는 것:"
+echo "  results/compreps_<타깃>.csv      자세 단위 원자료(실행 x 자세)"
+echo "  results/summary_<타깃>_<지표>.csv 지표별 요약(이질성 p, 성공 수, 검정 p)"
+echo "  results/epitope_cluster_<타깃>.csv 결합자리 무리"
+echo "  results/site_repro_<타깃>.csv     조성이 자리를 정하나(핵심)"
+echo "  results/analyze_<타깃>.txt        위 화면 출력 전체"
+echo ""
+echo "전부 끝나면 한 파일로 모으기:  python collect_results.py"
