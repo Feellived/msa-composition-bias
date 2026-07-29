@@ -63,7 +63,8 @@ for T in "$@"; do
   echo "── ③ 기제(결합자리) ──" | tee -a "$log"
   python epitope_cluster.py --csv "$csv" --data "$DATA/compreps" 2>&1 | tee -a "$log"
   echo "── ④ 핵심: 조성이 자리를 정하나 + 후보 몇 개 ──" | tee -a "$log"
-  python site_reproducibility.py --csv "$csv" --data "$DATA/compreps" 2>&1 | tee -a "$log"
+  # --dump-sites: 후보 자리의 잔기 목록을 results/sites_<타깃>.json 으로. 유도 재도킹 데모 입력.
+  python site_reproducibility.py --csv "$csv" --data "$DATA/compreps" --dump-sites 2>&1 | tee -a "$log"
 done
 echo ""
 echo "타깃마다 남는 것:"

@@ -99,6 +99,9 @@ def main():
     ap.add_argument("--nperm", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--out", default="")
+    ap.add_argument("--dump-sites", nargs="?", const="AUTO", default="",
+                    help="후보 자리의 '잔기 목록'을 JSON으로 쓴다(경로 생략 시 results/sites_<타깃>.json). "
+                         "CSV에는 잔기 수만 있어 유도 재도킹(guided) 입력을 만들 수 없다.")
     a = ap.parse_args()
 
     rows = list(csv.DictReader(open(a.csv)))
@@ -193,6 +196,7 @@ def main():
     print(f"  {'후보':5}{'조성수':7}{'잔기':6}{'진짜 자리 덮음':>14}{'예측 중 진짜':>13}   조성")
     print("  " + "-" * 74)
     out = []
+    sites = []
     for ci, ix in enumerate(cl, 1):
         u = set()
         for i in ix:
@@ -205,6 +209,14 @@ def main():
         out.append(dict(target=tgt, model=model, depth=depth, cand=ci, n_comp=len(ix),
                         n_res=len(u), true_covered=round(rec, 4), precision=round(pre, 4),
                         comps=names))
+        # 잔기 키 = (항원 사슬 순번, 그 사슬 참조서열에서의 0-based 위치).
+        # 유도 재도킹은 여기서 1-based 서열 위치로 바꿔 쓴다(sites_to_pocket.py).
+        sites.append(dict(cand=ci, n_comp=len(ix), comps=names.split(","),
+                          residues=sorted([list(k) for k in u]),
+                          # ⚠️ 아래 둘은 정답 구조를 본 값이다. 보고용이며 '고르는 데' 쓰면 안 된다.
+                          #    rank_sites.py 는 읽을 때 이 키를 버리고 그 사실을 화면에 알린다.
+                          true_covered=round(rec, 4), precision=round(pre, 4),
+                          from_full_msa=any(c.startswith("seedfull") for c in names.split(","))))
     good = [o for o in out if o["true_covered"] >= 0.5]
     print(f"\n  → 후보 {len(cl)}개 중 진짜 자리를 절반 이상 덮는 것 **{len(good)}개**"
           + (f" (후보 {', '.join(str(o['cand']) for o in good)})" if good else ""))
@@ -223,6 +235,18 @@ def main():
                      perm_p=round(p, 5), n_cand=len(cl))
             w.writerow(o)
     print(f"\n→ {path}")
+
+    # ── 유도 재도킹(guided)용 잔기 목록 ───────────────────────────────────────
+    if a.dump_sites:
+        sp = f"results/sites_{tgt}.json" if a.dump_sites == "AUTO" else a.dump_sites
+        os.makedirs(os.path.dirname(sp) or ".", exist_ok=True)
+        json.dump(dict(target=tgt, model=model, depth=depth, cutoff=a.cutoff,
+                       n_true_res=len(true), perm_p=round(p, 5),
+                       within=round(win, 4), between=round(btw, 4),
+                       candidates=sites),
+                  open(sp, "w"), indent=1)
+        nfull = sum(1 for s in sites if s["from_full_msa"])
+        print(f"→ {sp}  (후보 {len(sites)}개 · 잔기 목록 포함 · 원래 MSA가 속한 후보 {nfull}개)")
 
 
 if __name__ == "__main__":
