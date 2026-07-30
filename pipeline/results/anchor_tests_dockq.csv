@@ -1,2 +1,31 @@
 target,metric,thr,n_comp,n_runs,comp_succ,comp_runs,full_succ,full_runs,stat,perm_p,comp_rate,full_rate,direction,per_group
+8k3k_D,dockq,0.49,6,44,0,24,0,20,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/20
+8k46_I,dockq,0.49,6,44,0,24,0,20,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/20
+8k5g_HL,dockq,0.49,6,32,2,24,1,8,8.339,0.22122,0.0833,0.125,—,seed0:2/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:1/8
+8k5h_HL,dockq,0.49,6,32,0,24,1,8,2.872,1.0,0.0,0.125,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:1/8
+8kep_HL,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+8q7s_C,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+8q7s_H,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+8q7s_O,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+8siq_HL,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+8sis_HL,dockq,0.49,6,44,0,24,0,20,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/20
+8sit_HL,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+8t4a_PR,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+8t4d_OQ,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+8tp5_HL,dockq,0.49,6,44,0,24,0,20,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/20
+8u44_ST,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
 8ulr_HL,dockq,0.49,8,62,14,32,1,30,41.846,0.0,0.4375,0.0333,조성 우세 ★,seed0:0/4 seed1:1/4 seed2:0/4 seed3:4/4 seed4:4/4 seed5:1/4 seed6:1/4 seed7:3/4 seedfull:1/30
+8ume_HL,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+8xsi_HL,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+9azr_HL,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+9azt_HL,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+9azv_HL,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+9b7g_QP,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+9bdg_FI,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+9kkj_HL,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+9ml9_HL,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+9mqr_DE,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+9w43_AB,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+9y0a_AB,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+9yc6_HL,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+9zdu_HL,dockq,0.49,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
