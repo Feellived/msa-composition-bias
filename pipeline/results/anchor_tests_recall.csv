@@ -1,0 +1,2 @@
+target,metric,thr,n_comp,n_runs,comp_succ,comp_runs,full_succ,full_runs,stat,perm_p,comp_rate,full_rate,direction,per_group
+8k3k_D,recall,0.4,6,44,18,24,0,20,53.989,0.0,0.75,0.0,조성 우세 ★,seed0:4/4 seed1:4/4 seed2:2/4 seed3:4/4 seed4:4/4 seed5:0/4 seedfull:0/20
