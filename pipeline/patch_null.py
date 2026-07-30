@@ -60,7 +60,7 @@ def main():
 
     hdr = f"{'복합체':<11}{'표면':>6}{'결합자리':>8}{'비율':>8}" + \
           "".join(f"{f'≥{t:.0%} 위치':>12}" for t in ths)
-    print(hdr); print("-" * len(hdr.encode("utf-8")) // 2)
+    print(hdr); print("-" * 78)
 
     for t in ts:
         nat = os.path.join(a.root, "targets", t, "native.cif")
