@@ -1,0 +1,11 @@
+target,pdb,group,ab,dirtype,ag_chains,label
+8p5m_GL,8p5m,RBD,A,targets,A,offhot:인기부위가장자리
+8sdf_HL,8sdf,RBD,B,targets,A,offhot:숨은면
+8siq_HL,8siq,RBD,B,targets,A,offhot:코어
+8sis_HL,8sis,RBD,B,targets,A,offhot:코어와그밖
+8sit_HL,8sit,RBD,B,targets,A,offhot:코어
+8xsi_HL,8xsi,RBD,B,targets,A,offhot:숨은면
+9ml8_HL,9ml8,RBD,B,targets,A,offhot:숨은면
+9ml9_HL,9ml9,RBD,B,targets,A,offhot:코어
+9sbb_HL,9sbb,RBD,B,targets,A,offhot:그밖
+9zdu_HL,9zdu,RBD,B,targets,A,offhot:코어

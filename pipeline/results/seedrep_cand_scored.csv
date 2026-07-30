@@ -1,0 +1,5 @@
+target,model,depth,n_seed,dq_mean,dq_sd,dq_min,dq_max,n_ge49,rec_mean,obs_dq
+8ulr_HL,protenix,d1746,3,0.024,0.018,0.011,0.049,0,0.235,0.66
+8txu_HL,boltz,d413,8,0.109,0.19,0.003,0.607,1,0.28,0.53
+9y0a_AB,boltz,d35,8,0.375,0.325,0.053,0.779,4,0.424,0.72
+8y6a_CD,boltz,d3,8,0.161,0.231,0.041,0.763,1,0.25,0.80

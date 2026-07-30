@@ -1,0 +1,16 @@
+target,model,depth,seed,pose,dockq,recall
+8ulr_HL,protenix,d1746,seed0,8ulr_hl_sample_0.cif,0.011,0.0217
+8ulr_HL,protenix,d1746,seed0,8ulr_hl_sample_1.cif,0.011,0.2472
+8ulr_HL,protenix,d1746,seed0,8ulr_hl_sample_2.cif,0.009,0.0
+8ulr_HL,protenix,d1746,seed0,8ulr_hl_sample_3.cif,0.008,0.0
+8ulr_HL,protenix,d1746,seed0,8ulr_hl_sample_4.cif,0.009,0.0
+8ulr_HL,protenix,d1746,seed1,8ulr_hl_sample_0.cif,0.011,0.2581
+8ulr_HL,protenix,d1746,seed1,8ulr_hl_sample_1.cif,0.012,0.3077
+8ulr_HL,protenix,d1746,seed1,8ulr_hl_sample_2.cif,0.011,0.2614
+8ulr_HL,protenix,d1746,seed1,8ulr_hl_sample_3.cif,0.01,0.2473
+8ulr_HL,protenix,d1746,seed1,8ulr_hl_sample_4.cif,0.01,0.2747
+8ulr_HL,protenix,d1746,seed2,8ulr_hl_sample_0.cif,0.049,0.144
+8ulr_HL,protenix,d1746,seed2,8ulr_hl_sample_1.cif,0.037,0.1491
+8ulr_HL,protenix,d1746,seed2,8ulr_hl_sample_2.cif,0.009,0.0
+8ulr_HL,protenix,d1746,seed2,8ulr_hl_sample_3.cif,0.008,0.0
+8ulr_HL,protenix,d1746,seed2,8ulr_hl_sample_4.cif,0.007,0.0

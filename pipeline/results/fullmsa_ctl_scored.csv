@@ -1,0 +1,4 @@
+target,model,ctl_ok,ctl_n,ctl_best,ctl_rec_at_succ,seedrep_ok,seedrep_n,full_best5,p_one_sided,verdict
+8txu_HL,boltz,0,40,0.367,,1,40,0.055,0.5,깊이가 연 것 — 지지
+9y0a_AB,boltz,12,40,0.786,0.765,10,40,0.061,0.7735,표본 수 문제 — 기각
+8y6a_CD,boltz,15,40,0.833,0.837,1,40,0.042,1.0,표본 수 문제 — 기각
