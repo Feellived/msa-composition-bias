@@ -1,0 +1,8 @@
+target,model,depth,within,between,ratio,perm_p,n_cand,cand,n_comp,n_res,true_covered,precision,comps
+9azt_HL,protenix,d4,0.4017,0.1885,2.131,0.0005,7,1,1,60,0.6667,0.2667,seed0
+9azt_HL,protenix,d4,0.4017,0.1885,2.131,0.0005,7,2,1,74,0.5417,0.1757,seed1
+9azt_HL,protenix,d4,0.4017,0.1885,2.131,0.0005,7,3,1,69,0.375,0.1304,seed2
+9azt_HL,protenix,d4,0.4017,0.1885,2.131,0.0005,7,4,1,79,0.2083,0.0633,seed3
+9azt_HL,protenix,d4,0.4017,0.1885,2.131,0.0005,7,5,1,71,0.5417,0.1831,seed4
+9azt_HL,protenix,d4,0.4017,0.1885,2.131,0.0005,7,6,1,47,0.0833,0.0426,seed5
+9azt_HL,protenix,d4,0.4017,0.1885,2.131,0.0005,7,7,1,50,0.875,0.42,seedfull

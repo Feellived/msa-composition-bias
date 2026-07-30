@@ -1,0 +1,2 @@
+target,n_full,n_red,med_full,med_red,succ49_full,succ49_red,succ23_full,succ23_red,p_fisher49,p_fisher23,p_ranktest,p_heterogeneity,verdict
+8tp5_HL,8,24,0.007,0.008,0,0,0,0,1.0,1.0,0.0891,1.0,△ 방향은 맞으나 유의하지 않음

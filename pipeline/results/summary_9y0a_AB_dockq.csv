@@ -1,0 +1,2 @@
+target,n_full,n_red,med_full,med_red,succ49_full,succ49_red,succ23_full,succ23_red,p_fisher49,p_fisher23,p_ranktest,p_heterogeneity,verdict
+9y0a_AB,8,24,0.084,0.069,0,0,0,0,1.0,1.0,0.9723,1.0,✗ 차이 없음/반대
