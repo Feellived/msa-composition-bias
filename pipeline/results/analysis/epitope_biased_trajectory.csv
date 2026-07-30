@@ -1,0 +1,13 @@
+model,target,full_overrep,low_overrep,delta,shape
+boltz,8q7s_H,0.99,0.989,-0.001,flat(안 움직임)
+boltz,8tl5_IJ,0.756,0.761,0.005,flat(안 움직임)
+boltz,8tx3_FK,1.0,0.989,-0.011,flat(안 움직임)
+boltz,8txu_HL,0.657,0.663,0.006,flat(안 움직임)
+boltz,9evz_HL,0.793,0.721,-0.072,이탈(감소)
+protenix,8k3k_D,0.86,0.262,-0.598,이탈(감소)
+protenix,8k46_I,0.846,0.267,-0.579,이탈(감소)
+protenix,8tx3_FK,1.0,0.514,-0.486,이탈(감소)
+protenix,8txu_HL,0.351,0.45,0.099,반대(증가)
+protenix,8wpy_AB,0.699,0.362,-0.337,이탈(감소)
+protenix,8xsj_HL,0.637,0.602,-0.035,flat(안 움직임)
+protenix,8y6a_CD,0.558,0.477,-0.081,이탈(감소)

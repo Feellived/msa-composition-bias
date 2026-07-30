@@ -1,0 +1,11 @@
+model,shape,count
+boltz,flat,31
+boltz,spiky,4
+boltz,mid-peak(sweet-spot),6
+boltz,deep-better,3
+boltz,shallow-better,3
+protenix,flat,37
+protenix,deep-better,3
+protenix,spiky,2
+protenix,shallow-better,1
+protenix,mid-peak(sweet-spot),1
