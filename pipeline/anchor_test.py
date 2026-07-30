@@ -74,7 +74,8 @@ def main():
 
     rows_out = []
     print(f"[{a.metric} ≥ {thr}] 실행 단위 · 순열 {a.perms:,}회 · 원래 MSA(seedfull) 포함\n")
-    hdr = f"{'복합체':<12} {'조성':>4} {'실행':>5} {'성공':>5} {'조성성공률':>10} {'원래MSA':>9} {'통계량':>7} {'순열 p':>9}"
+    hdr = (f"{'복합체':<12} {'조성':>4} {'실행':>5} {'성공':>5} {'조성 성공':>10} "
+           f"{'원래MSA':>9} {'통계량':>7} {'순열 p':>9}  방향")
     print(hdr); print("-" * len(hdr))
     for f in files:
         runs = defaultdict(list)          # 실행(seedX_rY) -> [값…]
@@ -103,16 +104,28 @@ def main():
         comp_s = sum(o for i, o in enumerate(obs) if i != fi)
         comp_n = sum(m for i, m in enumerate(ns) if i != fi)
         full = f"{obs[fi]}/{ns[fi]}" if fi is not None else "없음"
-        mark = " ★" if p < 0.05 and comp_s > 0 else ""
+        # ⚠️ 방향을 반드시 함께 본다 — 이질성이 유의해도 원래 MSA가 더 좋을 수 있다.
+        cr = comp_s / comp_n if comp_n else 0.0
+        fr = (obs[fi] / ns[fi]) if fi is not None and ns[fi] else 0.0
+        if p >= 0.05:
+            direc = "—"
+        elif cr > fr:
+            direc = "조성 우세 ★"
+        elif cr < fr:
+            direc = "원래 MSA 우세"
+        else:
+            direc = "동률"
         print(f"{tgt:<12} {len(labels) - (1 if fi is not None else 0):>4} "
               f"{sum(ns):>5} {sum(obs):>5} {comp_s:>4}/{comp_n:<5} {full:>9} "
-              f"{stat:>7.2f} {p:>9.5f}{mark}")
+              f"{stat:>7.2f} {p:>9.5f}  {direc}")
         rows_out.append({"target": tgt, "metric": a.metric, "thr": thr,
                          "n_comp": len(labels) - (1 if fi is not None else 0),
                          "n_runs": sum(ns), "comp_succ": comp_s, "comp_runs": comp_n,
                          "full_succ": obs[fi] if fi is not None else "",
                          "full_runs": ns[fi] if fi is not None else "",
                          "stat": round(stat, 3), "perm_p": round(p, 5),
+                         "comp_rate": round(cr, 4), "full_rate": round(fr, 4),
+                         "direction": direc,
                          "per_group": " ".join(f"{k}:{sum(groups[k])}/{len(groups[k])}"
                                                for k in labels)})
     out = a.out or os.path.join(a.dir, f"anchor_tests_{a.metric}.csv")
@@ -120,7 +133,12 @@ def main():
         with open(out, "w", newline="") as fh:
             w = csv.DictWriter(fh, fieldnames=list(rows_out[0]))
             w.writeheader(); w.writerows(rows_out)
-        print(f"\n★ = 순열 p < 0.05 이고 조성 쪽 성공이 있음 (앵커 후보)")
+        n_f = sum(1 for r in rows_out if r["direction"].endswith("★"))
+        n_r = sum(1 for r in rows_out if r["direction"] == "원래 MSA 우세")
+        print(f"\n★ = 유의하고 조성 쪽이 우세 (앵커 후보) — {n_f}종")
+        print(f"   유의하지만 원래 MSA 쪽이 우세 — {n_r}종")
+        print("   ⚠️ 이질성이 유의하다는 것은 '조성이 자리를 정한다'는 뜻이고,")
+        print("      '조성을 바꾸면 좋아진다'는 뜻이 아니다. 방향을 반드시 함께 보고할 것.")
         print(f"→ {out} ({len(rows_out)}행)")
 
 
