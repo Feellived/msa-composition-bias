@@ -1,0 +1,83 @@
+==========================================================================================
+① 성공률 (타깃 수 / 전체) — full-depth(rung0) vs oracle-over-depth(최고 rung)
+model    scope              n | full≥.23  full≥.49  full≥.80 | orc≥.23  orc≥.49  orc≥.80
+boltz    ALL               47 |      13         9         4 |      23       14        7
+boltz    A                 20 |       9         6         2 |      14        8        4
+boltz    B                 18 |       3         2         2 |       7        4        3
+boltz    C                  9 |       1         1         0 |       2        2        0
+protenix ALL               44 |       1         0         0 |       6        2        0
+protenix A                 20 |       1         0         0 |       6        2        0
+protenix B                 15 |       0         0         0 |       0        0        0
+protenix C                  9 |       0         0         0 |       0        0        0
+  ⚠️ orc(oracle-over-depth)=rung 12개 중 최고 = best-of-N 심함 → ④ 순열null로 통제해야 의미.
+
+==========================================================================================
+② depth-민감도 — 타깃별 range(max-min)·std·|Spearman|. Boltz 평평 vs Protenix 반응 검정
+model       n | mean_range  median_range  mean_std  mean|Spearman|
+boltz      47 |      0.169         0.095     0.057         0.285
+protenix   44 |      0.098         0.062     0.032         0.370
+  짝지은 range 차(boltz-protenix) 부호검정: boltz>protenix 27개 vs 반대 15개, p=0.0884 (mean Δrange=+0.078) → 비유의
+  해석: Δrange 부호가 한쪽으로 쏠리면 그 모델이 depth에 더 민감. (가설: protenix가 더 민감 = boltz-protenix<0)
+
+==========================================================================================
+③ family×ab 요약 — Δ(저깊이-full, low-full) & Spearman(neff,dockq) [+개수/n]
+model    fam/ab       n | mean_full  mean_best | Δ(low-full)  Spearman[+/n]
+boltz    C/C          9 |     0.109     0.211 |     +0.076    -0.05[5/9]
+boltz    Env/A        6 |     0.239     0.335 |     +0.009    +0.02[3/6]
+boltz    Env/B        4 |     0.022     0.039 |     -0.003    +0.10[2/3]
+boltz    HA/A         7 |     0.171     0.314 |     +0.033    +0.11[4/7]
+boltz    HA/B         7 |     0.145     0.251 |     -0.023    +0.15[5/7]
+boltz    RBD/A        7 |     0.551     0.665 |     -0.017    -0.11[3/7]
+boltz    RBD/B        7 |     0.292     0.449 |     -0.116    -0.02[4/7]
+protenix C/C          9 |     0.034     0.061 |     -0.011    +0.00[4/9]
+protenix Env/A        6 |     0.014     0.157 |     +0.021    -0.24[2/6]
+protenix Env/B        5 |     0.023     0.040 |     -0.007    -0.05[2/5]
+protenix HA/A         7 |     0.110     0.197 |     -0.089    +0.31[5/7]
+protenix HA/B         3 |     0.037     0.081 |     -0.003    -0.08[1/3]
+protenix RBD/A        7 |     0.059     0.143 |     -0.020    +0.29[5/7]
+protenix RBD/B        7 |     0.025     0.065 |     +0.019    -0.12[2/7]
+
+==========================================================================================
+④ 순열 null — rung 라벨 셔플, max-over-rung 재계산. 'full이 특별히 나빠 감소가 돕나' 검정
+   (gain=max-full, rescue=full<0.23 & max≥0.49. p<0.05면 우연(best-of-N) 초과=진짜 방향)
+  [boltz] n=47  gain 관측=0.110 null=0.116 p=0.670  |  rescue 관측=4 null평균=4.1 p=0.770
+  [protenix] n=44  gain 관측=0.064 null=0.070 p=0.773  |  rescue 관측=2 null평균=1.7 p=0.690
+   (family/ab 별)
+    [boltz/A] n=20  gain p=0.612  rescue 1/0.9 p=0.906
+    [boltz/B] n=18  gain p=0.750  rescue 2/2.4 p=0.908
+    [boltz/C] n=9  gain p=0.191  rescue 1/0.7 p=0.734
+    [protenix/A] n=20  gain p=0.704  rescue 2/1.7 p=0.691
+    [protenix/B] n=15  gain p=0.748  rescue 0/0.0 p=1.000
+    [protenix/C] n=9  gain p=0.835  rescue 0/0.0 p=1.000
+
+==========================================================================================
+⑤ 평균-기반(best-of-N 아님) — 저깊이 rung 평균 vs full. '평균적으로' depth감소가 돕나(부호검정)
+  [boltz] n=47  mean(저깊이평균-full)=-0.006  개선 28 vs 악화 18  p=0.1839 → 평균으론 효과 없음
+  [protenix] n=44  mean(저깊이평균-full)=-0.007  개선 23 vs 악화 21  p=0.8804 → 평균으론 효과 없음
+
+==========================================================================================
+⑥ depth-response shape 분류 (타깃 수)
+model     | flat  deep-better  shallow-better  mid-peak(sweet)  spiky
+boltz     |   31           3               3                6       4
+protenix  |   37           3               1                1       2
+
+==========================================================================================
+⑦ 모델 head-to-head (두 모델 다 있는 타깃) — full & oracle 각각 누가 이기나
+  full-depth: boltz 승 25 / protenix 승 3 / 무 14  (n=42)
+  oracle    : boltz 승 31 / protenix 승 5 / 무 6
+  consensus 상한(둘 중 최고, oracle-over-depth): ≥.49 15/42  ≥.80 7/42
+
+==========================================================================================
+⑧ ⭐ rescue 후보 = full-depth 실패인데 감소 rung이 성공 (가설살리기 case-study 후보)
+   (A) 모델별: full<0.23 인데 어떤 rung ≥0.49
+    [boltz] 8txu_HL    HA/B full=0.06 → best=0.53 @rung1(neff38) shape=deep-better
+    [boltz] 8y6a_CD    RBD/B full=0.04 → best=0.80 @rung9(neff2) shape=shallow-better
+    [boltz] 9b7g_QP    HA/A full=0.12 → best=0.63 @rung10(neff1) shape=shallow-better
+    [boltz] 9y0a_AB    C/C full=0.06 → best=0.72 @rung6(neff28) shape=mid-peak(sweet-spot)
+    [protenix] 8ulr_HL    Env/A full=0.01 → best=0.66 @rung2(neff702) shape=deep-better
+    [protenix] 9azr_HL    HA/A full=0.08 → best=0.49 @rung4(neff28) shape=mid-peak(sweet-spot)
+   (B) ⭐⭐ 강한 후보: 두 모델 다 full<0.23 인데, 어떤 모델의 어떤 rung이 ≥0.49 (아무도 full로 못 푸는데 감소로 건짐)
+    ⭐ 8txu_HL    HA/B: 둘다 full<0.23 (b=boltz0.06/protenix0.03) → boltz best=0.53 로 rescue
+    ⭐ 8y6a_CD    RBD/B: 둘다 full<0.23 (b=boltz0.04/protenix0.02) → boltz best=0.80 로 rescue
+    ⭐ 9azr_HL    HA/A: 둘다 full<0.23 (b=boltz0.15/protenix0.08) → protenix best=0.49 로 rescue
+    ⭐ 9y0a_AB    C/C: 둘다 full<0.23 (b=boltz0.06/protenix0.06) → boltz best=0.72 로 rescue
