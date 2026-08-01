@@ -110,8 +110,14 @@ def main():
                     help="한 실행 안에서 자세 몇 비율에 나와야 그 실행의 결합자리로 볼까 (기본 0.5)")
     ap.add_argument("--merge-frac", type=float, default=0.75,
                     help="묶인 조성 중 몇 비율이 지목해야 후보 잔기로 넣을까. 0 이면 옛 방식(합집합)")
+    ap.add_argument("--pose-score", choices=["abepi", "dockq", "consensus"], default="abepi",
+                    help="실행의 대표 자세를 무엇으로 고르나. "
+                         "abepi=AbEpiScore 최고(정직·기본) · dockq=DockQ 최고(⚠️정답 사용, 천장 확인용) · "
+                         "consensus=자세들의 합의(정직하지만 서로 다른 자리를 뭉갠다)")
+    ap.add_argument("--abepi", default="../../bk21-antibody-ml/consensus_docking/results/abepiscore_all.csv",
+                    help="자세 단위 AbEpiScore CSV (열: target,run,pose,score)")
     ap.add_argument("--legacy-best-pose", action="store_true",
-                    help="⚠️ 옛 방식 — 실행마다 DockQ(정답) 최고 자세를 대표로. 새 판과 맞대볼 때만.")
+                    help="--pose-score dockq 와 같음(옛 이름).")
     ap.add_argument("--nperm", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--out", default="")
@@ -149,10 +155,31 @@ def main():
         except Exception:
             return float("nan")
 
-    recs, npose = [], []
+    mode = "dockq" if a.legacy_best_pose else a.pose_score
+    AB = {}
+    if mode == "abepi":
+        if not os.path.exists(a.abepi):
+            raise SystemExit(f"!! AbEpiScore 파일이 없다: {a.abepi}\n   --abepi 로 경로를 주거나 "
+                             f"--pose-score consensus 로 바꿀 것")
+        for r in csv.DictReader(open(a.abepi)):
+            if r["target"] == tgt:
+                AB[(r["run"], r["pose"])] = float(r["score"])
+        if not AB:
+            raise SystemExit(f"!! {tgt} 의 AbEpiScore 행이 없다 — {a.abepi}\n"
+                             f"   score_abepitope.py 로 먼저 채점할 것")
+
+    recs, npose, nomiss = [], [], 0
     for s, rr in sorted(by_run.items()):
-        # ⚠️ 옛 방식: DockQ(정답)로 대표 자세를 고른다. 새 판과 맞대볼 때만 쓸 것.
-        use = [max(rr, key=lambda r: (dq(r) if dq(r) == dq(r) else -1))] if a.legacy_best_pose else rr
+        if mode == "dockq":            # ⚠️ 정답 사용 — 천장 확인용
+            use = [max(rr, key=lambda r: (dq(r) if dq(r) == dq(r) else -1))]
+        elif mode == "abepi":
+            ok = [(AB[(s, r["pose"])], r) for r in rr if (s, r["pose"]) in AB]
+            if not ok:
+                nomiss += 1
+                continue
+            use = [max(ok, key=lambda t: t[0])[1]]
+        else:                          # consensus — 자세 전부
+            use = rr
         eps = []
         for r in use:
             hits = glob.glob(os.path.join(base, s, "results", "**", r["pose"]), recursive=True)
@@ -181,11 +208,14 @@ def main():
     print(f"■ {tgt} · {model} · {depth}   실행 {len(recs)}개 · 조성 {len(groups)}가지"
           f" (반복 2회 이상인 조성 {len(multi)}가지)")
     print(f"  진짜 결합자리 잔기 {len(true)}개")
-    if a.legacy_best_pose:
-        print("  ⚠️ 옛 방식 — 실행마다 DockQ(정답) 최고 자세를 대표로 썼다. 실전 파이프라인이 아니다.")
-    else:
-        print(f"  자리 만드는 법 = 실행당 자세 {st.mean(npose):.1f}개의 합의(비율 {a.pose_frac}) "
-              f"· 후보 조립 = 투표(비율 {a.merge_frac})   ← 정답을 보지 않는다")
+    HOW = {"dockq": "⚠️ DockQ(정답) 최고 자세 — 실전 파이프라인이 아니다. 천장 확인용",
+           "abepi": "AbEpiScore 최고 자세 — 정답을 보지 않는다",
+           "consensus": f"자세 {st.mean(npose) if npose else 0:.1f}개의 합의(비율 {a.pose_frac})"
+                        " — 정답을 보지 않으나 서로 다른 자리를 뭉갤 수 있다"}
+    print(f"  대표 자세 = {HOW[mode]}")
+    print(f"  후보 조립 = {'투표(비율 %s)' % a.merge_frac if a.merge_frac else '합집합(옛 방식)'}")
+    if nomiss:
+        print(f"  ⚠️ AbEpiScore가 없어 뺀 실행 {nomiss}개")
     print()
     if not multi:
         print("  ⚠️ 조성당 반복이 1회뿐이라 '조성 내 재현성'을 잴 수 없다. 반복을 늘려 다시 돌릴 것.")
