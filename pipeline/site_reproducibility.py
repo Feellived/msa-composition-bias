@@ -19,7 +19,17 @@
 나온 잔기)를 구하고, 서로 많이 겹치는 조성끼리 묶어 **서로 구별되는 자리 후보의 개수**와
 각 후보가 진짜 결합자리를 얼마나 덮는지를 보고한다. 에피토프 비닝 관점에서 쓸 숫자가 이것이다.
 
-단위 = 실행 1회(자세 5개 중 DockQ 최고를 그 실행의 대표로) — epitope_cluster.py와 동일.
+⭐ **정답을 안 보는 판(2026-08-01)**. 단위는 여전히 **실행 1회**지만, 그 실행의 결합자리를
+"자세 5개 중 DockQ 최고 하나"가 아니라 **자세 5개의 합의**(절반 이상 자세에 나온 잔기)로 잡는다.
+  · 왜 — DockQ는 **정답 구조가 있어야** 계산된다. 그걸로 대표를 고르면 이 파이프라인은 실전에서
+    돌 수 없고, "그 자리는 정답을 보고 고른 것 아니냐"는 반박에 답할 수 없다.
+  · 표본 단위는 안 바뀐다 — 한 실행의 자세 5개는 서로 상관되어 있어 독립 표본이 아니므로
+    **자세를 따로 세지 않고 합쳐서 실행 하나의 자리**로 만든다.
+  · 옛 방식이 필요하면 `--legacy-best-pose` (비교용으로만).
+
+후보를 조립할 때도 **합집합이 아니라 투표**를 쓴다(`--merge-frac`). 묶인 조성 중 정해진 비율
+이상이 지목한 잔기만 넣는다. 합집합은 한 조성에만 나온 잔기까지 다 넣어 후보가 정답의 2.5배로
+부풀었다(62잔기 대 25잔기).
 
 사용(DockQ env):
   python dump_seedrep_full.py --data $DATA/compreps --only 8ulr_HL --csv-out results/compreps_8ulr_HL.csv
@@ -96,6 +106,12 @@ def main():
     ap.add_argument("--targets-dir", default="targets")
     ap.add_argument("--cutoff", type=float, default=5.0)
     ap.add_argument("--link", type=float, default=0.5, help="합의 자리끼리 이 값 이상 겹치면 같은 후보로 묶음")
+    ap.add_argument("--pose-frac", type=float, default=0.5,
+                    help="한 실행 안에서 자세 몇 비율에 나와야 그 실행의 결합자리로 볼까 (기본 0.5)")
+    ap.add_argument("--merge-frac", type=float, default=0.75,
+                    help="묶인 조성 중 몇 비율이 지목해야 후보 잔기로 넣을까. 0 이면 옛 방식(합집합)")
+    ap.add_argument("--legacy-best-pose", action="store_true",
+                    help="⚠️ 옛 방식 — 실행마다 DockQ(정답) 최고 자세를 대표로. 새 판과 맞대볼 때만.")
     ap.add_argument("--nperm", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--out", default="")
@@ -115,28 +131,39 @@ def main():
         raise SystemExit("!! native 결합자리 계산 실패")
     true = set(tr[0])
 
-    # 실행별 대표 자세(DockQ 최고) — epitope_cluster.py와 같은 규칙
-    best = {}
-    for r in rows:
-        try:
-            q = float(r["dockq"])
-        except Exception:
-            continue
-        s = r["seed"]
-        if s not in best or q > best[s][0]:
-            best[s] = (q, r["pose"])
-
+    # 실행 하나의 결합자리 = 그 실행 자세들의 합의 (정답을 안 본다)
     base = os.path.join(a.data, "seedrep_cand", model, tgt, depth)
-    recs = []
-    for s, (q, pose) in sorted(best.items()):
-        hits = glob.glob(os.path.join(base, s, "results", "**", pose), recursive=True)
-        if not hits:
-            print(f"  ! {s}: 자세 파일 못 찾음({pose})"); continue
-        ep, _ = EC.pred_epitope(cj, hits[0], a.cutoff)
-        if not ep:
-            print(f"  ! {s}: 결합자리 계산 실패"); continue
+    by_run = defaultdict(list)
+    for r in rows:
+        by_run[r["seed"]].append(r)
+
+    def dq(r):
+        try:
+            return float(r["dockq"])
+        except Exception:
+            return float("nan")
+
+    recs, npose = [], []
+    for s, rr in sorted(by_run.items()):
+        # ⚠️ 옛 방식: DockQ(정답)로 대표 자세를 고른다. 새 판과 맞대볼 때만 쓸 것.
+        use = [max(rr, key=lambda r: (dq(r) if dq(r) == dq(r) else -1))] if a.legacy_best_pose else rr
+        eps = []
+        for r in use:
+            hits = glob.glob(os.path.join(base, s, "results", "**", r["pose"]), recursive=True)
+            if not hits:
+                continue
+            ep, _ = EC.pred_epitope(cj, hits[0], a.cutoff)
+            if ep:
+                eps.append(ep)
+        if not eps:
+            print(f"  ! {s}: 자세를 못 읽음"); continue
+        ep = eps[0] if len(eps) == 1 else EC.consensus(eps, a.pose_frac)
+        if not ep:                      # 자세들이 서로 너무 달라 합의가 비면 합집합으로 물러선다
+            ep = set().union(*eps)
         comp, rep = split_run(s)
-        recs.append(dict(run=s, comp=comp, rep=rep, dockq=q, ep=ep))
+        recs.append(dict(run=s, comp=comp, rep=rep, ep=ep,
+                         dockq=max((dq(r) for r in rr if dq(r) == dq(r)), default=float("nan"))))
+        npose.append(len(eps))
     if not recs:
         raise SystemExit("!! 계산된 실행이 없음")
 
@@ -147,7 +174,13 @@ def main():
 
     print(f"■ {tgt} · {model} · {depth}   실행 {len(recs)}개 · 조성 {len(groups)}가지"
           f" (반복 2회 이상인 조성 {len(multi)}가지)")
-    print(f"  진짜 결합자리 잔기 {len(true)}개\n")
+    print(f"  진짜 결합자리 잔기 {len(true)}개")
+    if a.legacy_best_pose:
+        print("  ⚠️ 옛 방식 — 실행마다 DockQ(정답) 최고 자세를 대표로 썼다. 실전 파이프라인이 아니다.")
+    else:
+        print(f"  자리 만드는 법 = 실행당 자세 {st.mean(npose):.1f}개의 합의(비율 {a.pose_frac}) "
+              f"· 후보 조립 = 투표(비율 {a.merge_frac})   ← 정답을 보지 않는다")
+    print()
     if not multi:
         print("  ⚠️ 조성당 반복이 1회뿐이라 '조성 내 재현성'을 잴 수 없다. 반복을 늘려 다시 돌릴 것.")
         return
@@ -198,9 +231,15 @@ def main():
     out = []
     sites = []
     for ci, ix in enumerate(cl, 1):
-        u = set()
+        # 합집합이 아니라 투표 — 묶인 조성 중 merge_frac 이상이 지목한 잔기만 넣는다.
+        cnt = Counter()
         for i in ix:
-            u |= cons[i][1]
+            cnt.update(cons[i][1])
+        need = max(1, int(round(a.merge_frac * len(ix))))
+        u = {r for r, n in cnt.items() if n >= need}
+        if not u:                       # 너무 빡세서 다 걸러지면 최빈 잔기라도 남긴다
+            top = max(cnt.values())
+            u = {r for r, n in cnt.items() if n == top}
         rec = len(u & true) / len(true) if true else float("nan")
         pre = len(u & true) / len(u) if u else float("nan")
         names = ",".join(cons[i][0] for i in ix)
