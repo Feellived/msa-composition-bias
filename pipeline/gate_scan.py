@@ -28,9 +28,13 @@ import os
 import statistics as st
 from collections import defaultdict
 
-# ⚠️ 정답이 들어간 열은 반드시 뺀다. 이름에 아래가 들어가면 제외.
+# ⚠️ 두 종류를 뺀다.
+#   ① 정답이 들어간 열 — 있으면 순환 논리다.
+#   ② 선택 규칙 자신의 출력 — rung/depth 는 pick_maintest_depth.py 가 정한 값이라
+#      "적용 가능한가"를 예측하는 게 아니라 답을 그대로 베끼는 것이 된다(2026-08-01 실제로 AUC 1.0).
 BANNED = ("dockq", "recall", "true", "irms", "lrms", "fnat", "rmsd", "native",
-          "cover", "precision", "hit", "succ", "label", "ok")
+          "cover", "precision", "hit", "succ", "label", "ok",
+          "rung", "depth", "chosen", "status", "pick", "select")
 
 
 def is_banned(c):
@@ -95,6 +99,8 @@ def main():
     ap.add_argument("--maintest", default="maintest.csv",
                     help="본 검정 대상 명단(=적용 가능). 여기 있으면 양성, 없으면 음성")
     ap.add_argument("--targets-col", default="target")
+    ap.add_argument("--pos-col", default="", help="maintest.csv 에서 '본 검정 대상'을 가르는 열 이름")
+    ap.add_argument("--pos-value", default="", help="그 열이 이 값이면 대상. 생략하면 빈칸·'-'·'0'이 아니면 대상")
     ap.add_argument("--top", type=int, default=12)
     ap.add_argument("--out", default="")
     a = ap.parse_args()
@@ -107,11 +113,22 @@ def main():
     if not tcol:
         raise SystemExit(f"!! 타깃 열을 못 찾음. 열 = {list(rows[0])[:12]}")
 
-    pos_names = {r[tcol] for r in csv.DictReader(open(a.maintest))
-                 if tcol in r} if os.path.exists(a.maintest) else set()
-    if not pos_names:
-        raise SystemExit(f"!! {a.maintest} 에서 적용 가능 명단을 못 읽었다 "
+    # maintest.csv 는 채점한 것 **전부**를 담는다(제외분 포함). 상태 열로 골라야 한다.
+    mrows = list(csv.DictReader(open(a.maintest))) if os.path.exists(a.maintest) else []
+    if not mrows:
+        raise SystemExit(f"!! {a.maintest} 를 못 읽었다 "
                          f"(pick_maintest_depth.py 를 --only 없이 다시 돌려 복구할 것)")
+    mt = a.targets_col if a.targets_col in mrows[0] else next(
+        (c for c in mrows[0] if "target" in c.lower()), None)
+    if a.pos_col:
+        col, val = a.pos_col, a.pos_value
+        if col not in mrows[0]:
+            raise SystemExit(f"!! {a.maintest} 에 {col!r} 열이 없다. 열 = {list(mrows[0])}")
+        pos_names = {r[mt] for r in mrows if (r[col] == val if val else r[col] not in ("", "-", "0"))}
+    else:
+        pos_names = {r[mt] for r in mrows}
+        print(f"⚠️ --pos-col 을 안 줬다 — {a.maintest} 의 모든 행을 '적용 가능'으로 본다.\n"
+              f"   이 파일은 제외분도 담으므로 대개 틀린다. 열 = {list(mrows[0])}\n")
 
     num = [c for c in rows[0]
            if not is_banned(c) and c != tcol and
@@ -133,6 +150,9 @@ def main():
     print(f"  ⚠️ 정답이 들어간 열은 이름으로 걸러냈다: {', '.join(BANNED)}\n")
     if not P or not N:
         raise SystemExit("!! 한쪽 무리가 비었다 — 명단을 확인할 것")
+    if min(len(P), len(N)) < 0.2 * len(tg):
+        print(f"⚠️⚠️ 한쪽이 {min(len(P), len(N))}개뿐이다 — 이 정도면 아무 피처나 우연히 완벽히 갈린다.\n"
+              f"   AUC 1.000 이 나와도 믿지 말 것. 라벨(--pos-col)이 맞는지부터 확인.\n")
 
     out = []
     for c in num:
