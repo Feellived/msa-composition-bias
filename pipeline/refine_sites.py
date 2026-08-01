@@ -117,6 +117,47 @@ def score(cands, true, n_cons=0, n_group=0):
     return best
 
 
+def loo(per, base_key):
+    """한 타깃을 빼고 나머지에서 최고 조합을 고른 뒤, 뺀 타깃에서 채점한다.
+
+    ⚠️ 36조합을 같은 30종에서 고르면 +0.104 는 낙관적이다. 여기서 나오는 값이 정직한 상승폭.
+    계산이 아니라 위에서 이미 만든 점수판을 다시 세는 것이라 비용이 없다.
+    """
+    tab = defaultdict(dict)                       # 조합 → {타깃: (f1, n_cand)}
+    for r in per:
+        tab[(r["cons_frac"], r["merge_frac"], r["max_res"])][r["target"]] = (r["f1"], r["n_cand"])
+    tgts = sorted({r["target"] for r in per})
+    held, chosen = [], Counter()
+    for t in tgts:
+        pick, bestv = None, -1.0
+        for k, d in tab.items():
+            tr = [v for tt, v in d.items() if tt != t]
+            if sum(c for _, c in tr) / len(tr) < 1.8:      # 후보가 말라 선택기가 죽는 설정은 배제
+                continue
+            m = sum(f for f, _ in tr) / len(tr)
+            if m > bestv:
+                pick, bestv = k, m
+        if pick is None:
+            continue
+        held.append(tab[pick][t][0])
+        chosen[pick] += 1
+    if not held:
+        return
+    cur = [tab[base_key][t][0] for t in tgts] if base_key in tab else []
+    print(f"\n■ 한 타깃 빼기(LOO) — 조합을 나머지 {len(tgts)-1}종에서 고르고 뺀 1종에서 채점")
+    print(f"  정직한 F1 천장 {sum(held)/len(held):.3f}", end="")
+    if cur:
+        print(f"   (현재 설정 {sum(cur)/len(cur):.3f} 대비 {sum(held)/len(held)-sum(cur)/len(cur):+.3f})")
+    else:
+        print()
+    top = chosen.most_common(3)
+    print("  고른 조합 " + " · ".join(f"cons{k[0]} merge{k[1]} max{k[2] or '-'} ×{n}" for k, n in top))
+    if len(chosen) == 1:
+        print(f"  → {len(held)}번 다 같은 조합을 골랐다. 표면이 고원이라는 뜻이고 전이 위험이 낮다.")
+    else:
+        print(f"  ⚠️ 조합이 {len(chosen)}가지로 갈렸다 — 최적점이 타깃에 따라 흔들린다는 신호.")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--targets", default="")
@@ -130,6 +171,8 @@ def main():
     ap.add_argument("--merge-fracs", default="0 0.5 0.75 1.0")
     ap.add_argument("--max-res-list", default="0 40 30")
     ap.add_argument("--out", default="results/refine_sweep.csv")
+    ap.add_argument("--per-out", default="results/refine_per_target.csv",
+                    help="조합×타깃 점수판. 이게 있으면 한-타깃-빼기(LOO)가 계산 없이 된다")
     a = ap.parse_args()
 
     tg = a.targets.replace(",", " ").split()
@@ -155,7 +198,7 @@ def main():
     CF = [float(x) for x in a.cons_fracs.split()]
     MF = [float(x) for x in a.merge_fracs.split()]
     MR = [int(x) for x in a.max_res_list.split()]
-    rows, base_key = [], (0.5, 0.0, 0)
+    rows, per, base_key = [], [], (0.5, 0.0, 0)
     print(f"\n{'cons':>5}{'merge':>7}{'maxres':>8}{'F1천장':>9}{'덮음':>8}{'정밀도':>8}"
           f"{'후보크기':>9}{'후보수':>7}{'살아남은조성':>13}")
     print("-" * 78)
@@ -165,7 +208,14 @@ def main():
                 sc = []
                 for d in loaded:
                     cands, ncons = build(d["groups"], cf, mf, mr, a.link)
-                    sc.append(score(cands, d["true"], ncons, len(d["groups"])))
+                    s = score(cands, d["true"], ncons, len(d["groups"]))
+                    sc.append(s)
+                    per.append(dict(cons_frac=cf, merge_frac=mf, max_res=mr,
+                                    target=d["target"], model=d["model"], depth=d["depth"],
+                                    f1=round(s["f1"], 4), recall=round(s["rec"], 4),
+                                    precision=round(s["pre"], 4), n_res=s["n"],
+                                    n_cand=s["n_cand"], n_cons=s["n_cons"],
+                                    n_group=s["n_group"], n_true=len(d["true"])))
                 m = lambda k: sum(s[k] for s in sc) / len(sc)
                 tag = "  ← 현재" if (cf, mf, mr) == base_key else ""
                 warn = "  ⚠️ 후보 부족" if m("n_cand") < 1.8 else ""
@@ -190,10 +240,17 @@ def main():
     print(f"  현재 설정 대비 {b['f1'] - cur['f1']:+.3f}  ({cur['f1']:.3f} → {b['f1']:.3f})")
     print("\n⚠️ 이건 천장이다. 실제로 그 후보를 고를 수 있는지는 eval_selectors.py 가 따로 답한다.")
 
+    loo(per, base_key)
+
     os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
     with open(a.out, "w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=list(rows[0])); w.writeheader(); w.writerows(rows)
     print(f"→ {a.out}")
+    if a.per_out:
+        os.makedirs(os.path.dirname(a.per_out) or ".", exist_ok=True)
+        with open(a.per_out, "w", newline="") as fh:
+            w = csv.DictWriter(fh, fieldnames=list(per[0])); w.writeheader(); w.writerows(per)
+        print(f"→ {a.per_out}  (조합×타깃 점수판 — 재실행 없이 LOO·부트스트랩 가능)")
 
 
 if __name__ == "__main__":
