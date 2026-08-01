@@ -42,6 +42,12 @@ def load_runs(tgt, csv_path, data, targets_dir, cutoff):
     rows = list(csv.DictReader(open(csv_path)))
     if not rows:
         return None
+    # ⚠️ results/ 에는 compreps_summary.csv 처럼 형식이 다른 파일도 있다. 컬럼으로 걸러낸다.
+    need = {"model", "seed", "pose", "dockq"}
+    miss = need - set(rows[0])
+    if miss:
+        print(f"  ! {tgt}: 자세 단위 CSV 가 아님(없는 열 {sorted(miss)}) — 건너뜀")
+        return None
     model, depth = rows[0]["model"], rows[0].get("depth", "")
     cj = json.load(open(os.path.join(targets_dir, tgt, "chains.json")))
     tr = PF.native_true(cj, os.path.join(targets_dir, tgt, "native.cif"), cutoff)
@@ -126,7 +132,10 @@ def main():
 
     tg = a.targets.replace(",", " ").split()
     if a.all or not tg:
-        tg = sorted(os.path.basename(p)[9:-4] for p in glob.glob(os.path.join(a.dir, "compreps_*.csv")))
+        SKIP = {"summary", "all"}
+        tg = sorted(t for t in (os.path.basename(p)[9:-4]
+                                for p in glob.glob(os.path.join(a.dir, "compreps_*.csv")))
+                    if t not in SKIP)
     loaded = []
     for t in tg:
         p = os.path.join(a.dir, f"compreps_{t}.csv")
