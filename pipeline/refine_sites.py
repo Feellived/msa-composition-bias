@@ -22,7 +22,10 @@
 사용 (msa-depth pipeline 폴더에서, DockQ env 불필요·CPU):
   python refine_sites.py --targets "8k3k_D 8ulr_HL 8sis_HL"        # 기본 sweep
   python refine_sites.py --all --out results/refine_sweep.csv
-  python refine_sites.py --all --dump-best results/sites_refined    # 최적 설정으로 sites_*.json 재생성
+  python refine_sites.py --all --dump-sites results/sites_refined --use 0.7,0.5,30
+      → 그 설정으로 sites_*.json 재생성. 이어서
+        python eval_selectors.py --sites results/sites_refined --abepi <abepiscore_all.csv>
+      로 "정제하면 선택기가 실제로 좋아지나"를 잰다(지금까지의 F1 은 천장일 뿐이다).
 """
 import argparse
 import csv
@@ -158,6 +161,41 @@ def loo(per, base_key):
         print(f"  ⚠️ 조합이 {len(chosen)}가지로 갈렸다 — 최적점이 타깃에 따라 흔들린다는 신호.")
 
 
+def dump_sites(loaded, cf, mf, mr, link, outdir):
+    """정제한 후보를 site_reproducibility.py --dump-sites 와 **같은 형식**으로 쓴다.
+
+    이걸 eval_selectors.py 에 넘겨야 "정제하면 선택기가 실제로 좋아지나"를 잴 수 있다.
+    지금까지 잰 F1 은 천장(후보 중 최고)이지 고를 수 있는 값이 아니다.
+    """
+    os.makedirs(outdir, exist_ok=True)
+    n_ok = 0
+    for d in loaded:
+        cands, _ = build(d["groups"], cf, mf, mr, link)
+        true, sites = d["true"], []
+        for ci, c in enumerate(cands, 1):
+            u = c["res"]
+            rec = len(u & true) / len(true) if true else float("nan")
+            pre = len(u & true) / len(u) if u else float("nan")
+            sites.append(dict(
+                cand=ci, n_comp=len(c["comps"]), comps=list(c["comps"]),
+                # ⚠️ 잔기 키는 posmap 에서 온 numpy 정수 — 캐스팅 없으면 json 이 죽는다(2026-07-29).
+                residues=sorted([[int(x) for x in k] for k in u]),
+                # ⚠️ 아래 둘은 정답 구조를 본 값이다. 보고용이고 '고르는 데' 쓰면 안 된다.
+                true_covered=round(rec, 4), precision=round(pre, 4),
+                from_full_msa=any(str(x).startswith("seedfull") for x in c["comps"])))
+        if len(sites) >= 1:
+            n_ok += 1
+        json.dump(dict(target=d["target"], model=d["model"], depth=d["depth"],
+                       n_true_res=len(true),
+                       refined=dict(cons_frac=cf, merge_frac=mf, max_res=mr, link=link),
+                       candidates=sites),
+                  open(os.path.join(outdir, f"sites_{d['target']}.json"), "w"), indent=1,
+                  default=lambda o: int(o) if hasattr(o, "__int__") else float(o))
+    print(f"\n→ {outdir}/sites_*.json  ({n_ok}종 · cons={cf} merge={mf} max_res={mr or '-'})")
+    print("  다음: python eval_selectors.py --sites "
+          f"{outdir} --abepi <abepiscore_all.csv>  ← 정제 전 결과와 나란히 놓고 본다")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--targets", default="")
@@ -173,6 +211,11 @@ def main():
     ap.add_argument("--out", default="results/refine_sweep.csv")
     ap.add_argument("--per-out", default="results/refine_per_target.csv",
                     help="조합×타깃 점수판. 이게 있으면 한-타깃-빼기(LOO)가 계산 없이 된다")
+    ap.add_argument("--dump-sites", default="",
+                    help="정제한 후보를 sites_<타깃>.json 으로 이 폴더에 쓴다 "
+                         "(site_reproducibility.py --dump-sites 와 같은 형식 → eval_selectors.py 로 바로 넘어간다)")
+    ap.add_argument("--use", default="",
+                    help="떨굴 설정 'cons,merge,maxres' (예: 0.7,0.5,30). 생략하면 후보고갈을 통과한 최고점")
     a = ap.parse_args()
 
     tg = a.targets.replace(",", " ").split()
@@ -241,6 +284,14 @@ def main():
     print("\n⚠️ 이건 천장이다. 실제로 그 후보를 고를 수 있는지는 eval_selectors.py 가 따로 답한다.")
 
     loo(per, base_key)
+
+    if a.dump_sites:
+        if a.use:
+            cf, mf, mr = [float(x) for x in a.use.replace(",", " ").split()]
+            mr = int(mr)
+        else:
+            cf, mf, mr = b["cons_frac"], b["merge_frac"], b["max_res"]
+        dump_sites(loaded, cf, mf, mr, a.link, a.dump_sites)
 
     os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
     with open(a.out, "w", newline="") as fh:
