@@ -133,6 +133,12 @@ def main():
 
     # 실행 하나의 결합자리 = 그 실행 자세들의 합의 (정답을 안 본다)
     base = os.path.join(a.data, "seedrep_cand", model, tgt, depth)
+    # ⚠️ 경로가 틀리면 "못 읽음"만 수십 줄 흘리고 끝난다(실제 사고 2026-08-01, $DATA 미설정).
+    #    조용히 비지 말고 여기서 멈춘다.
+    if not os.path.isdir(base):
+        raise SystemExit(f"!! 예측 폴더가 없다:\n   {base}\n"
+                         f"   --data 값 = {a.data!r}   ← $DATA 가 비어 있지 않은지 확인\n"
+                         f"   예: export DATA=/mnt/data/admuser/msadepth 후 --data $DATA/compreps")
     by_run = defaultdict(list)
     for r in rows:
         by_run[r["seed"]].append(r)
