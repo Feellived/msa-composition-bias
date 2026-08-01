@@ -85,7 +85,7 @@ def build(groups, cons_frac, merge_frac, max_res, link):
         if c:
             cons.append((k, c))
     if not cons:
-        return []
+        return [], 0
     out = []
     for ix in link_clusters(cons, link):
         cnt = Counter()
@@ -100,18 +100,20 @@ def build(groups, cons_frac, merge_frac, max_res, link):
             res = set(sorted(res, key=lambda r: -cnt[r])[:max_res])
         out.append(dict(comps=[cons[i][0] for i in ix], res=res))
     out.sort(key=lambda c: -len(c["comps"]))
-    return out
+    return out, len(cons)
 
 
-def score(cands, true):
-    best = dict(f1=0.0, rec=0.0, pre=0.0, n=0)
+def score(cands, true, n_cons=0, n_group=0):
+    """⚠️ 천장(F1)만 보면 안 된다. 후보가 1개로 줄면 고를 것이 없어져 선택기가 죽는다."""
+    best = dict(f1=0.0, rec=0.0, pre=0.0, n=0,
+                n_cand=len(cands), n_cons=n_cons, n_group=n_group)
     for c in cands:
         u = c["res"]
         rec = len(u & true) / len(true) if true else 0.0
         pre = len(u & true) / len(u) if u else 0.0
         f1 = 0.0 if pre + rec == 0 else 2 * pre * rec / (pre + rec)
         if f1 > best["f1"]:
-            best = dict(f1=f1, rec=rec, pre=pre, n=len(u))
+            best.update(f1=f1, rec=rec, pre=pre, n=len(u))
     return best
 
 
@@ -154,22 +156,34 @@ def main():
     MF = [float(x) for x in a.merge_fracs.split()]
     MR = [int(x) for x in a.max_res_list.split()]
     rows, base_key = [], (0.5, 0.0, 0)
-    print(f"\n{'cons':>5}{'merge':>7}{'maxres':>8}{'F1천장':>9}{'덮음':>8}{'정밀도':>8}{'후보크기':>9}")
-    print("-" * 56)
+    print(f"\n{'cons':>5}{'merge':>7}{'maxres':>8}{'F1천장':>9}{'덮음':>8}{'정밀도':>8}"
+          f"{'후보크기':>9}{'후보수':>7}{'살아남은조성':>13}")
+    print("-" * 78)
     for cf in CF:
         for mf in MF:
             for mr in MR:
-                sc = [score(build(d["groups"], cf, mf, mr, a.link), d["true"]) for d in loaded]
+                sc = []
+                for d in loaded:
+                    cands, ncons = build(d["groups"], cf, mf, mr, a.link)
+                    sc.append(score(cands, d["true"], ncons, len(d["groups"])))
                 m = lambda k: sum(s[k] for s in sc) / len(sc)
                 tag = "  ← 현재" if (cf, mf, mr) == base_key else ""
+                warn = "  ⚠️ 후보 부족" if m("n_cand") < 1.8 else ""
                 print(f"{cf:>5.1f}{mf:>7.2f}{mr if mr else '-':>8}"
-                      f"{m('f1'):>9.3f}{m('rec'):>8.3f}{m('pre'):>8.3f}{m('n'):>9.1f}{tag}")
+                      f"{m('f1'):>9.3f}{m('rec'):>8.3f}{m('pre'):>8.3f}{m('n'):>9.1f}"
+                      f"{m('n_cand'):>7.1f}{m('n_cons'):>7.1f}/{m('n_group'):<5.1f}{tag}{warn}")
                 rows.append(dict(cons_frac=cf, merge_frac=mf, max_res=mr,
                                  f1=round(m("f1"), 4), recall=round(m("rec"), 4),
                                  precision=round(m("pre"), 4), n_res=round(m("n"), 1),
-                                 n_target=len(loaded)))
+                                 n_cand=round(m("n_cand"), 2), n_cons=round(m("n_cons"), 2),
+                                 n_group=round(m("n_group"), 2), n_target=len(loaded)))
     rows.sort(key=lambda r: -r["f1"])
-    b = rows[0]
+    ok = [r for r in rows if r["n_cand"] >= 1.8]      # 후보가 평균 2개 미만이면 고를 것이 없다
+    b = ok[0] if ok else rows[0]
+    if ok and ok[0] is not rows[0]:
+        t = rows[0]
+        print(f"\n⚠️ F1 최고는 cons={t['cons_frac']} merge={t['merge_frac']} "
+              f"max_res={t['max_res'] or '-'} ({t['f1']:.3f}) 인데 후보가 평균 {t['n_cand']:.1f}개뿐이라 제외했다.")
     print(f"\n■ 최고 설정  cons={b['cons_frac']} merge={b['merge_frac']} "
           f"max_res={b['max_res'] or '-'}  →  F1 천장 {b['f1']:.3f}")
     cur = next(r for r in rows if (r["cons_frac"], r["merge_frac"], r["max_res"]) == base_key)
