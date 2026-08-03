@@ -217,6 +217,9 @@ def main():
                     help="자세끼리 이만큼 겹치면 같은 자리로 본다")
     ap.add_argument("--harm", type=float, default=-0.09,
                     help="이보다 더 떨어지면 '크게 망가짐'")
+    ap.add_argument("--fail-at", type=float, default=0.13,
+                    help="무제약 DockQ 가 이 미만이면 '완전히 실패'로 본다. "
+                         "이 구간에서 손해가 0 이었으므로, 이것을 정답 없이 맞히면 실전 규칙이 선다")
     ap.add_argument("--nboot", type=int, default=2000)
     ap.add_argument("--nperm", type=int, default=5000)
     ap.add_argument("--seed", type=int, default=0)
@@ -335,7 +338,9 @@ def main():
 
     report("A. 크게 망가질 것인가 — 개입 여부를 정할 수 있나",
            lambda r: r["delta"] < a.harm, f"(변화 < {a.harm})")
-    report("B. 무제약이 실패인가 — 새 복합체를 미리 고를 수 있나",
+    report(f"B. 무제약이 완전히 실패인가 — 개입해도 안전한 구간을 정답 없이 고를 수 있나",
+           lambda r: r["dq_no"] < a.fail_at, f"(무제약 DockQ < {a.fail_at})")
+    report("B'. 무제약이 합격선을 못 넘는가 (참고)",
            lambda r: r["dq_no"] < 0.23, "(무제약 DockQ < 0.23)")
 
     print("\n  ※ 판별력 0.5 = 동전던지기 · 1.0 = 완전히 갈림. 방향과 무관한 크기로 적었다")
