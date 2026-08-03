@@ -10,9 +10,16 @@ DockQ(자세 축)가 얼마 나오는지는 돌려보지 않으면 알 수 없�
   ① 선택기가 완벽했다면 얼마나 좋아졌을까  = 후보 중 최선(천장) − 우리가 고른 것
      이 값이 크면 병목은 **선택**이고, 0 에 가까우면 병목은 **후보 자체**다.
 
-  ② 천장조차 제약 없음보다 낮은 복합체가 있는가
-     있다면 그 복합체는 선택을 아무리 잘해도 안 된다. 즉 **제약을 주면 안 되는 복합체**다.
-     (arm_verdict.py 의 '제약 자체가 해로움' 판정과 같은 것을 다른 길로 확인하는 셈이다.)
+  ② 천장이 제약 없음을 넘는가 — **예산을 맞춰서**
+     ⚠️ 천장은 후보 7개 × 자세 5개 = 자세 35개 중 최대값인데 제약 없음은 자세 5개 중
+     최대값이다. 더 뽑았으니 최대값은 가만히 있어도 오른다. 그래서 같은 예산인
+     '무작위 후보 하나'와 먼저 비교하고, 후보를 k 개만 봤을 때의 기대 최고값을 k 별로
+     찍어 **표본의 몫**과 **선택의 몫**을 가른다. 특정 후보 하나 때문에 값이 껑충 뛰면
+     그건 진짜 선택 실패이고, 완만히 오르면 그냥 많이 뽑아서다.
+
+     이 ②는 arm_verdict.py 의 '제약 자체가 해로움' 판정을 **뒤집을 수 있다.**
+     arm_verdict 는 대체 자리를 둘(원래 MSA 자리·같은 크기 다른 자리)만 보는데,
+     후보 목록 안에 좋은 자리가 따로 있으면 그 둘이 나빴을 뿐인 게 된다.
 
 GPU 를 쓰지 않는다. 채점 CSV 만 읽는다.
 
@@ -31,6 +38,23 @@ def f(x):
         return float(str(x).strip())
     except (TypeError, ValueError):
         return None
+
+
+def exp_max(vals, k):
+    """후보 N 개 중 **k 개만** 뽑아 봤을 때 최고값의 기대치 (비복원).
+
+    왜 필요한가 — '천장'은 후보 7개 × 자세 5개 = 자세 35개 중 최대값인데, 비교 대상인
+    제약 없음은 자세 5개 중 최대값이다. 표본을 7배 더 뽑았으니 최대값은 가만히 있어도
+    올라간다. k=1 이 **예산을 맞춘 비교**(후보 하나 = 자세 5개)이고, k 를 키우며 보면
+    천장 중 얼마가 '선택을 잘해서'이고 얼마가 '많이 뽑아서'인지가 갈린다.
+
+    오름차순 v[0..N-1] 에서 P(최대 = v[i]) = C(i, k-1) / C(N, k).
+    """
+    from math import comb
+    v = sorted(vals); n = len(v)
+    k = max(1, min(k, n))
+    d = comb(n, k)
+    return sum(x * comb(i, k - 1) for i, x in enumerate(v)) / d
 
 
 def load_main(path, model):
@@ -87,13 +111,15 @@ def main():
         # 우리 값이 후보들 사이에서 몇 등인가 (같은 값이면 더 좋은 쪽으로 세지 않는다)
         rank = (sum(1 for c in cs if ours is not None and c[1] > ours + a.eps) + 1
                 if ours is not None else None)
+        vals = [c[1] for c in cs]
         rows.append(dict(
             target=t, n_cand=len(cs), best_cand=top_k,
             dq_noconstraint=noc, dq_ours=ours, dq_ceiling=top_q,
+            dq_rand1=round(exp_max(vals, 1), 3),          # 예산을 맞춘 비교 기준
             lost=(None if ours is None else round(top_q - ours, 3)),
             rank=rank,
             rc_noconstraint=noc_r, rc_ours=ours_r, rc_ceiling=top_r,
-            n_pose_min=min(c[3] for c in cs)))
+            n_pose_min=min(c[3] for c in cs), _vals=vals))
 
     W = [("target", "타깃", 12), ("n_cand", "후보수", 7), ("dq_noconstraint", "제약없음", 10),
          ("dq_ours", "우리선택", 10), ("dq_ceiling", "천장", 8), ("lost", "잃은양", 9),
@@ -116,30 +142,51 @@ def main():
         print(f"  잃은 양(천장 − 우리 선택)   중앙값 {st.median(lost):+.3f} · 합 {sum(lost):+.3f}")
         first = [r for r in ok if r["rank"] == 1]
         print(f"  우리가 이미 최선을 골랐다   {len(first)}/{len(ok)}종")
+        print("  ! 재도킹 대상이 '선택 실패로 분류된 타깃'뿐이면 이 두 줄은 그렇게 나올 수밖에")
+        print("    없다(고른 집단이라서). 전체 집단의 선택기 성능으로 읽지 말 것.")
         big = [r for r in ok if r["lost"] is not None and r["lost"] > 0.09]
         print(f"  크게 잃은 것(>0.09)        {len(big)}종   "
               f"{', '.join(r['target'] for r in big) or '-'}")
 
     print("\n" + "-" * 72)
-    print("  ② 천장조차 제약 없음보다 낮은 복합체 = 어떤 후보를 줘도 안 된다")
+    print("  ② 천장이 제약없음을 넘는가 — 단, 예산을 맞춰야 한다")
     print("-" * 72)
+    print("  천장은 후보를 전부 뒤진 최대값이라 자세를 후보 수만큼 더 뽑은 셈이다.")
+    print("  같은 예산의 비교는 '무작위 후보 하나'(자세 5개) 대 '제약 없음'(자세 5개)이다.")
+    fair_win = [r for r in ok if r["dq_rand1"] > r["dq_noconstraint"] + a.eps]
+    fair_lose = [r for r in ok if r["dq_rand1"] < r["dq_noconstraint"] - a.eps]
+    ceil_win = [r for r in ok if r["dq_ceiling"] > r["dq_noconstraint"] + a.eps]
     hopeless = [r for r in ok if r["dq_ceiling"] < r["dq_noconstraint"] - a.eps]
-    winnable = [r for r in ok if r["dq_ceiling"] > r["dq_noconstraint"] + a.eps]
-    actual = [r for r in ok if r["dq_ours"] > r["dq_noconstraint"] + a.eps]
-    print(f"  천장이 제약없음보다 낮다   {len(hopeless):>2}종   "
-          f"{', '.join(r['target'] for r in hopeless) or '-'}")
-    print(f"  천장이 제약없음보다 높다   {len(winnable):>2}종   "
-          f"{', '.join(r['target'] for r in winnable) or '-'}")
-    print(f"  실제로 우리가 이긴 것      {len(actual):>2}종   "
-          f"{', '.join(r['target'] for r in actual) or '-'}")
-    if winnable:
-        miss = [r for r in winnable if r not in actual]
-        print(f"\n  ⭐ 이길 수 있었는데 놓친 것 {len(miss)}종: "
-              f"{', '.join(r['target'] for r in miss) or '-'}")
-        print("     → 이 종수만큼이 '선택을 고치면 얻을 수 있는 몫'이다.")
+    print(f"\n  [예산 맞춤] 무작위 후보 하나가 제약없음보다")
+    print(f"    높다  {len(fair_win):>2}종   {', '.join(r['target'] for r in fair_win) or '-'}")
+    print(f"    낮다  {len(fair_lose):>2}종   {', '.join(r['target'] for r in fair_lose) or '-'}")
+    print(f"\n  [예산 안 맞춤] 천장이 제약없음보다 높다 {len(ceil_win)}종 "
+          f"· 천장조차 낮다 {len(hopeless)}종")
     if hopeless:
-        print(f"\n  ⭐ {len(hopeless)}종은 후보를 전부 시도해도 제약 없음을 못 넘었다.")
-        print("     선택의 문제가 아니라 **이 복합체에는 제약을 주면 안 된다**는 뜻이다.")
+        print(f"    천장조차 낮은 것: {', '.join(r['target'] for r in hopeless)}")
+
+    # ── 후보를 k 개만 봤을 때의 기대 최고값 — 어디부터가 '선택의 몫'인가 ──────
+    print("\n" + "-" * 72)
+    print("  ③ 후보를 k 개만 봤다면 (기대 최고값) — 표본의 몫과 선택의 몫을 가른다")
+    print("-" * 72)
+    kmax = min(7, max(r["n_cand"] for r in rows))
+    head = "".join(f"{('k='+str(k)):>8}" for k in range(1, kmax + 1))
+    print(f"  {'타깃':<12}{'제약없음':>10}{head}")
+    for r in sorted(rows, key=lambda r: r["target"]):
+        cells = "".join(
+            f"{exp_max(r['_vals'], k):>8.3f}" if k <= r["n_cand"] else f"{'-':>8}"
+            for k in range(1, kmax + 1))
+        noc_s = f"{r['dq_noconstraint']:>10.3f}" if r["dq_noconstraint"] is not None else f"{'-':>10}"
+        print(f"  {r['target']:<12}{noc_s}{cells}")
+    print("\n  같은 줄에서 k 를 키울 때 값이 완만히 오르면 그건 **표본을 더 뽑아서**다.")
+    print("  k=1 에서 이미 제약없음을 넘거나, 특정 후보 하나 때문에 값이 껑충 뛰면")
+    print("  그건 **자리 자체가 옳아서**이고, 그때만 선택기를 고칠 값어치가 있다.")
+    jump = [r for r in rows
+            if r["n_cand"] >= 2 and r["dq_ceiling"] - exp_max(r["_vals"], r["n_cand"] - 1) > 0.09]
+    if jump:
+        print(f"\n  ⭐ 후보 하나가 판을 뒤집는 타깃 {len(jump)}종: "
+              f"{', '.join(r['target'] for r in jump)}")
+        print("     그 하나를 고르기만 하면 되는 것이라 **선택 실패가 맞다.**")
 
     thin = [r for r in rows if r["n_pose_min"] < 5]
     if thin:
@@ -147,9 +194,10 @@ def main():
               f"{', '.join(r['target'] for r in thin)}")
 
     os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
+    slim = [{k: v for k, v in r.items() if not k.startswith("_")} for r in rows]
     with open(a.out, "w", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=list(rows[0]))
-        w.writeheader(); w.writerows(rows)
+        w = csv.DictWriter(fh, fieldnames=list(slim[0]))
+        w.writeheader(); w.writerows(slim)
     print(f"\n→ {a.out}  ({len(rows)}종)")
 
 
