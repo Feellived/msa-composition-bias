@@ -5,8 +5,9 @@
 맞는지 먼저 확인한다. 맞으면 시드-대조 실험을 12회로 설계할 근거가 생기고,
 안 맞으면 설계를 다시 잡아야 한다.
 
-쓰는 자료는 **이미 있는 것**이다 — 원래 MSA 를 시드만 바꿔 여러 번 돌린 대조군
-(fullmsa_ctl). GPU 를 쓰지 않는다.
+쓰는 자료는 **이미 있는 것**이다 — 본 검정에서 원래 MSA 를 시드만 바꿔 여러 번 돌린
+대조군 실행(`compreps/seedrep_cand/<모델>/<타깃>/<깊이>/seedfull_r*`). GPU 를 쓰지 않는다.
+⚠️ 같은 폴더의 `seed<N>_r<M>` 은 **조성**을 바꾼 실행이라 여기서는 쓰지 않는다.
 
 재는 값 두 가지. 실행 수 n 을 1 부터 늘려 가며 무작위로 n 개를 뽑아 평균낸다.
   ① 자리 수    — 그 n 개가 찾아낸 **서로 구별되는 결합 자리**가 몇 개인가
@@ -125,10 +126,13 @@ def selftest():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--selftest", action="store_true")
-    ap.add_argument("--data", default=os.environ.get("DATA", "") + "/fullmsa_ctl",
-                    help="원래 MSA 시드 대조군 폴더 ($DATA/fullmsa_ctl)")
+    ap.add_argument("--data", default=os.environ.get("DATA", "") + "/compreps/seedrep_cand",
+                    help="본 검정 실행 폴더 ($DATA/compreps/seedrep_cand)")
     ap.add_argument("--model", default="protenix")
-    ap.add_argument("--depth-dir", default="full_n40", help="타깃 아래 깊이 폴더 이름")
+    ap.add_argument("--depth-dir", default="",
+                    help="타깃 아래 깊이 폴더 이름. 비우면 자동으로 찾는다(타깃마다 다르다)")
+    ap.add_argument("--run-prefix", default="seedfull_r",
+                    help="시드만 바꾼 실행의 이름 앞부분. 조성을 바꾼 seed<N>_r<M> 은 제외된다")
     ap.add_argument("--targets-dir", default="targets")
     ap.add_argument("--only", default="", help="공백으로 구분한 타깃 목록")
     ap.add_argument("--cutoff", type=float, default=5.0)
@@ -167,14 +171,21 @@ def main():
 
     rows = []
     for tgt in tgts:
-        base = os.path.join(root, tgt, a.depth_dir)
-        if not os.path.isdir(base):
-            sub = [d for d in os.listdir(os.path.join(root, tgt))
-                   if os.path.isdir(os.path.join(root, tgt, d))]
-            print(f"  ! {tgt}: {a.depth_dir} 없음 (있는 것 = {sub[:4]}) — 건너뜀"); continue
-        runs = sorted(d for d in os.listdir(base) if os.path.isdir(os.path.join(base, d)))
+        tdir = os.path.join(root, tgt)
+        subs = sorted(d for d in os.listdir(tdir) if os.path.isdir(os.path.join(tdir, d)))
+        if a.depth_dir:
+            depth = a.depth_dir
+        elif len(subs) == 1:              # 깊이 폴더 이름은 타깃마다 다르다(d23 · d4169 …)
+            depth = subs[0]
+        else:
+            print(f"  ! {tgt}: 깊이 폴더가 {len(subs)}개다 {subs[:5]} — --depth-dir 로 지정할 것")
+            continue
+        base = os.path.join(tdir, depth)
+        runs = sorted(d for d in os.listdir(base)
+                      if d.startswith(a.run_prefix) and os.path.isdir(os.path.join(base, d)))
         if len(runs) < 4:
-            print(f"  ! {tgt}: 실행이 {len(runs)}개뿐 — 건너뜀"); continue
+            print(f"  ! {tgt}: {depth} 에 '{a.run_prefix}*' 실행이 {len(runs)}개뿐 — 건너뜀")
+            continue
 
         cj = json.load(open(os.path.join(a.targets_dir, tgt, "chains.json")))
         tr = PF.native_true(cj, os.path.join(a.targets_dir, tgt, "native.cif"), a.cutoff)
@@ -207,7 +218,7 @@ def main():
         sat_r = plateau([r for _, _, r in c])
         N = len(eps)
         print("=" * 84)
-        print(f"  {tgt}   실행 {N}개 · 자세 중앙값 {st.median(npose):.0f}개 · "
+        print(f"  {tgt} ({depth})   실행 {N}개 · 자세 중앙값 {st.median(npose):.0f}개 · "
               f"정답 도달 실행 {sum(hit)}/{N}")
         print("=" * 84)
         top = max(m for _, m, _ in c)
