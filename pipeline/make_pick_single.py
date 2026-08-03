@@ -41,6 +41,15 @@ def main():
         raise SystemExit(f"!! 원본 목록이 없다: {a.pick}")
 
     orig = list(csv.DictReader(open(a.pick)))
+    if not orig:
+        raise SystemExit(f"!! 원본이 비었다: {a.pick}")
+    extra = [c for c in orig[0] if c not in COLS]
+    lack = [c for c in COLS if c not in orig[0]]
+    if extra or lack:
+        # 열이 다르면 빈칸으로 채워져 조용히 어긋난다 — 먼저 알린다
+        print(f"  ! 원본 열이 예상과 다르다 — 없는 열 {lack} · 남는 열 {extra}")
+        print(f"    원본 열 = {list(orig[0])}")
+        print(f"    출력은 {COLS} 순서로 맞추고, 없는 값은 빈칸으로 둔다")
     have = {r["target"] for r in orig}
     print(f"원본 {len(orig)}종: {a.pick}")
 
