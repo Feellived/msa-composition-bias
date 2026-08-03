@@ -8,7 +8,7 @@
 8sit_HL 이 그랬다. 제약 없이 0.808 인데 세 제약 조건이 전부 0.025~0.026 으로 무너졌다.
 자리를 잘못 골라서가 아니라 **제약을 주는 행위 자체가 해로운 복합체**다.
 
-판정 (네 팔이 모두 있는 타깃만):
+판정 (기준·우리 자리 + 대조 자리가 최소 하나 있는 타깃):
   우리만 이득       ours 가 나머지 셋보다 모두 높다            ← 자리가 옳았다는 증거
   제약 자체가 해로움 세 제약이 모두 크게 떨어졌다               ← 우리 탓이 아니다
   우리만 해로움     ours 만 크게 떨어졌다                      ← 선택 문제
@@ -53,19 +53,30 @@ def main():
             rc[(r["target"], r["arm"])] = float(r["recall_max"])
         except ValueError:
             pass
+    # 판정에 꼭 필요한 것 = 기준(제약없음) · 우리 자리 · **우리가 아닌 대조 자리 최소 하나**.
+    # 후보가 하나뿐인 타깃은 '원래 MSA 자리'를 따로 만들 수 없어 fullmsa 가 비는데,
+    # 그렇다고 판정을 포기할 이유는 없다. 같은 크기의 다른 자리(sizematch) 하나만 있어도
+    # "다른 자리를 줘도 똑같이 무너지는가"는 물을 수 있다.
     tgts = sorted({t for t, _ in dq})
-    full4 = [t for t in tgts if all((t, x) in dq for x in ARMS)]
-    print(f"모델={a.model} · 타깃 {len(tgts)}종 · 네 팔이 모두 있는 것 {len(full4)}종")
-    if len(tgts) > len(full4):
-        miss_t = [t for t in tgts if t not in full4]
-        print(f"  ! 네 팔이 없어 판정 불가 {len(miss_t)}종: {', '.join(miss_t)}")
+    usable, nojudge = [], []
+    for t in tgts:
+        ctrl = [x for x in ("fullmsa", "sizematch") if (t, x) in dq]
+        if (t, "noconstraint") in dq and (t, "ours") in dq and ctrl:
+            usable.append((t, ctrl))
+        else:
+            nojudge.append(t)
+    full4 = [t for t, c in usable if len(c) == 2]
+    print(f"모델={a.model} · 타깃 {len(tgts)}종 · 판정 가능 {len(usable)}종 "
+          f"(네 팔 모두 {len(full4)}종 · 대조 자리 하나뿐 {len(usable) - len(full4)}종)")
+    if nojudge:
+        print(f"  ! 기준·우리·대조 중 빠진 게 있어 판정 불가 {len(nojudge)}종: {', '.join(nojudge)}")
 
     out = []
-    for t in full4:
-        d = {x: dq[(t, x)] for x in ARMS}
+    for t, ctrl in usable:
+        d = {x: dq[(t, x)] for x in ARMS if (t, x) in dq}
         base = d["noconstraint"]
-        drop = {x: base - d[x] for x in ("fullmsa", "sizematch", "ours")}
-        if all(d["ours"] > d[x] + a.eps for x in ("noconstraint", "fullmsa", "sizematch")):
+        drop = {x: base - d[x] for x in ctrl + ["ours"]}
+        if all(d["ours"] > d[x] + a.eps for x in ["noconstraint"] + ctrl):
             v = "우리만 이득"
         elif min(drop.values()) > a.harm:
             v = "제약 자체가 해로움"
@@ -75,10 +86,12 @@ def main():
             v = "우리가 나음"
         else:
             v = "차이 없음"
-        out.append(dict(target=t, verdict=v, **{f"dq_{x}": round(d[x], 3) for x in ARMS},
-                        drop_full=round(drop["fullmsa"], 3),
-                        drop_size=round(drop["sizematch"], 3),
+        out.append(dict(target=t, verdict=v,
+                        **{f"dq_{x}": (round(d[x], 3) if x in d else None) for x in ARMS},
+                        drop_full=(round(drop["fullmsa"], 3) if "fullmsa" in drop else None),
+                        drop_size=(round(drop["sizematch"], 3) if "sizematch" in drop else None),
                         drop_ours=round(drop["ours"], 3),
+                        n_ctrl=len(ctrl),
                         rc_no=round(rc[(t, "noconstraint")], 3),
                         rc_ours=round(rc[(t, "ours")], 3)))
 
@@ -91,9 +104,17 @@ def main():
     print("\n" + "=" * 108)
     print("  네 조건 비교 — 우리 하락이 큰 순")
     print("=" * 108)
+    def cell(v):
+        return "-" if v is None else (f"{v:.3f}" if isinstance(v, float) else str(v))
+
     print("  " + "".join(f"{H[c]:>12}" if c != "verdict" else f"{H[c]:>18}" for c in W))
     for r in out:
-        print("  " + "".join(f"{r[c]!s:>12}" if c != "verdict" else f"{r[c]!s:>18}" for c in W))
+        print("  " + "".join(f"{cell(r[c]):>12}" if c != "verdict"
+                             else f"{cell(r[c]):>18}" for c in W))
+    if any(r["n_ctrl"] == 1 for r in out):
+        one = [r["target"] for r in out if r["n_ctrl"] == 1]
+        print(f"\n  · 대조 자리가 하나뿐(같은 크기 다른 자리만)인 타깃: {', '.join(one)}")
+        print("    후보가 하나뿐이라 '원래 MSA 자리' 팔을 만들 수 없었던 경우다.")
 
     print("\n" + "-" * 70)
     print("  판정별 종수")
@@ -112,8 +133,8 @@ def main():
     print(f"  우리 선택 탓        {len(mine):>2}종   {', '.join(r['target'] for r in mine) or '-'}")
     print(f"  제약 자체가 해로움  {len(theirs):>2}종   {', '.join(r['target'] for r in theirs) or '-'}")
     if theirs:
-        print(f"\n  ⭐ 이 {len(theirs)}종은 원래 MSA 가 간 자리를 줘도, 같은 크기의 다른 자리를 줘도")
-        print(f"     똑같이 무너졌다. 자리를 잘못 골라서가 아니라 **제약을 주면 안 되는 복합체**다.")
+        print(f"\n  ⭐ 이 {len(theirs)}종은 우리가 고른 자리 말고 **다른 자리를 줘도 똑같이 무너졌다.**")
+        print(f"     자리를 잘못 골라서가 아니라 **제약을 주면 안 되는 복합체**다.")
 
     os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
     with open(a.out, "w", newline="") as fh:
