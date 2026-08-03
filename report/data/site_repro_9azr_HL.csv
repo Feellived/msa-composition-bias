@@ -1,0 +1,3 @@
+target,model,depth,within,between,ratio,perm_p,n_cand,cand,n_comp,n_res,true_covered,precision,comps
+9azr_HL,protenix,d552,0.4913,0.4247,1.157,0.06297,2,1,6,48,0.9583,0.4792,"seed1,seed2,seed3,seed4,seed5,seedfull"
+9azr_HL,protenix,d552,0.4913,0.4247,1.157,0.06297,2,2,1,62,0.875,0.3387,seed0

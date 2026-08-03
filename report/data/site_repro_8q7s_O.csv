@@ -1,0 +1,2 @@
+target,model,depth,within,between,ratio,perm_p,n_cand,cand,n_comp,n_res,true_covered,precision,comps
+8q7s_O,protenix,d35,0.7328,0.6149,1.192,0.0005,1,1,7,44,1.0,0.5455,"seed0,seed1,seed2,seed3,seed4,seed5,seedfull"

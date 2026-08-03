@@ -1,0 +1,31 @@
+target,metric,thr,n_comp,n_runs,comp_succ,comp_runs,full_succ,full_runs,stat,perm_p,comp_rate,full_rate,direction,per_group
+8k3k_D,recall,0.4,6,44,18,24,0,20,53.989,0.0,0.75,0.0,조성 우세 ★,seed0:4/4 seed1:4/4 seed2:2/4 seed3:4/4 seed4:4/4 seed5:0/4 seedfull:0/20
+8k46_I,recall,0.4,6,44,7,24,0,20,25.062,0.00038,0.2917,0.0,조성 우세 ★,seed0:3/4 seed1:0/4 seed2:0/4 seed3:3/4 seed4:0/4 seed5:1/4 seedfull:0/20
+8k5g_HL,recall,0.4,6,32,7,24,4,8,7.6,0.45449,0.2917,0.5,—,seed0:3/4 seed1:1/4 seed2:1/4 seed3:1/4 seed4:0/4 seed5:1/4 seedfull:4/8
+8k5h_HL,recall,0.4,6,32,7,24,5,8,27.256,0.00038,0.2917,0.625,원래 MSA 우세,seed0:0/4 seed1:3/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:4/4 seedfull:5/8
+8kep_HL,recall,0.4,6,32,2,24,1,8,8.339,0.22122,0.0833,0.125,—,seed0:0/4 seed1:2/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:1/8
+8q7s_C,recall,0.4,6,32,24,24,8,8,0.0,1.0,1.0,1.0,—,seed0:4/4 seed1:4/4 seed2:4/4 seed3:4/4 seed4:4/4 seed5:4/4 seedfull:8/8
+8q7s_H,recall,0.4,6,32,23,24,8,8,4.401,0.75052,0.9583,1.0,—,seed0:4/4 seed1:4/4 seed2:4/4 seed3:4/4 seed4:4/4 seed5:3/4 seedfull:8/8
+8q7s_O,recall,0.4,6,32,24,24,8,8,0.0,1.0,1.0,1.0,—,seed0:4/4 seed1:4/4 seed2:4/4 seed3:4/4 seed4:4/4 seed5:4/4 seedfull:8/8
+8siq_HL,recall,0.4,6,32,4,24,5,8,18.442,0.01456,0.1667,0.625,원래 MSA 우세,seed0:3/4 seed1:0/4 seed2:1/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:5/8
+8sis_HL,recall,0.4,6,44,12,24,2,20,21.952,0.00218,0.5,0.1,조성 우세 ★,seed0:0/4 seed1:2/4 seed2:4/4 seed3:2/4 seed4:3/4 seed5:1/4 seedfull:2/20
+8sit_HL,recall,0.4,6,32,20,24,2,8,12.757,0.10755,0.8333,0.25,—,seed0:3/4 seed1:4/4 seed2:3/4 seed3:4/4 seed4:3/4 seed5:3/4 seedfull:2/8
+8t4a_PR,recall,0.4,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+8t4d_OQ,recall,0.4,6,32,1,24,1,8,4.436,1.0,0.0417,0.125,—,seed0:0/4 seed1:0/4 seed2:1/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:1/8
+8tp5_HL,recall,0.4,6,44,8,24,2,20,16.166,0.01645,0.3333,0.1,조성 우세 ★,seed0:3/4 seed1:1/4 seed2:3/4 seed3:0/4 seed4:1/4 seed5:0/4 seedfull:2/20
+8u44_ST,recall,0.4,6,32,15,24,7,8,9.135,0.3299,0.625,0.875,—,seed0:4/4 seed1:3/4 seed2:2/4 seed3:3/4 seed4:1/4 seed5:2/4 seedfull:7/8
+8ulr_HL,recall,0.4,8,62,16,32,1,30,49.525,0.0,0.5,0.0333,조성 우세 ★,seed0:0/4 seed1:1/4 seed2:0/4 seed3:4/4 seed4:4/4 seed5:1/4 seed6:2/4 seed7:4/4 seedfull:1/30
+8ume_HL,recall,0.4,6,32,13,24,3,8,14.735,0.08238,0.5417,0.375,—,seed0:4/4 seed1:1/4 seed2:3/4 seed3:3/4 seed4:2/4 seed5:0/4 seedfull:3/8
+8xsi_HL,recall,0.4,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+9azr_HL,recall,0.4,6,32,20,24,8,8,9.571,0.22349,0.8333,1.0,—,seed0:2/4 seed1:4/4 seed2:3/4 seed3:4/4 seed4:3/4 seed5:4/4 seedfull:8/8
+9azt_HL,recall,0.4,6,32,0,24,4,8,13.023,0.03673,0.0,0.5,원래 MSA 우세,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:4/8
+9azv_HL,recall,0.4,6,32,4,24,5,8,9.445,0.29924,0.1667,0.625,—,seed0:1/4 seed1:1/4 seed2:1/4 seed3:0/4 seed4:1/4 seed5:0/4 seedfull:5/8
+9b7g_QP,recall,0.4,6,32,24,24,8,8,0.0,1.0,1.0,1.0,—,seed0:4/4 seed1:4/4 seed2:4/4 seed3:4/4 seed4:4/4 seed5:4/4 seedfull:8/8
+9bdg_FI,recall,0.4,6,32,19,24,3,8,10.123,0.27934,0.7917,0.375,—,seed0:2/4 seed1:3/4 seed2:4/4 seed3:3/4 seed4:3/4 seed5:4/4 seedfull:3/8
+9kkj_HL,recall,0.4,6,32,11,24,5,8,14.735,0.08238,0.4583,0.625,—,seed0:3/4 seed1:1/4 seed2:1/4 seed3:4/4 seed4:2/4 seed5:0/4 seedfull:5/8
+9ml9_HL,recall,0.4,6,32,3,24,0,8,9.868,0.15207,0.125,0.0,—,seed0:1/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:2/4 seedfull:0/8
+9mqr_DE,recall,0.4,6,32,5,24,6,8,27.687,0.00028,0.2083,0.75,원래 MSA 우세,seed0:1/4 seed1:0/4 seed2:4/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:6/8
+9w43_AB,recall,0.4,6,32,0,24,0,8,0.0,1.0,0.0,0.0,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:0/8
+9y0a_AB,recall,0.4,6,32,0,24,1,8,2.872,1.0,0.0,0.125,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:0/4 seed5:0/4 seedfull:1/8
+9yc6_HL,recall,0.4,6,32,2,24,3,8,8.155,0.41271,0.0833,0.375,—,seed0:0/4 seed1:0/4 seed2:0/4 seed3:0/4 seed4:1/4 seed5:1/4 seedfull:3/8
+9zdu_HL,recall,0.4,6,32,15,24,7,8,20.225,0.00512,0.625,0.875,원래 MSA 우세,seed0:3/4 seed1:1/4 seed2:3/4 seed3:0/4 seed4:4/4 seed5:4/4 seedfull:7/8

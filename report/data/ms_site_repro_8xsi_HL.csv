@@ -1,0 +1,4 @@
+target,model,depth,within,between,ratio,perm_p,n_cand,cand,n_comp,n_res,true_covered,precision,comps
+8xsi_HL,protenix,d8894,0.4689,0.3375,1.389,0.0025,3,1,5,26,0.0,0.0,"seed0,seed2,seed3,seed5,seedfull"
+8xsi_HL,protenix,d8894,0.4689,0.3375,1.389,0.0025,3,2,1,56,0.3333,0.1071,seed1
+8xsi_HL,protenix,d8894,0.4689,0.3375,1.389,0.0025,3,3,1,46,0.0556,0.0217,seed4

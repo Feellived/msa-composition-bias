@@ -1,0 +1,4 @@
+target,model,depth,within,between,ratio,perm_p,n_cand,cand,n_comp,n_res,true_covered,precision,comps
+9bdg_FI,protenix,d173,0.4133,0.2999,1.378,0.01649,3,1,5,28,0.1379,0.1429,"seed0,seed1,seed3,seed5,seedfull"
+9bdg_FI,protenix,d173,0.4133,0.2999,1.378,0.01649,3,2,1,30,0.2759,0.2667,seed2
+9bdg_FI,protenix,d173,0.4133,0.2999,1.378,0.01649,3,3,1,49,0.1724,0.102,seed4

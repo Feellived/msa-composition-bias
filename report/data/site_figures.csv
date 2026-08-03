@@ -1,0 +1,5 @@
+target,arm,recall,n_pose,pose
+8k3k_D,noconstraint,0.0645,10,runs_sites_guided/8k3k_d/noconstraint/out_protenix/results/8k3k_d/seed_42/predictions/8k3k_d_sample_0.cif
+8k3k_D,fullmsa,0.1613,10,runs_sites_guided/8k3k_d/fullmsa/out_boltz/results/boltz_results_boltz_8k3k_d_patch0/predictions/boltz_8k3k_d_patch0/boltz_8k3k_d_patch0_model_4.cif
+8k3k_D,sizematch,0.2895,10,runs_sites_guided/8k3k_d/sizematch/out_boltz/results/boltz_results_boltz_8k3k_d_patch0/predictions/boltz_8k3k_d_patch0/boltz_8k3k_d_patch0_model_2.cif
+8k3k_D,ours,0.7600,10,runs_sites_guided/8k3k_d/ours/out_boltz/results/boltz_results_boltz_8k3k_d_patch0/predictions/boltz_8k3k_d_patch0/boltz_8k3k_d_patch0_model_3.cif

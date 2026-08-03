@@ -1,0 +1,4 @@
+target,model,depth,within,between,ratio,perm_p,n_cand,cand,n_comp,n_res,true_covered,precision,comps
+8k46_I,protenix,d23,0.6749,0.4297,1.571,0.0005,3,1,5,52,0.24,0.1154,"seed1,seed2,seed4,seed5,seedfull"
+8k46_I,protenix,d23,0.6749,0.4297,1.571,0.0005,3,2,1,34,0.72,0.5294,seed0
+8k46_I,protenix,d23,0.6749,0.4297,1.571,0.0005,3,3,1,39,0.72,0.4615,seed3

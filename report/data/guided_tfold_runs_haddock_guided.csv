@@ -1,0 +1,8 @@
+target,model,blind_best,guided_best,diff,n_blind,n_guided
+9K6J,tfold,-,-,-,6,45
+9XF9,tfold,-,-,-,5,75
+9Y0A,tfold,-,-,-,5,40
+9VXL,tfold,-,-,-,5,65
+9LY5,tfold,-,-,-,5,55
+9MQR,tfold,-,-,-,5,51
+9KKJ,tfold,-,-,-,5,1

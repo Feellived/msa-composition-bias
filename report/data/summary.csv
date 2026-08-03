@@ -1,0 +1,647 @@
+date,phase,model,target,seed,dockq_abag,global_iptm,pair_iptm_abag,success,notes
+2026-07-03,Benchmark,Boltz-2,10ZO,0,0.83,0.94,0.929,True,DockQ(Ab-Ag) B-A 0.830; pair ipTM 0.93-0.94; interfaces=1
+2026-07-03,Benchmark,Boltz-2,10ZO,1,0.844,0.943,0.931,True,DockQ(Ab-Ag) B-A 0.844; pair ipTM 0.93-0.94; interfaces=1
+2026-07-03,Benchmark,Boltz-2,10ZO,2,0.832,0.935,0.922,True,DockQ(Ab-Ag) B-A 0.832; pair ipTM 0.92-0.93; interfaces=1
+2026-07-03,Benchmark,Boltz-2,10ZO,3,0.804,0.934,0.92,True,DockQ(Ab-Ag) B-A 0.804; pair ipTM 0.92-0.93; interfaces=1
+2026-07-03,Benchmark,Boltz-2,10ZO,4,0.817,0.924,0.908,True,DockQ(Ab-Ag) B-A 0.817; pair ipTM 0.91-0.92; interfaces=1
+2026-07-03,Benchmark,Boltz-2,9Y0A,0,0.036,0.732,0.466,False,DockQ(Ab-Ag) C-A 0.047 / C-B 0.036; pair ipTM 0.47-0.59; interfaces=3
+2026-07-03,Benchmark,Boltz-2,9Y0A,1,0.03,0.731,0.421,False,DockQ(Ab-Ag) C-A 0.030 / C-B 0.030; pair ipTM 0.42-0.61; interfaces=3
+2026-07-03,Benchmark,Boltz-2,9Y0A,2,0.06,0.722,0.418,False,DockQ(Ab-Ag) C-A 0.060 / C-B 0.061; pair ipTM 0.42-0.58; interfaces=3
+2026-07-03,Benchmark,Boltz-2,9Y0A,3,0.059,0.703,0.323,False,DockQ(Ab-Ag) C-A 0.060 / C-B 0.059; pair ipTM 0.32-0.53; interfaces=3
+2026-07-03,Benchmark,Boltz-2,9Y0A,4,0.035,0.585,0.152,False,DockQ(Ab-Ag) C-A 0.046 / C-B 0.035; pair ipTM 0.15-0.25; interfaces=3
+2026-07-03,Benchmark,Boltz-2,9K6J,0,0.025,0.805,0.61,False,DockQ(Ab-Ag) C-A 0.042 / C-B 0.025; pair ipTM 0.61-0.72; interfaces=3
+2026-07-03,Benchmark,Boltz-2,9K6J,1,0.024,0.776,0.535,False,DockQ(Ab-Ag) C-A 0.036 / C-B 0.024; pair ipTM 0.53-0.67; interfaces=3
+2026-07-03,Benchmark,Boltz-2,9K6J,2,0.025,0.762,0.514,False,DockQ(Ab-Ag) C-A 0.042 / C-B 0.025; pair ipTM 0.51-0.65; interfaces=3
+2026-07-03,Benchmark,Boltz-2,9K6J,3,0.026,0.745,0.461,False,DockQ(Ab-Ag) C-A 0.032 / C-B 0.026; pair ipTM 0.46-0.61; interfaces=3
+2026-07-03,Benchmark,Boltz-2,9K6J,4,0.028,0.728,0.434,False,DockQ(Ab-Ag) C-A 0.033 / C-B 0.028; pair ipTM 0.43-0.58; interfaces=3
+2026-07-03,Benchmark,Boltz-2,9XF9,0,0.075,0.828,0.642,False,DockQ(Ab-Ag) A-H 0.154 / A-L 0.075; pair ipTM 0.64-0.79; interfaces=3
+2026-07-03,Benchmark,Boltz-2,9XF9,1,0.157,0.716,0.435,False,DockQ(Ab-Ag) A-H 0.171 / A-L 0.157; pair ipTM 0.43-0.59; interfaces=3
+2026-07-03,Benchmark,Boltz-2,9XF9,2,0.05,0.673,0.363,False,DockQ(Ab-Ag) A-H 0.050 / A-L 0.070; pair ipTM 0.36-0.50; interfaces=3
+2026-07-03,Benchmark,Boltz-2,9XF9,3,0.01,0.661,0.363,False,DockQ(Ab-Ag) A-H 0.013 / A-L 0.010; pair ipTM 0.36-0.48; interfaces=3
+2026-07-03,Benchmark,Boltz-2,9XF9,4,0.049,0.549,0.178,False,DockQ(Ab-Ag) A-H 0.049 / A-L 0.061; pair ipTM 0.18-0.27; interfaces=3
+2026-07-03,Benchmark,Boltz-2,9OBN,0,0.671,0.905,0.889,True,DockQ(Ab-Ag) A-E 0.671; pair ipTM 0.89-0.91; interfaces=1
+2026-07-03,Benchmark,Boltz-2,9OBN,1,0.685,0.905,0.904,True,DockQ(Ab-Ag) A-E 0.685; pair ipTM 0.90-0.90; interfaces=1
+2026-07-03,Benchmark,Boltz-2,9OBN,2,0.684,0.895,0.89,True,DockQ(Ab-Ag) A-E 0.684; pair ipTM 0.89-0.89; interfaces=1
+2026-07-03,Benchmark,Boltz-2,9OBN,3,0.678,0.894,0.888,True,DockQ(Ab-Ag) A-E 0.678; pair ipTM 0.89-0.89; interfaces=1
+2026-07-03,Benchmark,Boltz-2,9OBN,4,0.664,0.89,0.889,True,DockQ(Ab-Ag) A-E 0.664; pair ipTM 0.89-0.89; interfaces=1
+2026-07-04,Benchmark,Chai-1,10ZO,0,0.783,0.766,0.744,True,DockQ(Ab-Ag) B-A 0.783; pair ipTM 0.74-0.77; interfaces=1
+2026-07-04,Benchmark,Chai-1,10ZO,1,0.75,0.767,0.744,True,DockQ(Ab-Ag) B-A 0.750; pair ipTM 0.74-0.77; interfaces=1
+2026-07-04,Benchmark,Chai-1,10ZO,2,0.776,0.766,0.732,True,DockQ(Ab-Ag) B-A 0.776; pair ipTM 0.73-0.77; interfaces=1
+2026-07-04,Benchmark,Chai-1,10ZO,3,0.771,0.767,0.746,True,DockQ(Ab-Ag) B-A 0.771; pair ipTM 0.75-0.77; interfaces=1
+2026-07-04,Benchmark,Chai-1,10ZO,4,0.762,0.767,0.748,True,DockQ(Ab-Ag) B-A 0.762; pair ipTM 0.75-0.77; interfaces=1
+2026-07-04,Benchmark,Chai-1,9OBN,0,0.66,0.735,0.693,True,DockQ(Ab-Ag) A-E 0.660; pair ipTM 0.69-0.74; interfaces=1
+2026-07-04,Benchmark,Chai-1,9OBN,1,0.728,0.738,0.698,True,DockQ(Ab-Ag) A-E 0.728; pair ipTM 0.70-0.74; interfaces=1
+2026-07-04,Benchmark,Chai-1,9OBN,2,0.589,0.739,0.695,True,DockQ(Ab-Ag) A-E 0.589; pair ipTM 0.69-0.74; interfaces=1
+2026-07-04,Benchmark,Chai-1,9OBN,3,0.645,0.738,0.7,True,DockQ(Ab-Ag) A-E 0.645; pair ipTM 0.70-0.74; interfaces=1
+2026-07-04,Benchmark,Chai-1,9OBN,4,0.684,0.74,0.7,True,DockQ(Ab-Ag) A-E 0.684; pair ipTM 0.70-0.74; interfaces=1
+2026-07-04,Benchmark,Chai-1,9K6J,0,0.018,0.61,0.191,False,DockQ(Ab-Ag) C-A 0.043 / C-B 0.018; pair ipTM 0.19-0.22; interfaces=3
+2026-07-04,Benchmark,Chai-1,9K6J,1,0.018,0.602,0.175,False,DockQ(Ab-Ag) C-A 0.048 / C-B 0.018; pair ipTM 0.18-0.22; interfaces=3
+2026-07-04,Benchmark,Chai-1,9K6J,2,0.007,0.567,0.149,False,DockQ(Ab-Ag) C-A 0.007 / C-B 0.009; pair ipTM 0.15-0.16; interfaces=3
+2026-07-04,Benchmark,Chai-1,9K6J,3,0.078,0.6,0.156,False,DockQ(Ab-Ag) C-A 0.133 / C-B 0.078; pair ipTM 0.16-0.20; interfaces=3
+2026-07-04,Benchmark,Chai-1,9K6J,4,0.018,0.597,0.18,False,DockQ(Ab-Ag) C-A 0.053 / C-B 0.018; pair ipTM 0.18-0.22; interfaces=3
+2026-07-04,Benchmark,Chai-1,9XF9,0,0.014,0.574,0.162,False,DockQ(Ab-Ag) A-H 0.014 / A-L 0.029; pair ipTM 0.16-0.22; interfaces=3
+2026-07-04,Benchmark,Chai-1,9XF9,1,0.054,0.591,0.178,False,DockQ(Ab-Ag) A-H 0.082 / A-L 0.054; pair ipTM 0.18-0.25; interfaces=3
+2026-07-04,Benchmark,Chai-1,9XF9,2,0.028,0.586,0.178,False,DockQ(Ab-Ag) A-H 0.049 / A-L 0.028; pair ipTM 0.18-0.24; interfaces=3
+2026-07-04,Benchmark,Chai-1,9XF9,3,0.201,0.588,0.173,False,DockQ(Ab-Ag) A-H 0.275 / A-L 0.201; pair ipTM 0.17-0.23; interfaces=3
+2026-07-04,Benchmark,Chai-1,9XF9,4,0.075,0.586,0.166,False,DockQ(Ab-Ag) A-H 0.107 / A-L 0.075; pair ipTM 0.17-0.23; interfaces=3
+2026-07-04,Benchmark,Chai-1,9Y0A,0,0.564,0.576,0.189,True,DockQ(Ab-Ag) C-A 0.564 / C-B 0.596; pair ipTM 0.19-0.25; interfaces=3
+2026-07-04,Benchmark,Chai-1,9Y0A,1,0.49,0.583,0.196,True,DockQ(Ab-Ag) C-A 0.599 / C-B 0.490; pair ipTM 0.20-0.25; interfaces=3
+2026-07-04,Benchmark,Chai-1,9Y0A,2,0.368,0.587,0.192,True,DockQ(Ab-Ag) C-A 0.564 / C-B 0.368; pair ipTM 0.19-0.25; interfaces=3
+2026-07-04,Benchmark,Chai-1,9Y0A,3,0.306,0.579,0.199,True,DockQ(Ab-Ag) C-A 0.569 / C-B 0.306; pair ipTM 0.20-0.25; interfaces=3
+2026-07-04,Benchmark,Chai-1,9Y0A,4,0.129,0.561,0.172,False,DockQ(Ab-Ag) C-A 0.133 / C-B 0.129; pair ipTM 0.17-0.21; interfaces=3
+2026-07-04,Benchmark,Protenix,10ZO,0,0.893,0.911,0.911,True,DockQ(Ab-Ag) B-A 0.893; pair ipTM 0.91-0.91; interfaces=1; MSA=protenix
+2026-07-04,Benchmark,Protenix,10ZO,1,0.879,0.911,0.911,True,DockQ(Ab-Ag) B-A 0.879; pair ipTM 0.91-0.91; interfaces=1; MSA=protenix
+2026-07-04,Benchmark,Protenix,10ZO,2,0.874,0.911,0.911,True,DockQ(Ab-Ag) B-A 0.874; pair ipTM 0.91-0.91; interfaces=1; MSA=protenix
+2026-07-04,Benchmark,Protenix,10ZO,3,0.873,0.911,0.911,True,DockQ(Ab-Ag) B-A 0.873; pair ipTM 0.91-0.91; interfaces=1; MSA=protenix
+2026-07-04,Benchmark,Protenix,10ZO,4,0.888,0.911,0.911,True,DockQ(Ab-Ag) B-A 0.888; pair ipTM 0.91-0.91; interfaces=1; MSA=protenix
+2026-07-04,Benchmark,Protenix,9Y0A,0,0.05,0.597,0.228,False,DockQ(Ab-Ag) C-A 0.050 / C-B 0.050; pair ipTM 0.23-0.25; interfaces=3; MSA=protenix
+2026-07-04,Benchmark,Protenix,9Y0A,1,0.031,0.587,0.206,False,DockQ(Ab-Ag) C-A 0.032 / C-B 0.031; pair ipTM 0.21-0.22; interfaces=3; MSA=protenix
+2026-07-04,Benchmark,Protenix,9Y0A,2,0.034,0.586,0.201,False,DockQ(Ab-Ag) C-A 0.034 / C-B 0.035; pair ipTM 0.20-0.21; interfaces=3; MSA=protenix
+2026-07-04,Benchmark,Protenix,9Y0A,3,0.043,0.585,0.199,False,DockQ(Ab-Ag) C-A 0.043 / C-B 0.044; pair ipTM 0.20-0.21; interfaces=3; MSA=protenix
+2026-07-04,Benchmark,Protenix,9Y0A,4,0.027,0.581,0.183,False,DockQ(Ab-Ag) C-A 0.027 / C-B 0.028; pair ipTM 0.18-0.19; interfaces=3; MSA=protenix
+2026-07-04,Benchmark,Protenix,9OBN,0,0.714,0.912,0.912,True,DockQ(Ab-Ag) A-E 0.714; pair ipTM 0.91-0.91; interfaces=1; MSA=protenix
+2026-07-04,Benchmark,Protenix,9OBN,1,0.707,0.911,0.911,True,DockQ(Ab-Ag) A-E 0.707; pair ipTM 0.91-0.91; interfaces=1; MSA=protenix
+2026-07-04,Benchmark,Protenix,9OBN,2,0.705,0.911,0.911,True,DockQ(Ab-Ag) A-E 0.705; pair ipTM 0.91-0.91; interfaces=1; MSA=protenix
+2026-07-04,Benchmark,Protenix,9OBN,3,0.7,0.911,0.911,True,DockQ(Ab-Ag) A-E 0.700; pair ipTM 0.91-0.91; interfaces=1; MSA=protenix
+2026-07-04,Benchmark,Protenix,9OBN,4,0.701,0.91,0.91,True,DockQ(Ab-Ag) A-E 0.701; pair ipTM 0.91-0.91; interfaces=1; MSA=protenix
+2026-07-04,Benchmark,Protenix,9K6J,0,0.023,0.703,0.431,False,DockQ(Ab-Ag) C-A 0.041 / C-B 0.023; pair ipTM 0.43-0.44; interfaces=3; MSA=protenix
+2026-07-04,Benchmark,Protenix,9K6J,1,0.02,0.702,0.431,False,DockQ(Ab-Ag) C-A 0.054 / C-B 0.020; pair ipTM 0.43-0.46; interfaces=3; MSA=protenix
+2026-07-04,Benchmark,Protenix,9K6J,2,0.022,0.699,0.421,False,DockQ(Ab-Ag) C-A 0.040 / C-B 0.022; pair ipTM 0.42-0.44; interfaces=3; MSA=protenix
+2026-07-04,Benchmark,Protenix,9K6J,3,0.022,0.699,0.429,False,DockQ(Ab-Ag) C-A 0.050 / C-B 0.022; pair ipTM 0.43-0.45; interfaces=3; MSA=protenix
+2026-07-04,Benchmark,Protenix,9K6J,4,0.045,0.695,0.407,False,DockQ(Ab-Ag) C-A 0.045 / C-B 0.108; pair ipTM 0.41-0.42; interfaces=3; MSA=protenix
+2026-07-04,Benchmark,Protenix,9XF9,0,0.007,0.595,0.27,False,DockQ(Ab-Ag) A-H 0.007 / A-L 0.008; pair ipTM 0.27-0.30; interfaces=3; MSA=protenix
+2026-07-04,Benchmark,Protenix,9XF9,1,0.006,0.561,0.212,False,DockQ(Ab-Ag) A-H 0.007 / A-L 0.006; pair ipTM 0.21-0.22; interfaces=3; MSA=protenix
+2026-07-04,Benchmark,Protenix,9XF9,2,0.014,0.551,0.204,False,DockQ(Ab-Ag) A-H 0.028 / A-L 0.014; pair ipTM 0.20-0.21; interfaces=3; MSA=protenix
+2026-07-04,Benchmark,Protenix,9XF9,3,0.022,0.542,0.172,False,DockQ(Ab-Ag) A-H 0.090 / A-L 0.022; pair ipTM 0.17-0.19; interfaces=3; MSA=protenix
+2026-07-04,Benchmark,Protenix,9XF9,4,0.003,0.535,0.185,False,DockQ(Ab-Ag) A-H 0.003 / A-L 0.003; pair ipTM 0.19-0.19; interfaces=3; MSA=protenix
+2026-07-06,Benchmark,AF2-Multimer,10ZO,2,0.856,0.76,,True,rank1 model2; DockQ(Ab-Ag) B-A 0.856; pair ipTM NA(AF2-M); ptm 0.85; mean pLDDT 93.3
+2026-07-06,Benchmark,AF2-Multimer,10ZO,1,0.334,0.27,,True,rank2 model1; DockQ(Ab-Ag) B-A 0.334; pair ipTM NA(AF2-M); ptm 0.67; mean pLDDT 76.0
+2026-07-06,Benchmark,AF2-Multimer,10ZO,3,0.129,0.23,,False,rank3 model3; DockQ(Ab-Ag) B-A 0.129; pair ipTM NA(AF2-M); ptm 0.64; mean pLDDT 77.6
+2026-07-06,Benchmark,AF2-Multimer,10ZO,5,0.206,0.18,,False,rank4 model5; DockQ(Ab-Ag) B-A 0.206; pair ipTM NA(AF2-M); ptm 0.63; mean pLDDT 67.8
+2026-07-06,Benchmark,AF2-Multimer,10ZO,4,0.114,0.17,,False,rank5 model4; DockQ(Ab-Ag) B-A 0.114; pair ipTM NA(AF2-M); ptm 0.63; mean pLDDT 69.8
+2026-07-06,Benchmark,AF2-Multimer,9OBN,3,0.615,0.86,,True,rank1 model3; DockQ(Ab-Ag) A-E 0.615; pair ipTM NA(AF2-M); ptm 0.87; mean pLDDT 88.9
+2026-07-06,Benchmark,AF2-Multimer,9OBN,4,0.591,0.8,,True,rank2 model4; DockQ(Ab-Ag) A-E 0.591; pair ipTM NA(AF2-M); ptm 0.8; mean pLDDT 81.5
+2026-07-06,Benchmark,AF2-Multimer,9OBN,1,0.68,0.77,,True,rank3 model1; DockQ(Ab-Ag) A-E 0.680; pair ipTM NA(AF2-M); ptm 0.81; mean pLDDT 82.1
+2026-07-06,Benchmark,AF2-Multimer,9OBN,2,0.015,0.18,,False,rank4 model2; DockQ(Ab-Ag) A-E 0.015; pair ipTM NA(AF2-M); ptm 0.52; mean pLDDT 72.9
+2026-07-06,Benchmark,AF2-Multimer,9OBN,5,0.015,0.15,,False,rank5 model5; DockQ(Ab-Ag) A-E 0.015; pair ipTM NA(AF2-M); ptm 0.51; mean pLDDT 70.0
+2026-07-06,Benchmark,AF2-Multimer,9Y0A,3,0.047,0.68,,False,rank1 model3; DockQ(Ab-Ag) C-A 0.048 / C-B 0.047; pair ipTM NA(AF2-M); ptm 0.74; mean pLDDT 89.4
+2026-07-06,Benchmark,AF2-Multimer,9Y0A,5,0.019,0.57,,False,rank2 model5; DockQ(Ab-Ag) C-A 0.023 / C-B 0.019; pair ipTM NA(AF2-M); ptm 0.66; mean pLDDT 87.6
+2026-07-06,Benchmark,AF2-Multimer,9Y0A,4,0.021,0.57,,False,rank3 model4; DockQ(Ab-Ag) C-A 0.024 / C-B 0.021; pair ipTM NA(AF2-M); ptm 0.65; mean pLDDT 88.0
+2026-07-06,Benchmark,AF2-Multimer,9Y0A,1,0.036,0.55,,False,rank4 model1; DockQ(Ab-Ag) C-A 0.036 / C-B 0.036; pair ipTM NA(AF2-M); ptm 0.64; mean pLDDT 86.6
+2026-07-06,Benchmark,AF2-Multimer,9Y0A,2,0.069,0.53,,False,rank5 model2; DockQ(Ab-Ag) C-A 0.076 / C-B 0.069; pair ipTM NA(AF2-M); ptm 0.62; mean pLDDT 87.4
+2026-07-06,Benchmark,AF2-Multimer,9K6J,3,0.025,0.77,,False,rank1 model3; DockQ(Ab-Ag) C-A 0.047 / C-B 0.025; pair ipTM NA(AF2-M); ptm 0.81; mean pLDDT 90.4
+2026-07-06,Benchmark,AF2-Multimer,9K6J,5,0.024,0.73,,False,rank2 model5; DockQ(Ab-Ag) C-A 0.042 / C-B 0.024; pair ipTM NA(AF2-M); ptm 0.78; mean pLDDT 89.4
+2026-07-06,Benchmark,AF2-Multimer,9K6J,4,0.023,0.71,,False,rank3 model4; DockQ(Ab-Ag) C-A 0.041 / C-B 0.023; pair ipTM NA(AF2-M); ptm 0.78; mean pLDDT 90.1
+2026-07-06,Benchmark,AF2-Multimer,9K6J,1,0.023,0.66,,False,rank4 model1; DockQ(Ab-Ag) C-A 0.041 / C-B 0.023; pair ipTM NA(AF2-M); ptm 0.74; mean pLDDT 89.6
+2026-07-06,Benchmark,AF2-Multimer,9K6J,2,0.024,0.66,,False,rank5 model2; DockQ(Ab-Ag) C-A 0.046 / C-B 0.024; pair ipTM NA(AF2-M); ptm 0.73; mean pLDDT 89.7
+2026-07-06,Benchmark,AF2-Multimer,9XF9,5,0.232,0.55,,True,rank1 model5; DockQ(Ab-Ag) A-H 0.232 / A-L 0.233; pair ipTM NA(AF2-M); ptm 0.67; mean pLDDT 89.3
+2026-07-06,Benchmark,AF2-Multimer,9XF9,2,0.127,0.53,,False,rank2 model2; DockQ(Ab-Ag) A-H 0.210 / A-L 0.127; pair ipTM NA(AF2-M); ptm 0.65; mean pLDDT 88.1
+2026-07-06,Benchmark,AF2-Multimer,9XF9,4,0.174,0.53,,False,rank3 model4; DockQ(Ab-Ag) A-H 0.188 / A-L 0.174; pair ipTM NA(AF2-M); ptm 0.65; mean pLDDT 88.4
+2026-07-06,Benchmark,AF2-Multimer,9XF9,3,0.199,0.53,,False,rank4 model3; DockQ(Ab-Ag) A-H 0.202 / A-L 0.199; pair ipTM NA(AF2-M); ptm 0.65; mean pLDDT 89.3
+2026-07-06,Benchmark,AF2-Multimer,9XF9,1,0.033,0.5,,False,rank5 model1; DockQ(Ab-Ag) A-H 0.033 / A-L 0.051; pair ipTM NA(AF2-M); ptm 0.64; mean pLDDT 88.5
+2026-07-06,Benchmark,tFold-Ag,10ZO,42,0.548,0.708,,True,seed42; DockQ(Ab-Ag) B-A 0.548; pair ipTM NA(tFold global만); ptm 0.8343; lDDT-Ca 0.8845; antigen lDDT 0.8277; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,10ZO,43,0.632,0.698,,True,seed43; DockQ(Ab-Ag) B-A 0.632; pair ipTM NA(tFold global만); ptm 0.831; lDDT-Ca 0.8877; antigen lDDT 0.8338; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,10ZO,44,0.535,0.73,,True,seed44; DockQ(Ab-Ag) B-A 0.535; pair ipTM NA(tFold global만); ptm 0.8442; lDDT-Ca 0.8879; antigen lDDT 0.8328; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,10ZO,45,0.587,0.684,,True,seed45; DockQ(Ab-Ag) B-A 0.587; pair ipTM NA(tFold global만); ptm 0.8249; lDDT-Ca 0.8849; antigen lDDT 0.8276; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,10ZO,46,0.585,0.725,,True,seed46; DockQ(Ab-Ag) B-A 0.585; pair ipTM NA(tFold global만); ptm 0.8421; lDDT-Ca 0.8902; antigen lDDT 0.8382; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,9OBN,42,0.027,0.233,,False,seed42; DockQ(Ab-Ag) A-E 0.027; pair ipTM NA(tFold global만); ptm 0.5664; lDDT-Ca 0.6416; antigen lDDT 0.4006; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,9OBN,43,0.038,0.265,,False,seed43; DockQ(Ab-Ag) A-E 0.038; pair ipTM NA(tFold global만); ptm 0.5815; lDDT-Ca 0.6848; antigen lDDT 0.4837; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,9OBN,44,0.038,0.231,,False,seed44; DockQ(Ab-Ag) A-E 0.038; pair ipTM NA(tFold global만); ptm 0.5611; lDDT-Ca 0.6612; antigen lDDT 0.4486; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,9OBN,45,0.026,0.301,,False,seed45; DockQ(Ab-Ag) A-E 0.026; pair ipTM NA(tFold global만); ptm 0.6026; lDDT-Ca 0.6811; antigen lDDT 0.4771; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,9OBN,46,0.067,0.228,,False,seed46; DockQ(Ab-Ag) A-E 0.067; pair ipTM NA(tFold global만); ptm 0.5578; lDDT-Ca 0.7056; antigen lDDT 0.5317; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,9Y0A,42,0.033,0.185,,False,seed42; DockQ(Ab-Ag) C-A 0.046 / C-B 0.033; pair ipTM NA(tFold global만); ptm 0.6869; lDDT-Ca 0.8765; antigen lDDT 0.8285; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,9Y0A,43,0.043,0.204,,False,seed43; DockQ(Ab-Ag) C-A 0.054 / C-B 0.043; pair ipTM NA(tFold global만); ptm 0.6908; lDDT-Ca 0.8782; antigen lDDT 0.8324; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,9Y0A,44,0.036,0.192,,False,seed44; DockQ(Ab-Ag) C-A 0.056 / C-B 0.036; pair ipTM NA(tFold global만); ptm 0.687; lDDT-Ca 0.8737; antigen lDDT 0.8168; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,9Y0A,45,0.031,0.196,,False,seed45; DockQ(Ab-Ag) C-A 0.032 / C-B 0.031; pair ipTM NA(tFold global만); ptm 0.6884; lDDT-Ca 0.8823; antigen lDDT 0.851; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,9Y0A,46,0.06,0.201,,False,seed46; DockQ(Ab-Ag) C-A 0.060 / C-B 0.069; pair ipTM NA(tFold global만); ptm 0.6898; lDDT-Ca 0.8868; antigen lDDT 0.8629; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,9K6J,42,0.089,0.194,,False,seed42; DockQ(Ab-Ag) C-A 0.118 / C-B 0.089; pair ipTM NA(tFold global만); ptm 0.685; lDDT-Ca 0.9012; antigen lDDT 0.8872; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,9K6J,43,0.491,0.284,,True,seed43; DockQ(Ab-Ag) C-A 0.531 / C-B 0.491; pair ipTM NA(tFold global만); ptm 0.7159; lDDT-Ca 0.9065; antigen lDDT 0.9036; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,9K6J,44,0.321,0.239,,True,seed44; DockQ(Ab-Ag) C-A 0.437 / C-B 0.321; pair ipTM NA(tFold global만); ptm 0.6977; lDDT-Ca 0.9047; antigen lDDT 0.8996; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,9K6J,45,0.288,0.231,,True,seed45; DockQ(Ab-Ag) C-A 0.303 / C-B 0.288; pair ipTM NA(tFold global만); ptm 0.6964; lDDT-Ca 0.9014; antigen lDDT 0.8894; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,9K6J,46,0.134,0.191,,False,seed46; DockQ(Ab-Ag) C-A 0.227 / C-B 0.134; pair ipTM NA(tFold global만); ptm 0.6838; lDDT-Ca 0.8978; antigen lDDT 0.8772; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,9XF9,42,0.003,0.17,,False,seed42; DockQ(Ab-Ag) A-H 0.010 / A-L 0.003; pair ipTM NA(tFold global만); ptm 0.6253; lDDT-Ca 0.8558; antigen lDDT 0.7967; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,9XF9,43,0.003,0.167,,False,seed43; DockQ(Ab-Ag) A-H 0.010 / A-L 0.003; pair ipTM NA(tFold global만); ptm 0.6256; lDDT-Ca 0.8545; antigen lDDT 0.8019; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,9XF9,44,0.003,0.186,,False,seed44; DockQ(Ab-Ag) A-H 0.010 / A-L 0.003; pair ipTM NA(tFold global만); ptm 0.6283; lDDT-Ca 0.8626; antigen lDDT 0.817; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,9XF9,45,0.004,0.175,,False,seed45; DockQ(Ab-Ag) A-H 0.010 / A-L 0.004; pair ipTM NA(tFold global만); ptm 0.6243; lDDT-Ca 0.8474; antigen lDDT 0.7795; MSA=항체free/항원only
+2026-07-06,Benchmark,tFold-Ag,9XF9,46,0.003,0.178,,False,seed46; DockQ(Ab-Ag) A-H 0.010 / A-L 0.003; pair ipTM NA(tFold global만); ptm 0.6263; lDDT-Ca 0.8445; antigen lDDT 0.7686; MSA=항체free/항원only
+2026-07-06,Benchmark,Chai-1-noMSA,10ZO,0,0.078,0.15,0.117,False,DockQ(Ab-Ag) B-A 0.078; pair ipTM 0.12-0.15; interfaces=1
+2026-07-06,Benchmark,Chai-1-noMSA,10ZO,1,0.07,0.155,0.121,False,DockQ(Ab-Ag) B-A 0.070; pair ipTM 0.12-0.15; interfaces=1
+2026-07-06,Benchmark,Chai-1-noMSA,10ZO,2,0.06,0.156,0.125,False,DockQ(Ab-Ag) B-A 0.060; pair ipTM 0.12-0.16; interfaces=1
+2026-07-06,Benchmark,Chai-1-noMSA,10ZO,3,0.059,0.155,0.124,False,DockQ(Ab-Ag) B-A 0.059; pair ipTM 0.12-0.15; interfaces=1
+2026-07-06,Benchmark,Chai-1-noMSA,10ZO,4,0.06,0.157,0.125,False,DockQ(Ab-Ag) B-A 0.060; pair ipTM 0.13-0.16; interfaces=1
+2026-07-06,Benchmark,Chai-1-noMSA,9OBN,0,0.677,0.774,0.734,True,DockQ(Ab-Ag) A-E 0.677; pair ipTM 0.73-0.77; interfaces=1
+2026-07-06,Benchmark,Chai-1-noMSA,9OBN,1,0.676,0.772,0.735,True,DockQ(Ab-Ag) A-E 0.676; pair ipTM 0.74-0.77; interfaces=1
+2026-07-06,Benchmark,Chai-1-noMSA,9OBN,2,0.684,0.774,0.737,True,DockQ(Ab-Ag) A-E 0.684; pair ipTM 0.74-0.77; interfaces=1
+2026-07-06,Benchmark,Chai-1-noMSA,9OBN,3,0.7,0.775,0.737,True,DockQ(Ab-Ag) A-E 0.700; pair ipTM 0.74-0.77; interfaces=1
+2026-07-06,Benchmark,Chai-1-noMSA,9OBN,4,0.622,0.774,0.735,True,DockQ(Ab-Ag) A-E 0.622; pair ipTM 0.73-0.77; interfaces=1
+2026-07-06,Benchmark,Chai-1-noMSA,9Y0A,0,0.059,0.567,0.122,False,DockQ(Ab-Ag) C-A 0.078 / C-B 0.059; pair ipTM 0.12-0.16; interfaces=3
+2026-07-06,Benchmark,Chai-1-noMSA,9Y0A,1,0.048,0.594,0.164,False,DockQ(Ab-Ag) C-A 0.048 / C-B 0.048; pair ipTM 0.16-0.22; interfaces=3
+2026-07-06,Benchmark,Chai-1-noMSA,9Y0A,2,0.044,0.596,0.163,False,DockQ(Ab-Ag) C-A 0.045 / C-B 0.044; pair ipTM 0.16-0.22; interfaces=3
+2026-07-06,Benchmark,Chai-1-noMSA,9Y0A,3,0.045,0.594,0.163,False,DockQ(Ab-Ag) C-A 0.046 / C-B 0.045; pair ipTM 0.16-0.22; interfaces=3
+2026-07-06,Benchmark,Chai-1-noMSA,9Y0A,4,0.034,0.565,0.167,False,DockQ(Ab-Ag) C-A 0.041 / C-B 0.034; pair ipTM 0.17-0.21; interfaces=3
+2026-07-06,Benchmark,Chai-1-noMSA,9K6J,0,0.057,0.552,0.073,False,DockQ(Ab-Ag) C-A 0.076 / C-B 0.057; pair ipTM 0.07-0.13; interfaces=3
+2026-07-06,Benchmark,Chai-1-noMSA,9K6J,1,0.028,0.552,0.075,False,DockQ(Ab-Ag) C-A 0.028 / C-B 0.030; pair ipTM 0.08-0.13; interfaces=3
+2026-07-06,Benchmark,Chai-1-noMSA,9K6J,2,0.043,0.554,0.07,False,DockQ(Ab-Ag) C-A 0.044 / C-B 0.043; pair ipTM 0.07-0.13; interfaces=3
+2026-07-06,Benchmark,Chai-1-noMSA,9K6J,3,0.051,0.553,0.07,False,DockQ(Ab-Ag) C-A 0.051 / C-B 0.073; pair ipTM 0.07-0.13; interfaces=3
+2026-07-06,Benchmark,Chai-1-noMSA,9K6J,4,0.044,0.554,0.072,False,DockQ(Ab-Ag) C-A 0.044 / C-B 0.044; pair ipTM 0.07-0.12; interfaces=3
+2026-07-06,Benchmark,Chai-1-noMSA,9XF9,0,0.005,0.54,0.136,False,DockQ(Ab-Ag) A-H 0.008 / A-L 0.005; pair ipTM 0.14-0.17; interfaces=3
+2026-07-06,Benchmark,Chai-1-noMSA,9XF9,1,0.005,0.544,0.134,False,DockQ(Ab-Ag) A-H 0.006 / A-L 0.005; pair ipTM 0.13-0.17; interfaces=3
+2026-07-06,Benchmark,Chai-1-noMSA,9XF9,2,0.006,0.543,0.134,False,DockQ(Ab-Ag) A-H 0.009 / A-L 0.006; pair ipTM 0.13-0.17; interfaces=3
+2026-07-06,Benchmark,Chai-1-noMSA,9XF9,3,0.005,0.544,0.135,False,DockQ(Ab-Ag) A-H 0.007 / A-L 0.005; pair ipTM 0.14-0.17; interfaces=3
+2026-07-06,Benchmark,Chai-1-noMSA,9XF9,4,0.009,0.542,0.135,False,DockQ(Ab-Ag) A-H 0.010 / A-L 0.009; pair ipTM 0.13-0.17; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9K6J,0,0.023,0.761,0.507,False,DockQ(Ab-Ag) C-A 0.041 / C-B 0.023; pair ipTM 0.51-0.65; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9K6J,1,0.025,0.742,0.451,False,DockQ(Ab-Ag) C-A 0.026 / C-B 0.025; pair ipTM 0.45-0.62; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9K6J,2,0.028,0.729,0.427,False,DockQ(Ab-Ag) C-A 0.034 / C-B 0.028; pair ipTM 0.43-0.58; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9K6J,3,0.652,0.685,0.348,True,DockQ(Ab-Ag) C-A 0.832 / C-B 0.652; pair ipTM 0.35-0.48; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9K6J,4,0.027,0.721,0.423,False,DockQ(Ab-Ag) C-A 0.038 / C-B 0.027; pair ipTM 0.42-0.57; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9K6J,0,0.039,0.708,0.507,False,DockQ(Ab-Ag) C-A 0.039 / C-B 0.054; pair ipTM 0.51-0.62; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9K6J,1,0.022,0.691,0.479,False,DockQ(Ab-Ag) C-A 0.025 / C-B 0.022; pair ipTM 0.48-0.59; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9K6J,2,0.023,0.673,0.452,False,DockQ(Ab-Ag) C-A 0.030 / C-B 0.023; pair ipTM 0.45-0.57; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9K6J,3,0.02,0.641,0.427,False,DockQ(Ab-Ag) C-A 0.034 / C-B 0.020; pair ipTM 0.43-0.52; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9K6J,4,0.03,0.569,0.239,False,DockQ(Ab-Ag) C-A 0.030 / C-B 0.030; pair ipTM 0.24-0.32; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9XF9,0,0.074,0.854,0.708,False,DockQ(Ab-Ag) A-H 0.233 / A-L 0.074; pair ipTM 0.71-0.84; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9XF9,1,0.071,0.793,0.576,False,DockQ(Ab-Ag) A-H 0.103 / A-L 0.071; pair ipTM 0.58-0.73; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9XF9,2,0.079,0.785,0.57,False,DockQ(Ab-Ag) A-H 0.138 / A-L 0.079; pair ipTM 0.57-0.72; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9XF9,3,0.069,0.667,0.326,False,DockQ(Ab-Ag) A-H 0.101 / A-L 0.069; pair ipTM 0.33-0.50; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9XF9,4,0.051,0.652,0.333,False,DockQ(Ab-Ag) A-H 0.139 / A-L 0.051; pair ipTM 0.33-0.49; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9XF9,0,0.098,0.893,0.834,False,DockQ(Ab-Ag) A-H 0.235 / A-L 0.098; pair ipTM 0.83-0.87; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9XF9,1,0.086,0.643,0.455,False,DockQ(Ab-Ag) A-H 0.118 / A-L 0.086; pair ipTM 0.46-0.49; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9XF9,2,0.063,0.605,0.367,False,DockQ(Ab-Ag) A-H 0.213 / A-L 0.063; pair ipTM 0.37-0.45; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9XF9,3,0.051,0.464,0.212,False,DockQ(Ab-Ag) A-H 0.090 / A-L 0.051; pair ipTM 0.21-0.23; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9XF9,4,0.082,0.455,0.158,False,DockQ(Ab-Ag) A-H 0.099 / A-L 0.082; pair ipTM 0.16-0.21; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9Y0A,0,0.042,0.852,0.679,False,DockQ(Ab-Ag) C-A 0.042 / C-B 0.043; pair ipTM 0.68-0.84; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9Y0A,1,0.03,0.747,0.442,False,DockQ(Ab-Ag) C-A 0.030 / C-B 0.031; pair ipTM 0.44-0.62; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9Y0A,2,0.053,0.718,0.396,False,DockQ(Ab-Ag) C-A 0.053 / C-B 0.053; pair ipTM 0.40-0.54; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9Y0A,3,0.054,0.73,0.415,False,DockQ(Ab-Ag) C-A 0.054 / C-B 0.054; pair ipTM 0.41-0.59; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9Y0A,4,0.058,0.671,0.273,False,DockQ(Ab-Ag) C-A 0.058 / C-B 0.058; pair ipTM 0.27-0.43; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9Y0A,0,0.043,0.884,0.794,False,DockQ(Ab-Ag) C-A 0.043 / C-B 0.043; pair ipTM 0.79-0.82; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9Y0A,1,0.039,0.766,0.56,False,DockQ(Ab-Ag) C-A 0.041 / C-B 0.039; pair ipTM 0.56-0.62; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9Y0A,2,0.034,0.875,0.783,False,DockQ(Ab-Ag) C-A 0.034 / C-B 0.039; pair ipTM 0.78-0.80; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9Y0A,3,0.04,0.695,0.447,False,DockQ(Ab-Ag) C-A 0.042 / C-B 0.040; pair ipTM 0.45-0.49; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9Y0A,4,0.035,0.807,0.663,False,DockQ(Ab-Ag) C-A 0.035 / C-B 0.040; pair ipTM 0.66-0.69; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9VXL,0,0.003,0.728,0.501,False,DockQ(Ab-Ag) A-B 0.004 / A-C 0.003; pair ipTM 0.50-0.64; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9VXL,1,0.003,0.709,0.454,False,DockQ(Ab-Ag) A-B 0.004 / A-C 0.003; pair ipTM 0.45-0.61; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9VXL,2,0.003,0.624,0.355,False,DockQ(Ab-Ag) A-B 0.004 / A-C 0.003; pair ipTM 0.35-0.48; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9VXL,3,0.003,0.62,0.313,False,DockQ(Ab-Ag) A-B 0.003 / A-C 0.003; pair ipTM 0.31-0.45; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9VXL,4,0.003,0.576,0.248,False,DockQ(Ab-Ag) A-B 0.004 / A-C 0.003; pair ipTM 0.25-0.38; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9VXL,0,0.004,0.693,0.52,False,DockQ(Ab-Ag) A-B 0.004 / A-C 0.004; pair ipTM 0.52-0.58; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9VXL,1,0.004,0.7,0.528,False,DockQ(Ab-Ag) A-B 0.005 / A-C 0.004; pair ipTM 0.53-0.58; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9VXL,2,0.004,0.604,0.392,False,DockQ(Ab-Ag) A-B 0.004 / A-C 0.004; pair ipTM 0.39-0.43; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9VXL,3,0.004,0.466,0.148,False,DockQ(Ab-Ag) A-B 0.004 / A-C 0.005; pair ipTM 0.15-0.22; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9VXL,4,0.004,0.499,0.233,False,DockQ(Ab-Ag) A-B 0.004 / A-C 0.004; pair ipTM 0.23-0.28; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9LY5,0,0.287,0.606,0.392,True,DockQ(Ab-Ag) C-A 0.313 / C-B 0.287; pair ipTM 0.39-0.47; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9LY5,1,0.071,0.539,0.278,False,DockQ(Ab-Ag) C-A 0.171 / C-B 0.071; pair ipTM 0.28-0.32; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9LY5,2,0.102,0.516,0.24,False,DockQ(Ab-Ag) C-A 0.240 / C-B 0.102; pair ipTM 0.24-0.25; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9LY5,3,0.098,0.527,0.26,False,DockQ(Ab-Ag) C-A 0.235 / C-B 0.098; pair ipTM 0.26-0.28; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9LY5,4,0.09,0.494,0.203,False,DockQ(Ab-Ag) C-A 0.178 / C-B 0.090; pair ipTM 0.20-0.21; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9MQR,0,0.007,0.594,0.382,False,DockQ(Ab-Ag) A-D 0.007 / A-E 0.008; pair ipTM 0.38-0.41; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9MQR,1,0.007,0.577,0.369,False,DockQ(Ab-Ag) A-D 0.007 / A-E 0.007; pair ipTM 0.37-0.41; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9MQR,2,0.006,0.452,0.157,False,DockQ(Ab-Ag) A-D 0.007 / A-E 0.006; pair ipTM 0.16-0.21; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9MQR,3,0.007,0.458,0.172,False,DockQ(Ab-Ag) A-D 0.007 / A-E 0.008; pair ipTM 0.17-0.21; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9MQR,4,0.008,0.484,0.204,False,DockQ(Ab-Ag) A-D 0.008 / A-E 0.012; pair ipTM 0.20-0.25; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9MQR,0,0.007,0.844,0.775,False,DockQ(Ab-Ag) A-D 0.007 / A-E 0.008; pair ipTM 0.77-0.84; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9MQR,1,0.007,0.755,0.644,False,DockQ(Ab-Ag) A-D 0.007 / A-E 0.008; pair ipTM 0.64-0.72; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9MQR,2,0.006,0.791,0.692,False,DockQ(Ab-Ag) A-D 0.006 / A-E 0.008; pair ipTM 0.69-0.73; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9MQR,3,0.007,0.662,0.502,False,DockQ(Ab-Ag) A-D 0.007 / A-E 0.009; pair ipTM 0.50-0.53; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9MQR,4,0.007,0.6,0.406,False,DockQ(Ab-Ag) A-D 0.007 / A-E 0.007; pair ipTM 0.41-0.44; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9KKJ,0,0.045,0.804,0.417,False,DockQ(Ab-Ag) A-H 0.045 / A-L 0.046; pair ipTM 0.42-0.58; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9KKJ,1,0.043,0.723,0.171,False,DockQ(Ab-Ag) A-H 0.043 / A-L 0.044; pair ipTM 0.17-0.34; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9KKJ,2,0.045,0.72,0.165,False,DockQ(Ab-Ag) A-H 0.045 / A-L 0.046; pair ipTM 0.17-0.34; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9KKJ,3,0.045,0.726,0.179,False,DockQ(Ab-Ag) A-H 0.045 / A-L 0.046; pair ipTM 0.18-0.36; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9KKJ,4,0.046,0.719,0.167,False,DockQ(Ab-Ag) A-H 0.046 / A-L 0.047; pair ipTM 0.17-0.34; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9KKJ,0,0.045,0.844,0.616,False,DockQ(Ab-Ag) A-H 0.045 / A-L 0.045; pair ipTM 0.62-0.71; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9KKJ,1,0.044,0.781,0.452,False,DockQ(Ab-Ag) A-H 0.045 / A-L 0.044; pair ipTM 0.45-0.58; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9KKJ,2,0.067,0.813,0.562,False,DockQ(Ab-Ag) A-H 0.067 / A-L 0.113; pair ipTM 0.56-0.65; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9KKJ,3,0.046,0.666,0.225,False,DockQ(Ab-Ag) A-H 0.047 / A-L 0.046; pair ipTM 0.22-0.34; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9KKJ,4,0.045,0.614,0.112,False,DockQ(Ab-Ag) A-H 0.045 / A-L 0.045; pair ipTM 0.11-0.23; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9W43,0,0.05,0.847,0.673,False,DockQ(Ab-Ag) C-A 0.086 / C-B 0.050; pair ipTM 0.67-0.72; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9W43,1,0.068,0.797,0.488,False,DockQ(Ab-Ag) C-A 0.090 / C-B 0.068; pair ipTM 0.49-0.60; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9W43,2,0.06,0.747,0.374,False,DockQ(Ab-Ag) C-A 0.091 / C-B 0.060; pair ipTM 0.37-0.47; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9W43,3,0.05,0.735,0.438,False,DockQ(Ab-Ag) C-A 0.071 / C-B 0.050; pair ipTM 0.44-0.48; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9W43,4,0.05,0.723,0.392,False,DockQ(Ab-Ag) C-A 0.064 / C-B 0.050; pair ipTM 0.39-0.44; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9YC6,0,0.008,0.757,0.604,False,DockQ(Ab-Ag) U-H 0.008 / U-L 0.011; pair ipTM 0.60-0.68; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9YC6,1,0.009,0.713,0.53,False,DockQ(Ab-Ag) U-H 0.009 / U-L 0.013; pair ipTM 0.53-0.60; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9YC6,2,0.009,0.629,0.377,False,DockQ(Ab-Ag) U-H 0.009 / U-L 0.012; pair ipTM 0.38-0.46; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9YC6,3,0.008,0.579,0.286,False,DockQ(Ab-Ag) U-H 0.008 / U-L 0.010; pair ipTM 0.29-0.37; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9YC6,4,0.008,0.547,0.242,False,DockQ(Ab-Ag) U-H 0.008 / U-L 0.010; pair ipTM 0.24-0.33; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9YC6,0,0.012,0.466,0.194,False,DockQ(Ab-Ag) U-H 0.012 / U-L 0.014; pair ipTM 0.19-0.27; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9YC6,1,0.012,0.467,0.203,False,DockQ(Ab-Ag) U-H 0.012 / U-L 0.014; pair ipTM 0.20-0.27; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9YC6,2,0.013,0.458,0.177,False,DockQ(Ab-Ag) U-H 0.013 / U-L 0.014; pair ipTM 0.18-0.25; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9YC6,3,0.012,0.445,0.175,False,DockQ(Ab-Ag) U-H 0.012 / U-L 0.013; pair ipTM 0.17-0.24; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9YC6,4,0.009,0.423,0.166,False,DockQ(Ab-Ag) U-H 0.027 / U-L 0.009; pair ipTM 0.17-0.21; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9J4C,0,0.003,0.533,0.396,False,DockQ(Ab-Ag) A-H 0.003 / A-L 0.004; pair ipTM 0.40-0.42; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9J4C,1,0.003,0.506,0.347,False,DockQ(Ab-Ag) A-H 0.003 / A-L 0.004; pair ipTM 0.35-0.38; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9J4C,2,0.003,0.491,0.347,False,DockQ(Ab-Ag) A-H 0.003 / A-L 0.004; pair ipTM 0.35-0.40; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9J4C,3,0.004,0.465,0.322,False,DockQ(Ab-Ag) A-H 0.004 / A-L 0.006; pair ipTM 0.32-0.35; interfaces=3
+2026-07-10,Diverse-Fab,Boltz-2,9J4C,4,0.003,0.405,0.205,False,DockQ(Ab-Ag) A-H 0.003 / A-L 0.004; pair ipTM 0.21-0.26; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9J4C,0,0.008,0.734,0.639,False,DockQ(Ab-Ag) A-H 0.037 / A-L 0.008; pair ipTM 0.64-0.74; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9J4C,1,0.006,0.585,0.5,False,DockQ(Ab-Ag) A-H 0.006 / A-L 0.006; pair ipTM 0.50-0.57; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9J4C,2,0.005,0.495,0.408,False,DockQ(Ab-Ag) A-H 0.005 / A-L 0.008; pair ipTM 0.41-0.49; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9J4C,3,0.005,0.423,0.32,False,DockQ(Ab-Ag) A-H 0.005 / A-L 0.009; pair ipTM 0.32-0.42; interfaces=3
+2026-07-10,Diverse-Fv,Boltz-2,9J4C,4,0.006,0.395,0.301,False,DockQ(Ab-Ag) A-H 0.006 / A-L 0.007; pair ipTM 0.30-0.32; interfaces=3
+2026-07-11,Diverse-Fab,Chai-1,9K6J,0,0.019,0.594,0.158,False,DockQ(Ab-Ag) C-A 0.053 / C-B 0.019; pair ipTM 0.16-0.20; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9K6J,0,0.028,0.677,0.392,False,DockQ(Ab-Ag) C-A 0.044 / C-B 0.028; pair ipTM 0.39-0.39; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9K6J,1,0.02,0.591,0.164,False,DockQ(Ab-Ag) C-A 0.049 / C-B 0.020; pair ipTM 0.16-0.20; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9K6J,1,0.026,0.677,0.391,False,DockQ(Ab-Ag) C-A 0.047 / C-B 0.026; pair ipTM 0.39-0.40; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9K6J,2,0.02,0.596,0.161,False,DockQ(Ab-Ag) C-A 0.044 / C-B 0.020; pair ipTM 0.16-0.20; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9K6J,2,0.026,0.673,0.382,False,DockQ(Ab-Ag) C-A 0.042 / C-B 0.026; pair ipTM 0.38-0.39; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9K6J,3,0.024,0.612,0.189,False,DockQ(Ab-Ag) C-A 0.031 / C-B 0.024; pair ipTM 0.19-0.24; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9K6J,3,0.026,0.672,0.378,False,DockQ(Ab-Ag) C-A 0.048 / C-B 0.026; pair ipTM 0.38-0.40; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9K6J,4,0.028,0.617,0.198,False,DockQ(Ab-Ag) C-A 0.029 / C-B 0.028; pair ipTM 0.20-0.25; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9K6J,4,0.025,0.67,0.374,False,DockQ(Ab-Ag) C-A 0.047 / C-B 0.025; pair ipTM 0.37-0.40; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9K6J,0,0.023,0.57,0.22,False,DockQ(Ab-Ag) C-A 0.034 / C-B 0.023; pair ipTM 0.22-0.32; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9K6J,0,0.707,0.914,0.861,True,DockQ(Ab-Ag) C-A 0.888 / C-B 0.707; pair ipTM 0.86-0.91; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9K6J,1,0.025,0.554,0.184,False,DockQ(Ab-Ag) C-A 0.037 / C-B 0.025; pair ipTM 0.18-0.29; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9K6J,1,0.776,0.914,0.861,True,DockQ(Ab-Ag) C-A 0.897 / C-B 0.776; pair ipTM 0.86-0.91; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9K6J,2,0.024,0.551,0.189,False,DockQ(Ab-Ag) C-A 0.041 / C-B 0.024; pair ipTM 0.19-0.29; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9K6J,2,0.737,0.914,0.861,True,DockQ(Ab-Ag) C-A 0.896 / C-B 0.737; pair ipTM 0.86-0.91; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9K6J,3,0.023,0.56,0.196,False,DockQ(Ab-Ag) C-A 0.046 / C-B 0.023; pair ipTM 0.20-0.30; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9K6J,3,0.648,0.914,0.86,True,DockQ(Ab-Ag) C-A 0.901 / C-B 0.648; pair ipTM 0.86-0.91; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9K6J,4,0.018,0.528,0.162,False,DockQ(Ab-Ag) C-A 0.043 / C-B 0.018; pair ipTM 0.16-0.26; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9K6J,4,0.714,0.914,0.861,True,DockQ(Ab-Ag) C-A 0.881 / C-B 0.714; pair ipTM 0.86-0.91; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9XF9,0,0.075,0.586,0.168,False,DockQ(Ab-Ag) A-H 0.106 / A-L 0.075; pair ipTM 0.17-0.23; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9XF9,0,0.012,0.543,0.174,False,DockQ(Ab-Ag) A-H 0.012 / A-L 0.014; pair ipTM 0.17-0.19; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9XF9,1,0.037,0.59,0.179,False,DockQ(Ab-Ag) A-H 0.065 / A-L 0.037; pair ipTM 0.18-0.25; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9XF9,1,0.035,0.539,0.181,False,DockQ(Ab-Ag) A-H 0.088 / A-L 0.035; pair ipTM 0.18-0.19; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9XF9,2,0.1,0.585,0.166,False,DockQ(Ab-Ag) A-H 0.206 / A-L 0.100; pair ipTM 0.17-0.23; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9XF9,2,0.153,0.539,0.167,False,DockQ(Ab-Ag) A-H 0.162 / A-L 0.153; pair ipTM 0.17-0.19; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9XF9,3,0.217,0.585,0.171,False,DockQ(Ab-Ag) A-H 0.233 / A-L 0.217; pair ipTM 0.17-0.22; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9XF9,3,0.06,0.535,0.168,False,DockQ(Ab-Ag) A-H 0.133 / A-L 0.060; pair ipTM 0.17-0.18; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9XF9,4,0.032,0.589,0.177,False,DockQ(Ab-Ag) A-H 0.032 / A-L 0.042; pair ipTM 0.18-0.24; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9XF9,4,0.003,0.527,0.173,False,DockQ(Ab-Ag) A-H 0.003 / A-L 0.003; pair ipTM 0.17-0.18; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9XF9,0,0.229,0.479,0.131,False,DockQ(Ab-Ag) A-H 0.392 / A-L 0.229; pair ipTM 0.13-0.23; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9XF9,0,0.009,0.519,0.318,False,DockQ(Ab-Ag) A-H 0.009 / A-L 0.011; pair ipTM 0.32-0.35; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9XF9,1,0.092,0.481,0.133,False,DockQ(Ab-Ag) A-H 0.168 / A-L 0.092; pair ipTM 0.13-0.22; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9XF9,1,0.01,0.49,0.266,False,DockQ(Ab-Ag) A-H 0.010 / A-L 0.012; pair ipTM 0.27-0.30; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9XF9,2,0.064,0.485,0.141,False,DockQ(Ab-Ag) A-H 0.085 / A-L 0.064; pair ipTM 0.14-0.24; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9XF9,2,0.009,0.467,0.242,False,DockQ(Ab-Ag) A-H 0.009 / A-L 0.012; pair ipTM 0.24-0.26; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9XF9,3,0.038,0.483,0.13,False,DockQ(Ab-Ag) A-H 0.038 / A-L 0.088; pair ipTM 0.13-0.23; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9XF9,3,0.01,0.456,0.233,False,DockQ(Ab-Ag) A-H 0.013 / A-L 0.010; pair ipTM 0.23-0.24; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9XF9,4,0.057,0.486,0.142,False,DockQ(Ab-Ag) A-H 0.101 / A-L 0.057; pair ipTM 0.14-0.24; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9XF9,4,0.059,0.452,0.22,False,DockQ(Ab-Ag) A-H 0.065 / A-L 0.059; pair ipTM 0.22-0.22; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9Y0A,0,0.427,0.579,0.19,True,DockQ(Ab-Ag) C-A 0.545 / C-B 0.427; pair ipTM 0.19-0.25; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9Y0A,0,0.051,0.596,0.225,False,DockQ(Ab-Ag) C-A 0.051 / C-B 0.051; pair ipTM 0.23-0.25; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9Y0A,1,0.662,0.586,0.19,True,DockQ(Ab-Ag) C-A 0.680 / C-B 0.662; pair ipTM 0.19-0.25; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9Y0A,1,0.033,0.591,0.223,False,DockQ(Ab-Ag) C-A 0.039 / C-B 0.033; pair ipTM 0.22-0.24; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9Y0A,2,0.465,0.583,0.184,True,DockQ(Ab-Ag) C-A 0.491 / C-B 0.465; pair ipTM 0.18-0.24; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9Y0A,2,0.031,0.588,0.206,False,DockQ(Ab-Ag) C-A 0.032 / C-B 0.031; pair ipTM 0.21-0.22; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9Y0A,3,0.039,0.555,0.147,False,DockQ(Ab-Ag) C-A 0.064 / C-B 0.039; pair ipTM 0.15-0.17; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9Y0A,3,0.033,0.588,0.205,False,DockQ(Ab-Ag) C-A 0.033 / C-B 0.034; pair ipTM 0.21-0.21; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9Y0A,4,0.392,0.576,0.193,True,DockQ(Ab-Ag) C-A 0.392 / C-B 0.477; pair ipTM 0.19-0.24; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9Y0A,4,0.062,0.585,0.201,False,DockQ(Ab-Ag) C-A 0.062 / C-B 0.064; pair ipTM 0.20-0.21; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9Y0A,0,0.042,0.581,0.18,False,DockQ(Ab-Ag) C-A 0.045 / C-B 0.042; pair ipTM 0.18-0.26; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9Y0A,0,0.041,0.558,0.227,False,DockQ(Ab-Ag) C-A 0.050 / C-B 0.041; pair ipTM 0.23-0.26; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9Y0A,1,0.04,0.572,0.174,False,DockQ(Ab-Ag) C-A 0.043 / C-B 0.040; pair ipTM 0.17-0.25; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9Y0A,1,0.042,0.557,0.226,False,DockQ(Ab-Ag) C-A 0.050 / C-B 0.042; pair ipTM 0.23-0.24; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9Y0A,2,0.043,0.579,0.178,False,DockQ(Ab-Ag) C-A 0.046 / C-B 0.043; pair ipTM 0.18-0.26; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9Y0A,2,0.046,0.556,0.225,False,DockQ(Ab-Ag) C-A 0.054 / C-B 0.046; pair ipTM 0.23-0.24; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9Y0A,3,0.042,0.574,0.173,False,DockQ(Ab-Ag) C-A 0.045 / C-B 0.042; pair ipTM 0.17-0.25; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9Y0A,3,0.059,0.553,0.232,False,DockQ(Ab-Ag) C-A 0.059 / C-B 0.074; pair ipTM 0.23-0.24; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9Y0A,4,0.039,0.571,0.173,False,DockQ(Ab-Ag) C-A 0.042 / C-B 0.039; pair ipTM 0.17-0.25; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9Y0A,4,0.048,0.55,0.223,False,DockQ(Ab-Ag) C-A 0.048 / C-B 0.091; pair ipTM 0.22-0.24; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9VXL,0,0.004,0.601,0.224,False,DockQ(Ab-Ag) A-B 0.004 / A-C 0.004; pair ipTM 0.22-0.30; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9VXL,0,0.005,0.558,0.216,False,DockQ(Ab-Ag) A-B 0.006 / A-C 0.005; pair ipTM 0.22-0.23; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9VXL,1,0.004,0.617,0.233,False,DockQ(Ab-Ag) A-B 0.004 / A-C 0.004; pair ipTM 0.23-0.32; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9VXL,1,0.005,0.558,0.21,False,DockQ(Ab-Ag) A-B 0.006 / A-C 0.005; pair ipTM 0.21-0.22; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9VXL,2,0.004,0.618,0.244,False,DockQ(Ab-Ag) A-B 0.004 / A-C 0.004; pair ipTM 0.24-0.31; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9VXL,2,0.005,0.557,0.209,False,DockQ(Ab-Ag) A-B 0.006 / A-C 0.005; pair ipTM 0.21-0.22; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9VXL,3,0.004,0.618,0.236,False,DockQ(Ab-Ag) A-B 0.004 / A-C 0.004; pair ipTM 0.24-0.32; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9VXL,3,0.005,0.557,0.2,False,DockQ(Ab-Ag) A-B 0.007 / A-C 0.005; pair ipTM 0.20-0.22; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9VXL,4,0.004,0.607,0.238,False,DockQ(Ab-Ag) A-B 0.004 / A-C 0.004; pair ipTM 0.24-0.31; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9VXL,4,0.005,0.554,0.2,False,DockQ(Ab-Ag) A-B 0.007 / A-C 0.005; pair ipTM 0.20-0.23; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9VXL,0,0.006,0.483,0.144,False,DockQ(Ab-Ag) A-B 0.006 / A-C 0.006; pair ipTM 0.14-0.24; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9VXL,0,0.007,0.467,0.242,False,DockQ(Ab-Ag) A-B 0.007 / A-C 0.008; pair ipTM 0.24-0.25; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9VXL,1,0.006,0.492,0.148,False,DockQ(Ab-Ag) A-B 0.006 / A-C 0.006; pair ipTM 0.15-0.24; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9VXL,1,0.006,0.467,0.232,False,DockQ(Ab-Ag) A-B 0.006 / A-C 0.007; pair ipTM 0.23-0.25; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9VXL,2,0.004,0.499,0.14,False,DockQ(Ab-Ag) A-B 0.004 / A-C 0.004; pair ipTM 0.14-0.25; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9VXL,2,0.007,0.464,0.23,False,DockQ(Ab-Ag) A-B 0.007 / A-C 0.007; pair ipTM 0.23-0.24; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9VXL,3,0.006,0.49,0.148,False,DockQ(Ab-Ag) A-B 0.006 / A-C 0.006; pair ipTM 0.15-0.24; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9VXL,3,0.006,0.455,0.212,False,DockQ(Ab-Ag) A-B 0.007 / A-C 0.006; pair ipTM 0.21-0.25; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9VXL,4,0.004,0.5,0.141,False,DockQ(Ab-Ag) A-B 0.005 / A-C 0.004; pair ipTM 0.14-0.25; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9VXL,4,0.006,0.455,0.205,False,DockQ(Ab-Ag) A-B 0.007 / A-C 0.006; pair ipTM 0.21-0.21; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9LY5,0,0.003,0.535,0.153,False,DockQ(Ab-Ag) C-A 0.003 / C-B 0.003; pair ipTM 0.15-0.22; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9LY5,0,0.615,0.855,0.753,True,DockQ(Ab-Ag) C-A 0.615 / C-B 0.683; pair ipTM 0.75-0.78; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9LY5,1,0.065,0.517,0.102,False,DockQ(Ab-Ag) C-A 0.065 / C-B 0.071; pair ipTM 0.10-0.11; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9LY5,1,0.679,0.855,0.753,True,DockQ(Ab-Ag) C-A 0.696 / C-B 0.679; pair ipTM 0.75-0.78; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9LY5,2,0.009,0.508,0.087,False,DockQ(Ab-Ag) C-A 0.009 / C-B 0.011; pair ipTM 0.09-0.10; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9LY5,2,0.691,0.855,0.752,True,DockQ(Ab-Ag) C-A 0.715 / C-B 0.691; pair ipTM 0.75-0.78; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9LY5,3,0.018,0.527,0.13,False,DockQ(Ab-Ag) C-A 0.018 / C-B 0.019; pair ipTM 0.13-0.15; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9LY5,3,0.83,0.853,0.754,True,DockQ(Ab-Ag) C-A 0.830 / C-B 0.831; pair ipTM 0.75-0.77; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9LY5,4,0.003,0.547,0.154,False,DockQ(Ab-Ag) C-A 0.003 / C-B 0.003; pair ipTM 0.15-0.22; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9LY5,4,0.871,0.852,0.754,True,DockQ(Ab-Ag) C-A 0.871 / C-B 0.891; pair ipTM 0.75-0.77; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9LY5,0,0.014,0.437,0.083,False,DockQ(Ab-Ag) C-A 0.014 / C-B 0.050; pair ipTM 0.08-0.13; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9LY5,0,0.033,0.503,0.213,False,DockQ(Ab-Ag) C-A 0.033 / C-B 0.034; pair ipTM 0.21-0.22; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9LY5,1,0.151,0.441,0.11,False,DockQ(Ab-Ag) C-A 0.256 / C-B 0.151; pair ipTM 0.11-0.14; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9LY5,1,0.013,0.503,0.228,False,DockQ(Ab-Ag) C-A 0.013 / C-B 0.014; pair ipTM 0.23-0.23; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9LY5,2,0.248,0.447,0.123,True,DockQ(Ab-Ag) C-A 0.262 / C-B 0.248; pair ipTM 0.12-0.15; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9LY5,2,0.058,0.496,0.205,False,DockQ(Ab-Ag) C-A 0.066 / C-B 0.058; pair ipTM 0.20-0.21; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9LY5,3,0.014,0.431,0.079,False,DockQ(Ab-Ag) C-A 0.076 / C-B 0.014; pair ipTM 0.08-0.12; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9LY5,3,0.014,0.493,0.19,False,DockQ(Ab-Ag) C-A 0.014 / C-B 0.015; pair ipTM 0.19-0.20; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9LY5,4,0.014,0.434,0.078,False,DockQ(Ab-Ag) C-A 0.014 / C-B 0.017; pair ipTM 0.08-0.13; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9LY5,4,0.014,0.483,0.186,False,DockQ(Ab-Ag) C-A 0.014 / C-B 0.015; pair ipTM 0.19-0.21; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9MQR,0,0.007,0.478,0.106,False,DockQ(Ab-Ag) A-D 0.007 / A-E 0.007; pair ipTM 0.11-0.22; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9MQR,0,0.007,0.504,0.276,False,DockQ(Ab-Ag) A-D 0.007 / A-E 0.008; pair ipTM 0.28-0.29; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9MQR,1,0.007,0.501,0.134,False,DockQ(Ab-Ag) A-D 0.007 / A-E 0.007; pair ipTM 0.13-0.25; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9MQR,1,0.007,0.495,0.275,False,DockQ(Ab-Ag) A-D 0.007 / A-E 0.008; pair ipTM 0.27-0.28; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9MQR,2,0.007,0.495,0.13,False,DockQ(Ab-Ag) A-D 0.007 / A-E 0.007; pair ipTM 0.13-0.24; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9MQR,2,0.007,0.47,0.221,False,DockQ(Ab-Ag) A-D 0.008 / A-E 0.007; pair ipTM 0.22-0.26; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9MQR,3,0.008,0.504,0.145,False,DockQ(Ab-Ag) A-D 0.008 / A-E 0.008; pair ipTM 0.14-0.25; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9MQR,3,0.007,0.459,0.196,False,DockQ(Ab-Ag) A-D 0.007 / A-E 0.008; pair ipTM 0.20-0.22; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9MQR,4,0.007,0.5,0.141,False,DockQ(Ab-Ag) A-D 0.007 / A-E 0.008; pair ipTM 0.14-0.25; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9MQR,4,0.016,0.452,0.194,False,DockQ(Ab-Ag) A-D 0.091 / A-E 0.016; pair ipTM 0.19-0.20; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9MQR,0,0.008,0.502,0.145,False,DockQ(Ab-Ag) A-D 0.008 / A-E 0.008; pair ipTM 0.14-0.25; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9MQR,0,0.007,0.47,0.223,False,DockQ(Ab-Ag) A-D 0.008 / A-E 0.007; pair ipTM 0.22-0.25; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9MQR,1,0.007,0.496,0.138,False,DockQ(Ab-Ag) A-D 0.007 / A-E 0.007; pair ipTM 0.14-0.24; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9MQR,1,0.007,0.452,0.194,False,DockQ(Ab-Ag) A-D 0.007 / A-E 0.007; pair ipTM 0.19-0.23; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9MQR,2,0.008,0.492,0.137,False,DockQ(Ab-Ag) A-D 0.008 / A-E 0.008; pair ipTM 0.14-0.23; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9MQR,2,0.01,0.448,0.196,False,DockQ(Ab-Ag) A-D 0.012 / A-E 0.010; pair ipTM 0.20-0.20; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9MQR,3,0.007,0.498,0.14,False,DockQ(Ab-Ag) A-D 0.007 / A-E 0.008; pair ipTM 0.14-0.24; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9MQR,3,0.011,0.448,0.197,False,DockQ(Ab-Ag) A-D 0.015 / A-E 0.011; pair ipTM 0.20-0.20; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9MQR,4,0.01,0.466,0.107,False,DockQ(Ab-Ag) A-D 0.162 / A-E 0.010; pair ipTM 0.11-0.22; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9MQR,4,0.01,0.443,0.176,False,DockQ(Ab-Ag) A-D 0.013 / A-E 0.010; pair ipTM 0.18-0.21; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9KKJ,0,0.038,0.718,0.164,False,DockQ(Ab-Ag) A-H 0.061 / A-L 0.038; pair ipTM 0.16-0.19; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9KKJ,0,0.147,0.755,0.344,False,DockQ(Ab-Ag) A-H 0.189 / A-L 0.147; pair ipTM 0.34-0.37; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9KKJ,1,0.05,0.718,0.163,False,DockQ(Ab-Ag) A-H 0.052 / A-L 0.050; pair ipTM 0.16-0.20; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9KKJ,1,0.246,0.755,0.344,True,DockQ(Ab-Ag) A-H 0.352 / A-L 0.246; pair ipTM 0.34-0.35; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9KKJ,2,0.162,0.727,0.177,False,DockQ(Ab-Ag) A-H 0.162 / A-L 0.204; pair ipTM 0.18-0.21; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9KKJ,2,0.177,0.755,0.342,False,DockQ(Ab-Ag) A-H 0.177 / A-L 0.182; pair ipTM 0.34-0.35; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9KKJ,3,0.051,0.719,0.169,False,DockQ(Ab-Ag) A-H 0.053 / A-L 0.051; pair ipTM 0.17-0.21; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9KKJ,3,0.116,0.753,0.339,False,DockQ(Ab-Ag) A-H 0.119 / A-L 0.116; pair ipTM 0.34-0.35; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9KKJ,4,0.052,0.719,0.167,False,DockQ(Ab-Ag) A-H 0.054 / A-L 0.052; pair ipTM 0.17-0.20; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9KKJ,4,0.042,0.748,0.313,False,DockQ(Ab-Ag) A-H 0.079 / A-L 0.042; pair ipTM 0.31-0.32; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9KKJ,0,0.045,0.608,0.148,False,DockQ(Ab-Ag) A-H 0.080 / A-L 0.045; pair ipTM 0.15-0.22; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9KKJ,0,0.188,0.696,0.378,False,DockQ(Ab-Ag) A-H 0.236 / A-L 0.188; pair ipTM 0.38-0.38; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9KKJ,1,0.213,0.609,0.161,False,DockQ(Ab-Ag) A-H 0.213 / A-L 0.316; pair ipTM 0.16-0.23; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9KKJ,1,0.204,0.693,0.372,False,DockQ(Ab-Ag) A-H 0.230 / A-L 0.204; pair ipTM 0.37-0.37; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9KKJ,2,0.037,0.602,0.142,False,DockQ(Ab-Ag) A-H 0.061 / A-L 0.037; pair ipTM 0.14-0.21; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9KKJ,2,0.163,0.691,0.368,False,DockQ(Ab-Ag) A-H 0.257 / A-L 0.163; pair ipTM 0.37-0.37; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9KKJ,3,0.039,0.621,0.194,False,DockQ(Ab-Ag) A-H 0.049 / A-L 0.039; pair ipTM 0.19-0.26; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9KKJ,3,0.636,0.687,0.361,True,DockQ(Ab-Ag) A-H 0.636 / A-L 0.641; pair ipTM 0.36-0.37; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9KKJ,4,0.041,0.605,0.147,False,DockQ(Ab-Ag) A-H 0.076 / A-L 0.041; pair ipTM 0.15-0.22; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9KKJ,4,0.059,0.664,0.309,False,DockQ(Ab-Ag) A-H 0.131 / A-L 0.059; pair ipTM 0.31-0.31; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9W43,0,0.054,0.731,0.214,False,DockQ(Ab-Ag) C-A 0.054 / C-B 0.056; pair ipTM 0.21-0.23; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9W43,0,0.068,0.769,0.36,False,DockQ(Ab-Ag) C-A 0.068 / C-B 0.070; pair ipTM 0.36-0.37; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9W43,1,0.062,0.747,0.264,False,DockQ(Ab-Ag) C-A 0.062 / C-B 0.063; pair ipTM 0.26-0.29; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9W43,1,0.068,0.768,0.356,False,DockQ(Ab-Ag) C-A 0.068 / C-B 0.070; pair ipTM 0.36-0.36; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9W43,2,0.056,0.738,0.234,False,DockQ(Ab-Ag) C-A 0.056 / C-B 0.057; pair ipTM 0.23-0.26; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9W43,2,0.073,0.768,0.355,False,DockQ(Ab-Ag) C-A 0.073 / C-B 0.077; pair ipTM 0.35-0.36; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9W43,3,0.065,0.712,0.169,False,DockQ(Ab-Ag) C-A 0.067 / C-B 0.065; pair ipTM 0.17-0.21; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9W43,3,0.076,0.756,0.312,False,DockQ(Ab-Ag) C-A 0.088 / C-B 0.076; pair ipTM 0.31-0.33; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9W43,4,0.057,0.745,0.258,False,DockQ(Ab-Ag) C-A 0.057 / C-B 0.059; pair ipTM 0.26-0.28; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9W43,4,0.06,0.753,0.301,False,DockQ(Ab-Ag) C-A 0.061 / C-B 0.060; pair ipTM 0.30-0.31; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9W43,0,0.059,0.694,0.209,False,DockQ(Ab-Ag) C-A 0.059 / C-B 0.061; pair ipTM 0.21-0.27; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9W43,0,0.07,0.756,0.427,False,DockQ(Ab-Ag) C-A 0.070 / C-B 0.073; pair ipTM 0.43-0.46; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9W43,1,0.062,0.694,0.208,False,DockQ(Ab-Ag) C-A 0.062 / C-B 0.065; pair ipTM 0.21-0.27; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9W43,1,0.07,0.749,0.411,False,DockQ(Ab-Ag) C-A 0.070 / C-B 0.072; pair ipTM 0.41-0.45; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9W43,2,0.054,0.668,0.173,False,DockQ(Ab-Ag) C-A 0.054 / C-B 0.055; pair ipTM 0.17-0.21; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9W43,2,0.068,0.747,0.407,False,DockQ(Ab-Ag) C-A 0.068 / C-B 0.069; pair ipTM 0.41-0.44; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9W43,3,0.063,0.695,0.218,False,DockQ(Ab-Ag) C-A 0.063 / C-B 0.065; pair ipTM 0.22-0.29; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9W43,3,0.067,0.747,0.404,False,DockQ(Ab-Ag) C-A 0.067 / C-B 0.069; pair ipTM 0.40-0.44; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9W43,4,0.06,0.692,0.219,False,DockQ(Ab-Ag) C-A 0.060 / C-B 0.062; pair ipTM 0.22-0.29; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9W43,4,0.057,0.732,0.371,False,DockQ(Ab-Ag) C-A 0.058 / C-B 0.057; pair ipTM 0.37-0.41; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9YC6,0,0.003,0.553,0.277,False,DockQ(Ab-Ag) U-H 0.003 / U-L 0.004; pair ipTM 0.28-0.30; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9YC6,0,0.12,0.579,0.325,False,DockQ(Ab-Ag) U-H 0.415 / U-L 0.120; pair ipTM 0.32-0.33; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9YC6,1,0.003,0.575,0.282,False,DockQ(Ab-Ag) U-H 0.003 / U-L 0.004; pair ipTM 0.28-0.31; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9YC6,1,0.11,0.577,0.322,False,DockQ(Ab-Ag) U-H 0.405 / U-L 0.110; pair ipTM 0.32-0.33; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9YC6,2,0.007,0.513,0.135,False,DockQ(Ab-Ag) U-H 0.007 / U-L 0.007; pair ipTM 0.13-0.19; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9YC6,2,0.071,0.575,0.314,False,DockQ(Ab-Ag) U-H 0.356 / U-L 0.071; pair ipTM 0.31-0.32; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9YC6,3,0.003,0.572,0.285,False,DockQ(Ab-Ag) U-H 0.003 / U-L 0.004; pair ipTM 0.28-0.29; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9YC6,3,0.106,0.574,0.318,False,DockQ(Ab-Ag) U-H 0.499 / U-L 0.106; pair ipTM 0.32-0.32; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9YC6,4,0.006,0.514,0.131,False,DockQ(Ab-Ag) U-H 0.006 / U-L 0.006; pair ipTM 0.13-0.19; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9YC6,4,0.008,0.551,0.277,False,DockQ(Ab-Ag) U-H 0.008 / U-L 0.010; pair ipTM 0.28-0.28; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9YC6,0,0.009,0.496,0.22,False,DockQ(Ab-Ag) U-H 0.011 / U-L 0.009; pair ipTM 0.22-0.27; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9YC6,0,0.116,0.533,0.342,False,DockQ(Ab-Ag) U-H 0.609 / U-L 0.116; pair ipTM 0.34-0.34; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9YC6,1,0.009,0.509,0.224,False,DockQ(Ab-Ag) U-H 0.011 / U-L 0.009; pair ipTM 0.22-0.29; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9YC6,1,0.111,0.532,0.353,False,DockQ(Ab-Ag) U-H 0.396 / U-L 0.111; pair ipTM 0.35-0.36; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9YC6,2,0.011,0.503,0.201,False,DockQ(Ab-Ag) U-H 0.011 / U-L 0.011; pair ipTM 0.20-0.28; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9YC6,2,0.09,0.53,0.338,False,DockQ(Ab-Ag) U-H 0.557 / U-L 0.090; pair ipTM 0.34-0.34; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9YC6,3,0.009,0.494,0.221,False,DockQ(Ab-Ag) U-H 0.010 / U-L 0.009; pair ipTM 0.22-0.27; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9YC6,3,0.102,0.529,0.333,False,DockQ(Ab-Ag) U-H 0.593 / U-L 0.102; pair ipTM 0.33-0.34; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9YC6,4,0.009,0.487,0.221,False,DockQ(Ab-Ag) U-H 0.011 / U-L 0.009; pair ipTM 0.22-0.26; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9YC6,4,0.008,0.483,0.287,False,DockQ(Ab-Ag) U-H 0.009 / U-L 0.008; pair ipTM 0.29-0.29; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9J4C,0,0.005,0.454,0.189,False,DockQ(Ab-Ag) A-H 0.006 / A-L 0.005; pair ipTM 0.19-0.29; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9J4C,0,0.285,0.882,0.838,True,DockQ(Ab-Ag) A-H 0.285 / A-L 0.504; pair ipTM 0.84-0.86; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9J4C,1,0.005,0.557,0.309,False,DockQ(Ab-Ag) A-H 0.005 / A-L 0.008; pair ipTM 0.31-0.42; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9J4C,1,0.311,0.882,0.839,True,DockQ(Ab-Ag) A-H 0.311 / A-L 0.510; pair ipTM 0.84-0.86; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9J4C,2,0.005,0.566,0.301,False,DockQ(Ab-Ag) A-H 0.005 / A-L 0.007; pair ipTM 0.30-0.43; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9J4C,2,0.409,0.881,0.838,True,DockQ(Ab-Ag) A-H 0.409 / A-L 0.559; pair ipTM 0.84-0.86; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9J4C,3,0.231,0.44,0.162,True,DockQ(Ab-Ag) A-H 0.296 / A-L 0.231; pair ipTM 0.16-0.27; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9J4C,3,0.3,0.881,0.838,True,DockQ(Ab-Ag) A-H 0.300 / A-L 0.511; pair ipTM 0.84-0.86; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Chai-1,9J4C,4,0.004,0.46,0.169,False,DockQ(Ab-Ag) A-H 0.007 / A-L 0.004; pair ipTM 0.17-0.30; interfaces=3
+2026-07-11,Diverse-Fab,Protenix-base,9J4C,4,0.322,0.88,0.837,True,DockQ(Ab-Ag) A-H 0.322 / A-L 0.465; pair ipTM 0.84-0.86; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9J4C,0,0.007,0.384,0.121,False,DockQ(Ab-Ag) A-H 0.011 / A-L 0.007; pair ipTM 0.12-0.28; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9J4C,0,0.44,0.428,0.363,True,DockQ(Ab-Ag) A-H 0.440 / A-L 0.487; pair ipTM 0.36-0.36; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9J4C,1,0.006,0.464,0.219,False,DockQ(Ab-Ag) A-H 0.006 / A-L 0.017; pair ipTM 0.22-0.37; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9J4C,1,0.415,0.413,0.36,True,DockQ(Ab-Ag) A-H 0.415 / A-L 0.514; pair ipTM 0.36-0.37; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9J4C,2,0.007,0.381,0.113,False,DockQ(Ab-Ag) A-H 0.010 / A-L 0.007; pair ipTM 0.11-0.27; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9J4C,2,0.164,0.385,0.317,False,DockQ(Ab-Ag) A-H 0.222 / A-L 0.164; pair ipTM 0.32-0.34; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9J4C,3,0.011,0.393,0.12,False,DockQ(Ab-Ag) A-H 0.011 / A-L 0.032; pair ipTM 0.12-0.27; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9J4C,3,0.052,0.372,0.26,False,DockQ(Ab-Ag) A-H 0.052 / A-L 0.060; pair ipTM 0.26-0.28; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fv,Chai-1,9J4C,4,0.006,0.372,0.109,False,DockQ(Ab-Ag) A-H 0.006 / A-L 0.007; pair ipTM 0.11-0.26; interfaces=3
+2026-07-11,Diverse-Fv,Protenix-base,9J4C,4,0.004,0.315,0.247,False,DockQ(Ab-Ag) A-H 0.004 / A-L 0.007; pair ipTM 0.25-0.27; interfaces=3; MSA=protenix
+2026-07-11,Diverse-Fab,Boltz-2,9LY5,0,0.08,0.567,0.28,False,DockQ(Ab-Ag) C-A 0.242 / C-B 0.080; pair ipTM 0.28-0.31; interfaces=3
+2026-07-11,Diverse-Fab,Boltz-2,9LY5,1,0.062,0.616,0.303,False,DockQ(Ab-Ag) C-A 0.156 / C-B 0.062; pair ipTM 0.30-0.38; interfaces=3
+2026-07-11,Diverse-Fab,Boltz-2,9LY5,2,0.255,0.628,0.403,True,DockQ(Ab-Ag) C-A 0.269 / C-B 0.255; pair ipTM 0.40-0.44; interfaces=3
+2026-07-11,Diverse-Fab,Boltz-2,9LY5,3,0.067,0.563,0.252,False,DockQ(Ab-Ag) C-A 0.176 / C-B 0.067; pair ipTM 0.25-0.28; interfaces=3
+2026-07-11,Diverse-Fab,Boltz-2,9LY5,4,0.082,0.552,0.217,False,DockQ(Ab-Ag) C-A 0.179 / C-B 0.082; pair ipTM 0.22-0.26; interfaces=3
+2026-07-11,Diverse-Fab,Boltz-2,9W43,0,0.067,0.854,0.557,False,DockQ(Ab-Ag) C-A 0.091 / C-B 0.067; pair ipTM 0.56-0.72; interfaces=3
+2026-07-11,Diverse-Fab,Boltz-2,9W43,1,0.124,0.757,0.254,False,DockQ(Ab-Ag) C-A 0.124 / C-B 0.154; pair ipTM 0.25-0.44; interfaces=3
+2026-07-11,Diverse-Fab,Boltz-2,9W43,2,0.053,0.785,0.347,False,DockQ(Ab-Ag) C-A 0.053 / C-B 0.053; pair ipTM 0.35-0.46; interfaces=3
+2026-07-11,Diverse-Fab,Boltz-2,9W43,3,0.14,0.737,0.186,False,DockQ(Ab-Ag) C-A 0.156 / C-B 0.140; pair ipTM 0.19-0.35; interfaces=3
+2026-07-11,Diverse-Fab,Boltz-2,9W43,4,0.056,0.728,0.267,False,DockQ(Ab-Ag) C-A 0.056 / C-B 0.061; pair ipTM 0.27-0.39; interfaces=3
+2026-07-13,Diverse-Fab,AF2-Multimer,9K6J,4,0.022,0.76,,False,rank1 model4; DockQ(Ab-Ag) C-A 0.035 / C-B 0.022; pair ipTM NA(AF2-M); ptm 0.81; mean pLDDT 90.1
+2026-07-13,Diverse-Fab,AF2-Multimer,9K6J,5,0.024,0.73,,False,rank2 model5; DockQ(Ab-Ag) C-A 0.037 / C-B 0.024; pair ipTM NA(AF2-M); ptm 0.78; mean pLDDT 89.3
+2026-07-13,Diverse-Fab,AF2-Multimer,9K6J,3,0.025,0.68,,False,rank3 model3; DockQ(Ab-Ag) C-A 0.033 / C-B 0.025; pair ipTM NA(AF2-M); ptm 0.75; mean pLDDT 88.5
+2026-07-13,Diverse-Fab,AF2-Multimer,9K6J,2,0.023,0.66,,False,rank4 model2; DockQ(Ab-Ag) C-A 0.041 / C-B 0.023; pair ipTM NA(AF2-M); ptm 0.73; mean pLDDT 89.8
+2026-07-13,Diverse-Fab,AF2-Multimer,9K6J,1,0.044,0.59,,False,rank5 model1; DockQ(Ab-Ag) C-A 0.044 / C-B 0.066; pair ipTM NA(AF2-M); ptm 0.71; mean pLDDT 87.4
+2026-07-13,Diverse-Fab,tFold-Ag,9K6J,42,0.089,0.194,,False,seed42; DockQ(Ab-Ag) C-A 0.118 / C-B 0.089; pair ipTM NA(tFold global만); ptm 0.685; lDDT-Ca 0.9012; antigen lDDT 0.8872; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9K6J,43,0.491,0.284,,True,seed43; DockQ(Ab-Ag) C-A 0.531 / C-B 0.491; pair ipTM NA(tFold global만); ptm 0.7159; lDDT-Ca 0.9065; antigen lDDT 0.9036; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9K6J,44,0.321,0.239,,True,seed44; DockQ(Ab-Ag) C-A 0.437 / C-B 0.321; pair ipTM NA(tFold global만); ptm 0.6977; lDDT-Ca 0.9047; antigen lDDT 0.8996; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9K6J,45,0.288,0.231,,True,seed45; DockQ(Ab-Ag) C-A 0.303 / C-B 0.288; pair ipTM NA(tFold global만); ptm 0.6964; lDDT-Ca 0.9014; antigen lDDT 0.8894; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9K6J,46,0.134,0.191,,False,seed46; DockQ(Ab-Ag) C-A 0.227 / C-B 0.134; pair ipTM NA(tFold global만); ptm 0.6838; lDDT-Ca 0.8978; antigen lDDT 0.8772; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,AF2-Multimer,9K6J,3,0.019,0.65,,False,rank1 model3; DockQ(Ab-Ag) C-A 0.034 / C-B 0.019; pair ipTM NA(AF2-M); ptm 0.74; mean pLDDT 86.7
+2026-07-13,Diverse-Fv,AF2-Multimer,9K6J,2,0.018,0.65,,False,rank2 model2; DockQ(Ab-Ag) C-A 0.038 / C-B 0.018; pair ipTM NA(AF2-M); ptm 0.73; mean pLDDT 86.0
+2026-07-13,Diverse-Fv,AF2-Multimer,9K6J,4,0.019,0.6,,False,rank3 model4; DockQ(Ab-Ag) C-A 0.029 / C-B 0.019; pair ipTM NA(AF2-M); ptm 0.7; mean pLDDT 85.3
+2026-07-13,Diverse-Fv,AF2-Multimer,9K6J,5,0.023,0.51,,False,rank4 model5; DockQ(Ab-Ag) C-A 0.041 / C-B 0.023; pair ipTM NA(AF2-M); ptm 0.64; mean pLDDT 84.5
+2026-07-13,Diverse-Fv,AF2-Multimer,9K6J,1,0.023,0.46,,False,rank5 model1; DockQ(Ab-Ag) C-A 0.042 / C-B 0.023; pair ipTM NA(AF2-M); ptm 0.6; mean pLDDT 85.3
+2026-07-13,Diverse-Fv,tFold-Ag,9K6J,42,0.481,0.867,,True,seed42; DockQ(Ab-Ag) C-A 0.898 / C-B 0.481; pair ipTM NA(tFold global만); ptm 0.9124; lDDT-Ca 0.95; antigen lDDT 0.9429; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9K6J,43,0.507,0.872,,True,seed43; DockQ(Ab-Ag) C-A 0.884 / C-B 0.507; pair ipTM NA(tFold global만); ptm 0.9148; lDDT-Ca 0.9496; antigen lDDT 0.9416; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9K6J,44,0.505,0.846,,True,seed44; DockQ(Ab-Ag) C-A 0.877 / C-B 0.505; pair ipTM NA(tFold global만); ptm 0.9015; lDDT-Ca 0.947; antigen lDDT 0.9381; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9K6J,45,0.525,0.862,,True,seed45; DockQ(Ab-Ag) C-A 0.887 / C-B 0.525; pair ipTM NA(tFold global만); ptm 0.9095; lDDT-Ca 0.9482; antigen lDDT 0.9396; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9K6J,46,0.491,0.862,,True,seed46; DockQ(Ab-Ag) C-A 0.888 / C-B 0.491; pair ipTM NA(tFold global만); ptm 0.9099; lDDT-Ca 0.9485; antigen lDDT 0.94; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,AF2-Multimer,9XF9,5,0.193,0.56,,False,rank1 model5; DockQ(Ab-Ag) A-H 0.231 / A-L 0.193; pair ipTM NA(AF2-M); ptm 0.67; mean pLDDT 88.0
+2026-07-13,Diverse-Fab,AF2-Multimer,9XF9,2,0.146,0.53,,False,rank2 model2; DockQ(Ab-Ag) A-H 0.196 / A-L 0.146; pair ipTM NA(AF2-M); ptm 0.65; mean pLDDT 88.2
+2026-07-13,Diverse-Fab,AF2-Multimer,9XF9,3,0.206,0.53,,False,rank3 model3; DockQ(Ab-Ag) A-H 0.249 / A-L 0.206; pair ipTM NA(AF2-M); ptm 0.65; mean pLDDT 89.5
+2026-07-13,Diverse-Fab,AF2-Multimer,9XF9,4,0.115,0.52,,False,rank4 model4; DockQ(Ab-Ag) A-H 0.190 / A-L 0.115; pair ipTM NA(AF2-M); ptm 0.65; mean pLDDT 87.9
+2026-07-13,Diverse-Fab,AF2-Multimer,9XF9,1,0.03,0.5,,False,rank5 model1; DockQ(Ab-Ag) A-H 0.100 / A-L 0.030; pair ipTM NA(AF2-M); ptm 0.64; mean pLDDT 88.2
+2026-07-13,Diverse-Fab,tFold-Ag,9XF9,42,0.003,0.17,,False,seed42; DockQ(Ab-Ag) A-H 0.010 / A-L 0.003; pair ipTM NA(tFold global만); ptm 0.6253; lDDT-Ca 0.8558; antigen lDDT 0.7967; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9XF9,43,0.003,0.167,,False,seed43; DockQ(Ab-Ag) A-H 0.010 / A-L 0.003; pair ipTM NA(tFold global만); ptm 0.6256; lDDT-Ca 0.8545; antigen lDDT 0.8019; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9XF9,44,0.003,0.186,,False,seed44; DockQ(Ab-Ag) A-H 0.010 / A-L 0.003; pair ipTM NA(tFold global만); ptm 0.6283; lDDT-Ca 0.8626; antigen lDDT 0.817; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9XF9,45,0.004,0.175,,False,seed45; DockQ(Ab-Ag) A-H 0.010 / A-L 0.004; pair ipTM NA(tFold global만); ptm 0.6243; lDDT-Ca 0.8474; antigen lDDT 0.7795; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9XF9,46,0.003,0.178,,False,seed46; DockQ(Ab-Ag) A-H 0.010 / A-L 0.003; pair ipTM NA(tFold global만); ptm 0.6263; lDDT-Ca 0.8445; antigen lDDT 0.7686; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,AF2-Multimer,9XF9,5,0.217,0.44,,False,rank1 model5; DockQ(Ab-Ag) A-H 0.255 / A-L 0.217; pair ipTM NA(AF2-M); ptm 0.57; mean pLDDT 86.9
+2026-07-13,Diverse-Fv,AF2-Multimer,9XF9,3,0.162,0.44,,False,rank2 model3; DockQ(Ab-Ag) A-H 0.196 / A-L 0.162; pair ipTM NA(AF2-M); ptm 0.57; mean pLDDT 87.7
+2026-07-13,Diverse-Fv,AF2-Multimer,9XF9,2,0.107,0.43,,False,rank3 model2; DockQ(Ab-Ag) A-H 0.237 / A-L 0.107; pair ipTM NA(AF2-M); ptm 0.56; mean pLDDT 85.1
+2026-07-13,Diverse-Fv,AF2-Multimer,9XF9,1,0.164,0.42,,False,rank4 model1; DockQ(Ab-Ag) A-H 0.253 / A-L 0.164; pair ipTM NA(AF2-M); ptm 0.56; mean pLDDT 85.2
+2026-07-13,Diverse-Fv,AF2-Multimer,9XF9,4,0.009,0.4,,False,rank5 model4; DockQ(Ab-Ag) A-H 0.009 / A-L 0.009; pair ipTM NA(AF2-M); ptm 0.54; mean pLDDT 86.1
+2026-07-13,Diverse-Fv,tFold-Ag,9XF9,42,0.006,0.174,,False,seed42; DockQ(Ab-Ag) A-H 0.011 / A-L 0.006; pair ipTM NA(tFold global만); ptm 0.5399; lDDT-Ca 0.8859; antigen lDDT 0.8342; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9XF9,43,0.006,0.158,,False,seed43; DockQ(Ab-Ag) A-H 0.011 / A-L 0.006; pair ipTM NA(tFold global만); ptm 0.533; lDDT-Ca 0.8772; antigen lDDT 0.8256; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9XF9,44,0.006,0.158,,False,seed44; DockQ(Ab-Ag) A-H 0.011 / A-L 0.006; pair ipTM NA(tFold global만); ptm 0.5352; lDDT-Ca 0.8958; antigen lDDT 0.8599; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9XF9,45,0.006,0.199,,False,seed45; DockQ(Ab-Ag) A-H 0.011 / A-L 0.006; pair ipTM NA(tFold global만); ptm 0.5535; lDDT-Ca 0.8824; antigen lDDT 0.8327; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9XF9,46,0.006,0.163,,False,seed46; DockQ(Ab-Ag) A-H 0.011 / A-L 0.006; pair ipTM NA(tFold global만); ptm 0.5354; lDDT-Ca 0.8858; antigen lDDT 0.8381; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,AF2-Multimer,9Y0A,3,0.047,0.63,,False,rank1 model3; DockQ(Ab-Ag) C-A 0.047 / C-B 0.047; pair ipTM NA(AF2-M); ptm 0.71; mean pLDDT 89.0
+2026-07-13,Diverse-Fab,AF2-Multimer,9Y0A,2,0.221,0.58,,False,rank2 model2; DockQ(Ab-Ag) C-A 0.280 / C-B 0.221; pair ipTM NA(AF2-M); ptm 0.67; mean pLDDT 87.6
+2026-07-13,Diverse-Fab,AF2-Multimer,9Y0A,4,0.021,0.56,,False,rank3 model4; DockQ(Ab-Ag) C-A 0.024 / C-B 0.021; pair ipTM NA(AF2-M); ptm 0.65; mean pLDDT 87.8
+2026-07-13,Diverse-Fab,AF2-Multimer,9Y0A,5,0.021,0.56,,False,rank4 model5; DockQ(Ab-Ag) C-A 0.024 / C-B 0.021; pair ipTM NA(AF2-M); ptm 0.65; mean pLDDT 87.3
+2026-07-13,Diverse-Fab,AF2-Multimer,9Y0A,1,0.036,0.55,,False,rank5 model1; DockQ(Ab-Ag) C-A 0.036 / C-B 0.036; pair ipTM NA(AF2-M); ptm 0.64; mean pLDDT 86.6
+2026-07-13,Diverse-Fab,tFold-Ag,9Y0A,42,0.033,0.185,,False,seed42; DockQ(Ab-Ag) C-A 0.046 / C-B 0.033; pair ipTM NA(tFold global만); ptm 0.6869; lDDT-Ca 0.8765; antigen lDDT 0.8285; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9Y0A,43,0.043,0.204,,False,seed43; DockQ(Ab-Ag) C-A 0.054 / C-B 0.043; pair ipTM NA(tFold global만); ptm 0.6908; lDDT-Ca 0.8782; antigen lDDT 0.8324; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9Y0A,44,0.036,0.192,,False,seed44; DockQ(Ab-Ag) C-A 0.056 / C-B 0.036; pair ipTM NA(tFold global만); ptm 0.687; lDDT-Ca 0.8737; antigen lDDT 0.8168; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9Y0A,45,0.031,0.196,,False,seed45; DockQ(Ab-Ag) C-A 0.032 / C-B 0.031; pair ipTM NA(tFold global만); ptm 0.6884; lDDT-Ca 0.8823; antigen lDDT 0.851; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9Y0A,46,0.06,0.201,,False,seed46; DockQ(Ab-Ag) C-A 0.060 / C-B 0.069; pair ipTM NA(tFold global만); ptm 0.6898; lDDT-Ca 0.8868; antigen lDDT 0.8629; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9Y0A,42,0.034,0.191,,False,seed42; DockQ(Ab-Ag) C-A 0.034 / C-B 0.057; pair ipTM NA(tFold global만); ptm 0.6288; lDDT-Ca 0.925; antigen lDDT 0.9154; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9Y0A,43,0.055,0.212,,False,seed43; DockQ(Ab-Ag) C-A 0.055 / C-B 0.072; pair ipTM NA(tFold global만); ptm 0.6368; lDDT-Ca 0.9269; antigen lDDT 0.9157; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9Y0A,44,0.034,0.183,,False,seed44; DockQ(Ab-Ag) C-A 0.034 / C-B 0.058; pair ipTM NA(tFold global만); ptm 0.6272; lDDT-Ca 0.9214; antigen lDDT 0.905; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9Y0A,45,0.049,0.199,,False,seed45; DockQ(Ab-Ag) C-A 0.049 / C-B 0.064; pair ipTM NA(tFold global만); ptm 0.6321; lDDT-Ca 0.9275; antigen lDDT 0.9178; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9Y0A,46,0.052,0.224,,False,seed46; DockQ(Ab-Ag) C-A 0.052 / C-B 0.069; pair ipTM NA(tFold global만); ptm 0.6411; lDDT-Ca 0.9301; antigen lDDT 0.9227; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,AF2-Multimer,9VXL,3,0.003,0.7,,False,rank1 model3; DockQ(Ab-Ag) A-B 0.004 / A-C 0.003; pair ipTM NA(AF2-M); ptm 0.77; mean pLDDT 88.1
+2026-07-13,Diverse-Fab,AF2-Multimer,9VXL,4,0.003,0.62,,False,rank2 model4; DockQ(Ab-Ag) A-B 0.004 / A-C 0.003; pair ipTM NA(AF2-M); ptm 0.72; mean pLDDT 87.9
+2026-07-13,Diverse-Fab,AF2-Multimer,9VXL,5,0.005,0.57,,False,rank3 model5; DockQ(Ab-Ag) A-B 0.007 / A-C 0.005; pair ipTM NA(AF2-M); ptm 0.68; mean pLDDT 89.2
+2026-07-13,Diverse-Fab,AF2-Multimer,9VXL,2,0.004,0.54,,False,rank4 model2; DockQ(Ab-Ag) A-B 0.005 / A-C 0.004; pair ipTM NA(AF2-M); ptm 0.66; mean pLDDT 88.9
+2026-07-13,Diverse-Fab,AF2-Multimer,9VXL,1,0.005,0.53,,False,rank5 model1; DockQ(Ab-Ag) A-B 0.005 / A-C 0.005; pair ipTM NA(AF2-M); ptm 0.66; mean pLDDT 88.0
+2026-07-13,Diverse-Fab,tFold-Ag,9VXL,42,0.013,0.182,,False,seed42; DockQ(Ab-Ag) A-B 0.013 / A-C 0.028; pair ipTM NA(tFold global만); ptm 0.6211; lDDT-Ca 0.8389; antigen lDDT 0.7966; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9VXL,43,0.013,0.191,,False,seed43; DockQ(Ab-Ag) A-B 0.013 / A-C 0.022; pair ipTM NA(tFold global만); ptm 0.624; lDDT-Ca 0.8266; antigen lDDT 0.7617; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9VXL,44,0.013,0.194,,False,seed44; DockQ(Ab-Ag) A-B 0.013 / A-C 0.020; pair ipTM NA(tFold global만); ptm 0.6251; lDDT-Ca 0.8532; antigen lDDT 0.8382; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9VXL,45,0.013,0.191,,False,seed45; DockQ(Ab-Ag) A-B 0.013 / A-C 0.021; pair ipTM NA(tFold global만); ptm 0.6249; lDDT-Ca 0.8394; antigen lDDT 0.7946; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9VXL,46,0.013,0.196,,False,seed46; DockQ(Ab-Ag) A-B 0.013 / A-C 0.020; pair ipTM NA(tFold global만); ptm 0.6264; lDDT-Ca 0.8531; antigen lDDT 0.8351; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,AF2-Multimer,9VXL,3,0.005,0.51,,False,rank1 model3; DockQ(Ab-Ag) A-B 0.006 / A-C 0.005; pair ipTM NA(AF2-M); ptm 0.62; mean pLDDT 86.9
+2026-07-13,Diverse-Fv,AF2-Multimer,9VXL,1,0.005,0.47,,False,rank2 model1; DockQ(Ab-Ag) A-B 0.005 / A-C 0.005; pair ipTM NA(AF2-M); ptm 0.59; mean pLDDT 85.8
+2026-07-13,Diverse-Fv,AF2-Multimer,9VXL,5,0.005,0.45,,False,rank3 model5; DockQ(Ab-Ag) A-B 0.006 / A-C 0.005; pair ipTM NA(AF2-M); ptm 0.58; mean pLDDT 85.0
+2026-07-13,Diverse-Fv,AF2-Multimer,9VXL,2,0.006,0.42,,False,rank4 model2; DockQ(Ab-Ag) A-B 0.008 / A-C 0.006; pair ipTM NA(AF2-M); ptm 0.55; mean pLDDT 86.1
+2026-07-13,Diverse-Fv,AF2-Multimer,9VXL,4,0.014,0.41,,False,rank5 model4; DockQ(Ab-Ag) A-B 0.014 / A-C 0.014; pair ipTM NA(AF2-M); ptm 0.54; mean pLDDT 84.5
+2026-07-13,Diverse-Fv,tFold-Ag,9VXL,42,0.007,0.466,,False,seed42; DockQ(Ab-Ag) A-B 0.010 / A-C 0.007; pair ipTM NA(tFold global만); ptm 0.6788; lDDT-Ca 0.7322; antigen lDDT 0.7073; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9VXL,43,0.007,0.586,,False,seed43; DockQ(Ab-Ag) A-B 0.010 / A-C 0.007; pair ipTM NA(tFold global만); ptm 0.733; lDDT-Ca 0.6704; antigen lDDT 0.6577; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9VXL,44,0.007,0.489,,False,seed44; DockQ(Ab-Ag) A-B 0.010 / A-C 0.007; pair ipTM NA(tFold global만); ptm 0.6844; lDDT-Ca 0.6463; antigen lDDT 0.6033; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9VXL,45,0.007,0.417,,False,seed45; DockQ(Ab-Ag) A-B 0.011 / A-C 0.007; pair ipTM NA(tFold global만); ptm 0.6541; lDDT-Ca 0.6339; antigen lDDT 0.5542; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9VXL,46,0.007,0.497,,False,seed46; DockQ(Ab-Ag) A-B 0.011 / A-C 0.007; pair ipTM NA(tFold global만); ptm 0.6931; lDDT-Ca 0.6524; antigen lDDT 0.6174; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,AF2-Multimer,9LY5,1,0.053,0.58,,False,rank1 model1; DockQ(Ab-Ag) C-A 0.053 / C-B 0.056; pair ipTM NA(AF2-M); ptm 0.69; mean pLDDT 86.9
+2026-07-13,Diverse-Fab,AF2-Multimer,9LY5,3,0.053,0.56,,False,rank2 model3; DockQ(Ab-Ag) C-A 0.053 / C-B 0.056; pair ipTM NA(AF2-M); ptm 0.67; mean pLDDT 86.3
+2026-07-13,Diverse-Fab,AF2-Multimer,9LY5,5,0.053,0.56,,False,rank3 model5; DockQ(Ab-Ag) C-A 0.053 / C-B 0.075; pair ipTM NA(AF2-M); ptm 0.66; mean pLDDT 85.0
+2026-07-13,Diverse-Fab,AF2-Multimer,9LY5,2,0.069,0.55,,False,rank4 model2; DockQ(Ab-Ag) C-A 0.071 / C-B 0.069; pair ipTM NA(AF2-M); ptm 0.66; mean pLDDT 86.7
+2026-07-13,Diverse-Fab,AF2-Multimer,9LY5,4,0.047,0.55,,False,rank5 model4; DockQ(Ab-Ag) C-A 0.047 / C-B 0.048; pair ipTM NA(AF2-M); ptm 0.65; mean pLDDT 84.7
+2026-07-13,Diverse-Fab,tFold-Ag,9LY5,42,0.008,0.166,,False,seed42; DockQ(Ab-Ag) C-A 0.008 / C-B 0.008; pair ipTM NA(tFold global만); ptm 0.6772; lDDT-Ca 0.8482; antigen lDDT 0.7163; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9LY5,43,0.013,0.178,,False,seed43; DockQ(Ab-Ag) C-A 0.015 / C-B 0.013; pair ipTM NA(tFold global만); ptm 0.6808; lDDT-Ca 0.8341; antigen lDDT 0.6775; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9LY5,44,0.008,0.163,,False,seed44; DockQ(Ab-Ag) C-A 0.008 / C-B 0.009; pair ipTM NA(tFold global만); ptm 0.6765; lDDT-Ca 0.7955; antigen lDDT 0.5522; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9LY5,45,0.016,0.165,,False,seed45; DockQ(Ab-Ag) C-A 0.016 / C-B 0.019; pair ipTM NA(tFold global만); ptm 0.6775; lDDT-Ca 0.8517; antigen lDDT 0.7405; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9LY5,46,0.009,0.175,,False,seed46; DockQ(Ab-Ag) C-A 0.009 / C-B 0.009; pair ipTM NA(tFold global만); ptm 0.6798; lDDT-Ca 0.8484; antigen lDDT 0.7234; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,AF2-Multimer,9LY5,2,0.066,0.46,,False,rank1 model2; DockQ(Ab-Ag) C-A 0.066 / C-B 0.105; pair ipTM NA(AF2-M); ptm 0.6; mean pLDDT 84.3
+2026-07-13,Diverse-Fv,AF2-Multimer,9LY5,5,0.043,0.46,,False,rank2 model5; DockQ(Ab-Ag) C-A 0.043 / C-B 0.047; pair ipTM NA(AF2-M); ptm 0.6; mean pLDDT 79.2
+2026-07-13,Diverse-Fv,AF2-Multimer,9LY5,1,0.049,0.46,,False,rank3 model1; DockQ(Ab-Ag) C-A 0.049 / C-B 0.061; pair ipTM NA(AF2-M); ptm 0.6; mean pLDDT 79.7
+2026-07-13,Diverse-Fv,AF2-Multimer,9LY5,4,0.034,0.45,,False,rank4 model4; DockQ(Ab-Ag) C-A 0.034 / C-B 0.036; pair ipTM NA(AF2-M); ptm 0.59; mean pLDDT 82.0
+2026-07-13,Diverse-Fv,AF2-Multimer,9LY5,3,0.052,0.44,,False,rank5 model3; DockQ(Ab-Ag) C-A 0.052 / C-B 0.056; pair ipTM NA(AF2-M); ptm 0.58; mean pLDDT 83.0
+2026-07-13,Diverse-Fv,tFold-Ag,9LY5,42,0.016,0.177,,False,seed42; DockQ(Ab-Ag) C-A 0.016 / C-B 0.018; pair ipTM NA(tFold global만); ptm 0.5844; lDDT-Ca 0.8425; antigen lDDT 0.7275; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9LY5,43,0.015,0.215,,False,seed43; DockQ(Ab-Ag) C-A 0.015 / C-B 0.016; pair ipTM NA(tFold global만); ptm 0.6024; lDDT-Ca 0.8237; antigen lDDT 0.6856; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9LY5,44,0.015,0.201,,False,seed44; DockQ(Ab-Ag) C-A 0.015 / C-B 0.017; pair ipTM NA(tFold global만); ptm 0.5952; lDDT-Ca 0.827; antigen lDDT 0.6933; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9LY5,45,0.017,0.162,,False,seed45; DockQ(Ab-Ag) C-A 0.017 / C-B 0.019; pair ipTM NA(tFold global만); ptm 0.5793; lDDT-Ca 0.8352; antigen lDDT 0.717; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9LY5,46,0.016,0.235,,False,seed46; DockQ(Ab-Ag) C-A 0.016 / C-B 0.017; pair ipTM NA(tFold global만); ptm 0.6087; lDDT-Ca 0.8378; antigen lDDT 0.7166; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,AF2-Multimer,9MQR,4,0.04,0.43,,False,rank1 model4; DockQ(Ab-Ag) A-D 0.076 / A-E 0.040; pair ipTM NA(AF2-M); ptm 0.55; mean pLDDT 79.1
+2026-07-13,Diverse-Fab,AF2-Multimer,9MQR,2,0.025,0.43,,False,rank2 model2; DockQ(Ab-Ag) A-D 0.114 / A-E 0.025; pair ipTM NA(AF2-M); ptm 0.55; mean pLDDT 79.4
+2026-07-13,Diverse-Fab,AF2-Multimer,9MQR,5,0.043,0.43,,False,rank3 model5; DockQ(Ab-Ag) A-D 0.080 / A-E 0.043; pair ipTM NA(AF2-M); ptm 0.55; mean pLDDT 79.9
+2026-07-13,Diverse-Fab,AF2-Multimer,9MQR,1,0.023,0.43,,False,rank4 model1; DockQ(Ab-Ag) A-D 0.086 / A-E 0.023; pair ipTM NA(AF2-M); ptm 0.55; mean pLDDT 80.4
+2026-07-13,Diverse-Fab,AF2-Multimer,9MQR,3,0.033,0.42,,False,rank5 model3; DockQ(Ab-Ag) A-D 0.105 / A-E 0.033; pair ipTM NA(AF2-M); ptm 0.54; mean pLDDT 81.9
+2026-07-13,Diverse-Fab,tFold-Ag,9MQR,42,0.009,0.196,,False,seed42; DockQ(Ab-Ag) A-D 0.034 / A-E 0.009; pair ipTM NA(tFold global만); ptm 0.5464; lDDT-Ca 0.8702; antigen lDDT 0.8504; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9MQR,43,0.009,0.213,,False,seed43; DockQ(Ab-Ag) A-D 0.034 / A-E 0.009; pair ipTM NA(tFold global만); ptm 0.5549; lDDT-Ca 0.8792; antigen lDDT 0.8672; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9MQR,44,0.01,0.194,,False,seed44; DockQ(Ab-Ag) A-D 0.034 / A-E 0.010; pair ipTM NA(tFold global만); ptm 0.543; lDDT-Ca 0.8716; antigen lDDT 0.855; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9MQR,45,0.01,0.2,,False,seed45; DockQ(Ab-Ag) A-D 0.034 / A-E 0.010; pair ipTM NA(tFold global만); ptm 0.5473; lDDT-Ca 0.8683; antigen lDDT 0.8447; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9MQR,46,0.011,0.196,,False,seed46; DockQ(Ab-Ag) A-D 0.034 / A-E 0.011; pair ipTM NA(tFold global만); ptm 0.5422; lDDT-Ca 0.8716; antigen lDDT 0.8546; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,AF2-Multimer,9MQR,4,0.03,0.45,,False,rank1 model4; DockQ(Ab-Ag) A-D 0.148 / A-E 0.030; pair ipTM NA(AF2-M); ptm 0.57; mean pLDDT 82.8
+2026-07-13,Diverse-Fv,AF2-Multimer,9MQR,2,0.013,0.43,,False,rank2 model2; DockQ(Ab-Ag) A-D 0.060 / A-E 0.013; pair ipTM NA(AF2-M); ptm 0.56; mean pLDDT 78.2
+2026-07-13,Diverse-Fv,AF2-Multimer,9MQR,5,0.044,0.43,,False,rank3 model5; DockQ(Ab-Ag) A-D 0.097 / A-E 0.044; pair ipTM NA(AF2-M); ptm 0.55; mean pLDDT 79.1
+2026-07-13,Diverse-Fv,AF2-Multimer,9MQR,3,0.042,0.43,,False,rank4 model3; DockQ(Ab-Ag) A-D 0.077 / A-E 0.042; pair ipTM NA(AF2-M); ptm 0.55; mean pLDDT 81.8
+2026-07-13,Diverse-Fv,AF2-Multimer,9MQR,1,0.024,0.42,,False,rank5 model1; DockQ(Ab-Ag) A-D 0.152 / A-E 0.024; pair ipTM NA(AF2-M); ptm 0.55; mean pLDDT 79.7
+2026-07-13,Diverse-Fv,tFold-Ag,9MQR,42,0.009,0.22,,False,seed42; DockQ(Ab-Ag) A-D 0.035 / A-E 0.009; pair ipTM NA(tFold global만); ptm 0.5533; lDDT-Ca 0.8702; antigen lDDT 0.8541; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9MQR,43,0.01,0.202,,False,seed43; DockQ(Ab-Ag) A-D 0.035 / A-E 0.010; pair ipTM NA(tFold global만); ptm 0.5424; lDDT-Ca 0.8598; antigen lDDT 0.8341; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9MQR,44,0.009,0.219,,False,seed44; DockQ(Ab-Ag) A-D 0.035 / A-E 0.009; pair ipTM NA(tFold global만); ptm 0.5494; lDDT-Ca 0.8677; antigen lDDT 0.8519; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9MQR,45,0.009,0.227,,False,seed45; DockQ(Ab-Ag) A-D 0.035 / A-E 0.009; pair ipTM NA(tFold global만); ptm 0.5533; lDDT-Ca 0.8727; antigen lDDT 0.856; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9MQR,46,0.009,0.233,,False,seed46; DockQ(Ab-Ag) A-D 0.035 / A-E 0.009; pair ipTM NA(tFold global만); ptm 0.5538; lDDT-Ca 0.8758; antigen lDDT 0.8633; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,AF2-Multimer,9KKJ,5,0.051,0.72,,False,rank1 model5; DockQ(Ab-Ag) A-H 0.052 / A-L 0.051; pair ipTM NA(AF2-M); ptm 0.81; mean pLDDT 88.3
+2026-07-13,Diverse-Fab,AF2-Multimer,9KKJ,4,0.042,0.72,,False,rank2 model4; DockQ(Ab-Ag) A-H 0.054 / A-L 0.042; pair ipTM NA(AF2-M); ptm 0.81; mean pLDDT 89.4
+2026-07-13,Diverse-Fab,AF2-Multimer,9KKJ,3,0.131,0.72,,False,rank3 model3; DockQ(Ab-Ag) A-H 0.181 / A-L 0.131; pair ipTM NA(AF2-M); ptm 0.81; mean pLDDT 89.6
+2026-07-13,Diverse-Fab,AF2-Multimer,9KKJ,1,0.049,0.71,,False,rank4 model1; DockQ(Ab-Ag) A-H 0.062 / A-L 0.049; pair ipTM NA(AF2-M); ptm 0.8; mean pLDDT 88.6
+2026-07-13,Diverse-Fab,AF2-Multimer,9KKJ,2,0.081,0.71,,False,rank5 model2; DockQ(Ab-Ag) A-H 0.108 / A-L 0.081; pair ipTM NA(AF2-M); ptm 0.8; mean pLDDT 88.9
+2026-07-13,Diverse-Fab,tFold-Ag,9KKJ,42,0.009,0.156,,False,seed42; DockQ(Ab-Ag) A-H 0.013 / A-L 0.009; pair ipTM NA(tFold global만); ptm 0.742; lDDT-Ca 0.8652; antigen lDDT 0.72; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9KKJ,43,0.01,0.143,,False,seed43; DockQ(Ab-Ag) A-H 0.013 / A-L 0.010; pair ipTM NA(tFold global만); ptm 0.7416; lDDT-Ca 0.8763; antigen lDDT 0.7649; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9KKJ,44,0.012,0.152,,False,seed44; DockQ(Ab-Ag) A-H 0.013 / A-L 0.012; pair ipTM NA(tFold global만); ptm 0.7435; lDDT-Ca 0.8518; antigen lDDT 0.6816; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9KKJ,45,0.01,0.149,,False,seed45; DockQ(Ab-Ag) A-H 0.013 / A-L 0.010; pair ipTM NA(tFold global만); ptm 0.7421; lDDT-Ca 0.8725; antigen lDDT 0.7529; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9KKJ,46,0.008,0.146,,False,seed46; DockQ(Ab-Ag) A-H 0.013 / A-L 0.008; pair ipTM NA(tFold global만); ptm 0.7439; lDDT-Ca 0.8716; antigen lDDT 0.7417; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,AF2-Multimer,9KKJ,1,0.057,0.61,,False,rank1 model1; DockQ(Ab-Ag) A-H 0.061 / A-L 0.057; pair ipTM NA(AF2-M); ptm 0.73; mean pLDDT 85.3
+2026-07-13,Diverse-Fv,AF2-Multimer,9KKJ,4,0.043,0.6,,False,rank2 model4; DockQ(Ab-Ag) A-H 0.068 / A-L 0.043; pair ipTM NA(AF2-M); ptm 0.73; mean pLDDT 86.2
+2026-07-13,Diverse-Fv,AF2-Multimer,9KKJ,2,0.065,0.6,,False,rank3 model2; DockQ(Ab-Ag) A-H 0.091 / A-L 0.065; pair ipTM NA(AF2-M); ptm 0.72; mean pLDDT 86.2
+2026-07-13,Diverse-Fv,AF2-Multimer,9KKJ,5,0.051,0.6,,False,rank4 model5; DockQ(Ab-Ag) A-H 0.055 / A-L 0.051; pair ipTM NA(AF2-M); ptm 0.72; mean pLDDT 83.9
+2026-07-13,Diverse-Fv,AF2-Multimer,9KKJ,3,0.045,0.59,,False,rank5 model3; DockQ(Ab-Ag) A-H 0.058 / A-L 0.045; pair ipTM NA(AF2-M); ptm 0.72; mean pLDDT 86.2
+2026-07-13,Diverse-Fv,tFold-Ag,9KKJ,42,0.018,0.323,,False,seed42; DockQ(Ab-Ag) A-H 0.018 / A-L 0.032; pair ipTM NA(tFold global만); ptm 0.7215; lDDT-Ca 0.909; antigen lDDT 0.8468; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9KKJ,43,0.018,0.185,,False,seed43; DockQ(Ab-Ag) A-H 0.018 / A-L 0.038; pair ipTM NA(tFold global만); ptm 0.679; lDDT-Ca 0.9027; antigen lDDT 0.8279; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9KKJ,44,0.018,0.182,,False,seed44; DockQ(Ab-Ag) A-H 0.018 / A-L 0.021; pair ipTM NA(tFold global만); ptm 0.68; lDDT-Ca 0.897; antigen lDDT 0.8083; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9KKJ,45,0.018,0.251,,False,seed45; DockQ(Ab-Ag) A-H 0.018 / A-L 0.030; pair ipTM NA(tFold global만); ptm 0.6954; lDDT-Ca 0.9116; antigen lDDT 0.8541; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9KKJ,46,0.018,0.249,,False,seed46; DockQ(Ab-Ag) A-H 0.018 / A-L 0.030; pair ipTM NA(tFold global만); ptm 0.6989; lDDT-Ca 0.9095; antigen lDDT 0.8463; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,AF2-Multimer,9W43,3,0.066,0.76,,False,rank1 model3; DockQ(Ab-Ag) C-A 0.067 / C-B 0.066; pair ipTM NA(AF2-M); ptm 0.83; mean pLDDT 89.5
+2026-07-13,Diverse-Fab,AF2-Multimer,9W43,4,0.063,0.76,,False,rank2 model4; DockQ(Ab-Ag) C-A 0.063 / C-B 0.063; pair ipTM NA(AF2-M); ptm 0.83; mean pLDDT 88.8
+2026-07-13,Diverse-Fab,AF2-Multimer,9W43,1,0.062,0.75,,False,rank3 model1; DockQ(Ab-Ag) C-A 0.064 / C-B 0.062; pair ipTM NA(AF2-M); ptm 0.83; mean pLDDT 87.4
+2026-07-13,Diverse-Fab,AF2-Multimer,9W43,5,0.065,0.74,,False,rank4 model5; DockQ(Ab-Ag) C-A 0.065 / C-B 0.065; pair ipTM NA(AF2-M); ptm 0.81; mean pLDDT 86.2
+2026-07-13,Diverse-Fab,AF2-Multimer,9W43,2,0.074,0.72,,False,rank5 model2; DockQ(Ab-Ag) C-A 0.076 / C-B 0.074; pair ipTM NA(AF2-M); ptm 0.79; mean pLDDT 88.6
+2026-07-13,Diverse-Fab,tFold-Ag,9W43,42,0.018,0.159,,False,seed42; DockQ(Ab-Ag) C-A 0.018 / C-B 0.020; pair ipTM NA(tFold global만); ptm 0.772; lDDT-Ca 0.8568; antigen lDDT 0.5302; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9W43,43,0.022,0.141,,False,seed43; DockQ(Ab-Ag) C-A 0.022 / C-B 0.026; pair ipTM NA(tFold global만); ptm 0.7683; lDDT-Ca 0.8453; antigen lDDT 0.4765; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9W43,44,0.014,0.145,,False,seed44; DockQ(Ab-Ag) C-A 0.014 / C-B 0.017; pair ipTM NA(tFold global만); ptm 0.7688; lDDT-Ca 0.8604; antigen lDDT 0.567; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9W43,45,0.016,0.149,,False,seed45; DockQ(Ab-Ag) C-A 0.016 / C-B 0.019; pair ipTM NA(tFold global만); ptm 0.7735; lDDT-Ca 0.8628; antigen lDDT 0.5704; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9W43,46,0.016,0.147,,False,seed46; DockQ(Ab-Ag) C-A 0.016 / C-B 0.018; pair ipTM NA(tFold global만); ptm 0.7734; lDDT-Ca 0.8625; antigen lDDT 0.5737; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,AF2-Multimer,9W43,1,0.063,0.68,,False,rank1 model1; DockQ(Ab-Ag) C-A 0.063 / C-B 0.064; pair ipTM NA(AF2-M); ptm 0.78; mean pLDDT 85.6
+2026-07-13,Diverse-Fv,AF2-Multimer,9W43,4,0.063,0.68,,False,rank2 model4; DockQ(Ab-Ag) C-A 0.063 / C-B 0.065; pair ipTM NA(AF2-M); ptm 0.78; mean pLDDT 86.4
+2026-07-13,Diverse-Fv,AF2-Multimer,9W43,5,0.062,0.66,,False,rank3 model5; DockQ(Ab-Ag) C-A 0.062 / C-B 0.063; pair ipTM NA(AF2-M); ptm 0.76; mean pLDDT 84.1
+2026-07-13,Diverse-Fv,AF2-Multimer,9W43,3,0.068,0.64,,False,rank4 model3; DockQ(Ab-Ag) C-A 0.068 / C-B 0.069; pair ipTM NA(AF2-M); ptm 0.76; mean pLDDT 85.9
+2026-07-13,Diverse-Fv,AF2-Multimer,9W43,2,0.063,0.64,,False,rank5 model2; DockQ(Ab-Ag) C-A 0.063 / C-B 0.063; pair ipTM NA(AF2-M); ptm 0.76; mean pLDDT 84.7
+2026-07-13,Diverse-Fv,tFold-Ag,9W43,42,0.068,0.543,,False,seed42; DockQ(Ab-Ag) C-A 0.069 / C-B 0.068; pair ipTM NA(tFold global만); ptm 0.8286; lDDT-Ca 0.9204; antigen lDDT 0.8075; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9YC6,42,0.027,0.179,,False,seed42; DockQ(Ab-Ag) U-H 0.077 / U-L 0.027; pair ipTM NA(tFold global만); ptm 0.6186; lDDT-Ca 0.8604; antigen lDDT 0.7858; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9YC6,43,0.01,0.199,,False,seed43; DockQ(Ab-Ag) U-H 0.010 / U-L 0.046; pair ipTM NA(tFold global만); ptm 0.6274; lDDT-Ca 0.8695; antigen lDDT 0.8042; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9YC6,44,0.008,0.22,,False,seed44; DockQ(Ab-Ag) U-H 0.008 / U-L 0.013; pair ipTM NA(tFold global만); ptm 0.6349; lDDT-Ca 0.8755; antigen lDDT 0.812; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9YC6,45,0.011,0.202,,False,seed45; DockQ(Ab-Ag) U-H 0.011 / U-L 0.093; pair ipTM NA(tFold global만); ptm 0.6285; lDDT-Ca 0.8746; antigen lDDT 0.8117; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9YC6,46,0.007,0.234,,False,seed46; DockQ(Ab-Ag) U-H 0.007 / U-L 0.007; pair ipTM NA(tFold global만); ptm 0.6409; lDDT-Ca 0.8346; antigen lDDT 0.7083; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9YC6,42,0.007,0.309,,False,seed42; DockQ(Ab-Ag) U-H 0.007 / U-L 0.009; pair ipTM NA(tFold global만); ptm 0.5994; lDDT-Ca 0.8986; antigen lDDT 0.8598; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9YC6,43,0.007,0.359,,False,seed43; DockQ(Ab-Ag) U-H 0.007 / U-L 0.008; pair ipTM NA(tFold global만); ptm 0.63; lDDT-Ca 0.9017; antigen lDDT 0.8639; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9YC6,44,0.007,0.328,,False,seed44; DockQ(Ab-Ag) U-H 0.007 / U-L 0.008; pair ipTM NA(tFold global만); ptm 0.6178; lDDT-Ca 0.9035; antigen lDDT 0.8684; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9YC6,45,0.009,0.497,,False,seed45; DockQ(Ab-Ag) U-H 0.009 / U-L 0.009; pair ipTM NA(tFold global만); ptm 0.6994; lDDT-Ca 0.9009; antigen lDDT 0.8636; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9YC6,46,0.008,0.461,,False,seed46; DockQ(Ab-Ag) U-H 0.008 / U-L 0.009; pair ipTM NA(tFold global만); ptm 0.6807; lDDT-Ca 0.9013; antigen lDDT 0.8635; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,AF2-Multimer,9J4C,5,0.015,0.36,,False,rank1 model5; DockQ(Ab-Ag) A-H 0.015 / A-L 0.040; pair ipTM NA(AF2-M); ptm 0.61; mean pLDDT 89.7
+2026-07-13,Diverse-Fab,AF2-Multimer,9J4C,4,0.015,0.35,,False,rank2 model4; DockQ(Ab-Ag) A-H 0.015 / A-L 0.046; pair ipTM NA(AF2-M); ptm 0.61; mean pLDDT 90.1
+2026-07-13,Diverse-Fab,AF2-Multimer,9J4C,3,0.007,0.35,,False,rank3 model3; DockQ(Ab-Ag) A-H 0.007 / A-L 0.017; pair ipTM NA(AF2-M); ptm 0.61; mean pLDDT 90.1
+2026-07-13,Diverse-Fab,AF2-Multimer,9J4C,1,0.004,0.34,,False,rank4 model1; DockQ(Ab-Ag) A-H 0.004 / A-L 0.008; pair ipTM NA(AF2-M); ptm 0.6; mean pLDDT 90.2
+2026-07-13,Diverse-Fab,AF2-Multimer,9J4C,2,0.006,0.34,,False,rank5 model2; DockQ(Ab-Ag) A-H 0.006 / A-L 0.010; pair ipTM NA(AF2-M); ptm 0.6; mean pLDDT 89.7
+2026-07-13,Diverse-Fab,tFold-Ag,9J4C,42,0.006,0.207,,False,seed42; DockQ(Ab-Ag) A-H 0.011 / A-L 0.006; pair ipTM NA(tFold global만); ptm 0.5878; lDDT-Ca 0.7838; antigen lDDT 0.7389; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9J4C,43,0.007,0.208,,False,seed43; DockQ(Ab-Ag) A-H 0.011 / A-L 0.007; pair ipTM NA(tFold global만); ptm 0.5889; lDDT-Ca 0.7916; antigen lDDT 0.7544; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9J4C,44,0.007,0.21,,False,seed44; DockQ(Ab-Ag) A-H 0.011 / A-L 0.007; pair ipTM NA(tFold global만); ptm 0.5863; lDDT-Ca 0.8056; antigen lDDT 0.7726; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9J4C,45,0.007,0.216,,False,seed45; DockQ(Ab-Ag) A-H 0.011 / A-L 0.007; pair ipTM NA(tFold global만); ptm 0.5866; lDDT-Ca 0.8; antigen lDDT 0.7657; MSA=항체free/항원only
+2026-07-13,Diverse-Fab,tFold-Ag,9J4C,46,0.007,0.22,,False,seed46; DockQ(Ab-Ag) A-H 0.011 / A-L 0.007; pair ipTM NA(tFold global만); ptm 0.5848; lDDT-Ca 0.7929; antigen lDDT 0.7559; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,AF2-Multimer,9J4C,2,0.172,0.31,,False,rank1 model2; DockQ(Ab-Ag) A-H 0.172 / A-L 0.224; pair ipTM NA(AF2-M); ptm 0.72; mean pLDDT 89.6
+2026-07-13,Diverse-Fv,AF2-Multimer,9J4C,3,0.005,0.27,,False,rank2 model3; DockQ(Ab-Ag) A-H 0.005 / A-L 0.009; pair ipTM NA(AF2-M); ptm 0.72; mean pLDDT 89.2
+2026-07-13,Diverse-Fv,AF2-Multimer,9J4C,4,0.008,0.27,,False,rank3 model4; DockQ(Ab-Ag) A-H 0.008 / A-L 0.031; pair ipTM NA(AF2-M); ptm 0.71; mean pLDDT 89.9
+2026-07-13,Diverse-Fv,AF2-Multimer,9J4C,1,0.005,0.27,,False,rank4 model1; DockQ(Ab-Ag) A-H 0.005 / A-L 0.011; pair ipTM NA(AF2-M); ptm 0.72; mean pLDDT 89.8
+2026-07-13,Diverse-Fv,AF2-Multimer,9J4C,5,0.006,0.27,,False,rank5 model5; DockQ(Ab-Ag) A-H 0.006 / A-L 0.016; pair ipTM NA(AF2-M); ptm 0.71; mean pLDDT 88.9
+2026-07-13,Diverse-Fv,tFold-Ag,9J4C,42,0.011,0.229,,False,seed42; DockQ(Ab-Ag) A-H 0.022 / A-L 0.011; pair ipTM NA(tFold global만); ptm 0.6744; lDDT-Ca 0.8046; antigen lDDT 0.7854; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9J4C,43,0.009,0.212,,False,seed43; DockQ(Ab-Ag) A-H 0.022 / A-L 0.009; pair ipTM NA(tFold global만); ptm 0.6755; lDDT-Ca 0.8087; antigen lDDT 0.7902; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9J4C,44,0.012,0.239,,False,seed44; DockQ(Ab-Ag) A-H 0.022 / A-L 0.012; pair ipTM NA(tFold global만); ptm 0.6806; lDDT-Ca 0.8069; antigen lDDT 0.7889; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9J4C,45,0.012,0.224,,False,seed45; DockQ(Ab-Ag) A-H 0.022 / A-L 0.012; pair ipTM NA(tFold global만); ptm 0.6743; lDDT-Ca 0.7847; antigen lDDT 0.7613; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,tFold-Ag,9J4C,46,0.013,0.229,,False,seed46; DockQ(Ab-Ag) A-H 0.022 / A-L 0.013; pair ipTM NA(tFold global만); ptm 0.6831; lDDT-Ca 0.7836; antigen lDDT 0.761; MSA=항체free/항원only
+2026-07-13,Diverse-Fv,AF2-Multimer,9Y0A,3,0.047,0.62,,False,rank1 model3; DockQ(Ab-Ag) C-A 0.050 / C-B 0.047; pair ipTM NA(AF2-M); ptm 0.72; mean pLDDT 89.3
+2026-07-13,Diverse-Fv,AF2-Multimer,9Y0A,4,0.042,0.56,,False,rank2 model4; DockQ(Ab-Ag) C-A 0.043 / C-B 0.042; pair ipTM NA(AF2-M); ptm 0.68; mean pLDDT 88.8
+2026-07-13,Diverse-Fv,AF2-Multimer,9Y0A,5,0.029,0.5,,False,rank3 model5; DockQ(Ab-Ag) C-A 0.029 / C-B 0.029; pair ipTM NA(AF2-M); ptm 0.63; mean pLDDT 85.9
+2026-07-13,Diverse-Fv,AF2-Multimer,9Y0A,1,0.04,0.49,,False,rank4 model1; DockQ(Ab-Ag) C-A 0.040 / C-B 0.040; pair ipTM NA(AF2-M); ptm 0.63; mean pLDDT 85.1
+2026-07-13,Diverse-Fv,AF2-Multimer,9Y0A,2,0.032,0.48,,False,rank5 model2; DockQ(Ab-Ag) C-A 0.033 / C-B 0.032; pair ipTM NA(AF2-M); ptm 0.62; mean pLDDT 86.3
+2026-07-13,Diverse-Fab,AF2-Multimer,9YC6,2,0.069,0.74,,False,rank1 model2; DockQ(Ab-Ag) U-H 0.536 / U-L 0.069; pair ipTM NA(AF2-M); ptm 0.78; mean pLDDT 89.1
+2026-07-13,Diverse-Fab,AF2-Multimer,9YC6,3,0.03,0.62,,False,rank2 model3; DockQ(Ab-Ag) U-H 0.085 / U-L 0.030; pair ipTM NA(AF2-M); ptm 0.69; mean pLDDT 87.7
+2026-07-13,Diverse-Fab,AF2-Multimer,9YC6,1,0.029,0.57,,False,rank3 model1; DockQ(Ab-Ag) U-H 0.074 / U-L 0.029; pair ipTM NA(AF2-M); ptm 0.66; mean pLDDT 87.5
+2026-07-13,Diverse-Fab,AF2-Multimer,9YC6,5,0.03,0.56,,False,rank4 model5; DockQ(Ab-Ag) U-H 0.086 / U-L 0.030; pair ipTM NA(AF2-M); ptm 0.64; mean pLDDT 86.1
+2026-07-13,Diverse-Fab,AF2-Multimer,9YC6,4,0.08,0.53,,False,rank5 model4; DockQ(Ab-Ag) U-H 0.466 / U-L 0.080; pair ipTM NA(AF2-M); ptm 0.62; mean pLDDT 86.1
+2026-07-13,Diverse-Fv,AF2-Multimer,9YC6,3,0.043,0.59,,False,rank1 model3; DockQ(Ab-Ag) U-H 0.078 / U-L 0.043; pair ipTM NA(AF2-M); ptm 0.68; mean pLDDT 87.1
+2026-07-13,Diverse-Fv,AF2-Multimer,9YC6,5,0.044,0.57,,False,rank2 model5; DockQ(Ab-Ag) U-H 0.068 / U-L 0.044; pair ipTM NA(AF2-M); ptm 0.66; mean pLDDT 85.8
+2026-07-13,Diverse-Fv,AF2-Multimer,9YC6,1,0.046,0.5,,False,rank3 model1; DockQ(Ab-Ag) U-H 0.089 / U-L 0.046; pair ipTM NA(AF2-M); ptm 0.6; mean pLDDT 85.3
+2026-07-13,Diverse-Fv,AF2-Multimer,9YC6,2,0.04,0.46,,False,rank4 model2; DockQ(Ab-Ag) U-H 0.076 / U-L 0.040; pair ipTM NA(AF2-M); ptm 0.57; mean pLDDT 84.3
+2026-07-13,Diverse-Fv,AF2-Multimer,9YC6,4,0.05,0.41,,False,rank5 model4; DockQ(Ab-Ag) U-H 0.107 / U-L 0.050; pair ipTM NA(AF2-M); ptm 0.53; mean pLDDT 82.2
