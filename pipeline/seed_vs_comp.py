@@ -15,8 +15,11 @@ B 가 핵심이다. C 는 깊이가 달라 "서열 수가 줄어서 그런 것 �
   ① 자리 수    — 그 n 회가 찾아낸 서로 구별되는 결합 자리
   ② 정답 도달률 — 그 n 회 중 정답 자리를 충분히 덮는 실행이 하나라도 있을 확률
 
-⚠️ 고정할 조성은 **결과를 보기 전에 규칙으로 정한다** — 이름순 첫 번째. 잘 나온 조성을
-   고르면 실험이 무의미해진다. `--fix-comp` 로 바꿀 수 있지만 그러면 그 사실을 적어야 한다.
+⚠️ 시드군에서 어느 조성을 고정하느냐가 결과를 좌우한다. 좋은 조성을 고정하면 시드군이 이기고
+   나쁜 조성을 고정하면 진다. 그래서 **한 조성으로 고정하지 않고 모든 조성에 대해 평균**낸다
+   (매번 조성 하나를 무작위로 골라 그 안에서 n 회를 뽑는다). 이것이 "조성은 그대로 두고 시드만
+   바꿨을 때 기대되는 성능"이다. `--fix-comp` 로 하나만 볼 수도 있지만 그러면 그 조성 하나의
+   운에 결과가 걸린다.
 ⚠️ 조성마다 반복이 4회뿐이면 n 은 4 까지만 볼 수 있다. 12 까지 늘리려면 GPU 가 필요하다.
 
 GPU 를 쓰지 않는다. 이미 있는 실행만 읽는다.
@@ -126,7 +129,7 @@ def main():
     ap.add_argument("--targets-dir", default="targets")
     ap.add_argument("--only", default="")
     ap.add_argument("--fix-comp", default="",
-                    help="시드군에서 고정할 조성. 비우면 이름순 첫 번째(결과를 안 보고 정한다)")
+                    help="시드군에서 조성 하나만 보고 싶을 때. 비우면 **모든 조성에 대해 평균**낸다")
     ap.add_argument("--cutoff", type=float, default=5.0)
     ap.add_argument("--link", type=float, default=0.5)
     ap.add_argument("--pose-frac", type=float, default=0.5)
@@ -187,21 +190,23 @@ def main():
         full = groups.get(FULL, [])
         if len(comps) < 3:
             print(f"  ! {tgt}: 조성이 {len(comps)}개뿐 — 건너뜀"); continue
-        fix = a.fix_comp or sorted(comps)[0]
-        if fix not in comps:
+        fix = a.fix_comp
+        if fix and fix not in comps:
             print(f"  ! {tgt}: 고정할 조성 {fix} 가 없다 (있는 것 {sorted(comps)[:5]}) — 건너뜀")
             continue
+        within = {fix: comps[fix]} if fix else comps      # 비우면 조성 전체에 대해 평균
         nmax = min(len(comps), max(len(v) for v in comps.values()))
         if nmax < 2:
             print(f"  ! {tgt}: 비교할 실행 수가 부족 — 건너뜀"); continue
 
         ac = arm_curve(comps, "across", EC.jac, a.link, nmax, a.nboot)
-        wi = arm_curve({fix: comps[fix]}, "within", EC.jac, a.link, nmax, a.nboot)
+        wi = arm_curve(within, "within", EC.jac, a.link, nmax, a.nboot)
         fu = arm_curve({FULL: full}, "within", EC.jac, a.link, nmax, a.nboot) if len(full) >= 2 else None
 
         print("=" * 92)
         print(f"  {tgt} ({depth})   조성 {len(comps)}개 · 조성당 반복 "
-              f"{sorted({len(v) for v in comps.values()})} · 원래MSA {len(full)}회 · 고정조성={fix}")
+              f"{sorted({len(v) for v in comps.values()})} · 원래MSA {len(full)}회 · "
+              f"시드군={'조성 ' + fix + ' 고정' if fix else '조성 전체 평균'}")
         print("=" * 92)
         print(f"  {'실행수':>5} | {'조성군':^18} | {'시드군(조성고정)':^18} | {'원래MSA군':^18}")
         print(f"  {'':>5} | {'자리':>7}{'정답도달':>11} | {'자리':>7}{'정답도달':>11} | {'자리':>7}{'정답도달':>11}")
@@ -215,7 +220,7 @@ def main():
                              comp_site=round(m1, 3), comp_reach=round(r1, 3),
                              seed_site=round(m2, 3), seed_reach=round(r2, 3),
                              full_site=round(f3[1], 3), full_reach=round(f3[2], 3),
-                             n_comp=len(comps), fix_comp=fix))
+                             n_comp=len(comps), fix_comp=(fix or "(전체평균)")))
         d_site = ac[-1][1] - wi[-1][1]
         d_reach = ac[-1][2] - wi[-1][2]
         print(f"\n  n={nmax} 에서 조성군 − 시드군:  자리 {d_site:+.2f} · 정답도달 {d_reach:+.2f}")
