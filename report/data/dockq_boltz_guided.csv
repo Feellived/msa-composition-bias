@@ -1,0 +1,11 @@
+target,class,blind_d143,guided_best,diff,n_patch
+8XSI,cryptic,0.029,0.030,+0.001,2
+9SBB,other,0.036,0.149,+0.113,8
+8SIS,core_other,0.031,0.032,+0.001,8
+9ML8,cryptic,0.027,0.086,+0.059,8
+8SDF,cryptic,0.029,0.066,+0.037,8
+8SIT,core,0.046,0.021,-0.025,8
+9ML9,core,0.485,0.120,-0.365,8
+8P5M,RBM_edge,0.740,0.758,+0.018,8
+8SIQ,core,0.238,0.068,-0.170,7
+9ZDU,core,0.873,0.027,-0.846,8

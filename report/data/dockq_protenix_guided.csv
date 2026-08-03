@@ -1,0 +1,4 @@
+target,class,blind_pd143,guided_best,diff,n_patch
+8P5M,RBM_edge,0.036,0.096,+0.060,8
+8SIQ,core,0.062,0.689,+0.627,7
+9ZDU,core,0.311,0.255,-0.056,8

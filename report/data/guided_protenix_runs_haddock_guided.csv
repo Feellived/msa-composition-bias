@@ -1,0 +1,11 @@
+target,model,blind_best,guided_best,diff,n_blind,n_guided
+9K6J,protenix,0.045,0.553,+0.508,5,45
+9XF9,protenix,0.146,0.177,+0.031,5,75
+9Y0A,protenix,0.063,0.264,+0.201,5,40
+9VXL,protenix,0.005,0.005,+0.000,5,65
+9LY5,protenix,0.874,0.876,+0.002,5,55
+9MQR,protenix,0.039,0.048,+0.009,5,75
+9KKJ,protenix,0.303,0.323,+0.020,5,36
+9W43,protenix,0.086,0.089,+0.003,5,25
+9YC6,protenix,0.366,0.423,+0.057,5,80
+9J4C,protenix,0.447,0.496,+0.049,5,100

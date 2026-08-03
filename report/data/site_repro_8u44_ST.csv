@@ -1,0 +1,3 @@
+target,model,depth,within,between,ratio,perm_p,n_cand,cand,n_comp,n_res,true_covered,precision,comps
+8u44_ST,protenix,d413,0.3315,0.3211,1.033,0.29385,2,1,6,57,0.7742,0.4211,"seed0,seed1,seed2,seed3,seed5,seedfull"
+8u44_ST,protenix,d413,0.3315,0.3211,1.033,0.29385,2,2,1,23,0.0968,0.1304,seed4

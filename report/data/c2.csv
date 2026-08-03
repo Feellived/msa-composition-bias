@@ -1,0 +1,9 @@
+target,model,arm,n_pose,dockq_max,dockq_med,recall_max,recall_med
+8k3k_D,boltz,ours,5,0.067,0.009,0.593,0.030
+8siq_HL,boltz,ours,5,0.026,0.018,0.000,0.000
+8sit_HL,boltz,ours,5,0.815,0.748,0.923,0.867
+8t4a_PR,boltz,ours,5,0.010,0.010,0.000,0.000
+8t4d_OQ,boltz,ours,5,0.014,0.008,0.091,0.000
+9azt_HL,boltz,ours,5,0.239,0.175,0.724,0.654
+9azv_HL,boltz,ours,5,0.040,0.016,0.118,0.040
+9mqr_DE,boltz,ours,5,0.090,0.041,0.714,0.641

@@ -1,0 +1,6 @@
+target,model,arm,n_pose,dockq_max,dockq_med,recall_max,recall_med
+8k3k_D,protenix*,blind,100,0.014,0.012,0.136,0.069
+8k3k_D,boltz,noconstraint,5,0.009,0.008,0.033,0.031
+8k3k_D,boltz,fullmsa,5,0.015,0.014,0.154,0.069
+8k3k_D,boltz,sizematch,5,0.014,0.013,0.133,0.036
+8k3k_D,boltz,ours,5,0.013,0.012,0.125,0.103
