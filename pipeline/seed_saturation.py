@@ -228,7 +228,9 @@ def main():
             print(f"  {n:>5}{m:>7.2f}{r:>10.2f}   {bar(m, top)}{mk}")
         print(f"\n  자리 수가 천장의 95% 에 닿는 실행 수 = {sat_s}"
               f"   ·   정답 도달률은 {sat_r}")
-        if sat_s and sat_s <= a.mark:
+        if N < a.mark:
+            print(f"  → ⚠️ 실행이 {N}회뿐이라 {a.mark}회 포화 여부를 **판단할 수 없다**")
+        elif sat_s and sat_s <= a.mark:
             print(f"  → {a.mark}회면 새 자리가 거의 안 나온다. 경험칙과 맞는다")
         else:
             print(f"  → {a.mark}회로는 아직 새 자리가 나온다. 설계를 다시 볼 것")
@@ -249,12 +251,23 @@ def main():
     for r in rows:
         per[r["target"]] = (r["sat_site"], r["sat_reach"], r["n_total"])
     for t, (s, rr, n) in sorted(per.items()):
-        flag = "경험칙 안" if s and s <= a.mark else "더 필요"
+        if n < a.mark:                       # 실행이 문턱보다 적으면 판단 자체가 불가하다
+            flag = f"판단 불가 (실행 {n}회)"
+        elif s and s <= a.mark:
+            flag = "경험칙 안"
+        else:
+            flag = "더 필요"
         print(f"  {t:<12} 자리 {s!s:>4} · 정답도달 {rr!s:>4} · 총 실행 {n:>3}   {flag}")
-    vals = [s for s, _, _ in per.values() if s]
+    judged = {t: v for t, v in per.items() if v[2] >= a.mark}
+    print(f"\n  판단 가능한 타깃 {len(judged)}/{len(per)}종 "
+          f"(실행이 {a.mark}회 이상인 것만)")
+    vals = [s for s, _, n in judged.values() if s]
     if vals:
-        print(f"\n  중앙값 {st.median(vals):.0f}회 · 최대 {max(vals)}회"
-              f"   (경험칙 {a.mark}회)")
+        inn = sum(1 for v in vals if v <= a.mark)
+        print(f"  그중 {a.mark}회 안에 포화 {inn}종 · 더 필요 {len(vals)-inn}종"
+              f"   ·   중앙값 {st.median(vals):.0f}회 · 최대 {max(vals)}회")
+    else:
+        print(f"  ⚠️ 실행이 {a.mark}회 이상인 타깃이 없어 경험칙을 확인할 수 없다")
 
     os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
     with open(a.out, "w", newline="") as fh:
