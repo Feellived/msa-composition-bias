@@ -1,0 +1,5 @@
+target,n_run,comp_site,comp_reach,seed_site,seed_reach,full_site,full_reach,n_comp,fix_comp
+9azr_HL,1,1,0.575,1,0.575,1,1.0,6,(전체평균)
+9azr_HL,2,1.713,0.838,1.698,0.837,1.417,1.0,6,(전체평균)
+9azr_HL,3,2.402,0.942,2.337,0.962,1.612,1.0,6,(전체평균)
+9azr_HL,4,2.778,0.983,2.98,1.0,1.777,1.0,6,(전체평균)

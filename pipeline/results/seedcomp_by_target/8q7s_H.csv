@@ -1,0 +1,5 @@
+target,n_run,comp_site,comp_reach,seed_site,seed_reach,full_site,full_reach,n_comp,fix_comp
+8q7s_H,1,1,1.0,1,1.0,1,1.0,6,(전체평균)
+8q7s_H,2,1,1.0,1,1.0,1,1.0,6,(전체평균)
+8q7s_H,3,1,1.0,1,1.0,1,1.0,6,(전체평균)
+8q7s_H,4,1,1.0,1,1.0,1,1.0,6,(전체평균)

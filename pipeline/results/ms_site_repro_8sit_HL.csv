@@ -1,0 +1,5 @@
+target,model,depth,within,between,ratio,perm_p,n_cand,cand,n_comp,n_res,true_covered,precision,comps
+8sit_HL,protenix,d4035,0.2985,0.241,1.239,0.02499,4,1,4,27,0.0345,0.037,"seed2,seed3,seed5,seedfull"
+8sit_HL,protenix,d4035,0.2985,0.241,1.239,0.02499,4,2,1,63,0.6207,0.2857,seed0
+8sit_HL,protenix,d4035,0.2985,0.241,1.239,0.02499,4,3,1,51,0.1724,0.098,seed1
+8sit_HL,protenix,d4035,0.2985,0.241,1.239,0.02499,4,4,1,70,0.7586,0.3143,seed4
