@@ -38,19 +38,25 @@ def main():
         print(f"  {tgt:<10} n={nmax:<3} 자리차이 {ds:+.2f}  정답도달차이 {dr:+.2f}")
 
     n = len(d_site)
-    win_site = sum(1 for v in d_site if v > 0)
-    tie_site = sum(1 for v in d_site if v == 0)
-    win_reach = sum(1 for v in d_reach if v > 0)
+
+    def sign_test(vals):
+        """동률은 반드시 제외하고 센다 — 넣으면 p 값이 엉뚱한 방향으로 나온다."""
+        w = sum(1 for v in vals if v > 0)
+        l = sum(1 for v in vals if v < 0)
+        t = sum(1 for v in vals if v == 0)
+        if w + l == 0:
+            return w, l, t, None
+        p = 2 * min(binom_tail(w, w + l), binom_tail(l, w + l))
+        return w, l, t, min(p, 1.0)
 
     print("\n" + "=" * 60)
     print(f"  읽은 타깃 {n}/30종 (건너뛴 것은 위에 ! 로 표시)")
-    print(f"  자리 수: 조성군 승 {win_site}/{n}종 (동률 {tie_site})"
-          f" · 차이 중앙값 {st.median(d_site):+.3f}")
-    p_site = 2 * min(binom_tail(win_site, n - tie_site), 1 - binom_tail(win_site - 1, n - tie_site))
-    print(f"    부호검정(동률 제외 n={n - tie_site}) 양측 p = {min(p_site, 1.0):.4f}")
-    print(f"  정답 도달: 조성군 승 {win_reach}/{n}종 · 차이 중앙값 {st.median(d_reach):+.3f}")
-    p_reach = 2 * min(binom_tail(win_reach, n), 1 - binom_tail(win_reach - 1, n))
-    print(f"    부호검정 양측 p = {min(p_reach, 1.0):.4f}")
+    for label, vals in (("자리 수", d_site), ("정답 도달", d_reach)):
+        w, l, t, p = sign_test(vals)
+        print(f"  {label}: 조성군 승 {w} · 패 {l} · 동률 {t}"
+              f" · 차이 중앙값 {st.median(vals):+.3f}")
+        print(f"    부호검정(동률 제외 n={w + l}) 양측 p = "
+              + ("계산 불가" if p is None else f"{p:.4f}"))
 
     with open("results/seedcomp_merged.csv", "w", newline="") as fh:
         w = csv.writer(fh)
