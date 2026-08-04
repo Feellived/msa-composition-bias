@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
-"""그림 7 — 같은 실행 예산에서 조성군이 시드군보다 더 많은 자리를 찾는다 (4.3절).
+"""그림(4.3절) — 실행 수를 늘릴수록 조성군이 시드군보다 자리를 더 빨리 넓힌다.
 
-그림 2(자카드 재현성)와 한 쌍으로 읽히도록 같은 형식으로 그린다:
-대각선 산점도 · 같은 색 · 같은 글꼴 크기 · 제목 없음 · 범례에 종 수 표기.
+그림 2(대각선 산점도)와 형태가 겹치지 않도록 성장 곡선으로 그린다.
+두 팔이 n=1 에서 같은 점에서 출발해 갈라지는 것이 이 절의 주장 그대로다.
 """
 import csv
+import glob
+import statistics as st
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -12,39 +14,45 @@ import matplotlib.pyplot as plt
 plt.rcParams["font.family"] = "AppleGothic"
 plt.rcParams["axes.unicode_minus"] = False
 
-BLUE = "#1F4E79"
-GRAY = "#999999"
+BLUE, GRAY = "#1F4E79", "#8C8C8C"
+SRC = "/Users/zzuhyeong2/projects/bk21-msa-depth-bias/pipeline/results/seedcomp_by_target/*.csv"
 
-rows = list(csv.DictReader(open("/tmp/fig7/data.csv")))
-up   = [(float(r["seed_site"]), float(r["comp_site"])) for r in rows
-        if float(r["comp_site"]) > float(r["seed_site"])]
-rest = [(float(r["seed_site"]), float(r["comp_site"])) for r in rows
-        if float(r["comp_site"]) <= float(r["seed_site"])]
+byn = {n: [[], []] for n in (1, 2, 3, 4)}
+for f in sorted(glob.glob(SRC)):
+    for r in csv.DictReader(open(f)):
+        n = int(r["n_run"])
+        if n in byn:
+            byn[n][0].append(float(r["comp_site"]))
+            byn[n][1].append(float(r["seed_site"]))
 
-fig, ax = plt.subplots(figsize=(3.30, 3.10), dpi=400)
+ns = [1, 2, 3, 4]
+comp = [st.mean(byn[n][0]) for n in ns]
+seed = [st.mean(byn[n][1]) for n in ns]
 
-lo, hi = 0.7, 4.3
-ax.plot([lo, hi], [lo, hi], ls="--", lw=0.9, color=GRAY, zorder=1)
+fig, ax = plt.subplots(figsize=(3.40, 2.45), dpi=400)
 
-ax.scatter([x for x, _ in up], [y for _, y in up], s=26, color=BLUE,
-           zorder=3, label=f"조성 쪽이 많음 ({len(up)})")
-ax.scatter([x for x, _ in rest], [y for _, y in rest], s=26, facecolors="white",
-           edgecolors=BLUE, linewidths=1.1, zorder=3,
-           label=f"같거나 시드 쪽이 많음 ({len(rest)})")
+ax.fill_between(ns, seed, comp, color=BLUE, alpha=0.12, lw=0, zorder=1)
+ax.plot(ns, comp, "-o", color=BLUE, lw=1.6, ms=5, zorder=3,
+        label="조성을 바꿈")
+ax.plot(ns, seed, "--s", color=GRAY, lw=1.4, ms=4.2, zorder=3,
+        markerfacecolor="white", markeredgewidth=1.1, label="시드만 바꿈")
 
-ax.set_xlim(lo, hi); ax.set_ylim(lo, hi)
-ax.set_xticks([1, 2, 3, 4]); ax.set_yticks([1, 2, 3, 4])
-ax.set_xlabel("시드만 바꿨을 때 찾은 자리 수", fontsize=9.5)
-ax.set_ylabel("조성을 바꿨을 때 찾은 자리 수", fontsize=9.5)
+ax.set_xticks(ns)
+ax.set_xlim(0.85, 4.15)
+ax.set_ylim(0.95, 2.42)
+ax.set_yticks([1.0, 1.5, 2.0])
+ax.set_xlabel("실행 수", fontsize=9.5)
+ax.set_ylabel("서로 구별되는 결합 자리 수", fontsize=9.5)
 ax.tick_params(labelsize=8.5, length=3, width=0.8)
 for s in ("top", "right"):
     ax.spines[s].set_visible(False)
 for s in ("left", "bottom"):
     ax.spines[s].set_linewidth(0.9)
 
-ax.legend(fontsize=7.6, loc="lower right", frameon=False,
-          handletextpad=0.4, borderpad=0.2, labelspacing=0.35)
+ax.legend(fontsize=8, loc="upper left", frameon=False,
+          handletextpad=0.5, borderpad=0.2, labelspacing=0.35)
 
 fig.tight_layout(pad=0.4)
-fig.savefig("/tmp/fig7/F7_seed_vs_comp.png", dpi=400)
-print("저장 완료 · 조성 우세", len(up), "· 나머지", len(rest))
+fig.savefig("/tmp/fig7/F7b_growth.png", dpi=400)
+print("조성군", [round(v, 2) for v in comp])
+print("시드군", [round(v, 2) for v in seed])
