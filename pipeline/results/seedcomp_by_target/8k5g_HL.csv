@@ -1,0 +1,5 @@
+target,n_run,comp_site,comp_reach,seed_site,seed_reach,full_site,full_reach,n_comp,fix_comp
+8k5g_HL,1,1,0.948,1,0.948,1,1.0,6,(전체평균)
+8k5g_HL,2,1.577,1.0,1.3,1.0,1.717,1.0,6,(전체평균)
+8k5g_HL,3,1.878,1.0,1.375,1.0,2.268,1.0,6,(전체평균)
+8k5g_HL,4,2.053,1.0,1.505,1.0,2.585,1.0,6,(전체평균)

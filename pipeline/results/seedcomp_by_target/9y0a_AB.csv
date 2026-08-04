@@ -1,0 +1,5 @@
+target,n_run,comp_site,comp_reach,seed_site,seed_reach,full_site,full_reach,n_comp,fix_comp
+9y0a_AB,1,1,0.0,1,0.0,1,0.0,6,(전체평균)
+9y0a_AB,2,1.572,0.0,1.355,0.0,1.338,0.0,6,(전체평균)
+9y0a_AB,3,1.92,0.0,1.568,0.0,1.465,0.0,6,(전체평균)
+9y0a_AB,4,1.982,0.0,1.692,0.0,1.563,0.0,6,(전체평균)

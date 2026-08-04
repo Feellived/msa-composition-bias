@@ -1,0 +1,4 @@
+target,model,depth,within,between,ratio,perm_p,n_cand,cand,n_comp,n_res,true_covered,precision,comps
+8ulr_HL,protenix,d1746,0.5655,0.3788,1.493,0.0005,3,1,5,74,0.7667,0.3108,"seed0,seed1,seed2,seed5,seedfull"
+8ulr_HL,protenix,d1746,0.5655,0.3788,1.493,0.0005,3,2,3,40,0.9,0.675,"seed3,seed4,seed7"
+8ulr_HL,protenix,d1746,0.5655,0.3788,1.493,0.0005,3,3,1,85,0.8667,0.3059,seed6

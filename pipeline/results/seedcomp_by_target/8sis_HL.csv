@@ -1,0 +1,5 @@
+target,n_run,comp_site,comp_reach,seed_site,seed_reach,full_site,full_reach,n_comp,fix_comp
+8sis_HL,1,1,0.782,1,0.782,1,0.143,6,(전체평균)
+8sis_HL,2,1.832,0.95,1.597,0.903,1.112,0.268,6,(전체평균)
+8sis_HL,3,2.552,0.992,1.903,1.0,1.173,0.442,6,(전체평균)
+8sis_HL,4,3.167,1.0,1.995,1.0,1.213,0.515,6,(전체평균)

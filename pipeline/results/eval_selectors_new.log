@@ -1,0 +1,61 @@
+타깃 23종 · 선택기 7개
+
+■ f1
+   선택기                   평균     천장대비
+   ncomp              0.284     0.55
+   largest            0.310     0.60
+   smallest           0.324     0.63
+   abepi_mean         0.381     0.74
+   abepi_max          0.382     0.74
+   abepi_cmax         0.354     0.68
+   ncomp_x_abemax     0.280     0.54
+   random             0.326     0.63
+   oracle             0.517     1.00
+
+■ jaccard
+   선택기                   평균     천장대비
+   ncomp              0.204     0.54
+   largest            0.193     0.51
+   smallest           0.245     0.65
+   abepi_mean         0.273     0.72
+   abepi_max          0.282     0.75
+   abepi_cmax         0.264     0.70
+   ncomp_x_abemax     0.201     0.53
+   random             0.224     0.59
+   oracle             0.377     1.00
+
+■ precision
+   선택기                   평균     천장대비
+   ncomp              0.249     0.57
+   largest            0.223     0.51
+   smallest           0.288     0.65
+   abepi_mean         0.321     0.73
+   abepi_max          0.338     0.77
+   abepi_cmax         0.314     0.71
+   ncomp_x_abemax     0.245     0.56
+   random             0.266     0.60
+   oracle             0.441     1.00
+
+■ recall
+   선택기                   평균     천장대비
+   ncomp              0.358     0.52
+   largest            0.552     0.80
+   smallest           0.394     0.57
+   abepi_mean         0.523     0.76
+   abepi_max          0.470     0.68
+   abepi_cmax         0.446     0.64
+   ncomp_x_abemax     0.361     0.52
+   random             0.478     0.69
+   oracle             0.692     1.00
+
+■ 데모 성립 수 (고른 후보 ≠ 원래 MSA 자리)
+   ⚠️ 이건 선택기가 기준선과 얼마나 다르게 고르나이지 품질이 아니다.
+   ncomp             6/23
+   largest          20/23
+   smallest         10/23
+   abepi_mean       14/23
+   abepi_max         9/23
+   abepi_cmax       10/23
+   ncomp_x_abemax    5/23
+
+→ results/eval_selectors_summary.csv

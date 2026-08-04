@@ -1,0 +1,8 @@
+target,model,depth,within,between,ratio,perm_p,n_cand,cand,n_comp,n_res,true_covered,precision,comps
+8t4a_PR,protenix,d1824,0.3012,0.227,1.327,0.001,7,1,1,49,0.9375,0.3061,seed0
+8t4a_PR,protenix,d1824,0.3012,0.227,1.327,0.001,7,2,1,69,0.875,0.2029,seed1
+8t4a_PR,protenix,d1824,0.3012,0.227,1.327,0.001,7,3,1,83,1.0,0.1928,seed2
+8t4a_PR,protenix,d1824,0.3012,0.227,1.327,0.001,7,4,1,90,0.9375,0.1667,seed3
+8t4a_PR,protenix,d1824,0.3012,0.227,1.327,0.001,7,5,1,110,0.75,0.1091,seed4
+8t4a_PR,protenix,d1824,0.3012,0.227,1.327,0.001,7,6,1,79,0.9375,0.1899,seed5
+8t4a_PR,protenix,d1824,0.3012,0.227,1.327,0.001,7,7,1,70,0.8125,0.1857,seedfull

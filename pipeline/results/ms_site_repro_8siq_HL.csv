@@ -1,0 +1,8 @@
+target,model,depth,within,between,ratio,perm_p,n_cand,cand,n_comp,n_res,true_covered,precision,comps
+8siq_HL,protenix,d670,0.4214,0.1692,2.49,0.0005,7,1,1,45,0.3704,0.2222,seed0
+8siq_HL,protenix,d670,0.4214,0.1692,2.49,0.0005,7,2,1,42,0.1852,0.119,seed1
+8siq_HL,protenix,d670,0.4214,0.1692,2.49,0.0005,7,3,1,71,0.7407,0.2817,seed2
+8siq_HL,protenix,d670,0.4214,0.1692,2.49,0.0005,7,4,1,83,0.5185,0.1687,seed3
+8siq_HL,protenix,d670,0.4214,0.1692,2.49,0.0005,7,5,1,75,0.6667,0.24,seed4
+8siq_HL,protenix,d670,0.4214,0.1692,2.49,0.0005,7,6,1,99,0.7037,0.1919,seed5
+8siq_HL,protenix,d670,0.4214,0.1692,2.49,0.0005,7,7,1,35,0.3704,0.2857,seedfull
