@@ -92,6 +92,8 @@ def main():
     ap.add_argument("--min-cand", type=int, default=2, help="후보가 이보다 적으면 제외")
     ap.add_argument("--pick", default="", help="이 선택기로 고른 결과를 CSV 로 남긴다")
     ap.add_argument("--out", default="results/selected_sites.csv")
+    ap.add_argument("--summary-out", default="results/eval_selectors_summary.csv",
+                    help="화면에 찍는 지표×선택기 표를 CSV 로도 남긴다(로그 안 붙여도 되게)")
     a = ap.parse_args()
 
     comp = defaultdict(lambda: defaultdict(list))
@@ -111,6 +113,7 @@ def main():
     SEL = build_selectors(lambda d: comp.get(d["target"], {}))
 
     print(f"타깃 {len(T)}종 · 선택기 {len(SEL)}개\n")
+    summary_rows = []
     for mname, m in METRICS.items():
         ceil = st.mean([max(m(c) for c in d["candidates"]) for d in T])
         rnd = st.mean([st.mean([m(c) for c in d["candidates"]]) for d in T])
@@ -123,6 +126,9 @@ def main():
                 v.append(0.0 if k is None else
                          m(next(c for c in d["candidates"] if c["cand"] == k)))
             print(f"   {nm:<16}{st.mean(v):>8.3f}{st.mean(v)/ceil:>9.2f}")
+            summary_rows.append([mname, nm, round(st.mean(v), 4), round(st.mean(v) / ceil, 4)])
+        summary_rows.append([mname, "random", round(rnd, 4), round(rnd / ceil, 4)])
+        summary_rows.append([mname, "oracle", round(ceil, 4), 1.0])
         print(f"   {'random':<16}{rnd:>8.3f}{rnd/ceil:>9.2f}")
         print(f"   {'oracle':<16}{ceil:>8.3f}{1.0:>9.2f}\n")
 
@@ -137,6 +143,14 @@ def main():
             if full and k is not None and k != full["cand"]:
                 n += 1
         print(f"   {nm:<16}{n:>3}/{len(T)}")
+
+    os.makedirs(os.path.dirname(a.summary_out) or ".", exist_ok=True)
+    with open(a.summary_out, "w", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["n_target", len(T)])
+        w.writerow(["metric", "selector", "mean", "ceil_ratio"])
+        w.writerows(summary_rows)
+    print(f"\n→ {a.summary_out}")
 
     if a.pick:
         if a.pick not in SEL:
