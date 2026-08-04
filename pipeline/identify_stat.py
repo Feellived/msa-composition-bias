@@ -37,6 +37,8 @@ def main():
     ap.add_argument("--succ-th", type=float, default=0.5, help="절반 이상 덮으면 식별 성공")
     ap.add_argument("--nperm", type=int, default=10000)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--out", default="results/identify_stat.csv",
+                    help="한 줄 요약(로그를 붙여넣지 않고 git 으로 가져가기 위함)")
     a = ap.parse_args()
 
     comp = defaultdict(lambda: defaultdict(list))
@@ -89,6 +91,13 @@ def main():
             ge += 1
     p = (ge + 1) / (a.nperm + 1)
     print(f"순열검정(무작위 픽 {a.nperm}회 반복, 단측) p = {p:.4f}")
+
+    os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
+    with open(a.out, "w", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["n_target", "succ_th", "obs_hits", "exp_random", "perm_p"])
+        w.writerow([n, a.succ_th, obs_hits, round(exp_random, 3), round(p, 4)])
+    print(f"→ {a.out}")
 
 
 if __name__ == "__main__":

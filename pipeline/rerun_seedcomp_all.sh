@@ -16,6 +16,7 @@
 #   python -u merge_seedcomp.py
 # ══════════════════════════════════════════════════════════════════════════════
 set -uo pipefail
+DATA="${DATA:-/mnt/data/admuser/msadepth}"
 mkdir -p results/seedcomp_by_target
 
 # "타깃:깊이" — results/compreps_<타깃>.csv 의 depth 열에서 그대로 읽은 값.
@@ -30,6 +31,7 @@ for pair in $MAP; do
   T="${pair%%:*}"; D="${pair##*:}"
   echo "== $T (깊이 $D) =="
   python -u seed_vs_comp.py --only "$T" --depth-dir "$D" \
+         --data "$DATA/compreps/seedrep_cand" \
          --out "results/seedcomp_by_target/${T}.csv" \
     && ok=$((ok+1)) || fail=$((fail+1))
 done
