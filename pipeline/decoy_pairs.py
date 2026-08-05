@@ -118,13 +118,37 @@ def main():
             ab = chains_of(cj_ab, ("heavy", "light"))
             if not ab:
                 print(f"  ! {m['decoy']}: 빌려올 항체 사슬이 없다 — 건너뜀"); continue
-            # 항원 사슬은 순서까지 그대로 둔다 — 잔기 키가 원래 타깃과 같아야 비교가 된다
+            # 항원 사슬은 순서까지 그대로 둔다 — 잔기 키가 원래 타깃과 같아야 비교가 된다.
+            ag_chains = chains_of(cj_ag, ("antigen",))
+            used_ids = {c["id"] for c in ag_chains}
+            # ⚠️ 사슬 id 는 prep_targets.py 가 'A,B,...'로 위치 기준 배정 — 다사슬 항원(HA1+HA2 등)이면
+            #    빌려온 항체 id 가 항원 id 와 겹칠 수 있다. 겹치면 새 id 로 다시 붙인다.
+            ab_new, relabel = [], {}
+            next_ord = ord("A") + len(ag_chains)
+            for c in ab:
+                cid = c["id"]
+                if cid in used_ids:
+                    while chr(next_ord) in used_ids:
+                        next_ord += 1
+                    relabel[cid] = chr(next_ord)
+                    used_ids.add(chr(next_ord)); next_ord += 1
+                else:
+                    used_ids.add(cid)
+                c2 = dict(c)
+                c2["id"] = relabel.get(cid, cid)
+                ab_new.append(c2)
             new = dict(cj_ag)
-            new["chains"] = chains_of(cj_ag, ("antigen",)) + ab
+            new["chains"] = ag_chains + ab_new
+            new["antigen"] = [c["id"] for c in ag_chains]        # ⚠️ make_input.py 가 이 키로 항원 사슬을 찾는다
+            new["antibody"] = [c["id"] for c in ab_new]          # ⚠️ 원래 ag_target 의 항체 id 를 그대로 남기면
+                                                                  #    make_input.py 가 존재하지 않는 id 를 찾다 KeyError
             new["decoy_of"] = m["ag_target"]
             new["antibody_from"] = m["ab_target"]
+            new.pop("src_chains", None)         # 원본 항원의 항체 대응 정보라 가짜 쌍엔 의미가 없다
             # ⚠️ 정답이 없다는 사실을 파일에 박아 둔다. 채점 스크립트가 실수로 native 를 찾지 않게.
             new["no_native"] = True
+            if relabel:
+                print(f"  · {m['decoy']}: 항체 사슬 id 재배정 {relabel} (항원과 겹쳐서)")
             os.makedirs(dst, exist_ok=True)
             json.dump(new, open(os.path.join(dst, "chains.json"), "w"), indent=1)
             fa = os.path.join(src, "antigen.fasta")
