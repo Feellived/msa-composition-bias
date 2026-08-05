@@ -70,8 +70,8 @@ def ncomp_pick(d):
     return max(d["candidates"], key=lambda c: (c["n_comp"], -len(c["residues"])))["cand"]
 
 
-def build_selectors(comp_scores_of):
-    return {
+def build_selectors(comp_scores_of, iptm_scores_of=None):
+    sel = {
         "ncomp": lambda d: ncomp_pick(d),
         "largest": lambda d: max(d["candidates"], key=lambda c: len(c["residues"]))["cand"],
         "smallest": lambda d: min(d["candidates"], key=lambda c: len(c["residues"]))["cand"],
@@ -83,6 +83,11 @@ def build_selectors(comp_scores_of):
             ncomp_pick(d) if len({c["n_comp"] for c in d["candidates"]}) > 1
             else abepi_pick(d, comp_scores_of(d), "max")),
     }
+    if iptm_scores_of is not None:
+        # 모델이 스스로 매기는 계면 신뢰도. 집계 방식은 AbEpiScore 와 동일하게 맞춘다.
+        sel["iptm_max"] = lambda d: abepi_pick(d, iptm_scores_of(d), "max")
+        sel["iptm_mean"] = lambda d: abepi_pick(d, iptm_scores_of(d), "mean")
+    return sel
 
 
 def main():
@@ -90,6 +95,7 @@ def main():
     ap.add_argument("--sites", default="results", help="sites_<타깃>.json 이 있는 폴더")
     ap.add_argument("--abepi", required=True, help="abepiscore_all.csv")
     ap.add_argument("--min-cand", type=int, default=2, help="후보가 이보다 적으면 제외")
+    ap.add_argument("--iptm", default="", help="collect_iptm.py 가 낸 CSV. 주면 ipTM 선택기도 함께 비교")
     ap.add_argument("--pick", default="", help="이 선택기로 고른 결과를 CSV 로 남긴다")
     ap.add_argument("--out", default="results/selected_sites.csv")
     ap.add_argument("--summary-out", default="results/eval_selectors_summary.csv",
@@ -110,7 +116,16 @@ def main():
             T.append(d)
     if not T:
         raise SystemExit("!! 후보 2개 이상인 타깃이 없다")
-    SEL = build_selectors(lambda d: comp.get(d["target"], {}))
+    iptm = None
+    if a.iptm:
+        iptm = defaultdict(lambda: defaultdict(list))
+        for r in csv.DictReader(open(a.iptm)):
+            try:
+                iptm[r["target"]][re.sub(r"_r\d+$", "", r["run"])].append(float(r["score"]))
+            except Exception:
+                pass
+    SEL = build_selectors(lambda d: comp.get(d["target"], {}),
+                          (lambda d: iptm.get(d["target"], {})) if iptm is not None else None)
 
     print(f"타깃 {len(T)}종 · 선택기 {len(SEL)}개\n")
     summary_rows = []
