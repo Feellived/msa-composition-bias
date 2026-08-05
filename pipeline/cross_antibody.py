@@ -52,6 +52,7 @@ from collections import defaultdict
 
 from Bio.Align import PairwiseAligner
 
+import eval_selectors as ES
 import pose_features as PF
 
 _aln = PairwiseAligner()
@@ -162,8 +163,12 @@ def spearman(a, b):
 
 
 # ── 타깃 읽기 ───────────────────────────────────────────────────────────────
-def pick_site(d, how):
-    """sites_<타깃>.json 에서 '이 항체가 붙는다고 우리가 말한 자리' 하나를 정한다."""
+def pick_site(d, how, comp_scores=None):
+    """sites_<타깃>.json 에서 '이 항체가 붙는다고 우리가 말한 자리' 하나를 정한다.
+
+    how 가 abepi_mean/abepi_max/abepi_cmax 면 eval_selectors.abepi_pick 을 그대로 쓴다
+    (정답을 보지 않는 실제 선택기 — ncomp 보다 F1 이 낫다고 이미 확인된 것들).
+    """
     cs = d.get("candidates") or []
     if not cs:
         return None
@@ -179,12 +184,18 @@ def pick_site(d, how):
             p, r = c.get("precision") or 0.0, c.get("true_covered") or 0.0
             return 0.0 if p + r == 0 else 2 * p * r / (p + r)
         c = max(cs, key=f1)
+    elif how.startswith("abepi_"):
+        how2 = how.split("_", 1)[1]
+        k = ES.abepi_pick(d, comp_scores or {}, how2)
+        if k is None:
+            return None                        # 이 타깃엔 AbEpiScore 점수가 없다 — 건너뛴다
+        c = next(x for x in cs if x["cand"] == k)
     else:                                      # ncomp — 보고서의 선택기와 같은 규칙
         c = max(cs, key=lambda c: (c["n_comp"], -len(c["residues"])))
     return {tuple(r) for r in c["residues"]}
 
 
-def load_target(t, sites_dir, targets_dir, cutoff, pick):
+def load_target(t, sites_dir, targets_dir, cutoff, pick, comp=None):
     sp = os.path.join(sites_dir, f"sites_{t}.json")
     cp = os.path.join(targets_dir, t, "chains.json")
     np_ = os.path.join(targets_dir, t, "native.cif")
@@ -197,9 +208,10 @@ def load_target(t, sites_dir, targets_dir, cutoff, pick):
     if tr is None:
         print(f"  ! {t}: 정답 결합자리 계산 실패 — 건너뜀")
         return None
-    pred = pick_site(json.load(open(sp)), pick)
+    sc = (comp or {}).get(t, {}) if pick.startswith("abepi_") else None
+    pred = pick_site(json.load(open(sp)), pick, sc)
     if not pred:
-        print(f"  ! {t}: 후보가 없음 — 건너뜀")
+        print(f"  ! {t}: 후보가 없음(AbEpiScore 없거나 후보 없음) — 건너뜀")
         return None
     ag = [c["seq"] for c in cj["chains"] if c["role"] == "antigen"]
     ab = "".join(c["seq"] for c in cj["chains"] if c["role"] in ("heavy", "light"))
@@ -314,8 +326,13 @@ def main():
     ap.add_argument("--targets-dir", default="targets")
     ap.add_argument("--manifest", default="targets_manifest.csv")
     ap.add_argument("--cutoff", type=float, default=5.0)
-    ap.add_argument("--pick", default="ncomp", choices=["ncomp", "first", "union", "oracle"],
-                    help="어느 후보를 '우리 답'으로 볼까. oracle 은 정답을 보므로 천장 확인용")
+    ap.add_argument("--pick", default="ncomp",
+                    choices=["ncomp", "first", "union", "oracle",
+                            "abepi_mean", "abepi_max", "abepi_cmax"],
+                    help="어느 후보를 '우리 답'으로 볼까. oracle 은 정답을 보므로 천장 확인용. "
+                         "abepi_* 는 정답을 안 보는 실제 선택기(--abepi 필요, F1 표에서 ncomp보다 나음)")
+    ap.add_argument("--abepi", default="",
+                    help="abepiscore_all.csv (--pick abepi_* 를 쓸 때 필요)")
     ap.add_argument("--block", type=float, default=0.10,
                     help="진짜 에피토프끼리 이 이상 겹치면 '차단'으로 본다(사전 고정 0.10)")
     ap.add_argument("--min-id", type=float, default=0.5,
@@ -340,6 +357,18 @@ def main():
     if not groups:
         raise SystemExit("!! 분석할 항원군이 없다 — --group 또는 --targets 확인")
 
+    comp = None
+    if a.pick.startswith("abepi_"):
+        if not a.abepi:
+            raise SystemExit("!! --pick abepi_* 를 쓰려면 --abepi <abepiscore_all.csv> 가 필요하다")
+        comp = defaultdict(lambda: defaultdict(list))
+        import re as _re
+        for r in csv.DictReader(open(a.abepi)):
+            try:
+                comp[r["target"]][_re.sub(r"_r\d+$", "", r["run"])].append(float(r["score"]))
+            except Exception:
+                pass
+
     print(f"후보 선택 = {a.pick}"
           + ("   ⚠️ 정답을 본다(천장 확인용)" if a.pick == "oracle" else "   (정답을 보지 않는다)"))
     print(f"차단 판정 문턱 = 진짜 에피토프 자카드 ≥ {a.block}   (사전 고정)\n")
@@ -347,7 +376,7 @@ def main():
     allpairs, summ = [], []
     for gname, ts in sorted(groups.items()):
         print(f"── {gname}: {' '.join(ts)}")
-        TS = [x for x in (load_target(t, a.sites, a.targets_dir, a.cutoff, a.pick) for t in ts) if x]
+        TS = [x for x in (load_target(t, a.sites, a.targets_dir, a.cutoff, a.pick, comp) for t in ts) if x]
         if len(TS) < 3:
             print(f"  ! {gname}: 읽힌 타깃이 {len(TS)}종뿐 — 건너뜀")
             continue
