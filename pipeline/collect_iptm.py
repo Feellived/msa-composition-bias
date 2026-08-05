@@ -56,12 +56,15 @@ def _flatten(x):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data", required=True, help="…/compreps/seedrep_cand/protenix")
+    ap.add_argument("--data",
+                    default=os.path.join(os.environ.get("DATA", "/mnt/data/admuser/msadepth"),
+                                         "compreps", "seedrep_cand", "protenix"),
+                    help="…/compreps/seedrep_cand/protenix ($DATA 가 비어 있으면 기본 경로를 쓴다)")
     ap.add_argument("--out", default="results/iptm_all.csv")
     a = ap.parse_args()
 
     if not os.path.isdir(a.data):
-        raise SystemExit(f"!! 폴더가 없다: {a.data}")
+        raise SystemExit(f"!! 폴더가 없다: {a.data}\n   $DATA 가 비어 있으면 경로 앞이 통째로 날아간다. --data 로 절대경로를 직접 줄 것.")
 
     rows, miss, seen_json = [], 0, set()
     cifs = sorted(glob.glob(os.path.join(a.data, "*", "*", "*", "results", "**", "*.cif"),
