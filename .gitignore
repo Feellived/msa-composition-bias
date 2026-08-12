@@ -1,17 +1,39 @@
-# 대용량 데이터는 /mnt/data/admuser/msadepth/ (레포에 넣지 않음)
-structures/
-targets/
-runs_*/
-ladders/
-results_*/
-out_*/
+# ── 대용량 데이터 ─────────────────────────────────────────────
+# 구조·MSA·예측 자세는 저장소에 넣지 않는다. 데이터 루트는 환경변수 DATA.
+# 슬래시를 붙이지 않는다 — 심볼릭 링크도 함께 막기 위해서다.
+structures
+targets
+ladders
+runs_*
+results_*
+out_*
+compreps
+seedrep_cand
+fullmsa_ctl
+
+# ── 확장자 ────────────────────────────────────────────────────
 *.cif
 *.pdb
 *.a3m
+*.fasta
 *.pt
 *.gz
+*.zip
+*.pse
+
+# ── 실행 로그·백업 (재생성 가능) ──────────────────────────────
+*.log
+*.bak
+logs
+
+# ── 원본 데이터베이스 덤프 ────────────────────────────────────
 sabdab2_summary.csv
-# 파이썬 캐시
-__pycache__/
+
+# ── 파이썬 ────────────────────────────────────────────────────
+__pycache__
 *.pyc
+.ipynb_checkpoints
+
+# ── OS · 편집기 ───────────────────────────────────────────────
 .DS_Store
+.vscode

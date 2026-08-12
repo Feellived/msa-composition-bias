@@ -16,16 +16,16 @@ depth = rung 6개(full→single, 사슬별 Neff80 라벨). pose = diffusion samp
 
 ```bash
 cd ~/projects/bk21-antibody-ml && git pull
-cd consensus_docking/dataset
+cd pipeline
 conda activate boltz     # biopython 필요
 
 # (a) A/B 구조 fetch + 입력 준비 (C는 runs_diverse 재활용이라 제외)
-python fetch_structures.py --manifest pilot_lean.csv --outdir structures   # A/B 40개(+C skip)
+python prep_fetch_structures.py --manifest pilot_lean.csv --outdir structures   # A/B 40개(+C skip)
 python prep_targets.py --struct structures --outdir targets                # targets/<id>/chains.json
 
 # (b) 항원 MSA + depth 사다리 (CPU/네트워크, self-heal)
-ONLY=8q7s_O bash gen_msa.sh      # ⚠️ 먼저 한 타깃 smoke — colabfold 동작·a3m 생성 확인
-bash gen_msa.sh                  # 전체 → /mnt/data/admuser/msadepth/ladders/<target>/<chain>/rung{0..5}.a3m
+ONLY=8q7s_O bash make_msa.sh      # ⚠️ 먼저 한 타깃 smoke — colabfold 동작·a3m 생성 확인
+bash make_msa.sh                  # 전체 → /mnt/data/admuser/msadepth/ladders/<target>/<chain>/rung{0..5}.a3m
 ```
 
 ## 2. smoke test (1건, 타이밍 캘리브레이션)
@@ -62,7 +62,7 @@ PROT_MODEL=<base모델명> bash run_sweep.sh protenix 54
 
 ## 다음 (생성 후)
 
-- `dockq_sweep.py`(추후): pose별 DockQ(다사슬 항원 native 대비, RBD는 크롭 native) → depth-response 곡선.
+- `eval_dockq_sweep.py`(추후): pose별 DockQ(다사슬 항원 native 대비, RBD는 크롭 native) → depth-response 곡선.
 - 분석: rung(=Neff80)별 pose 이동 / off-site rescue 비율 A vs B vs C / 지배-centroid 방향성 shift.
 - HADDOCK·SnugDock = CPU 병렬(별도).
 
@@ -72,6 +72,6 @@ PROT_MODEL=<base모델명> bash run_sweep.sh protenix 54
 |---|---|
 | pilot_lean.csv / sweep_targets.csv | 49 세트 / round-robin 순서 |
 | prep_targets.py | 구조→chains.json(다사슬 항원·RBD크롭)+native |
-| gen_msa.sh + build_ladder.py | 항원 MSA + rung 사다리(Neff80) |
+| make_msa.sh + prep_ladder.py | 항원 MSA + rung 사다리(Neff80) |
 | make_input.py | chains.json+rung a3m → Boltz YAML / Protenix JSON |
 | run_sweep.sh | 시간-박스 재개형 dispatcher (boltz\|protenix) |

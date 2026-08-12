@@ -1,5 +1,9 @@
 # 마지막 8일 계획 (2026-08-05 → 08-13 발표)
 
+> ⚠️ **시점 문서 (2026-08-05 작성).** 발표 전 8일간의 실행 계획이며, 여기서 예정된 항목의
+> 최종 판정은 최종 보고서(`report/report.md`)와 Notion 「인수인계서 Ⅱ」에 있다.
+
+
 보고서는 제출됐다. 남은 8일은 **발표에 들어갈 새 결과**를 만드는 시간이다.
 
 ## ⭐ 1일차(08-05) 결과 — A·B·C 갈래는 여기서 접는다
@@ -58,11 +62,11 @@ p=0.017)는 "정제된 후보 안에는 항체를 가를 정보가 실재한다"
 
 | # | 이름 | GPU | 스크립트 | 새로 짬 |
 |---|---|---|---|---|
-| **A** | 같은 항원 × 다른 항체 — 비닝 예행연습 | ❌ | `cross_antibody.py` | ✅ 신규 |
-| **B** | 후보 정제를 파이프라인에 정식 편입 | ❌ | `refine_sites.py` | 이미 있음 |
-| **C** | 상위 k개 산출 + 자세 수 편향 보정 선택기 | ❌ | `eval_topk.py` | ✅ 신규 |
-| **D** | 가짜 쌍 음성 대조 | ✅ | `decoy_pairs.py` | ✅ 신규(입력만) |
-| **E** | 조성 수 비용 곡선 | ❌ | `comp_budget.py` | ✅ 신규 |
+| **A** | 같은 항원 × 다른 항체 — 비닝 예행연습 | ❌ | `analyze_cross_antibody.py` | ✅ 신규 |
+| **B** | 후보 정제를 파이프라인에 정식 편입 | ❌ | `select_refine_sites.py` | 이미 있음 |
+| **C** | 상위 k개 산출 + 자세 수 편향 보정 선택기 | ❌ | `select_eval_topk.py` | ✅ 신규 |
+| **D** | 가짜 쌍 음성 대조 | ✅ | `prep_decoy_pairs.py` | ✅ 신규(입력만) |
+| **E** | 조성 수 비용 곡선 | ❌ | `analyze_comp_budget.py` | ✅ 신규 |
 | **F** | 사례 하나 심층 해부 (발표용) | ❌ | 기존 그림 스크립트 | — |
 
 ---
@@ -108,7 +112,7 @@ Env  3종  8t4a_PR 8t4d_OQ 8ulr_HL                                       → 쌍
 
 ### B. 후보 정제 정식 편입
 
-`refine_sites.py`가 이미 다 구현돼 있다 — 손잡이 넷(`cons-frac`·`merge-frac`·`max-res`·
+`select_refine_sites.py`가 이미 다 구현돼 있다 — 손잡이 넷(`cons-frac`·`merge-frac`·`max-res`·
 `main-patch`) sweep, 한-타깃-빼기(LOO) 정직 평가, `--dump-sites`로 정제된 후보 재생성까지.
 **새로 짤 것이 없고 돌리기만 하면 된다.**
 
@@ -116,13 +120,13 @@ Env  3종  8t4a_PR 8t4d_OQ 8ulr_HL                                       → 쌍
 
 1. sweep → LOO로 **정답을 보지 않고** 설정을 고른다
 2. 그 설정으로 `--dump-sites results/sites_refined`
-3. `eval_selectors.py --sites results/sites_refined` 로 **정제 후 선택기 성능**을 잰다
-4. `test_selectors.py` 로 정제 후에도 무작위와 구별 안 되는지 다시 검정
+3. `select_eval_selectors.py --sites results/sites_refined` 로 **정제 후 선택기 성능**을 잰다
+4. `select_test_selectors.py` 로 정제 후에도 무작위와 구별 안 되는지 다시 검정
 
 지금까지 잰 0.482→0.586은 **천장**이지 고를 수 있는 값이 아니다. 3단계가 진짜 답이다.
 
-⚠️ `refine_sites.py`의 "현재 설정"이 `merge_frac=0`(합집합)으로 잡혀 있는데,
-`site_reproducibility.py`의 기본값은 이미 `--merge-frac 0.75`(투표)다. **어느 쪽으로
+⚠️ `select_refine_sites.py`의 "현재 설정"이 `merge_frac=0`(합집합)으로 잡혀 있는데,
+`analyze_site_reproducibility.py`의 기본값은 이미 `--merge-frac 0.75`(투표)다. **어느 쪽으로
 sites_*.json이 만들어졌는지 먼저 확인**해야 비교 기준이 어긋나지 않는다.
 
 ---
@@ -215,41 +219,41 @@ conda activate boltz && cd ~/projects/bk21-msa-depth-bias/pipeline && git pull
 
 **A — 같은 항원 다른 항체 (GPU 불필요, 몇 분)**
 ```bash
-python -u cross_antibody.py --group all --out results/cross_antibody.csv 2>&1 | tee logs/cross_ab.log
+python -u analyze_cross_antibody.py --group all --out results/cross_antibody.csv 2>&1 | tee logs/cross_ab.log
 ```
 
 **B — 후보 정제 (GPU 불필요, 십수 분)**
 ```bash
-python -u refine_sites.py --all --out results/refine_sweep.csv 2>&1 | tee logs/refine.log
+python -u select_refine_sites.py --all --out results/refine_sweep.csv 2>&1 | tee logs/refine.log
 ```
 LOO가 고른 설정을 `--use` 에 넣어(예 `0.7,0.5,30`):
 ```bash
-python -u refine_sites.py --all --dump-sites results/sites_refined --use 0.7,0.5,30 2>&1 | tee logs/refine_dump.log
+python -u select_refine_sites.py --all --dump-sites results/sites_refined --use 0.7,0.5,30 2>&1 | tee logs/refine_dump.log
 ```
 ```bash
-python -u eval_selectors.py --sites results/sites_refined --abepi ../../bk21-antibody-ml/consensus_docking/results/abepiscore_all.csv --iptm results/iptm_all.csv --summary-out results/eval_refined.csv 2>&1 | tee logs/eval_refined.log
+python -u select_eval_selectors.py --sites results/sites_refined --abepi ../../bk21-antibody-ml/pipeline/results/abepiscore_all.csv --iptm results/iptm_all.csv --summary-out results/eval_refined.csv 2>&1 | tee logs/eval_refined.log
 ```
 ```bash
-python -u test_selectors.py --sites results/sites_refined --abepi ../../bk21-antibody-ml/consensus_docking/results/abepiscore_all.csv --iptm results/iptm_all.csv --out results/tests_refined.csv 2>&1 | tee logs/test_refined.log
+python -u select_test_selectors.py --sites results/sites_refined --abepi ../../bk21-antibody-ml/pipeline/results/abepiscore_all.csv --iptm results/iptm_all.csv --out results/tests_refined.csv 2>&1 | tee logs/test_refined.log
 ```
 
 **C — 상위 k개 + 편향 보정 (GPU 불필요, 몇 분)**
 ```bash
-python -u eval_topk.py --sites results --abepi ../../bk21-antibody-ml/consensus_docking/results/abepiscore_all.csv --iptm results/iptm_all.csv --out results/topk.csv 2>&1 | tee logs/topk.log
+python -u select_eval_topk.py --sites results --abepi ../../bk21-antibody-ml/pipeline/results/abepiscore_all.csv --iptm results/iptm_all.csv --out results/topk.csv 2>&1 | tee logs/topk.log
 ```
 정제본에도 같이:
 ```bash
-python -u eval_topk.py --sites results/sites_refined --abepi ../../bk21-antibody-ml/consensus_docking/results/abepiscore_all.csv --iptm results/iptm_all.csv --out results/topk_refined.csv 2>&1 | tee logs/topk_refined.log
+python -u select_eval_topk.py --sites results/sites_refined --abepi ../../bk21-antibody-ml/pipeline/results/abepiscore_all.csv --iptm results/iptm_all.csv --out results/topk_refined.csv 2>&1 | tee logs/topk_refined.log
 ```
 
 **E — 비용 곡선 (GPU 불필요)**
 ```bash
-python -u comp_budget.py --all --out results/comp_budget.csv 2>&1 | tee logs/budget.log
+python -u analyze_comp_budget.py --all --out results/comp_budget.csv 2>&1 | tee logs/budget.log
 ```
 
 **D — 가짜 쌍 입력 생성 (GPU 불필요, 그 다음 예측이 GPU)**
 ```bash
-python -u decoy_pairs.py --n 24 --outdir targets --manifest results/decoy_manifest.csv 2>&1 | tee logs/decoy_prep.log
+python -u prep_decoy_pairs.py --n 24 --outdir targets --manifest results/decoy_manifest.csv 2>&1 | tee logs/decoy_prep.log
 ```
 
 ## 5. 안전
@@ -282,7 +286,7 @@ python -u decoy_pairs.py --n 24 --outdir targets --manifest results/decoy_manife
 | 기준 | 값 |
 |---|---|
 | 설정 선택 | **LOO로만** 고른다. 30종 전체에서 최고를 고르지 않는다 |
-| 후보 고갈 방어 | 평균 후보 수 ≥ **1.8** (기존 `refine_sites.py` 규칙 그대로) |
+| 후보 고갈 방어 | 평균 후보 수 ≥ **1.8** (기존 `select_refine_sites.py` 규칙 그대로) |
 | 성공 | 정제 후 **선택기 평균 F1**이 정제 전보다 ≥ +0.03, 그리고 무작위 기준선도 함께 상승 |
 | 주의 | 천장(F1 ceiling) 상승은 성공으로 치지 않는다. 고를 수 있어야 한다 |
 

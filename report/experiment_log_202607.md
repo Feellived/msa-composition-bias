@@ -7,7 +7,7 @@
 
 ---
 name: msa-bias-channel-experiment
-description: "⭐**MSA 조성이 결합자리 선택을 좌우**; 중심 사례 2종 확정(8ulr_HL 1/30·8k3k_D 0/20, 둘 다 순열 p<5e-6 + 2×2 함께 유의) · 승격 후보 3종(대조 확대 12실행씩) · **전수 방향 5 대 5 → 선택 단계 필수** · 6.2 대상 선정 가설; ⛔p=3.9e-8 폐기; dump_seedrep_full.py는 --data 필수"
+description: "⭐**MSA 조성이 결합자리 선택을 좌우**; 중심 사례 2종 확정(8ulr_HL 1/30·8k3k_D 0/20, 둘 다 순열 p<5e-6 + 2×2 함께 유의) · 승격 후보 3종(대조 확대 12실행씩) · **전수 방향 5 대 5 → 선택 단계 필수** · 6.2 대상 선정 가설; ⛔p=3.9e-8 폐기; eval_dump_seedrep.py는 --data 필수"
 metadata: 
   node_type: memory
   type: project
@@ -38,8 +38,8 @@ metadata:
 **⛔ 폐기 확정: `p = 3.9×10⁻⁸`** — 통제 실행 하나(자세 40개)를 독립 40표본으로 센 값. 통제 1회가
 실패할 확률은 0.9이므로 0/40은 특이한 관측이 아니다. **다시 언급하지 말 것.**
 
-**도구·사고** = `anchor_test.py`(레포 커밋 f7a85c5 · 4c6ef5d, 방향 열 포함).
-⚠️ `dump_seedrep_full.py`는 **`--data $DATA/compreps` 필수** — 빼면 옛 seedrep_cand(무효 boltz 3건)를
+**도구·사고** = `analyze_anchor_test.py`(레포 커밋 f7a85c5 · 4c6ef5d, 방향 열 포함).
+⚠️ `eval_dump_seedrep.py`는 **`--data $DATA/compreps` 필수** — 빼면 옛 seedrep_cand(무효 boltz 3건)를
 읽고 CSV를 덮어쓴다(2026-07-30 실제 사고, 예측 CIF는 무사해 재채점으로 복구). DockQ 없는 env에서는
 파일을 쓰지 않고 멈춘다(정상 동작).
 
@@ -112,7 +112,7 @@ recall·overrep은 정상이라 겉보기엔 결과가 있다 → 이제 종료�
 후자가 더 자연스럽다(RBD는 과대표집이 심한 항원). **이 교란을 빼고 층 해석을 쓰지 말 것.**
 
 빈도 = 세트 3(분모 10) · 세트 4(분모 49, `sweep_targets.csv` 59행 = 49+10이므로 세트 3을 뺀다,
-커밋 `5c7ebce`) · 층별. 도구 = `score_criteria.py`(18종·24종·29종에서 검증).
+커밋 `5c7ebce`) · 층별. 도구 = `eval_criteria.py`(18종·24종·29종에서 검증).
 
 ## ⭐ 2026-07-30 데모 최종 — 8종 중 1종 통과, **3종은 우리 제약이 해로웠다**
 
@@ -164,7 +164,7 @@ recall·overrep은 정상이라 겉보기엔 결과가 있다 → 이제 종료�
 
 **발표 구성**: 근거(8ulr_HL 통제 + 본 검정 29종) · 데모 성공(8k3k_D) · 한계 3종.
 **앵커를 더 만들지 말 것** — 타깃당 ~2.5h인데 n=29 체계적 증거가 이미 있어 한계효용 낮음.
-**진행 중**: 본 검정 잔여 5종(9azr·9azt·9azv·9b7g·9bdg) ~04:00 완료 → `after_maintest.sh --apply SCREEN=1`이
+**진행 중**: 본 검정 잔여 5종(9azr·9azt·9azv·9b7g·9bdg) ~04:00 완료 → `run_after_maintest.sh --apply SCREEN=1`이
 채점(낡은 것 강제 재채점)·후보자리·noconstraint+ours 훑기까지 자동. **아침 할 일 = §6.7 통계 + Figure + 발표자료.**
 
 ### 사례를 늘릴 수 있는 경로 4개 (2026-07-29 밤 정리 — GPU가 비면 이 순서로)
@@ -184,7 +184,7 @@ recall·overrep은 정상이라 겉보기엔 결과가 있다 → 이제 종료�
    ⚠️연구 주장으로 쓰려면 명단을 결과와 무관하게 정해야 함(데모용이면 "골랐다" 고지).
 4. 8sit_HL·8k46_I 앵커(각 ~2.5h) — 2번이 되면 그다음.
 
-도구: `score_criteria.py`(6.7 판정, 커밋 `9ee2286` — 18종으로 검증: 유의 5·우연 0.0015·Fisher 0.000933·
+도구: `eval_criteria.py`(6.7 판정, 커밋 `9ee2286` — 18종으로 검증: 유의 5·우연 0.0015·Fisher 0.000933·
 BH 3·순열 17/18·후보생성 16/18·DockQ 4/576 전부 재현) · `run_maintest_boltz.sh`(3번용) ·
 `prescreen_abepitope.sh`+`score_abepitope.py`(1번용).
 
@@ -203,8 +203,8 @@ BH 3·순열 17/18·후보생성 16/18·DockQ 4/576 전부 재현) · `run_maint
 비워두고 붙일 수 있게 설계. 1순위 후보 = **DiscoTope-3.0**(항원 구조만·MSA 안 씀) · **AbEpiTope-1.0**
 (계면 타당성·inverse folding) — **둘 다 미설치, 사용자 허가 대기**. 안 되면 manual(구두 고지).
 
-**커밋**: msa-depth `e7a6eaa`(`site_reproducibility.py --dump-sites` → `results/sites_<타깃>.json`에 후보별
-잔기 목록·모인 조성·원래MSA 포함여부; `analyze_target.sh`가 자동 생성) / antibody-ml `58fb379`
+**커밋**: msa-depth `e7a6eaa`(`analyze_site_reproducibility.py --dump-sites` → `results/sites_<타깃>.json`에 후보별
+잔기 목록·모인 조성·원래MSA 포함여부; `run_analyze_target.sh`가 자동 생성) / antibody-ml `58fb379`
 (`rank_sites.py`·`sites_to_pocket.py`·`run_demo_guided.sh`·`dockq_demo.py`, emit은 `zdock_to_pocket` 재사용).
 잔기 키 = (항원 사슬 순번, 0-based) → 제약은 (사슬 id, 1-based). `rank_sites.py`는 `true_covered`·
 `precision`을 **불러오며 버려** 눈먼 선택을 구조적으로 강제. 데모 후보 = 8k3k_D(0.12→0.96)·8sit_HL(0.10→0.90)·
@@ -216,14 +216,14 @@ BH 3·순열 17/18·후보생성 16/18·DockQ 4/576 전부 재현) · `run_maint
 
 ```bash
 cd ~/projects/bk21-msa-depth-bias/pipeline && git pull
-python pick_maintest_depth.py --out maintest.csv
-conda activate DockQ ; bash smoke_maintest.sh --gpu   # 통과해야 시작 (15~20분)
+python prep_pick_depth.py --out maintest.csv
+conda activate DockQ ; bash run_smoke_maintest.sh --gpu   # 통과해야 시작 (15~20분)
 tmux new -s maintest ; HOURS=12 bash run_maintest.sh --apply
 ```
 
-**⚠️ 스모크가 실제로 잡아낸 조용한 실패(고쳐서 커밋함 `04f0e41f`).** `dump_seedrep_full.py`는
+**⚠️ 스모크가 실제로 잡아낸 조용한 실패(고쳐서 커밋함 `04f0e41f`).** `eval_dump_seedrep.py`는
 `seedrep_cand.csv`(예전 후보 5개)만 순회해서 **본 검정 29개 타깃을 한 번도 채점하지 않았고,
-결과가 비면 파일을 안 쓰는 구조라 경고도 없었다.** `analyze_target.sh`도 같은 경로 →
+결과가 비면 파일을 안 쓰는 구조라 경고도 없었다.** `run_analyze_target.sh`도 같은 경로 →
 그대로 뒀으면 40시간을 돌린 뒤 29개 전부 "자료 없음"을 받았다. 고침 = `--cand`에 없는 타깃은
 `maintest.csv`(status=run)로 채점 · 대상 없으면 종료코드 2 · 채점 0개면 종료코드 3.
 **교훈(반복됨): 이 파이프라인의 실패는 멈추는 게 아니라 조용히 비는 형태로 온다**
@@ -231,7 +231,7 @@ tmux new -s maintest ; HOURS=12 bash run_maintest.sh --apply
 
 **로그는 자동 저장된다**(`$DATA/logs/smoke_*.log`·`maintest_*.log`, 커밋 `f109ddf2`·`73b5d4a6`).
 tmux가 죽어도 계산 결과는 디스크에 남고 `run_maintest.sh`가 완료분을 건너뛰므로 같은 명령으로
-이어서 가면 된다. 판정 출력만 다시 보려면 `bash smoke_maintest.sh --recheck`(GPU 미사용).
+이어서 가면 된다. 판정 출력만 다시 보려면 `bash run_smoke_maintest.sh --recheck`(GPU 미사용).
 
 **명단 = 54종 판독 → 본 검정 30개(8ulr 완료 → 신규 29개 × 32회 = 928회) · 무반응 24개.**
 아무것도 고르지 않는다. 세트 3(10)·세트 4(49) 둘 다 결과와 무관하게 만든 명단이라 전수여야
@@ -252,7 +252,7 @@ tmux가 죽어도 계산 결과는 디스크에 남고 `run_maintest.sh`가 완�
 사례로 축소, 헤드라인 음성.
 
 **판독 규칙 보정 2건(둘 다 실행 불가능한 선택지를 막는 것 — 판정 기준 recall≥0.40은 불변):**
-① **rung0 제외** — rung0은 comp_x_reps.sh가 그대로 대조군(seedfull.a3m)으로 쓰는 원래 MSA다.
+① **rung0 제외** — rung0은 make_composition_reps.sh가 그대로 대조군(seedfull.a3m)으로 쓰는 원래 MSA다.
 거기서 조성을 재추첨하면 전체에서 전체를 뽑아 여섯 조성이 같아지고 조성군=대조군이 된다(9zdu에서 실제 발생).
 ② **Neff80 축·층 표시 추가** — 표시만. 규칙 불변.
 ✅ 규칙이 8ulr에 rung2·1,746서열·Neff80 702를 골랐다 = 확정 실험이 쓴 깊이와 정확히 일치(방증).
@@ -262,12 +262,12 @@ tmux가 죽어도 계산 결과는 디스크에 남고 `run_maintest.sh`가 완�
 (명제가 "조성이 자리를 정한다"로 바뀐 뒤 C군은 대조군이 아니라 범위 자료) ③RBD 14개(~11h)=
 다양성없음 층 완결 + 세트 3 빈도 확보, 빠름 ④HA 8개(~17h)=가장 느림.
 
-**⚠️ 스모크 없이 시작하지 말 것 (`smoke_maintest.sh`).** 군마다 코드 경로가 갈린다 —
+**⚠️ 스모크 없이 시작하지 말 것 (`run_smoke_maintest.sh`).** 군마다 코드 경로가 갈린다 —
 항원 사슬 수(RBD·C 1개 / HA·Env 일부 2개), MSA 규모, 고른 칸 깊이(4줄~11,017줄), 과대표집 정의(C군 없음).
 **8u44_ST가 본 검정 30개 중 유일한 다중사슬 항원(A|B)** → 반드시 스모크에 포함(자동 선정됨).
 Phase A(GPU 없음) = 조성 개수·**md5 구별성**(같으면 이질성 검정 무의미)·질의행 일치·사슬별 폴더 /
 Phase B(GPU 1회) = 산출물 5개·**입력 JSON의 항원 사슬 전부에 MSA 실림**·정제 후 질의행·run.log
-MSA 경고·채점 값. 실패 시 exit 1. `comp_x_reps.sh`에 `GEN_ONLY=1`(조성만 만들고 GPU 전 종료) 추가됨.
+MSA 경고·채점 값. 실패 시 exit 1. `make_composition_reps.sh`에 `GEN_ONLY=1`(조성만 만들고 GPU 전 종료) 추가됨.
 
 **결과 해석 시 따로 표시할 복합체:**
 - **9azt_HL** rung9·4줄·Neff80 3 → 사실상 단일서열. "MSA 조성"이 아니라 "어느 4개가 뽑혔나"
@@ -280,8 +280,8 @@ MSA 경고·채점 값. 실패 시 exit 1. `comp_x_reps.sh`에 `GEN_ONLY=1`(조�
 **판정:** 복합체별 이질성 정확검정 → 유의 개수. 실제 n으로 계산 — 세트 3(검정 6개)에서 2개 유의 = 0.033,
 3개 = 0.002. 주 결과는 Fisher 결합. 빈도는 명단별 분모로 따로.
 
-**신규 도구(전부 커밋됨):** `smoke_maintest.sh` · `run_maintest.sh` · `pick_maintest_depth.py`
-(Neff80·층·다지표 참고표·--only 누락 경고·--metric 민감도) · `comp_x_reps.sh GEN_ONLY`.
+**신규 도구(전부 커밋됨):** `run_smoke_maintest.sh` · `run_maintest.sh` · `prep_pick_depth.py`
+(Neff80·층·다지표 참고표·--only 누락 경고·--metric 민감도) · `make_composition_reps.sh GEN_ONLY`.
 기록 = 노션 **인수인계서 Ⅱ** 6.2.1~6.2.4 · 6.5.1~6.5.2.
 
 ⚠️ **인수인계서가 2026-07-28에 둘로 분리됨** — Ⅰ Consensus Docking(모델 성능·채점·pose 선택·물리 도킹)
@@ -375,7 +375,7 @@ Consensus docking(메인, [[bk-summer-2026-project]])의 "왜 특정 모델만 �
   - **✅ 데이터셋 파이프라인 구축·검증·커밋(repo `consensus_docking/dataset/`):** build_manifest→**후보 375 PDB(RBD169[141paired+33nb]·HA115·Env91)** → fetch_structures(RCSB)→classify_epitope(접촉4.5Å→에피토프클래스→A/B). RBD=Wuhan auth직접(RBM 437-508 overlap≥0.5=A), HA=P03437 참조정렬(head range 56-306 비율≥0.6=A), Env=HXB2(P04578) bnAb class footprint. **알려진-에피토프 참조 6/6 정답**(6W41 CR3022→class4/B, 3GBN/4FQI stem→B, 2VIR/4FP8 head→A, 3NGB VRC01→CD4bs/A; Mac biopython 1.85). "no-RBD-contact"로 NTD/S2 결합 자동배제, HA head/stem 경계=mixed flag.
   - **다음:** 서버서 fetch(375, ~1GB)+classify → 실제 A/B 카운트 → 검증게이트(fold-stability·난이도매칭·homolog leakage·Neff80 사다리 빌더[143폐기]) → lock → 전모델 depth-sweep 배치. Chai depth 러너 신규 필요(make_chai=FASTA-only), Protenix=base(2021-09, 2025 leaky 금지). must-cite=[[guan-keating-msa-docking-bias]] NEFFy AsEP Barnes2020.
 
-- **⭐⭐ 2026-07-22 Boltz 12단 depth-sweep 완주 + 정직한 재프레임(반드시 이 상태로 이어갈 것). 별도 자기완결 레포 [[bk-summer-2026-project]]의 `Feellived/bk21-msa-depth-bias`(guided는 consensus_docking 소관).** 47복합체×12rung(geomspace full→single-seq, Neff80축)×best-of-5, Boltz만 완주. 채점=`dockq_sweep.py`(다중copy 오짝 버그 fix: native를 src_chains로 추출). 리포트·CSV 커밋 = `report/boltz_depth_sweep_analysis.md` + `report/dockq_sweep_boltz.csv`(재-투입용).
+- **⭐⭐ 2026-07-22 Boltz 12단 depth-sweep 완주 + 정직한 재프레임(반드시 이 상태로 이어갈 것). 별도 자기완결 레포 [[bk-summer-2026-project]]의 `Feellived/bk21-msa-depth-bias`(guided는 consensus_docking 소관).** 47복합체×12rung(geomspace full→single-seq, Neff80축)×best-of-5, Boltz만 완주. 채점=`eval_dockq_sweep.py`(다중copy 오짝 버그 fix: native를 src_chains로 추출). 리포트·CSV 커밋 = `report/boltz_depth_sweep_analysis.md` + `report/dockq_sweep_boltz.csv`(재-투입용).
   - **블랭킷 A/B/C 가설 = 깨끗한 null(2 워크플로 13+7에이전트 적대검증).** Δmean(rung1-9−rung0) A−0.004·B−0.022·C+0.018 전부 Wilcoxon NS; B의 −0.022는 단일 8wpy 붕괴 산물(빼면 +0.014); **argmax-deep A19/20·B15/18·C8/9 동일 = best-of-N 표집 아티팩트(음성대조 C가 B와 동일 재현, 특히 9y0a rung1/6/10). B vs C 구별불가(P=0.92).** MSA축소는 정상작동(Neff 119→2). → "off-site rescue 블랭킷"은 지지 안 됨.
   - **✅ 재프레임(사용자 지시 = ipTM/pose/consensus 앵커 버리고 MSA-깊이 현상 자체를 연구 대상으로): "특성화 연구 + 방법론 발견".** 건질 것: ①재현성 있는 깊이-반응은 드묾(≥0.49=14/47, 진짜 지속전이 **1개**), ②방향이 복합체별로 갈림(깊은MSA 필수 vs 방해), ③**핵심발견=원인은 양(깊이) 아니라 조성(무엇이 빠지나)** — 8wpy 절벽이 Neff 19.4→18.0(거의 불변)에서 일어남 + 전이Neff 1~688 산발(특정값 비수렴).
   - **⭐ 기억할 case study 3(+대조):** **8wpy_AB(RBD,B)=간판·유일확정 지속전이**(rung0-2 0.85→rung3~ 0.04 절벽 후 7rung 고착=깊은MSA 필수). **9y0a_AB(C)=반전·유력**(full 0.06, neff688·28·2서 0.57/0.72/0.71 반복회복=과대표집 prior가 오답 유도, 인접지지0라 seed재현 필요). **8t4d_OQ(Env,A)=중간깊이최적**(neff319·154 인접 반등 0.39·0.19). 대조=8vye_AD(깊이완전무관 0.91~0.93). ⚠️경고사례=8y6a·9b7g(진폭 크나 neff1~2 단발스파이크=운, "진폭에 속지마라").
@@ -393,19 +393,19 @@ Consensus docking(메인, [[bk-summer-2026-project]])의 "왜 특정 모델만 �
   - **⚠️ 적대검증(9에이전트 워크플로 stats/confound/generalize, 잔여신뢰 0.30 + 결정테스트)으로 HA 신호 대부분 인공물:** ①변화점수(gain=max−full_recall이 −0.56을 +0.61로 기계증폭; full_recall 통제 시 +0.44) ②best-of-N(11rung×5pose max) ③**고정-rung LEVEL 테스트=과대표집 모든 깊이서 recall 낮음(−0.41~−0.53) = "깊이-rescue"가 아니라 "어느 깊이든 어렵다"** ④다중비교(~150 test, Bonferroni·BH 미통과; n14; 3가족 중 1개) ⑤stem/head 부분교란(HA A/B=head/stem; stem 통제 후 −0.56→−0.43 약화·생존; n_ag 통제 강화 +0.64=suppressor 신호). LOO-robust·n_ag통제는 인공물서도 나오는 성질=근거 아님.
   - **판정 = REFINE: iDist=탐색적 공변량, "과대표집→깊이-rescue" 미지지.** 대안평가: Foldseek=**skip**(가족내 더 거침), iAlign=RBD포화 해상용 **do-scoped(단 rescue 실재 확인 후)**, positional epitope Neff=cheap(neff_col 슬라이스), direct-count(Guan식 epitope-freq)=defer. novelty=0(iDist=Bushuiev2024·iAlign=Gao&Skolnick2010·Foldseek=vanKempen2024).
   - **⭐ 더 큰 함의 = rescue 실재 자체 미확인:** 실패복합체가 11rung 중 노이즈로 0.3 넘을 P≈0.73, 관측 rescue 8/11=0.73 = 노이즈밴드 안. → 과대표집이든 Neff든으로 rescue 설명 전에 **rescue가 진짜인지부터**(seed-복제). 통제실험(특히 Exp1)이 **linchpin으로 승격.**
-  - **★2026-07-23(후속) 순열검정(Ojala/Porter식, `perm_null.py` 커밋)으로 블랭킷 rescue = best-of-N 잡음 확정**(rescue 11≈우연 9.5 p0.30 · mean-gain null 밴드 안 · 평균 rescue 소멸 1<2.5). 문헌 정합: Porter그룹이 AF-cluster를 noise+학습셋암기로 반박(RfaH 무작위 24%>클러스터 4%) + McCoy2024가 Ab-Ag서 Neff-DockQ 무상관 = 같은 결. 왜 재현 안 되나=논문은 '다양성/best-of-N'을 봤지 '정답 에피토프 정조준'이 아님(AFsample2: N=1이면 오히려 나쁨).
+  - **★2026-07-23(후속) 순열검정(Ojala/Porter식, `analyze_perm_null.py` 커밋)으로 블랭킷 rescue = best-of-N 잡음 확정**(rescue 11≈우연 9.5 p0.30 · mean-gain null 밴드 안 · 평균 rescue 소멸 1<2.5). 문헌 정합: Porter그룹이 AF-cluster를 noise+학습셋암기로 반박(RfaH 무작위 24%>클러스터 4%) + McCoy2024가 Ab-Ag서 Neff-DockQ 무상관 = 같은 결. 왜 재현 안 되나=논문은 '다양성/best-of-N'을 봤지 '정답 에피토프 정조준'이 아님(AFsample2: N=1이면 오히려 나쁨).
   - **개별 case = 9y0a(bistable) 단일사례를 seed-복제 재현게이트(무작위-subsample 밴드 넘나 + 진짜 에피토프로 가나)로만** 진행 → 통과 시 nested/LOCO 기전 + 3모델 전이 + 암기배제, 실패 시 정직한 negative. arc = 선행 null 재현 > 단일복합체 존재증명 > 기전 > 조건부 게이팅(일반화·보편 MSA감소 주장 금지). de-noising 프로토콜 = `report/denoising_protocol.md`. must-cite: Chen2021(pass@k)·Porter2024/2025·McCoy2024·delAlamo2022·AFsample2(Kalakoti&Wallner2025)·Guan&Keating2025.
   - **⚠️ Proposal(Notion, v1 2026-07-20) 프레이밍 전환 필요:** v1의 H1-H4(항원 MSA↓→rescue·sweet-spot·depth-response=선택신호)가 **우리 분석으로 사실상 falsify됨**(블랭킷 rescue=잡음). 새 프레이밍 = **"MSA-의존이 가변성 큰 Ab-Ag 필드에선 편향/취약성의 통로 = 해소 대상, MSA-비의존 구조기반 새 피처 제안"** + **헤드라인=null(블랭킷)** + case-study(9y0a)=앵커된 존재증명. v1이 이미 인용한 McCoy2024(Neff-DockQ 무상관)·Guan&Keating(암기)가 새 프레이밍의 발판.
-  - **통제 입력생성기 커밋(bk21-msa-depth-bias/pipeline, GPU불필요):** `seed_replicate.py`(Exp1)·`build_nested_ladder.py`(Exp2 dropped.tsv)·`loco_aoci.py`(Exp3 %동일성클러스터 LOCO/AOCI). 순서=Protenix완주→Exp0(모델)→Exp1(rescue 실재+깊이vs조성). 대상=지지 8y6a·8kdm / 비회수대조 9evz·8tl5 / bistable 9y0a·8t49_PR. Results §7·§7-1 + Progress 2026-07-23 기록 완료.
+  - **통제 입력생성기 커밋(bk21-msa-depth-bias/pipeline, GPU불필요):** `run_seed_replicate.py`(Exp1)·`prep_ladder_nested.py`(Exp2 dropped.tsv)·`analyze_loco_aoci.py`(Exp3 %동일성클러스터 LOCO/AOCI). 순서=Protenix완주→Exp0(모델)→Exp1(rescue 실재+깊이vs조성). 대상=지지 8y6a·8kdm / 비회수대조 9evz·8tl5 / bistable 9y0a·8t49_PR. Results §7·§7-1 + Progress 2026-07-23 기록 완료.
 
-- **⭐ 2026-07-23(저녁) epitope_shift.py 확장(순위점수·중심거리) + '진짜 편향' 필터링 = 3중 확인으로 null 재확인·강화(반드시 이 상태로).** `epitope_shift.py`에 DiscoTope식 순위점수(threshold-free)·DCC식 중심거리(Å, pose 내부 비교) 추가, oracle(recall최고 pose)/mean(5pose평균) 명시분리 후 Boltz 47타깃 재채점(`results/epitope_shift.csv` 504행).
+- **⭐ 2026-07-23(저녁) eval_epitope_shift.py 확장(순위점수·중심거리) + '진짜 편향' 필터링 = 3중 확인으로 null 재확인·강화(반드시 이 상태로).** `eval_epitope_shift.py`에 DiscoTope식 순위점수(threshold-free)·DCC식 중심거리(Å, pose 내부 비교) 추가, oracle(recall최고 pose)/mean(5pose평균) 명시분리 후 Boltz 47타깃 재채점(`results/epitope_shift.csv` 504행).
   - **recall Δ뿐 아니라 관대한 연속지표(true_rank·dcc_true)로도 신호 없음**(RBD/B true_rank Δ=−0.063·dcc_true Δ=+1.45Å로 오히려 정답에서 멀어짐; family/B별 corr(이탈량,정답도달량)=RBD/B−0.43·HA/B−0.18·Env/B+0.32=뚜렷한 연동 없음).
   - **핵심 방법론 정정(사용자 지적) = A/B는 '모델 편향 여부'가 아니라 '정답이 인기자리인지'의 구조적 분류.** B라벨(정답=인기자리 아님) 18개를 전부 편향된 것으로 취급하면 안 됨 → full-depth에서 실제로 native_overrep보다 뚜렷이(excess≥0.3) 더 인기자리에 쏠린 **'진짜 편향' 케이스만 재필터 = 5개뿐**(8txu_HL·8q7s_H·8tx3_FK·9evz_HL·8tl5_IJ; 나머지 13개는 정답이 인기자리 밖이어도 모델이 처음부터 그렇게까지 안 쏠려있었음=벗어날 편향 자체가 없었음).
   - **⭐가장 강한 결과: 그 5개 중 4개는 MSA 깊이를 60배 이상 줄여도(neff 50~200대→1~3) 인기자리 겹침%가 사실상 무변화**(8q7s_H 0.990→0.989, 8tx3_FK 1.0→0.989(전구간 거의 항상 1.0), 8tl5_IJ 0.756→0.761, 8txu_HL 0.657→0.656). 유일하게 움직인 9evz_HL(0.793→0.721)도 recall은 끝까지 0. **무작위 대조 패치 불필요**(애매하게 흔들린 게 아니라 아예 안 움직여서 비교할 대상이 없음). recall(§7-2)·관대한지표·진짜편향필터 3가지 독립 방식이 전부 같은 결론 = 견고.
   - **Notion 반영 완료**(Results §7-3 + Progress 2026-07-23, 그래프 2종 fig_family_ab_delta.png·fig_biased_flat.png 첨부). 로컬 재사용 스크립트: `analyze_shift.py`·`analyze_shift_full.py`·`find_biased_cases.py`(scratchpad/analysis, Protenix 도착 시 그대로 재사용).
   - **⭐⭐ 사용자 확정 다음 계획(3단계, 반드시 이 순서로):**
     1. **Protenix 도착 시** — DockQ 다각도 분석(단순 추이→family요약→Spearman→oracle-vs-ipTM regret→순열검정→pass@k→짝Wilcoxon→혼합모델→TOST, 쉬운 것부터 어려운 것까지 전부) **+** 에피토프 위치 분석(recall·over-rep·순위점수·dcc·진짜편향필터링 전부, 위 Boltz와 동일 스크립트 재사용) → **이 결과로 Chai를 돌릴 가치가 있는지 판단**(Protenix가 Boltz처럼 flat이면 Chai도 별 의미 없을 가능성↑; Protenix가 진짜 깊이반응 보이면 Chai로 삼각확인 가치↑).
-    2. **case-study 전환** — Protenix·Boltz 양쪽에서 가설과 비슷하게 움직이는 대표 항원-항체 복합체를 찾아, 이미 커밋된 통제실험 생성기(`seed_replicate.py`=Exp1 seed복제·`build_nested_ladder.py`=Exp2 nested사다리·`loco_aoci.py`=Exp3 LOCO/AOCI) + MSA 돌연변이 실험으로 실재 가능성을 재확인 시도.
+    2. **case-study 전환** — Protenix·Boltz 양쪽에서 가설과 비슷하게 움직이는 대표 항원-항체 복합체를 찾아, 이미 커밋된 통제실험 생성기(`run_seed_replicate.py`=Exp1 seed복제·`prep_ladder_nested.py`=Exp2 nested사다리·`analyze_loco_aoci.py`=Exp3 LOCO/AOCI) + MSA 돌연변이 실험으로 실재 가능성을 재확인 시도.
     3. **그래도 안 되면(=지금 Boltz 5/18 필터 결과가 시사하듯 낮은 히트율 예상)** — 전체 결과 정리 후 "**재랭커가 답이다**"로 결론 확정 → **데모**: 재랭커를 붙였을 때 특정 항원 세트의 예측이 어떻게 달라지는지 시연 + 기존 재랭커가 못 잡는 근본 문제(모델 아키텍처의 편향·leakage 등)를 명시적으로 개선하는 방안까지 시연.
   - Why 이 순서: 8/5 케이스 결과가 이미 히트율이 낮음을 시사하지만(0/5 완전이탈·1/5 부분이탈-정답미도달), 사례연구 표준 관행(KaiB/AF-cluster식)은 소수 사례+통제실험으로 존재증명하는 것이므로 시도할 가치는 있음 — 단 기대치를 낮게 잡고 시간을 크게 태우지 않을 것.
 
@@ -415,40 +415,40 @@ Consensus docking(메인, [[bk-summer-2026-project]])의 "왜 특정 모델만 �
     - **⭐ 근데 이게 우리 결론과 모순 아님 — 다른 질문(반드시 이 구분 유지):** Yin&Pierce = **복합체 간(between-complex) 관찰적 상관**("자연적으로 MSA 깊은 복합체가 얕은 복합체보다 대체로 잘 맞는다" — confound 가능, 그냥 쉬운 항원일 수도). 우리 프로젝트 = **복합체 내(within-complex) 인과적 개입**("같은 복합체 하나를 잡고 MSA 깊이를 인위조작하면 그 편향이 풀리나" — 안 풀림). 서로 다른 질문이라 둘 다 참 가능(유비: "키 큰 사람이 농구 잘한다"[관찰] vs "이미 큰 선수 키 깎아도 실력 안 변한다"[개입]).
     - **새 프레이밍(보고서·Proposal에 반영할 것): "선행연구는 복합체 간 자연적 깊이-정확도 상관을 보였으나, 특정 복합체 안에서 깊이 조작이 편향을 없애는지는 테스트한 적 없음 — 우리가 그 구체적 개입 질문을 처음 테스트했고 안 됨을 보임."** "문헌과 무상관 정합" 식 서술은 폐기.
   - **유일하게 남는 조각 = germline 정성적 교차확인표**(5개 확정편향 케이스, IGHV3-53/3-66=RBD RBM·IGHV1-69=HA stem 등 문헌 대조) — p-value 없는 랩노트 부록용으로만.
-  - **다음 우선순위(3/4 설계안이 독립적으로 지목) = 새 타깃 확장·새 통계 전에 `seed_replicate.py`부터 실행.** 지금 새 설계들이 암묵적으로 전제하는 "rescue 현상 자체가 진짜"가 이미 순열검정으로 잡음(p=0.30) 판명 났으므로, 그 전제부터 seed-복제로 재확인 안 하면 위에 뭘 쌓아도 모래성.
+  - **다음 우선순위(3/4 설계안이 독립적으로 지목) = 새 타깃 확장·새 통계 전에 `run_seed_replicate.py`부터 실행.** 지금 새 설계들이 암묵적으로 전제하는 "rescue 현상 자체가 진짜"가 이미 순열검정으로 잡음(p=0.30) 판명 났으므로, 그 전제부터 seed-복제로 재확인 안 하면 위에 뭘 쌓아도 모래성.
   - **⚠️ 미래 세션: "MSA 깊이 변화로 편향 확증" 시도를 다시 밀지 말 것 — 4각도에서 이미 막힘(식별불가능성, 표본으로 안 풀림). 다시 하려면 깊이-반응이 아닌 완전히 다른 축(예: wet-lab 비닝 데이터, Foldseek/TERM 계면 genericness)을 독립 진실축으로 결합해야 함(이미 앞 대화에서 논의됨).**
 
-- **⭐⭐ 2026-07-23(밤) 사용자 명시 지시 = Protenix 결과 나온 뒤 "가설 살리기(save the hypothesis)" 단계 — 반드시 이 지시대로 진행할 것.** 트리거: Protenix DockQ 다각도 채점(dockq_sweep.py, `--watch 300`으로 생성과 병행 채점 중, 528/588≈90% 완료) + 에피토프 분석(epitope_shift.py) 결과가 나오고 **사용자가 "가설 살리기 하자"고 말하면** 착수.
+- **⭐⭐ 2026-07-23(밤) 사용자 명시 지시 = Protenix 결과 나온 뒤 "가설 살리기(save the hypothesis)" 단계 — 반드시 이 지시대로 진행할 것.** 트리거: Protenix DockQ 다각도 채점(eval_dockq_sweep.py, `--watch 300`으로 생성과 병행 채점 중, 528/588≈90% 완료) + 에피토프 분석(eval_epitope_shift.py) 결과가 나오고 **사용자가 "가설 살리기 하자"고 말하면** 착수.
   - **핵심 지시(사용자 원문 취지): "재채점기(재랭커)로 실패 결론 내리지 말 것. 이렇게 끝내면 일주일이 날아가고 그래서는 안 됨. 최대한 우리 가설을 살릴 방향을 어떻게든 찾아내라."** → 블랭킷/모집단 수준이 아니라 **단일 복합체 하나에 가능한 모든 실험을 다 퍼부어서라도** "이 복합체의 이런 특성 때문에 MSA 축소(또는 특정 서열 제거+추가)로 정확도를 높일 수 있다" 또는 "정확히 어떤 경우에 못 찾는지"를 존재증명으로 뽑아내는 방향(KaiB/AF-cluster식 단일사례 심층).
-  - **동원할 도구(이미 커밋됨, bk21-msa-depth-bias/pipeline): `seed_replicate.py`(같은 조건 seed만 바꿔 반복=깊이반응 vs seed잡음 분리) · `build_nested_ladder.py`(rung_{k+1}⊂rung_k, 전이=빠진 특정서열) · `loco_aoci.py`(클러스터 leave-out/add-in=인과 클러스터 ID) + MSA 돌연변이/특정서열 제거·추가 실험.** 후보 복합체 = Boltz·Protenix 양쪽에서 가설과 비슷하게 움직이는 것(8wpy_AB=유일 지속전이·9y0a_AB=bistable 반전·8t49_PR=중간깊이최적 등, 단 Protenix 결과 보고 재선정).
+  - **동원할 도구(이미 커밋됨, bk21-msa-depth-bias/pipeline): `run_seed_replicate.py`(같은 조건 seed만 바꿔 반복=깊이반응 vs seed잡음 분리) · `prep_ladder_nested.py`(rung_{k+1}⊂rung_k, 전이=빠진 특정서열) · `analyze_loco_aoci.py`(클러스터 leave-out/add-in=인과 클러스터 ID) + MSA 돌연변이/특정서열 제거·추가 실험.** 후보 복합체 = Boltz·Protenix 양쪽에서 가설과 비슷하게 움직이는 것(8wpy_AB=유일 지속전이·9y0a_AB=bistable 반전·8t49_PR=중간깊이최적 등, 단 Protenix 결과 보고 재선정).
   - **⚠️ 균형 주의(과거 교훈과 충돌 관리): 이 "살리기"는 지금까지 확인된 것(블랭킷 null 확정·깊이확증 4각도 식별불가능성·진짜편향5개중4개 무변화)을 부정하는 게 아니라, "모집단은 안 되지만 특수 단일사례는 되는가"를 끝까지 확인하는 것. 억지로 유의성 만들지 말고(best-of-N·garden-of-forking-paths 재발 금지, seed-복제 게이트 필수), 진짜 안 되면 "정확히 이런 특성이면 안 된다"는 negative characterization 자체를 산출물로.** 사용자는 "진짜 실패한다면"의 출구도 열어둠 — 단 재랭커로 곧장 도망가는 건 금지.
   - **지금은 대기: Protenix 채점·에피토프 분석 완료 + 사용자 "가설 살리기" 신호를 기다린다. 신호 오면 이 항목대로 단일복합체 심층 워크플로로 착수.**
 
-- **⭐⭐ 2026-07-24 Protenix DockQ 채점 거의 완료 + 결정적 재프레이밍(반드시 이 상태로): "Boltz는 MSA-둔감 아키텍처라 애초에 이 실험의 적절한 테스트베드가 아니었다. Protenix가 진짜 테스트베드."** dockq_sweep.py로 boltz+protenix 동시 채점(results/dockq_sweep.csv, 타깃마다 flush, ~95% 완료). 파이프라인 실패 0건(생성 boltz 504·protenix 528 조합, best_dockq 빈행 0). Boltz single-seq rung은 MIN_MSA=2로 정상 skip(504<588 설명).
+- **⭐⭐ 2026-07-24 Protenix DockQ 채점 거의 완료 + 결정적 재프레이밍(반드시 이 상태로): "Boltz는 MSA-둔감 아키텍처라 애초에 이 실험의 적절한 테스트베드가 아니었다. Protenix가 진짜 테스트베드."** eval_dockq_sweep.py로 boltz+protenix 동시 채점(results/dockq_sweep.csv, 타깃마다 flush, ~95% 완료). 파이프라인 실패 0건(생성 boltz 504·protenix 528 조합, best_dockq 빈행 0). Boltz single-seq rung은 MIN_MSA=2로 정상 skip(504<588 설명).
   - **⭐ 핵심 관찰 = Boltz depth-invariant(평평) vs Protenix depth-sensitive(요동).** 예: **8ulr_HL(Env/A CD4bs) Boltz 전rung 0.75~0.80 평평 / Protenix rung0~1=0.01(실패)→rung2~4(neff700~160)=0.66/0.61/0.59 살아남→저깊이 붕괴 = 중간깊이 sweet-spot.** 8k5g_HL Boltz 0.81평평/Protenix rung2만 0.34. 9b7g_QP Protenix full 0.28→감소. 8t4d_OQ Boltz rung3(neff319)만 0.39. 채점 아티팩트 아님(동일 native·병합·DockQ CLI, pose 자체가 다름).
   - **⭐ 문헌 뒷받침(왜 Boltz가 둔감한가): Boltz-2는 Pairformer에서 MSA column-wise attention을 제거(효율화)** = MSA 서열간 공진화 처리 경로를 아예 뺌(AF3/Protenix는 유지) + "공진화 신호 의존 않고 내부 학습 구조 prior를 MSA 없이도 꺼내씀"(biorxiv 2026.01.23.701250). → Boltz는 설계상 MSA 깊이에 덜 반응. **함의: "Boltz에서 안 움직였다"는 우리 가설 반증이 아니라 "MSA 채널 약한 모델로는 이 실험 자체가 불가"였다는 뜻(잘못된 도구로 측정).**
   - **⭐⭐ 재프레이밍(가설 살리기의 유력 출발점, 방어가능+문헌뒷받침): "MSA-깊이 편향 실험은 MSA-의존 모델에서만 유효. Boltz는 아키텍처상 depth-invariant라 부적절한 테스트베드. Protenix가 진짜 테스트베드이고 거기서 depth-response(특히 중간깊이 sweet-spot)가 실제 관찰됨."** → 지금까지 "MSA로 편향 못푼다" 결론이 거의 Boltz기반이었다는 점 재고. **단 seed-복제로 sweet-spot이 진짜인지(best-of-N/seed잡음 아닌지) 먼저 게이트 — 특히 8ulr_HL·8t4d_OQ·9y0a_AB(bistable, Boltz rung1/6/10 반복회복)·8t49_PR 후보.** Chai(MSA-의존)도 삼각확인 가치↑.
   - **다음(사용자 "가설 살리기" 신호 시 착수): Protenix 다각도 분석(추이·family·Spearman·oracle-vs-ipTM·순열·pass@k) + 에피토프 분석 → depth-response 강한 복합체 골라 단일사례 심층(seed_replicate/nested/loco + MSA 특정서열 제거·추가)으로 "이 복합체 이 특성이면 MSA조작으로 정확도 오른다/못찾는다" 존재증명.**
 
-- **⭐⭐ 2026-07-24 (오후) Protenix full-data(44타깃) 완주 + 정직한 이원 결론(반드시 이 상태로 이어갈 것; 위 07-24 오전 항목을 이걸로 갱신).** dockq_sweep 채점 완료(boltz 47·protenix 44 타깃) + epitope_shift 양모델 완주 + 통합 분석기 2종 신규(`analyze_dockq_sweep.py` 8분석·`analyze_epitope_shift.py` 6분석, 순수 stdlib) + `epitope_shift.py` model컬럼 버그 fix. 결과가 **두 갈래**로 갈림:
+- **⭐⭐ 2026-07-24 (오후) Protenix full-data(44타깃) 완주 + 정직한 이원 결론(반드시 이 상태로 이어갈 것; 위 07-24 오전 항목을 이걸로 갱신).** dockq_sweep 채점 완료(boltz 47·protenix 44 타깃) + epitope_shift 양모델 완주 + 통합 분석기 2종 신규(`analyze_dockq_sweep.py` 8분석·`analyze_epitope_shift.py` 6분석, 순수 stdlib) + `eval_epitope_shift.py` model컬럼 버그 fix. 결과가 **두 갈래**로 갈림:
   - **(A) DockQ = 블랭킷 rescue 여전히 잡음(양모델).** 순열검정 full-data: boltz gain 관측0.110/null0.116 p=0.670 · protenix 0.064/0.070 p=0.773(rescue p 0.77/0.69). **⚠️ 07-24 오전에 낙관했던 "Protenix sweet-spot이 진짜 테스트베드" 중 DockQ 부분은 하향** — 7타깃 파일럿 protenix p=0.030은 소표본 착시, 44타깃서 소멸. Protenix 절대성능도 약함(full-depth acceptable **1/44** vs Boltz 13/44). 단 개별 rescue 강후보 존재(8y6a_CD b 0.04→0.80·8ulr_HL p 0.01→0.66·9y0a_AB 0.06→0.72·9azr_HL).
   - **(B) 에피토프 위치(over-rep) = 가설이 처음으로 방향 맞는 신호(핵심, 지킬 것).** Protenix RBD/A over-rep Δ=−0.457 **Spearman +0.75(7/7 만장일치)** = 깊이↓→인기자리 이탈; **거울상 A/B**: RBD/A recall −0.201(정답=인기라 이탈시 나빠짐) vs RBD/B recall +0.024(정답≠인기라 이탈시 좋아짐). 진짜편향(excess≥0.3) 7타깃 중 **5개 이탈(4개 |Δ|>0.3: 8k3k_D −0.598·8k46_I −0.579·8tx3_FK −0.486·8wpy_AB −0.337)**, Boltz는 5중 1(4개 flat). **Boltz 무반응=아키텍처(MSA column-attn 제거) 탓=07-24 오전 "잘못된 테스트베드" 재확인, 단 방향은 DockQ 아니라 에피토프-위치에서 잡힘.**
   - **모델간 교차확인: 편향 10타깃 중 8개가 한쪽 모델만 = 모델-특이적(재랭커/consensus 여지), 2개(8tx3_FK HA-stem·8txu_HL)만 양쪽 = 근본난제.**
   - **정직 경계: (B)의 위치이탈이 (A)의 DockQ정답으로 안정전환 안 됨(recall Δ 작음, 개별 corr 엇갈림 protenix RBD/B +0.39=반대), family당 n=7.** = 관대하게 "첫 신호"지만 과장 금지·아직 "가설 살리기" 착수 아님.
   - **Notion 기록 완료:** Results **§7-4**(그래프3: RBD거울상·rescue6후보·인기자리이탈 + 표5 + 원자료 CSV 9개) + Results 맨 위 **현재 상태 보드**(H1 뒤 삽입, 정착/살아있는신호/다음한수) + **Progress 2026-07-24** 신규(단순 로그). 그래프 재생성 = `scratchpad/analysis/fig_protenix_final.py`(폴더 CSV 직접 읽음), 데이터 = `~/Downloads/'Notion '`(끝 공백 주의). 서버 figure 2종은 한글깨짐이라 미사용.
-  - **⭐ 다음 한 수(우선): RBD 편향 강후보 8k3k_D·8k46_I·8wpy_AB를 `seed_replicate.py`(같은 깊이×다른 seed)로 → 인기자리 이탈이 seed잡음 넘어 재현되면 case-study, 아니면 best-of-N. 그다음 Chai smoke-test(3번째 아키텍처; PLM 보정이라 얕은 MSA로도 Ab-Ag 성공 2배[bioRxiv 2025.09.17.676770]=깊이신호 관측 가능). ⚠️ 재랭커로 도망 금지(관대 해석 지시 유지).**
+  - **⭐ 다음 한 수(우선): RBD 편향 강후보 8k3k_D·8k46_I·8wpy_AB를 `run_seed_replicate.py`(같은 깊이×다른 seed)로 → 인기자리 이탈이 seed잡음 넘어 재현되면 case-study, 아니면 best-of-N. 그다음 Chai smoke-test(3번째 아키텍처; PLM 보정이라 얕은 MSA로도 Ab-Ag 성공 2배[bioRxiv 2025.09.17.676770]=깊이신호 관측 가능). ⚠️ 재랭커로 도망 금지(관대 해석 지시 유지).**
 
 - **⭐⭐ 2026-07-24(밤) 다음 단계 계획 확정 — 재랭커를 "학습 모델"이 아니라 "ipTM 대체 선택기"로 재정의(반드시 이 상태로 이어갈 것).** 사용자가 서사 초안(진단→블랭킷 기각→MSA섭동은 치료제 아닌 샘플러→계면 특화 plug-in 모듈; DeepSCFold식 구조이되 **채점기가 슬리버**)을 가져와 계획 수립. 사용자 명시 지시 = **이전 계획(PLM+접촉그래프+min-edge PAE 재랭커 학습)에 매몰되지 말 것.** 탈출한 함정 2개:
   - **함정① 서열전용 PLM은 pose를 못 가름**: 같은 복합체의 pose들은 **서열이 전부 동일** → ESM-2 임베딩이 pose마다 같은 값 → within-complex 순위에 기여 0. pose를 가르는 건 **기하**(PAE·접촉수·매몰면적·dcc·rank). SaProt/ProstT5(3Di 구조토큰)는 pose마다 바뀌므로 예외로 유지.
   - **함정② n=47 과적합**: 유효표본 = 복합체 47개(그룹)라 처음부터 학습한 GNN/LTR은 무리(LTR은 통상 수백~수천 쿼리). → **재랭커 = "ipTM을 대체하는 선택기"로 재정의**하고 **Phase 1~2를 무학습으로** 설계해 결과가 먼저 나오게. 학습 모델은 맨 위층(선택).
   - **⚠️ 데이터 정정(중요)**: "학습 라벨 이미 있다"는 **틀림**. `dockq_sweep.csv`·`epitope_shift.csv`는 (target,model,rung) 단위 **best-of-5 / 평균 집계**라 **pose 단위 라벨이 없음** → pose 재채점이 선행 필수. 또 "min-edge PAE가 ipTM 압도(Oracle 1.00 vs 0.20)"는 **사수 초안(Epitope_binning, AF3 69 PDB×75모델)** 결과지 이 depth-sweep 결과가 아님 → sweep 출력에 **confidence(ipTM/PAE) 보존됐는지 게이트 확인** 필요.
-  - **5단계 계획**: **Phase0** pose 단위 라벨·피처(`pose_features.py` 커밋 `800d78b4`, CPU~3h, 이어달리기; 출력 마지막 줄에 confidence 회수율=게이트) → **Phase1** 무학습 "ipTM vs 기하 피처" 복합체-내부 순위 비교(1~2일, **make-or-break**; best-of-N null 대비) → **Phase2** 사전학습 계면 채점기(DeepRank-GNN-esm·VoroIF-GNN) 적용(2~3일, 이기면 **그게 곧 모듈**) → **Phase3** 깊이-안정성 피처 + matched-N(3~5일) → **Phase4** seed-복제 게이트(8y6a·9y0a) → **Phase5**(선택) 작은 학습 랭커.
+  - **5단계 계획**: **Phase0** pose 단위 라벨·피처(`lib_pose_features.py` 커밋 `800d78b4`, CPU~3h, 이어달리기; 출력 마지막 줄에 confidence 회수율=게이트) → **Phase1** 무학습 "ipTM vs 기하 피처" 복합체-내부 순위 비교(1~2일, **make-or-break**; best-of-N null 대비) → **Phase2** 사전학습 계면 채점기(DeepRank-GNN-esm·VoroIF-GNN) 적용(2~3일, 이기면 **그게 곧 모듈**) → **Phase3** 깊이-안정성 피처 + matched-N(3~5일) → **Phase4** seed-복제 게이트(8y6a·9y0a) → **Phase5**(선택) 작은 학습 랭커.
   - **사용자 결정 2건**: 라벨 = **DockQ + 에피토프 recall 둘 다** / matched-N 범위 = **반응 서브셋 ~10개**(전체 47 아님).
   - **⭐ 전략 통합(가장 중요)**: 이 재랭커 = **consensus docking Phase 1과 같은 모듈**. 두 개 만들지 말고 하나로, 평가 벤치 2개 — **diverse 10**(co-folder 5종+물리 ZDOCK·HADDOCK = 모델·엔진 다양성 축) / **msa-depth 47**(같은 모델×깊이 섭동 = 입력 섭동 축). 같은 채점기가 양쪽서 ipTM·물리점수를 다 이기면 훨씬 강한 주장이고 두 프로젝트가 한 서사로 묶임("생성은 다양화, 선택은 계면 재랭커").
   - **깊이-안정성 피처 = 이 실험만의 자산**: 깊이 섭동 풀이 있으니 pose마다 "이 에피토프가 섭동 전반에서 얼마나 안정적으로 나왔나"를 공짜로 계산 가능 — 범용 MQA는 못 쓰는 신호. **matched-N에서 MSA≈seed로 나와도 이 피처 때문에 MSA 축의 가치는 남음**(oracle이 아니라 선택기 피처로 재프레임). ⚠️ 단 인기자리가 오히려 섭동에 안정적이므로(Boltz 4/5 flat) "합의=정답"이 아니라 **합의도와 이탈 둘 다** 피처로 줄 것.
   - **상태 = 기록만. 당분간 Consensus Docking(물리 arm·guided)에 집중**(사용자 지시 2026-07-24). 재개 시 Phase 0부터.
 
-- **⭐ 2026-07-26 "가설 살리기(존재증명)에 깊이 감소가 최선 개입인가" 적대검증(11에이전트 5렌즈+5반박+종합) = 아니오/conditional(반드시 이 상태로).** 5렌즈·5반박 만장일치 두 결론: ①깊이 감소는 **시연자 아님, 값싼 스캔 역할로만 정당**(단 유일한 살아있는 신호 +0.75를 낸 도구라 복권=꼴찌 아님) ②`seed_replicate`가 **협상불가 게이트**(2026-07-23 linchpin, nested/LOCO보다 논리적 위). **도구 서열 = seed_replicate(0게이트) → 깊이감소(0.5 스캔, 사전등록 고정rung·적응형금지) → nested(1 조성검증, ⚠️커밋된 build_nested_ladder는 geomspace라 깊이도 같이 줆=순수격리 아님) → 크기매칭 LOCO/AOCI(2 국소화, 신호 게이트통과 후만·⚠️collinearity로 깨끗한 인과귀속은 거짓약속) → template injection(3, ⚠️시연자 아니라 weight-prior 반증자 — 양성이면 'MSA가 편향 나른다' 청구가 죽음).** **⭐결정적 전환 3: (a)채점=DockQ 아니라 epitope-recall(블랭킷 DockQ=잡음 p0.67/0.77, 정직한 종점=예측 에피토프가 진짜 쪽 이동) (b)앵커=에피토프-이탈 실재 사례 8wpy_AB·8k3k_D·8k46_I, 9y0a_AB는 DockQ 교차확인만 (c)Chai 삼각확인=옵션 아니라 필수(Boltz 제외=둔감·잘못된 시험대, Protenix 단독이면 'Protenix 특이 인공물' 반박에 즉사).** 정직한 천장 낮음: novelty=0(전부 선점), 존재증명 장르(KaiB/AF-cluster)=Porter가 noise+암기로 debunk, 조성>깊이는 단일 8wpy 절벽 의존(n=1 인공물후보), n1~3×seed5로 best-of-N 밴드 특성화 못함. unpaired셔플=Ab-Ag서 near-noop 제외·IPW/APC=개입 아니라 선택→Track B(재랭커). **Stage 0 드라이버 `run_track_a_seedrep.sh` 커밋(6b22f665, bk21-msa-depth-bias/pipeline; 앵커 항원 a3m을 neff.tsv 기반 얕은~중간 3깊이×5seed 재추첨, CPU). 다음=make_input→Protenix/Chai 예측(GPU, tFold 후)→epitope-recall.** 워크플로 원본 `tasks/wn8tlq0xs.output`. 재랭커=별개 Track B(Phase0 pose_features.py `--models boltz protenix --data /mnt/data/admuser/msadepth`, CPU~3h, 마지막줄 confidence 게이트).
+- **⭐ 2026-07-26 "가설 살리기(존재증명)에 깊이 감소가 최선 개입인가" 적대검증(11에이전트 5렌즈+5반박+종합) = 아니오/conditional(반드시 이 상태로).** 5렌즈·5반박 만장일치 두 결론: ①깊이 감소는 **시연자 아님, 값싼 스캔 역할로만 정당**(단 유일한 살아있는 신호 +0.75를 낸 도구라 복권=꼴찌 아님) ②`seed_replicate`가 **협상불가 게이트**(2026-07-23 linchpin, nested/LOCO보다 논리적 위). **도구 서열 = seed_replicate(0게이트) → 깊이감소(0.5 스캔, 사전등록 고정rung·적응형금지) → nested(1 조성검증, ⚠️커밋된 build_nested_ladder는 geomspace라 깊이도 같이 줆=순수격리 아님) → 크기매칭 LOCO/AOCI(2 국소화, 신호 게이트통과 후만·⚠️collinearity로 깨끗한 인과귀속은 거짓약속) → template injection(3, ⚠️시연자 아니라 weight-prior 반증자 — 양성이면 'MSA가 편향 나른다' 청구가 죽음).** **⭐결정적 전환 3: (a)채점=DockQ 아니라 epitope-recall(블랭킷 DockQ=잡음 p0.67/0.77, 정직한 종점=예측 에피토프가 진짜 쪽 이동) (b)앵커=에피토프-이탈 실재 사례 8wpy_AB·8k3k_D·8k46_I, 9y0a_AB는 DockQ 교차확인만 (c)Chai 삼각확인=옵션 아니라 필수(Boltz 제외=둔감·잘못된 시험대, Protenix 단독이면 'Protenix 특이 인공물' 반박에 즉사).** 정직한 천장 낮음: novelty=0(전부 선점), 존재증명 장르(KaiB/AF-cluster)=Porter가 noise+암기로 debunk, 조성>깊이는 단일 8wpy 절벽 의존(n=1 인공물후보), n1~3×seed5로 best-of-N 밴드 특성화 못함. unpaired셔플=Ab-Ag서 near-noop 제외·IPW/APC=개입 아니라 선택→Track B(재랭커). **Stage 0 드라이버 `run_track_a_seedrep.sh` 커밋(6b22f665, bk21-msa-depth-bias/pipeline; 앵커 항원 a3m을 neff.tsv 기반 얕은~중간 3깊이×5seed 재추첨, CPU). 다음=make_input→Protenix/Chai 예측(GPU, tFold 후)→epitope-recall.** 워크플로 원본 `tasks/wn8tlq0xs.output`. 재랭커=별개 Track B(Phase0 lib_pose_features.py `--models boltz protenix --data /mnt/data/admuser/msadepth`, CPU~3h, 마지막줄 confidence 게이트).
 
 - **⚠️ [이 항목은 2026-07-27(밤) 항목이 정정함 — p=3.9e-8과 "best-of-N 배제" 논리는 철회됨. 아래 밤 항목을 먼저 읽을 것]** 2026-07-27 seed-복제 + 예산맞춤 통제.
   - **확정 사례 = 8ulr_HL / Protenix (HIV Env + Fab).** peak rung2 깊이(원서열 1746개, neff 702)에서 조성만 8번 재추첨(개수 고정) → **조성 4/8 성공, 자세 20/40 (DockQ≥0.49), 최고 0.64**. 대조로 **full MSA에 자세 예산을 8배(5→40)** 준 통제 = **0/40, 최고 0.05**. **Fisher 단측 p = 3.9×10⁻⁸.**
@@ -459,34 +459,34 @@ Consensus docking(메인, [[bk-summer-2026-project]])의 "왜 특정 모델만 �
   - ⚠️ **8txu·9y0a·8y6a(boltz) 결과는 전부 무효** — 아래 a3m 사건으로 MSA가 아예 안 들어감. **재현 실패가 아니라 미시험.** 2026-07-27 밤 재실행이 첫 시험.
 
 - **⚠️⚠️ 2026-07-27(오후) a3m 질의행 오염 사건 — 범위 확정과 주장 철회(반드시 이 상태로 이어갈 것).**
-  - **원인:** `neff_ladder.py`의 `read_raw`가 ColabFold a3m 첫 줄 메타주석(`#<len>\t<card>`, 6자)을 **질의 서열 앞에 붙여** 저장. 첫 `>`를 만날 때 `h`가 None이라 `cur=[]`가 실행되지 않아 주석이 첫 서열에 합쳐짐. `seed_replicate.py`도 같은 함수를 import → 사다리·seed a3m **780개 전부** 오염. 49타깃 61사슬 전수 확인(`check_msa_match.py`), **진짜 서열 불일치는 0건**(전부 머리말만).
+  - **원인:** `prep_ladder_neff.py`의 `read_raw`가 ColabFold a3m 첫 줄 메타주석(`#<len>\t<card>`, 6자)을 **질의 서열 앞에 붙여** 저장. 첫 `>`를 만날 때 `h`가 None이라 `cur=[]`가 실행되지 않아 주석이 첫 서열에 합쳐짐. `run_seed_replicate.py`도 같은 함수를 import → 사다리·seed a3m **780개 전부** 오염. 49타깃 61사슬 전수 확인(`prep_a3m_check_match.py`), **진짜 서열 불일치는 0건**(전부 머리말만).
   - **⭐ 범위(가장 중요 — 과대평가하지 말 것):** `make_input.py`가 **2026-07-22부터 protenix·chai 분기에 `clean_a3m` 적용**(정규식 `^#\d+\s+\d+\s*`이 붙어버린 경우까지 제거). → **Protenix·Chai는 처음부터 정상 MSA를 받았고 결과 전부 유효**: **8ulr 확정 결론(p=3.9e-8) 그대로 성립**, 9azr 음성 유효, **Protenix 44타깃 sweep·2026-07-24 에피토프 이동(RBD Spearman+0.75) 전부 유효**. **boltz 분기만** 원본 경로를 그대로 넘김(코드 주석 "Boltz는 a3m 쿼리줄 무시"가 **틀린 가정**) → boltz는 불일치를 감지해 **MSA를 통째로 버리고 단일서열로 예측**하며 **경고만 남기고 종료코드는 정상** → 아무도 눈치 못 챔. **boltz sweep 496건 + boltz 후보 3개 무효.**
   - **철회하는 주장 3개:** ①"8txu 재현실패 = winner's curse" → **미시험** ②"조성 안 흔들림 Protenix 0.012 vs Boltz 0.089~0.119"라는 **모델 간 비교** → boltz 수치는 MSA 없는 상태라 비교 불성립(단 Protenix가 MSA 주면 거의 결정적이라는 것 자체는 유효) ③**"Boltz는 깊이에 무반응 = MSA column-attention 없는 아키텍처라 잘못된 시험대"**(2026-07-15·07-24 기록) → **근거 없음. boltz는 깊이 실험을 한 번도 받은 적이 없다.** 2026-07-27 밤 boltz sweep이 첫 검증.
-  - **수정 커밋(bk21-msa-depth-bias/pipeline):** `neff_ladder.py`(read_raw 근본수정: 주석 줄 처리 + 버퍼 항상 초기화, 손상 파일도 서열 보존) · `make_input.py`(boltz 분기도 `clean_a3m`, 절대경로) · `fix_a3m_query.py`(기존 파일 복구, **기본 dry-run**·멱등) · `check_msa_match.py`(**정상/머리말오염/서열자체다름 3분류**).
-  - **⭐ 교훈(앞으로 규율로):** 모델이 **경고만 내고 조용히 성능을 떨어뜨리는 경우가 있다**(종료코드 정상, 결과도 그럴듯). → **실행 전 `check_msa_match.py`를 게이트로**, **실행 후 `grep -rl "does not match input sequence"`로 로그 확인**. "오류 없이 돌았다"는 정상 작동의 증거가 아니다.
+  - **수정 커밋(bk21-msa-depth-bias/pipeline):** `prep_ladder_neff.py`(read_raw 근본수정: 주석 줄 처리 + 버퍼 항상 초기화, 손상 파일도 서열 보존) · `make_input.py`(boltz 분기도 `clean_a3m`, 절대경로) · `prep_a3m_fix_query.py`(기존 파일 복구, **기본 dry-run**·멱등) · `prep_a3m_check_match.py`(**정상/머리말오염/서열자체다름 3분류**).
+  - **⭐ 교훈(앞으로 규율로):** 모델이 **경고만 내고 조용히 성능을 떨어뜨리는 경우가 있다**(종료코드 정상, 결과도 그럴듯). → **실행 전 `prep_a3m_check_match.py`를 게이트로**, **실행 후 `grep -rl "does not match input sequence"`로 로그 확인**. "오류 없이 돌았다"는 정상 작동의 증거가 아니다.
   - **⚠️ 단어 규율(엄수):** ❌"깊이를 줄이면 rescue"(블랭킷 기각 유지 + 8ulr은 깊이를 **상수로 고정**하고 조성만 바꾼 실험이라 "적을수록 좋다"는 미검증) ❌"에피토프/과대표집 편향"(2026-07-23 인공물 판정) → ✅ **"MSA 조성이 결합자리 선택을 좌우한다"**, 깊이 감소는 조성을 바꿀 수 있게 하는 **전제조건**일 뿐. "인기자리 이탈"은 2026-07-24 RBD over-rep Spearman +0.75(7/7, **탐색적**)를 **별도 문장·별도 근거**로만 — p=3.9e-8을 여기 붙이면 7/23 지적이 그대로 돌아옴.
   - **처방 = 생성 + 선택 한 쌍.** 조성 8개 중 4개만 성공 → 조성 재추첨은 **정답이 든 후보군을 열 뿐** 답을 주지 않음. 재랭커·consensus(Track B)가 반드시 붙어야 함 = 두 갈래가 여기서 만남.
   - **선점 확인(2026-07-27 문헌조사, 반드시 명시):** 기법 novelty = **0**. MSA 부분추출은 표준이고 아키텍처 수술 불필요 — **AF2가 이미 내부에서 MSA 클러스터를 무작위 추출**(seed마다 조성이 바뀜), 손잡이 = ColabFold `--max-msa`·AF2 `max_msa_clusters`. 선행: **Subsampled AF2**(Nat Commun 2024, 구조분포) · **AF-Cluster**(Nature 2024, 접힘전환) · **SPEACH_AF**(PLoS CB 2022, MSA 열 변이) · **AFsample2**(Commun Biol 2025) · **SF-Cluster**(arXiv 2026, MSA 부분추출을 "표현기반 재가중 문제"로 정식화). **전부 한 사슬의 형태(conformation)용.** ⚠️ **Porter PNAS 2024 "AF2가 너무 많이 외운다"** = MSA 부분추출은 **일부 단백질에서만 작동하고 이유 미규명** → **우리 5개 중 1개 확정이 이 관찰과 정합**(실패 사례는 변명이 아니라 선행문헌 부합). **AF3 항체논문(mAbs 2025)**은 "MSA 모듈이 여전히 관건, MSA 입력 질 개선이 매우 가치 있다"고 명시 = 우리가 겨눈 빈틈. **우리 슬리버 = (a)형태가 아니라 에피토프/계면 선택에 적용 (b)예산 맞춘 통제(full이 자기 부분집합에 짐) — 선행은 대개 "부분추출하면 다양해진다"까지.**
   - **📝 확정 결론 문단(보고서·발표용 앵커):** "항체-항원 복합체 예측에서 co-folder가 어느 결합자리를 고를지는 MSA에 어느 서열이 들어 있느냐에 좌우된다. Protenix·8ulr 사례에서 full MSA는 성공한 부분집합들을 모두 포함하고도 틀린 자리를 고르며, 자세 예산을 8배로 늘려도 복구되지 않는 반면(0/40), 같은 서열 수로 조성만 다시 뽑으면 조성 8개 중 4개가 정답에 가까운 자세를 만든다(자세 20/40, DockQ≥0.49, p=3.9×10⁻⁸). 이때 성공한 자세의 결합자리 회복률은 0.71, 실패한 자세는 0.27로, 성패가 결합자리 선택에서 갈린다. 별도로, 여러 복합체를 대상으로 한 위치 분석에서는 MSA를 사용하는 Protenix가 깊이를 줄일수록 자주 관측되는 결합자리에서 벗어나는 경향이 관찰되었다(RBD 계열 7개 일치, 탐색적). 종합하면 MSA 조성 재추첨은 항체-항원 결합자리 예측의 실패를 교정할 수 있는 통로를 열어주지만, 정답을 보장하는 것이 아니라 후보군이 열릴 뿐이므로 선택 단계가 함께 필요하다."
   - **다음 실험 = 빈도 측정(사전등록형, winner's curse 회피).** 규칙을 **먼저** 확정: `Protenix full-MSA best-of-5 < 0.23(실패) AND 정답 도달가능(다른 모델이나 oracle ≥0.49)` → 해당 타깃 **6~8개** × **한 중간 깊이** × **조성 8회**(처음부터 복제, 최고칸 선별 금지) → 편향 없는 **M/N**("N개 중 M개에서 조성 재추첨이 rescue"). 지금 제일 없는 숫자가 이것. 층위 3(깊이별 성공확률 곡선)·층위 4(어느 서열이 해로운가=여기부터 "방법")은 그 다음.
-  - **커밋(bk21-msa-depth-bias/pipeline):** `run_seedrep_cand.sh`(⚠️**다중사슬 버그 fix `456e78e0`** — 사슬별 서열수가 다르면(8txu A=413/B=579) 첫 사슬 깊이 폴더명으로 전부 skip되던 문제; 이제 사슬별 깊이 기억+seed축 순회) · `dump_seedrep_full.py`(자세 단위 전체 덤프 = full/사다리/seed복제 3층 나란히; `--only` 쓰면 원자료 별도 파일로 분리) · `run_fullmsa_control.sh`(full MSA × N자세 예산맞춤 통제) · `score_fullmsa_control.py`(자세단위 맞대결 + Fisher 단측검정, stdlib 구현·scipy 대조 검증) · `export_fig_data.py`(그림용 데이터 추출).
+  - **커밋(bk21-msa-depth-bias/pipeline):** `run_seedrep_cand.sh`(⚠️**다중사슬 버그 fix `456e78e0`** — 사슬별 서열수가 다르면(8txu A=413/B=579) 첫 사슬 깊이 폴더명으로 전부 skip되던 문제; 이제 사슬별 깊이 기억+seed축 순회) · `eval_dump_seedrep.py`(자세 단위 전체 덤프 = full/사다리/seed복제 3층 나란히; `--only` 쓰면 원자료 별도 파일로 분리) · `run_fullmsa_control.sh`(full MSA × N자세 예산맞춤 통제) · `eval_fullmsa_control.py`(자세단위 맞대결 + Fisher 단측검정, stdlib 구현·scipy 대조 검증) · `plot_export_data.py`(그림용 데이터 추출).
 
 - **⭐⭐⭐⭐ 2026-07-27(밤) 올바른 단위로 재측정 → 가설 확인. 이 항목이 최신이고 앞의 두 항목을 정정한다.**
   - **⚠️ 철회 1 — p=3.9×10⁻⁸.** 자세 40개를 독립 표본으로 셌으나, **한 실행 안 자세 5개는 서로 상관**되어 유효표본은 **실행 수**다. 내가 "조성 안 sd 0.012"를 *결정성의 증거*로 읽은 게 반대였다(=자세들이 독립이 아니라는 뜻). 
   - **⚠️ 철회 2 — 재현성.** 바이트 동일 입력(input.json·ag_A_clean.a3m·항체 a3m 4종 md5 일치)으로 재실행 시 8ulr seed0 **0.588 → 0.011**. 확산 모델이라 실행마다 답이 갈릴 수 있다. 대응은 포기가 아니라 **여러 번 돌려 성공률을 재는 것**.
-  - **⭐ 올바른 설계 = 조성 × 반복** (`comp_x_reps.sh`): 조성 8개 × 4회 + full MSA 10회 = 42회. **성공 = DockQ ≥ 0.49, 단위 = 실행 1회(자세 5개 중 최고).**
+  - **⭐ 올바른 설계 = 조성 × 반복** (`make_composition_reps.sh`): 조성 8개 × 4회 + full MSA 10회 = 42회. **성공 = DockQ ≥ 0.49, 단위 = 실행 1회(자세 5개 중 최고).**
   - **⭐⭐ 결과(8ulr_HL / Protenix, 깊이 rung2=1746서열):** 조성별 성공률 **seed3 4/4 · seed4 4/4 · seed7 3/4 · seed1·5·6 각 1/4 · seed0·seed2 각 0/4 · full MSA 1/10.**
     **→ 조성 간 이질성 정확검정 p = 0.0025 (사후선택 아님, 옴니버스).** 이게 **핵심 결과**이자 원래 가설의 확인이다.
     - 얕은 전체 14/32(43.8%) vs full 1/10(10%): **p = 0.054(경계)** — "깊이를 줄이면 좋아진다"는 **약함**. 게다가 줄인 조성 중에도 0/4가 둘(seed0·seed2)이라 **full보다 나쁜 조성도 있다.**
     - ⚠️ seed3+4만 뽑으면 8/8 vs 1/10 → p=0.0002지만 **사후선택이라 주장 금지.**
-  - **⭐ 기제(`epitope_cluster.py`, 외부 PDB 인기도 안 씀):** 성공 실행끼리 예측 접촉면 겹침 **0.711**(우연 0.045의 16배), 실패끼리 **0.386**(우연 0.111의 3.5배 = **공통 선호 영역 존재**), 성공 vs 실패 **0.231**(서로 다른 자리). 합의 접촉면 = 성공 **34잔기·진짜 30개 중 27개(90%) 포함·정밀도 0.79** / 실패 **72잔기·정밀도 0.28**. 접촉면 평균 크기 **성공 38 vs 실패 88잔기**(항원 440잔기의 20% = 물리적으로 말 안 되는 넓이) → **접촉면 크기 자체가 정답 없이 쓸 수 있는 재랭커 피처**(Arm A와 연결).
+  - **⭐ 기제(`analyze_epitope_cluster.py`, 외부 PDB 인기도 안 씀):** 성공 실행끼리 예측 접촉면 겹침 **0.711**(우연 0.045의 16배), 실패끼리 **0.386**(우연 0.111의 3.5배 = **공통 선호 영역 존재**), 성공 vs 실패 **0.231**(서로 다른 자리). 합의 접촉면 = 성공 **34잔기·진짜 30개 중 27개(90%) 포함·정밀도 0.79** / 실패 **72잔기·정밀도 0.28**. 접촉면 평균 크기 **성공 38 vs 실패 88잔기**(항원 440잔기의 20% = 물리적으로 말 안 되는 넓이) → **접촉면 크기 자체가 정답 없이 쓸 수 있는 재랭커 피처**(Arm A와 연결).
   - **⚠️ 용어 정정(중요):** `epitope_shift.frac` = `|pred ∩ region| / |pred|` = **정밀도(precision)**이지 recall이 아니다. 지금까지 "결합자리 회복률"로 부른 값은 전부 **"예측 접촉 중 진짜인 비율"**이다. 보고서에 "회복률"로 쓰면 틀림.
-  - **⭐ 후보 재선별(`screen_candidates.py`) — 기준 변경:** full 실패 + 얕은 깊이 **연속 2칸 이상** 성공(한 칸만 튄 건 실행 운). **Protenix 44타깃 중 ★강후보 = 8ulr 하나(1/44)**, 9azr는 1칸뿐이고 실제로 재현 실패(0/40) → 기준이 작동함을 입증.
+  - **⭐ 후보 재선별(`analyze_screen_candidates.py`) — 기준 변경:** full 실패 + 얕은 깊이 **연속 2칸 이상** 성공(한 칸만 튄 건 실행 운). **Protenix 44타깃 중 ★강후보 = 8ulr 하나(1/44)**, 9azr는 1칸뿐이고 실제로 재현 실패(0/40) → 기준이 작동함을 입증.
   - **⭐ boltz는 반대 — 가설 기각(제대로 된 첫 측정):** full MSA가 더 좋거나 같음. **8y6a 15/40 vs 얕은 1/40 · 9y0a 12/40 vs 10/40 · 8txu 0/40 vs 1/40.** 즉 MSA는 도움이 되고 줄이면 손해. (8y6a의 "얕은 깊이"는 서열 3개라 사실상 MSA 제거.)
   - **✅ 쓸 수 있는 문장:** *"8ulr에서 Protenix의 성공 여부는 MSA에 어느 서열이 들어 있느냐에 좌우된다. 서열 수를 1746개로 고정한 채 조성만 8가지로 바꿔 각 4회 예측했더니 성공률이 0/4~4/4로 갈렸다(이질성 p=0.0025). 실패 시 항체가 넓게 퍼져 붙고(88잔기, 정밀도 0.28) 그 잘못된 영역은 실행 간 공유되며(겹침 0.386=우연의 3.5배), 성공 시 좁고 정확한 접촉면(38잔기, 정밀도 0.79, 진짜의 90%)으로 수렴한다. Protenix 44개 중 이런 사례는 1개였다."*
   - **❌ 쓰면 안 되는 것:** ①"깊이를 줄이면 정확도가 오른다"(p=0.054·역전 조성 존재) ②"일반적으로"(1/44) ③**"PDB에서 인기 있는 자리에서 벗어난다"** — 8ulr의 진짜 에피토프 CD4bs가 **곧 인기 자리**라 데이터가 반대다(성공할수록 인기자리와 더 겹침: over-rep 0.352→0.703, `chains.json` `"AB":"A"`=on-site). 2026-07-23 과대표집 인공물 판정과도 겹침.
-  - **표준 분석 절차(모든 타깃 동일):** `bash analyze_target.sh <타깃>` = dump_seedrep_full → score_compreps(성공률+이질성) → epitope_cluster(기제). ⚠️ **이질성 검정은 조성당 반복 2회 이상일 때만** 나온다(예비검정은 1회라 불가 → 유망하면 반복 늘려 재실행).
-  - **진행 중(2026-07-27 밤):** 예비검정 4개 = 9azr_HL(RUNG4) · 8k5g_HL(RUNG2) · 8q7s_C(RUNG3) · 8ume_HL(RUNG1), 각 얕은 5조성×1회 + full 5회. 그다음 boltz 47타깃 sweep(`run_sweep.sh boltz`, 11h 규모, `$DATA/boltz` mv 선행 필수) → 내일 `screen_candidates.py --model boltz`로 boltz 빈도.
+  - **표준 분석 절차(모든 타깃 동일):** `bash run_analyze_target.sh <타깃>` = dump_seedrep_full → score_compreps(성공률+이질성) → epitope_cluster(기제). ⚠️ **이질성 검정은 조성당 반복 2회 이상일 때만** 나온다(예비검정은 1회라 불가 → 유망하면 반복 늘려 재실행).
+  - **진행 중(2026-07-27 밤):** 예비검정 4개 = 9azr_HL(RUNG4) · 8k5g_HL(RUNG2) · 8q7s_C(RUNG3) · 8ume_HL(RUNG1), 각 얕은 5조성×1회 + full 5회. 그다음 boltz 47타깃 sweep(`run_sweep.sh boltz`, 11h 규모, `$DATA/boltz` mv 선행 필수) → 내일 `analyze_screen_candidates.py --model boltz`로 boltz 빈도.
 
 - **⭐⭐ 2026-07-27(밤, 후속) 실험계획 [⚠️ 아래 '밤, 최종' 항목이 이것을 갱신함 — 본 검정 27→20, 거울상 기각]**
   - **상위 서사(사용자 확정):** *"MSA 조성(깊이 포함)을 바꾸면 통계적으로 유의하게 예측 결합자리가 이동한다. DockQ 상승까지 바로 이어지는 경우는 드물지만, 기존 연구가 MSA 부분추출을 **한 사슬의 접힘/형태**에만 쓴 것과 달리, **에피토프 비닝을 위한 유의미한 후보 생성**이 가능함을 확인했다."* → **주 지표 = 결합자리(위치), DockQ는 보고만.**
@@ -502,36 +502,36 @@ Consensus docking(메인, [[bk-summer-2026-project]])의 "왜 특정 모델만 �
     | ② 본 검정(조성8×반복4 + full 10 = 42회/타깃) | RBD 10 + 44에서 16 + 8ulr | **27** | 실측 후 조정 |
     - 본 검정 27 내역: **B군 17**(RBD 9 + 44의 8) · **A군 10**(8p5m + 44의 8 + 8ulr).
   - **⭐ 판정 기준(사전 확정 — 결과 보고 고르지 않기 위해 미리 적음):**
-    - **성공 = 결합자리 회복률 ≥ 0.4**(DockQ 아님). `analyze_target.sh`가 이미 세 지표(DockQ·회복률 th0.4·인기자리겹침 `--lower-better` th0.3)를 찍음.
+    - **성공 = 결합자리 회복률 ≥ 0.4**(DockQ 아님). `run_analyze_target.sh`가 이미 세 지표(DockQ·회복률 th0.4·인기자리겹침 `--lower-better` th0.3)를 찍음.
     - **검정① 조성 효과:** 타깃별 이질성 정확검정 → **27개 중 유의한 타깃 수**. 귀무 기대 1.35개. **P(X≥4)=0.044(경계) · P(X≥5)=0.010 · P(X≥6)=0.0019 · P(X≥7)=0.0003.** → **기준선 = 5개.**
-    - **검정② 거울상:** 타깃별로 "조성 축소 시 인기자리 겹침이 줄었나" 부호 → A군 vs B군 부호검정(`shift_direction.py`). 최소 p: B군 n=17 → 1e-5, A군 n=10 → 0.00098.
+    - **검정② 거울상:** 타깃별로 "조성 축소 시 인기자리 겹침이 줄었나" 부호 → A군 vs B군 부호검정(`analyze_shift_direction.py`). 최소 p: B군 n=17 → 1e-5, A군 n=10 → 0.00098.
     - **결론 두 갈래(미리 정함):** (a)유의≥5 **AND** 거울상 성립 → **"MSA 조성이 인기 결합자리 편향을 만들고 조성 변경으로 풀린다"**(강한 주장) (b)유의≥5, 거울상 실패 → **"MSA 조성이 결합자리 선택을 좌우하며, 조성 다양화가 재현성 있는 에피토프 후보 생성기가 된다"**(약하지만 안전, 선행연구와 여전히 비중복) (c)유의<4 → 8ulr 사례연구로 축소, 헤드라인은 음성.
   - **⚠️⚠️ 거울상은 이미 반례 1개를 안고 출발한다 — 잊지 말 것.** **8ulr은 A군**(진짜 자리 CD4bs = 인기 자리)인데 조성 변경으로 **좋아졌고** 인기자리 겹침도 **0.35→0.70으로 늘었다**. 즉 8ulr의 기제는 "편향 해소"가 아니라 **"넓게 퍼진 접촉이 좁게 수렴"**. 거울상 서사를 데이터 확인 없이 밀면 자체 데이터에 반박당함.
   - **⭐ 다른 갈래 처리(확정):** ①**예비검정 4개**(9azr_HL·8k5g_HL·8q7s_C·8ume_HL) = 끝까지 돌리고 채점하되 **용도 전환 → DockQ 기준으로 뽑은 것들이라 "DockQ로 뽑으면 재현 안 된다"는 음성 대조군**. ②**`candidates.csv` 6개**(8k3k_D·8tx3_FK·8k46_I·8xsj_HL·8y6a_CD·8wpy_AB) = 지금 안 돌리고 **본 검정 후보 pool로 대기**(검정① 결과로 44에서 16개 확정할 때 함께 고름). ③**boltz 47종 sweep = 3순위로 미룸** — boltz는 제대로 돌린 3개에서 full MSA가 더 좋다고 **반대로** 나왔으므로 테스트베드로 약함. 논문에는 "모델에 따라 다르다" 한 문단으로 충분하고 그건 지금 3개로 됨. GPU 순서 = **예비검정(진행중) → RBD 사다리 → 본 검정 → (여유시) boltz**.
-  - **⭐ 새 커밋 `import_rbd.py`(`3d1357ae`, bk21-msa-depth-bias/pipeline):** runs_rbd → 깊이실험 형식 어댑터. chains.json에서 항원/항체 판별(표기 없으면 길이로 추정) · 기존 a3m을 `$DATA/ladders/<타깃>/<사슬>/rung0.a3m`으로 복사(**머리말 오염 자동 제거**) · native.cif를 RCSB에서 받음 · sweep_targets.csv에 행 추가. **기본 dry-run, 기존 파일 절대 안 덮어씀.** 자가검증 4항목 통과.
+  - **⭐ 새 커밋 `prep_import_rbd.py`(`3d1357ae`, bk21-msa-depth-bias/pipeline):** runs_rbd → 깊이실험 형식 어댑터. chains.json에서 항원/항체 판별(표기 없으면 길이로 추정) · 기존 a3m을 `$DATA/ladders/<타깃>/<사슬>/rung0.a3m`으로 복사(**머리말 오염 자동 제거**) · native.cif를 RCSB에서 받음 · sweep_targets.csv에 행 추가. **기본 dry-run, 기존 파일 절대 안 덮어씀.** 자가검증 4항목 통과.
     - ✅ **열 매핑·8sdh 제외 수정 완료(`4706e28625`).** 실제 열 = `target,pdb,group,ab,dirtype,ag_chains,label` — **`ab`가 A/B 표식이고 항체 사슬이 아님**(8q7s_O=A, 8y6a_CD=B), `label`=붙는자리 분류(기존은 `class1/2(RBM)`·`class3` 같은 Barnes 분류; 우리 것은 `offhot:숨은면` 형태로 구분), `dirtype`=`targets` 자동 승계. 기존 `targets/*/chains.json`을 본보기로 찍고 최상위 키 누락을 경고(사슬 ID는 비교 제외). 가짜 환경 종단 자가검증 통과(dry-run/apply, 143서열 머리말 제거, 8sdh 건너뜀, A/B 표식·항원사슬 정확).
     - ⚠️⚠️ **2026-07-27 밤 형식 사고와 재작성(`634717aea8`) — 반드시 이 상태로.** 첫 판이 runs_rbd의 chains.json을 **그대로 복사**했으나 이 저장소 형식은 완전히 다름: `prep_targets.py`가 **사슬을 항원=A·중쇄=B·경쇄=C로 개명**하고 `{pdb_id,target,antigen_grp,AB,label,antigen,antibody,chains:[{id,role,seq,src,crop}],src_chains}` 구조를 만들며 `native.cif`는 `structures/<pdb>.cif` **심링크**. 게다가 **사다리 폴더는 개명 ID로 만들어야 하는데**(sweep_targets.csv `ag_chains`가 전부 `A`) 원본 ID(I·Z·B·R)로 만들어 4개 타깃이 어긋남. → **chains.json을 손으로 흉내내지 말고 `prep_targets.py` 정규 경로에 태울 것.**
     - ✅ **RBD 크롭 걱정 없음:** `prep_targets.py:66`은 RBD 그룹이라도 **400잔기 초과 사슬만** 319-541로 자름. 우리 항원은 194~197잔기라 `crop=null` → runs_rbd a3m(195잔기 기준) 질의서열이 그대로 일치.
     - **재작성 3단계(각각 기본 dry-run):** `--stage undo`(첫 시도 산출물 정리, 우리가 만든 이름만) → `--stage csv`(prep용 CSV `pdb,Hchain,Lchain,antigen_chain,antigen,AB,label` + `structures/<pdb>.cif`; **중/경쇄는 J영역 모티프 중쇄 WGxG·경쇄 FGxG로 판정**, 실패 시 길이) → **사용자가 `prep_targets.py` 실행** → `--stage msa`(개명된 항원 사슬에 a3m 연결 + sweep_targets.csv 등록). 가짜 환경 3단계 종단 자가검증 통과.
-    - **▶ 바로 실행할 명령:** `cd ~/projects/bk21-msa-depth-bias && git pull && cd pipeline` → `python import_rbd.py --stage undo`(확인 후 `--apply`) → `python import_rbd.py --stage csv --apply` → `python prep_targets.py --csv rbd_offhot.csv --struct structures --outdir targets` → `python import_rbd.py --stage msa --apply` → **`python check_msa_match.py`(게이트, 필수)** → `python neff_ladder.py` → `bash run_sweep.sh`. group 값 = **RBD**(기존 목록 C·Env·HA·RBD).
-  - **⭐ 실행 순서:** ①import_rbd --apply → neff_ladder(143서열 → 8칸) ②사다리 예측 10×8칸×1회=80회(**~2시간**, 깊이 고르기 + 위치이동 관찰) ③`pose_features.py` → `shift_direction.py`로 **54 전수 거울상**(GPU 0) ④본 검정 RBD 10 전수 ⑤본 검정 44 중 16. **②의 첫 타깃 실소요를 재서 ④⑤ 개수 재조정**(빠르면 44에서 16→20으로 확대).
+    - **▶ 바로 실행할 명령:** `cd ~/projects/bk21-msa-depth-bias && git pull && cd pipeline` → `python prep_import_rbd.py --stage undo`(확인 후 `--apply`) → `python prep_import_rbd.py --stage csv --apply` → `python prep_targets.py --csv rbd_offhot.csv --struct structures --outdir targets` → `python prep_import_rbd.py --stage msa --apply` → **`python prep_a3m_check_match.py`(게이트, 필수)** → `python prep_ladder_neff.py` → `bash run_sweep.sh`. group 값 = **RBD**(기존 목록 C·Env·HA·RBD).
+  - **⭐ 실행 순서:** ①import_rbd --apply → neff_ladder(143서열 → 8칸) ②사다리 예측 10×8칸×1회=80회(**~2시간**, 깊이 고르기 + 위치이동 관찰) ③`lib_pose_features.py` → `analyze_shift_direction.py`로 **54 전수 거울상**(GPU 0) ④본 검정 RBD 10 전수 ⑤본 검정 44 중 16. **②의 첫 타깃 실소요를 재서 ④⑤ 개수 재조정**(빠르면 44에서 16→20으로 확대).
   - **선점 위치(변함없음):** 주장은 "방법이 새롭다"가 아니라 **"적용 대상이 새롭다(형태가 아니라 결합자리 선택) + 예산 맞춘 통제"**.
 
-- **⭐⭐⭐ 2026-07-27(밤, 2차) 거울상 검정 결과 = 기각 → 서사 확정(결론 갈래 b).** `shift_direction.py --model protenix`, 44타깃(A 20·B 15, pose_features 2640행 완비).
+- **⭐⭐⭐ 2026-07-27(밤, 2차) 거울상 검정 결과 = 기각 → 서사 확정(결론 갈래 b).** `analyze_shift_direction.py --model protenix`, 44타깃(A 20·B 15, pose_features 2640행 완비).
   - **거울상 없음(확정):** 진짜자리 겹침 변화 평균 A **−0.058** vs B **−0.018** — 둘 다 음수, 부호검정 A p=0.94·B p=0.30, 흔한자리 변화도 A p=0.41·B p=0.27. **"MSA 깊이를 줄이면 B군이 편향에서 풀린다"는 지지되지 않음.** (깊이 축 블랭킷 기각과 정합 — shift_direction은 rung>0 전체 평균이라 조성-특이 효과는 원래 희석된다.)
   - ⚠️ **결합(coupling)은 거울상처럼 보이나 증거로 쓰면 안 됨:** Spearman(진짜자리변화, 흔한자리변화) = A **+0.52** / B **−0.60**. 그러나 A군은 정의상 진짜자리≈흔한자리라 **부호가 기하학적으로 거의 자동**이다. 같은 이유로 "진짜↑ & 흔한↓ 동시" B 6/15 vs A 2/20(Fisher 단측 p=0.046)도 **A군에서는 구조적으로 일어나기 어려운 조합**이라 독립 증거가 아니다. 발표·보고서에 인과 증거로 쓰지 말 것.
   - ⭐ **독립적으로 진짜인 것 2가지(= 새 서사의 근거):** ①**실패가 재현된다** — 실패 실행끼리 예측 접촉면 자카드가 우연의 **3.5~7.9배**(8ulr 3.5 · 8k5g 3.9 · 9azr 6.3 · 8q7s 7.9 · 8ume 5.9), 즉 모델이 반복해서 같은 엉뚱한 자리로 간다. ②**그 자리는 PDB 인기 자리가 아니다** — 예비검정 4개 전부 "실패 예측 ↔ 흔한 자리" 겹침이 진짜 자리보다 **낮다**. → **"PDB 과대표집/인기자리 편향" 서사는 우리 데이터가 지지하지 않음**(2026-07-23 인공물 판정과 정합). 대신 **"모델 내부의 재현되는 잘못된 선호 자리"**.
   - **✅ 사용자 승인 서사(2026-07-27 밤, 표현 확정):** *"MSA 조성이 항체-항원 결합자리 선택을 좌우한다. 조성을 다시 뽑으면 **믿을 만한(재현되는) 다른 결합자리 후보**를 만들 수 있으므로, 에피토프 비닝의 후보 생성 단계에 쓸 수 있다."* — 헤드라인은 **위치(결합자리)**, DockQ는 보고만. ⚠️**"잘못된 자리로 수렴한다"를 강하게 단정하지 말 것**(사용자 명시). 실패의 재현성(우연의 3.5~7.9배)·인기자리 비해당은 **보조 관찰로만** 서술하고 주장의 축으로 올리지 않는다.
   - ⚠️ **A/B 표식이 실제 겹침과 안 맞음:** 예비검정 4개 전부 표식 `A`인데 계산된 진짜↔흔한 겹침은 0.068·0.111·0.189·0.324로 낮다. 표식은 다른 기준(항원 과대표집 등)으로 붙은 듯 → **거울상류 분석을 표식으로 나누지 말 것.**
   - **예비검정 4개 판정:** 9azr_HL·8k5g_HL **음성 확정**(음성 대조군으로 사용) · 8q7s_C **탈락**(DockQ 점수순위 p=0.016이나 절대값 0.089→0.132로 둘 다 실패권이고 **진짜자리 겹침은 0.84→0.68로 악화**) · **8ume_HL 승격**(세 지표 동시 방향 일치: DockQ 0.023→0.145 p=0.075 · 진짜자리 0.33→0.63 p=0.052 · 흔한자리 0.27→0.00). 조성당 1회라 이질성 검정 불가 = 검정력 없음.
-  - ⭐ **본 검정 B군 후보 6개가 두 경로에서 일치:** `screen_epitope_shift.py`가 뽑은 목록과 `shift_direction`의 "진짜↑ & 흔한↓ 동시" 목록이 **정확히 같음** = **8xsj_HL · 8k3k_D · 8y6a_CD · 8tx3_FK · 8wpy_AB · 8k46_I**(= `candidates.csv` 그대로). 여기에 8ume_HL 추가.
+  - ⭐ **본 검정 B군 후보 6개가 두 경로에서 일치:** `analyze_screen_epitope_shift.py`가 뽑은 목록과 `shift_direction`의 "진짜↑ & 흔한↓ 동시" 목록이 **정확히 같음** = **8xsj_HL · 8k3k_D · 8y6a_CD · 8tx3_FK · 8wpy_AB · 8k46_I**(= `candidates.csv` 그대로). 여기에 8ume_HL 추가.
   - **RBD 10종 실측 정정:** a3m이 143개가 아니라 **21,737~27,946개**(출처 = `out_colabfold/<pdb>_env/uniref.a3m` 또는 boltz `..._unpaired_tmp_env/uniref.a3m`, 질의행 = RBD 서열 확인). 항원 길이도 194~197로 제각각이라 **"10종이 항원·MSA가 완전히 동일해 교란이 원천 차단"이라는 앞선 서술은 과장** — 같은 단백질(RBD) 계열이라는 정도로만. 깊이는 오히려 44종과 비슷해져 사다리가 제대로 퍼짐. 예측 소요도 재추정 필요(하룻밤).
-  - **커밋:** `import_rbd.py`(3단계 재작성 `634717aea8`) · `build_ladders_new.sh`(`b6105be5`, rung1 있으면 건너뛰어 기존 61사슬 조성 보호, 멱등).
+  - **커밋:** `prep_import_rbd.py`(3단계 재작성 `634717aea8`) · `prep_ladders.sh`(`b6105be5`, rung1 있으면 건너뛰어 기존 61사슬 조성 보호, 멱등).
 
 - **⭐⭐⭐⭐⭐ 2026-07-27(밤, 최종) 연구 전체 정리 — 세션이 바뀌면 이 항목 하나만 읽고 이어가면 된다. 노션 인수인계서 6장과 같은 내용.**
   - **📖 핵심 이야기(사용자 확정 문장):** *"MSA에 어느 서열이 들어 있느냐가 모델이 항체를 항원의 **어느 자리**에 붙일지를 좌우한다. 그래서 서열 목록을 다르게 뽑으면 **믿을 만한(재현되는) 서로 다른 결합자리 후보**를 만들 수 있고, 이것을 **에피토프 비닝의 후보 생성 단계**에 쓸 수 있다."* — 두 단어가 핵심: **재현성**(같은 조성이면 같은 자리 = 무작위 흔들림과 구별) · **후보**(정답 보장 아님, 고를 거리를 만듦 → 선택 단계는 재랭커·consensus 몫). **헤드라인 = 결합자리 위치. DockQ는 보고만**(같이 오르는 경우는 드묾).
   - **✅ 확인된 것:** ①조성이 자리를 바꾼다(8ulr, 서열수 1746 고정·조성 8가지×4회 → 성공률 0/4~4/4, **이질성 정확검정 p=0.0025**) ②개수 축소 자체는 답이 아님(줄인 쪽 전체 vs full은 p=0.054 경계 + 줄인 조성 중에도 full보다 나쁜 것 존재). **보조 관찰(강하게 단정 금지)**: ③실패 실행끼리 예측 자리가 우연의 **3.5~7.9배**로 겹침(8ulr 3.5·8k5g 3.9·9azr 6.3·8q7s 7.9·8ume 5.9) ④그 자리는 **PDB 인기 자리가 아님**(예비검정 4개 전부 실패 예측↔흔한자리 겹침이 진짜 자리보다 낮음).
-  - **❌ 검정하고 기각한 것(보고서에 숨기지 말 것):** 설계 가설 = "B군(진짜 자리가 흔한 부위 밖)은 조성 축소로 편향이 풀려 좋아지고 A군은 나빠진다." **44개 전수 `shift_direction.py` 결과 = 기각.** 진짜자리 겹침 변화 A **−0.058**(부호검정 p=0.94) vs B **−0.018**(p=0.30), 흔한자리 변화도 A p=0.41·B p=0.27. **거울상 없음.**
+  - **❌ 검정하고 기각한 것(보고서에 숨기지 말 것):** 설계 가설 = "B군(진짜 자리가 흔한 부위 밖)은 조성 축소로 편향이 풀려 좋아지고 A군은 나빠진다." **44개 전수 `analyze_shift_direction.py` 결과 = 기각.** 진짜자리 겹침 변화 A **−0.058**(부호검정 p=0.94) vs B **−0.018**(p=0.30), 흔한자리 변화도 A p=0.41·B p=0.27. **거울상 없음.**
     ⚠️ **솔깃하지만 근거로 쓰면 안 되는 것:** 두 변화량 Spearman이 A **+0.52** / B **−0.60**으로 정확히 반대이고 "진짜↑&흔한↓ 동시"가 B 6/15 vs A 2/20(Fisher p=0.046)이지만, **A군은 정의상 진짜자리≈흔한자리라 부호가 기하학적으로 자동**이다. 인과 증거 아님.
     ⚠️ **A/B 표식이 실제 겹침과 불일치**(예비검정 4개 모두 표식 A인데 계산된 겹침 0.068·0.111·0.189·0.324). **앞으로 A/B로 나누어 분석하지 말 것.** 본 검정도 A·B 균형을 맞출 이유 없음 → **효과 있는 것 위주로 선정.**
   - **⭐ 본 검정 = 20 복합체(확정, 27에서 축소).** 타깃당 조성 8×반복 4 + 원래 10 = 42회. **성공 기준 = 결합자리 회복 ≥0.4(DockQ 아님).**
@@ -544,7 +544,7 @@ Consensus docking(메인, [[bk-summer-2026-project]])의 "왜 특정 모델만 �
     **44측 7개 = 8xsj_HL · 8k3k_D · 8y6a_CD · 8tx3_FK · 8wpy_AB · 8k46_I · 8ume_HL** (앞 6개는 `screen_epitope_shift`와 `shift_direction`의 "진짜↑&흔한↓" 목록이 **정확히 일치** = `candidates.csv` 그대로; 8ume_HL은 예비검정에서 세 지표 동시 방향 일치로 승격).
     ⚠️ **RBD 10종을 걸러 돌리지 말 것** — 걸러내면 빈도를 못 잰다. 지금 제일 없는 숫자가 편향 없는 M/N.
   - **⭐ 판정 기준(사전 확정, 결과 보고 바꾸지 말 것):** ①**복합체별 효과** = 이질성 정확검정 유의 타깃 수, **20개 중 4개 이상이면 우연확률 0.016 · 5개 0.003 · 3개는 0.076(불충분)** → **기준선 4개** ②**재현성** = (조성 내 결합자리 겹침)/(조성 간), 조성 딱지 뒤섞기 검정 **p<0.05** ③**후보 수** = 조성별 합의 자리를 겹침 0.5로 묶은 개수, **하나라도 진짜 자리 절반 이상 덮으면 성공**. **결론 갈래**: (a)효과+재현성 → 위 핵심 이야기 그대로 (b)효과만, 재현성 낮음 → "자리가 흔들린다"까지만, 후보 생성 주장 뺌 (c)유의 3개 이하 → 8ulr 사례연구로 축소, 헤드라인 음성.
-  - **⭐ 새 커밋:** **`site_reproducibility.py`(`490c74db`) = 주장의 핵심 통계** — 조성 내/간 결합자리 겹침 비율 + 뒤섞기 검정 + 서로 구별되는 자리 후보 개수와 각 후보의 진짜자리 덮음/정밀도. 자가검증(대립 p=0.0003 · 귀무 p=0.53) 통과. **`analyze_target.sh`에 ④단계로 편입**(`12683daa`) → 타깃마다 자동. `comp_x_reps`를 거친 타깃에만 성립(44 사다리는 칸당 1회라 조성 내 편차가 없음).
+  - **⭐ 새 커밋:** **`analyze_site_reproducibility.py`(`490c74db`) = 주장의 핵심 통계** — 조성 내/간 결합자리 겹침 비율 + 뒤섞기 검정 + 서로 구별되는 자리 후보 개수와 각 후보의 진짜자리 덮음/정밀도. 자가검증(대립 p=0.0003 · 귀무 p=0.53) 통과. **`run_analyze_target.sh`에 ④단계로 편입**(`12683daa`) → 타깃마다 자동. `comp_x_reps`를 거친 타깃에만 성립(44 사다리는 칸당 1회라 조성 내 편차가 없음).
   - **선점(반드시 명시):** 기법 novelty 0. AF-Cluster(Nature 2024)·Subsampled AF2(Nat Commun 2024)·SPEACH_AF(PLoS CB 2022)·AFsample2(Commun Biol 2025)·SF-Cluster(arXiv 2026) **전부 한 사슬의 형태(conformation)용**. **결합자리 선택에 적용한 사례 없음 = 우리 슬리버.** 주장은 "방법이 새롭다"가 아니라 **"적용 대상이 새롭다 + 예산 맞춘 통제"**. Porter PNAS 2024(MSA 부분추출은 일부에서만 작동)와 우리 낮은 빈도가 정합.
   - **📍 실행 위치:** 노션 인수인계서(page 3a7ac1a3-a28a-8151-a962-e10474fa91ea) **5장=8ulr 사례 · 6장=현재 결론과 계획**. 코드 = `Feellived/bk21-msa-depth-bias/pipeline`.
 
@@ -557,14 +557,14 @@ Consensus docking(메인, [[bk-summer-2026-project]])의 "왜 특정 모델만 �
     - ⚠️ 내가 붙였던 "사례 증명/본 검정 후보/편향 없는 빈도" 3분류는 **과한 이름 붙이기**였음 — 실제로는 **하나의 실험 + 두 종류의 명단**.
   - **⭐ 설계 축소(검정력 계산 근거):** 이상적 형태에서 8×4=p<1e-5 · **6×4=1e-5** · 6×3=4e-4 · 5×3=2e-3. 8ulr 실제 형태를 축소하면 8×4 p=0.0025 · **6×4 p=0.0011** · 6×3 p=0.034(경계). → **반복은 4회 유지, 조성만 8→6.** **6조성 × 4반복 + 원래 8회 = 32회**(24% 절감, 검정력 유지). 8ulr은 이미 8×4+10으로 돌아가 있어 그대로 사용.
   - **⭐ 깊이는 결과를 보고 골라도 된다(내가 처음에 과하게 보수적이었음).** 근거는 위 조건부 검정 논리. **금지되는 것은 ①타깃을 결과로 고르는 것(비율이 부풀려짐) ②"그 깊이에서 성공률 X%"·"얕은 쪽이 원래보다 낫다"는 절대·비교 주장.** 오히려 성공률이 0도 1도 아닌 **중간 지대**를 고르는 게 검정력이 최대.
-  - **⭐ 판독 규칙(2026-07-28 결과 보기 전 확정, `pick_maintest_depth.py` `a03c7543`):** 칸마다 구조 5개 중 **결합자리 덮음 ≥0.4** 개수를 세어 — ①60개 구조에서 **하나도 없음 → 본 검정 안 함, 분모에 실패로 계상**(GPU 절약 + 안전한 방향) ②**모든 칸 5/5 → 안 함, '구제 불필요'로 분리** ③그 밖 → **본 검정 대상, 깊이 = 1~4개인 칸 중 서열이 가장 많은 칸**(없으면 서열 **1746개**에 가장 가까운 칸). 출력 `maintest.csv`. 가짜 사다리 5경우 검증 완료.
+  - **⭐ 판독 규칙(2026-07-28 결과 보기 전 확정, `prep_pick_depth.py` `a03c7543`):** 칸마다 구조 5개 중 **결합자리 덮음 ≥0.4** 개수를 세어 — ①60개 구조에서 **하나도 없음 → 본 검정 안 함, 분모에 실패로 계상**(GPU 절약 + 안전한 방향) ②**모든 칸 5/5 → 안 함, '구제 불필요'로 분리** ③그 밖 → **본 검정 대상, 깊이 = 1~4개인 칸 중 서열이 가장 많은 칸**(없으면 서열 **1746개**에 가장 가까운 칸). 출력 `maintest.csv`. 가짜 사다리 5경우 검증 완료.
   - **⭐ 본 검정 규모(유동):** **코로나 10종 = 전수 유지 권장**(항원 195잔기라 타깃당 48분, 10개 8시간 — 싸고 유일하게 선별 없는 세트). **비싼 쪽은 44종**(타깃당 2.7시간). 44종은 **개수 고정하지 않고 우선순위 큐**: 8k3k_D → 8wpy_AB → 8tx3_FK → 8k46_I → 8xsj_HL → 8y6a_CD → 8ume_HL. 음성 대조 2(9azr_HL·8k5g_HL)는 유지. **4개까지면 하루, 7개까지면 이틀.**
-  - **⚠️⚠️ protenix 예측 폴더 사고(2026-07-27~28) — 반복 금지:** 07-27 15:05 a3m 수습 중 `$DATA/protenix`를 stale로 옮겼으나 **Protenix는 그 사고와 무관**(clean_a3m이 07-22부터 적용, MSA를 잃은 건 boltz뿐). 폴더가 비니 `run_sweep.sh`의 self-heal skip이 무력화되어 07-27 밤 sweep이 **44종 중 26종을 재계산하고 12h 예산 소진**, RBD 10종(목록 맨 뒤)은 미실행. → `fix_protenix_dirs.sh`(`612c7802`)로 중복 26 삭제 + 원본 49 복귀 + `$DATA/README_protenix.txt` 기록. **교훈: 출력 폴더를 옮기면 skip이 무력화되어 목록 앞쪽부터 전부 재실행된다. 새 타깃만 돌리려면 `LIST=`로 목록을 제한할 것.** 정본 = `results/pose_features.csv`, **`--rescore` 금지**.
+  - **⚠️⚠️ protenix 예측 폴더 사고(2026-07-27~28) — 반복 금지:** 07-27 15:05 a3m 수습 중 `$DATA/protenix`를 stale로 옮겼으나 **Protenix는 그 사고와 무관**(clean_a3m이 07-22부터 적용, MSA를 잃은 건 boltz뿐). 폴더가 비니 `run_sweep.sh`의 self-heal skip이 무력화되어 07-27 밤 sweep이 **44종 중 26종을 재계산하고 12h 예산 소진**, RBD 10종(목록 맨 뒤)은 미실행. → `run_fix_protenix_dirs.sh`(`612c7802`)로 중복 26 삭제 + 원본 49 복귀 + `$DATA/README_protenix.txt` 기록. **교훈: 출력 폴더를 옮기면 skip이 무력화되어 목록 앞쪽부터 전부 재실행된다. 새 타깃만 돌리려면 `LIST=`로 목록을 제한할 것.** 정본 = `results/pose_features.csv`, **`--rescore` 금지**.
   - **RBD 10종 실측:** a3m은 **21,737~27,946개**(`out_colabfold/<pdb>_env/uniref.a3m` 또는 boltz `..._unpaired_tmp_env/uniref.a3m`), 항원 194~197잔기. **칸당 1~1.5분**(44종은 5~6분)이라 사다리 10종 12칸이 **약 3시간**. 깊이가 깊을수록 느린 것 = MSA를 실제로 읽고 있다는 증거.
   - **RBD 해석 주의:** 코로나 세트에서 더 잘 나오면 "인기 부위 밖 항체라서"로 읽고 싶겠지만, 그 세트는 **항원 계열·MSA 크기·항원 길이도 함께 다르다** → **가설로만** 서술하고 단정 금지.
 
 **Why:** 사용자가 이 방향에 감을 잡았고, 9K6J-modal 반증 + 2026-07-14 go/no-go 재프레임 + Phase 0 결과(GO) + **2026-07-15 MSA-깊이 인과실험(항원 MSA가 편향 나름)** + **2026-07-20 데이터셋-우선/A-vs-B 척추**가 가설·프로젝트 방향을 확정한 핵심 분기점이라 정확히 남겨야 함(미래 세션이 9K6J에 에피토프-prior를 다시 밀거나, 프로젝트 생사를 n=1 MSA 스토리 또는 얇은 consensus-격차에 걸면 안 됨).
 **실험 로그 위치:** ⭐**2026-07-20 사용자 지정 전용 페이지 = Notion "MSA Bias"**(page **3a3ac1a3-a28a-80ce-b19a-c6f145cd6762**, parent 388ac1a3-a28a-809b-80d7-eabf91ba17b5). **앞으로 MSA-bias 데이터셋·depth-response 작업은 전부 여기 기록**(이전 Study B page 39dac1a3는 초기 로그). 토큰=scratchpad/.notion_tok, append는 end-append만([[notion-api-gotchas]]). 실험 = E1(Neff+Foldseek/PDB 대조, 착수) · E2(과대표집 항원 벤치 tFold vs MSA모델 n>1=척추) · E3(2×2 epitope-only×Fab/Fv) · E4(HADDOCK crop, E3 게이트). 방법론: Neff=가설지표(tFold와 MSA모델 가르는 유일 채널), Foldseek·PDB=대조군(deconfound; Spike는 세 축 공변→divergent 타깃 필요). ablation·다른 MSA-free 복합체모델=폐기/없음.
 
-**How to apply:** ⭐⭐⭐**재개 = 맨 위 두 항목만 읽으면 된다** — ①'2026-07-27(밤, 최종) 연구 전체 정리'(핵심 이야기·기각된 것·판정 기준, = 노션 6장) ②'2026-07-28 설계·통계 확정'(설계 6×4+8·깊이 선택 규칙·Fisher 결합·폴더 사고). 그 아래는 이력. **현재 상태(2026-07-28 오전)** = RBD 10종 사다리 예측 진행 중(3h) → `python pose_features.py --models protenix`(CPU 1h, **--rescore 금지**) → `python pick_maintest_depth.py`(본 검정 대상·깊이 자동 선택) → `run_maintest.sh`(아직 미작성) → `analyze_target.sh` → 판정. **실험 종료 예상 = 2026-07-29 저녁.** 첫 할 일 = `head -3 sweep_targets.csv`로 열 형식 확인 → `import_rbd.py` 열 매핑 수정 + 8sdh 제거 → `--apply --group RBD`. 그 밖 지속 규율: (a)결론은 **"MSA 조성이 결합자리 선택을 좌우"**(존재증명 확보, 8ulr/Protenix p=3.9e-8) — 단어 규율 엄수(깊이↓rescue·과대표집 편향 금지) (b)다음 한 수 = **사전등록 규칙으로 타깃 6~8개 빈도 M/N 측정**, Protenix로 좁혀서 (c)처방은 항상 **생성+선택 한 쌍**으로 서술 (d)novelty 주장 시 선점 5종(Subsampled AF2·AF-Cluster·SPEACH_AF·AFsample2·SF-Cluster)+Porter PNAS2024 반드시 명시하고 슬리버는 "에피토프 선택 적용 + 예산맞춘 통제"로만.
+**How to apply:** ⭐⭐⭐**재개 = 맨 위 두 항목만 읽으면 된다** — ①'2026-07-27(밤, 최종) 연구 전체 정리'(핵심 이야기·기각된 것·판정 기준, = 노션 6장) ②'2026-07-28 설계·통계 확정'(설계 6×4+8·깊이 선택 규칙·Fisher 결합·폴더 사고). 그 아래는 이력. **현재 상태(2026-07-28 오전)** = RBD 10종 사다리 예측 진행 중(3h) → `python lib_pose_features.py --models protenix`(CPU 1h, **--rescore 금지**) → `python prep_pick_depth.py`(본 검정 대상·깊이 자동 선택) → `run_maintest.sh`(아직 미작성) → `run_analyze_target.sh` → 판정. **실험 종료 예상 = 2026-07-29 저녁.** 첫 할 일 = `head -3 sweep_targets.csv`로 열 형식 확인 → `prep_import_rbd.py` 열 매핑 수정 + 8sdh 제거 → `--apply --group RBD`. 그 밖 지속 규율: (a)결론은 **"MSA 조성이 결합자리 선택을 좌우"**(존재증명 확보, 8ulr/Protenix p=3.9e-8) — 단어 규율 엄수(깊이↓rescue·과대표집 편향 금지) (b)다음 한 수 = **사전등록 규칙으로 타깃 6~8개 빈도 M/N 측정**, Protenix로 좁혀서 (c)처방은 항상 **생성+선택 한 쌍**으로 서술 (d)novelty 주장 시 선점 5종(Subsampled AF2·AF-Cluster·SPEACH_AF·AFsample2·SF-Cluster)+Porter PNAS2024 반드시 명시하고 슬리버는 "에피토프 선택 적용 + 예산맞춘 통제"로만.
 이전 이력 참고: (a)9K6J=modal(에피토프-prior 부적합) (b)프로젝트 GO 근거=consensus 여지+ipTM 대체 (c)지표=DockQ 0.49+RMSD 이원화. 선점 추가: peptide training-bias(2025, PMC12518507), ab-ag systematic-biases/TERM(2024, bioRxiv 2024.03.15.585121), depth-over-pairing(2026). [[hackathon-consensus-docking]]와 모델 풀 공유, [[guan-keating-msa-docking-bias]]·[[msa-debias-technique-landscape]]·[[no-invented-jargon]] 참조.
