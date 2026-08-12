@@ -1,0 +1,11 @@
+selector,k,usable_rate,random_mean,perm_p
+ncomp,3,0.6,0.6135,0.79496
+largest,3,0.65,0.6135,0.41388
+smallest,3,0.6,0.6135,0.79496
+abepi_mean,3,0.6,0.6135,0.79496
+abepi_max,3,0.65,0.6135,0.41388
+abepi_cmax,3,0.6,0.6135,0.79496
+abepi_top3,3,0.65,0.6135,0.41388
+abepi_maxeq,3,0.65,0.6135,0.41388
+iptm_max,3,0.7,0.6135,0.08995
+iptm_mean,3,0.7,0.6135,0.08995
