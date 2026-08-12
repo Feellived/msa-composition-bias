@@ -19,8 +19,8 @@ MANIFEST.md 에 적는다. 나중에 그림을 다시 그릴 때 이 폴더만 �
 import argparse, csv, glob, hashlib, os, shutil
 
 HOME = os.path.expanduser("~")
-CD = os.path.join(HOME, "projects/bk21-antibody-ml/pipeline")
-MS = os.path.join(HOME, "projects/bk21-msa-depth-bias/pipeline")
+CD = os.path.join(HOME, "projects/epitope-guided-docking/pipeline")
+MS = os.path.join(HOME, "projects/msa-composition-bias/pipeline")
 
 # (앞에 붙일 이름, 설명, 찾을 곳) — 앞에 붙일 이름은 파일명이 겹칠 때만 쓴다
 SOURCES = [
@@ -57,7 +57,7 @@ def shape(p):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default=os.path.join(HOME, "projects/bk21-msa-depth-bias/report/data"))
+    ap.add_argument("--out", default=os.path.join(HOME, "projects/msa-composition-bias/report/data"))
     ap.add_argument("--max-mb", type=float, default=5.0)
     ap.add_argument("--apply", action="store_true")
     a = ap.parse_args()

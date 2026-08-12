@@ -164,7 +164,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--list", default="sweep_targets.csv")
     ap.add_argument("--targets-dir", default="targets")
-    ap.add_argument("--data", default=os.environ.get("DATA", "/mnt/data/admuser/msadepth"))
+    ap.add_argument("--data", default=os.environ.get("DATA", "/mnt/data/msadepth"))
     ap.add_argument("--models", nargs="+", default=["boltz", "protenix"])
     ap.add_argument("--rungs", type=int, default=12)
     ap.add_argument("--out", default="results/dockq_sweep.csv")

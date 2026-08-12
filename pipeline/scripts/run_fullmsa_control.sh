@@ -15,14 +15,14 @@
 # ⚠️ 재랭커 아님 — MSA깊이 가설(Arm B) 통제.
 #
 # 사용(tmux 권장):
-#   cd ~/projects/bk21-msa-depth-bias/pipeline && git pull
+#   cd ~/projects/msa-composition-bias/pipeline && git pull
 #   SMOKE=1 bash run_fullmsa_control.sh
 #   bash run_fullmsa_control.sh 2>&1 | tee fullctl_$(date +%m%d).log
 #   # 채점: 결과가 쌓인 뒤 별도 채점(자세 40개를 DockQ로 매겨 성공 개수를 센다)
 # ══════════════════════════════════════════════════════════════════════════════
 set -uo pipefail
 cd "$(cd "$(dirname "$0")" && pwd)"
-DATA="${DATA:-/mnt/data/admuser/msadepth}"
+DATA="${DATA:-/mnt/data/msadepth}"
 LADDIR="$DATA/ladders"
 LIST="${LIST:-sweep_targets.csv}"
 CAND="${CAND:-seedrep_cand.csv}"
@@ -47,7 +47,7 @@ setup_model(){
     protenix)
       conda activate "${PROT_ENV:-protenix}" 2>/dev/null
       command -v protenix >/dev/null || { say "!! protenix 없음"; return 1; }
-      export PROTENIX_ROOT_DIR="${PROTENIX_ROOT_DIR:-/mnt/data/admuser/protenix_weights}" LAYERNORM_TYPE=torch
+      export PROTENIX_ROOT_DIR="${PROTENIX_ROOT_DIR:-/mnt/data/protenix_weights}" LAYERNORM_TYPE=torch
       PROT_MODEL="${PROT_MODEL:-protenix_base_default_v1.0.0}"; EXT="json"
       RUN(){ ( cd "$2" && protenix pred -i "$1" -o results -n "$PROT_MODEL" -s "$SEED" -e "$NPOSE" \
                --trimul_kernel torch --triatt_kernel torch --enable_fusion False >"$3" 2>&1 ); }

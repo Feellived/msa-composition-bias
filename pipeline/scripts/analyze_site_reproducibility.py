@@ -102,7 +102,7 @@ def link_clusters(items, thr):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--csv", required=True)
-    ap.add_argument("--data", default=os.environ.get("DATA", "/mnt/data/admuser/msadepth") + "/compreps")
+    ap.add_argument("--data", default=os.environ.get("DATA", "/mnt/data/msadepth") + "/compreps")
     ap.add_argument("--targets-dir", default="targets")
     ap.add_argument("--cutoff", type=float, default=5.0)
     ap.add_argument("--link", type=float, default=0.5, help="합의 자리끼리 이 값 이상 겹치면 같은 후보로 묶음")
@@ -114,7 +114,7 @@ def main():
                     help="실행의 대표 자세를 무엇으로 고르나. "
                          "abepi=AbEpiScore 최고(정직·기본) · dockq=DockQ 최고(⚠️정답 사용, 천장 확인용) · "
                          "consensus=자세들의 합의(정직하지만 서로 다른 자리를 뭉갠다)")
-    ap.add_argument("--abepi", default="../../bk21-antibody-ml/pipeline/results/abepiscore_all.csv",
+    ap.add_argument("--abepi", default="../../epitope-guided-docking/pipeline/results/abepiscore_all.csv",
                     help="자세 단위 AbEpiScore CSV (열: target,run,pose,score)")
     ap.add_argument("--legacy-best-pose", action="store_true",
                     help="--pose-score dockq 와 같음(옛 이름).")
@@ -144,7 +144,7 @@ def main():
     if not os.path.isdir(base):
         raise SystemExit(f"!! 예측 폴더가 없다:\n   {base}\n"
                          f"   --data 값 = {a.data!r}   ← $DATA 가 비어 있지 않은지 확인\n"
-                         f"   예: export DATA=/mnt/data/admuser/msadepth 후 --data $DATA/compreps")
+                         f"   예: export DATA=/mnt/data/msadepth 후 --data $DATA/compreps")
     by_run = defaultdict(list)
     for r in rows:
         by_run[r["seed"]].append(r)

@@ -8,6 +8,7 @@
 각 복합체의 최적 깊이(argmax DockQ rung)를 x=0으로 재정렬하면 뾰족한 피크가 살아남는다.
 같은 그림에 '정렬 안 한 원평균'(고정깊이 정렬)도 겹쳐 대비.
 """
+import os
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.font_manager as fm
@@ -19,9 +20,7 @@ fm.fontManager.addfont('/System/Library/Fonts/Supplemental/AppleGothic.ttf')
 matplotlib.rcParams['font.family'] = 'AppleGothic'
 matplotlib.rcParams['axes.unicode_minus'] = False
 
-BASE = ('/private/tmp/claude-501/-Users-zzuhyeong2-Library-CloudStorage-'
-        'GoogleDrive-a01056371120-gmail-com-My-Drive-SNU-BK-Summer-2026/'
-        'be7059af-14d1-4717-a37d-c316fbae23f5/scratchpad/analysis')
+BASE = os.environ.get('ANALYSIS_DIR', 'analysis')   # 중간 산출 CSV 폴더
 CSV = f'{BASE}/dockq_sweep_boltz.csv'
 OUT = f'{BASE}/viz_peakalign.png'
 

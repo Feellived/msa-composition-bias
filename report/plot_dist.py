@@ -2,6 +2,7 @@
 # 렌즈4 = '깊이효과 분포'
 # 요지: 그룹평균 깊이곡선은 평평(≈0) 하지만, 개별 복합체의 변동폭은 크고
 #       최적 깊이(argmax rung)가 full에 안 몰리고 흩어져 있다 = 신호가 분산돼 숨음.
+import os
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.font_manager as fm, matplotlib.pyplot as plt
@@ -10,7 +11,7 @@ matplotlib.rcParams['font.family'] = 'AppleGothic'
 matplotlib.rcParams['axes.unicode_minus'] = False
 import pandas as pd, numpy as np
 
-BASE = '/private/tmp/claude-501/-Users-zzuhyeong2-Library-CloudStorage-GoogleDrive-a01056371120-gmail-com-My-Drive-SNU-BK-Summer-2026/be7059af-14d1-4717-a37d-c316fbae23f5/scratchpad/analysis'
+BASE = os.environ.get('ANALYSIS_DIR', 'analysis')   # 중간 산출 CSV 폴더
 OUT = BASE + '/viz_dist.png'
 COL = {'A': '#2c7fb8', 'B': '#d95f0e', 'C': '#7a7a7a'}
 ABS = ['A', 'B', 'C']

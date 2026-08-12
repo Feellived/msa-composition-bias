@@ -18,7 +18,7 @@
 # ══════════════════════════════════════════════════════════════════════════════
 set -uo pipefail
 cd "$(cd "$(dirname "$0")" && pwd)"
-DATA="${DATA:-/mnt/data/admuser/msadepth}"
+DATA="${DATA:-/mnt/data/msadepth}"
 LIST="${LIST:-sweep_targets.csv}"
 RUNGS="${RUNGS:-12}"          # run_sweep.sh 기본값과 반드시 같아야 한다(rung0~rung11)
 MINROWS="${MINROWS:-1}"       # 최심 칸 = 단일서열

@@ -15,7 +15,7 @@
 #   bash run_rerun_sites.sh 2>&1 | tee results/rerun_sites_all.log
 # ══════════════════════════════════════════════════════════════════════════════
 set -uo pipefail
-DATA="${DATA:-/mnt/data/admuser/msadepth}"
+DATA="${DATA:-/mnt/data/msadepth}"
 
 TARGETS="8k3k_D 8k46_I 8k5g_HL 8k5h_HL 8kep_HL 8q7s_C 8q7s_H 8q7s_O 8siq_HL 8sis_HL \
 8sit_HL 8t4a_PR 8t4d_OQ 8tp5_HL 8u44_ST 8ulr_HL 8ume_HL 8xsi_HL 9azr_HL 9azt_HL \

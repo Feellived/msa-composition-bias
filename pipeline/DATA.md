@@ -28,8 +28,8 @@
 | SAbDab summary | 다운 | `pipeline/` | ~11 MB | `prep_fetch_sabdab.sh` |
 | 구조 (cif) | 다운 | `structures/` 또는 `/mnt/data/.../structures` | ~수백 MB | `prep_fetch_structures.py` (RCSB) |
 | chains·fasta·native | 생성 | `targets/` | 작음 | `prep_targets.py` |
-| MSA 사다리 (a3m) | 생성 | **`/mnt/data/admuser/msadepth/ladders`** | ~GB | `make_msa.sh` |
-| pose (cif) | 생성 | **`/mnt/data/admuser/msadepth/{boltz,protenix}`** | 수십~수백 GB | `run_sweep.sh` |
+| MSA 사다리 (a3m) | 생성 | **`/mnt/data/msadepth/ladders`** | ~GB | `make_msa.sh` |
+| pose (cif) | 생성 | **`/mnt/data/msadepth/{boltz,protenix}`** | 수십~수백 GB | `run_sweep.sh` |
 
 ## ⚠️ 홈 디스크 보호
 
@@ -37,7 +37,7 @@
 **구조도 홈에 안 쌓으려면** `--outdir`을 `/mnt/data`로:
 
 ```bash
-DROOT=/mnt/data/admuser/msadepth
+DROOT=/mnt/data/msadepth
 python prep_fetch_structures.py --manifest pilot_lean_full.csv --outdir "$DROOT/structures"
 python prep_targets.py     --csv pilot_lean_full.csv --struct "$DROOT/structures" --outdir targets
 #   targets/ 는 작아서 레포 폴더에 둬도 됨(gen_msa·run_sweep이 $HERE/targets 를 봄).

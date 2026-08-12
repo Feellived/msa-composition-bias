@@ -18,7 +18,7 @@ Protenix는 같은 상황에서 경고를 안 낼 수 있으므로 **로그가 �
 사용(stdlib only):
   python prep_a3m_check_match.py                      # 전 타깃
   python prep_a3m_check_match.py --only 8ulr_HL 9azr_HL
-  python prep_a3m_check_match.py --list sweep_targets.csv --data /mnt/data/admuser/msadepth
+  python prep_a3m_check_match.py --list sweep_targets.csv --data /mnt/data/msadepth
 """
 import argparse, csv, json, os, re, sys
 
@@ -106,7 +106,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--list", default="sweep_targets.csv")
     ap.add_argument("--targets-dir", default="targets")
-    ap.add_argument("--data", default=os.environ.get("DATA", "/mnt/data/admuser/msadepth"))
+    ap.add_argument("--data", default=os.environ.get("DATA", "/mnt/data/msadepth"))
     ap.add_argument("--rung", default="rung0", help="비교할 사다리 칸(기본 rung0=full)")
     ap.add_argument("--only", nargs="*", default=[])
     ap.add_argument("--out", default="results/msa_match_check.csv")

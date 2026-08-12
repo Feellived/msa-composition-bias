@@ -70,7 +70,7 @@ def consensus(sets, frac=0.5):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--csv", required=True)
-    ap.add_argument("--data", default=os.environ.get("DATA", "/mnt/data/admuser/msadepth") + "/compreps")
+    ap.add_argument("--data", default=os.environ.get("DATA", "/mnt/data/msadepth") + "/compreps")
     ap.add_argument("--targets-dir", default="targets")
     ap.add_argument("--cutoff", type=float, default=5.0)
     ap.add_argument("--out", default="")

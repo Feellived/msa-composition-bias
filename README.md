@@ -1,4 +1,4 @@
-# bk21-msa-depth-bias
+# msa-composition-bias
 
 서울대학교 의과대학 항체·면역학 실험실(이창한 교수 연구실) **BK21 여름 학부연구 2026** 코드 저장소.
 
@@ -18,7 +18,7 @@ MSA의 **깊이(서열 수)를 고정한 채 구성원만 다시 뽑으면**, �
 > 이 README는 저장소를 열었을 때 길을 잃지 않기 위한 최소 안내다.
 >
 > 후보 자리를 **고르고**(선택) 제약으로 주어 **다시 접는**(유도 재도킹) 단계는 형제 저장소
-> **`bk21-antibody-ml`** 과 「인수인계서 Ⅰ · Consensus Docking」에 있다.
+> **`epitope-guided-docking`** 과 「인수인계서 Ⅰ · Consensus Docking」에 있다.
 
 ---
 
@@ -96,7 +96,7 @@ MSA의 **깊이(서열 수)를 고정한 채 구성원만 다시 뽑으면**, �
 ## 스크립트 명명 규칙
 
 파일명 앞부분만 보고 파이프라인의 어느 단계인지 알 수 있도록 여덟 개 접두사로 통일했다.
-형제 저장소 `bk21-antibody-ml`과 같은 규칙이다.
+형제 저장소 `epitope-guided-docking`과 같은 규칙이다.
 
 | 접두사 | 의미 | 예 |
 |---|---|---|
@@ -110,7 +110,7 @@ MSA의 **깊이(서열 수)를 고정한 채 구성원만 다시 뽑으면**, �
 | `lib_` | 공유 라이브러리(CLI 없음) | `lib_pose_features.py` `lib_epitope_recall.py` `lib_epitope_defs.py` |
 
 `lib_pose_features.py`가 채점의 중심 모듈이다. DockQ·결합 자리 추출·에피토프 지표를 담고
-있으며, 형제 저장소 `bk21-antibody-ml`도 이 모듈을 불러 쓴다.
+있으며, 형제 저장소 `epitope-guided-docking`도 이 모듈을 불러 쓴다.
 
 ---
 
@@ -119,7 +119,7 @@ MSA의 **깊이(서열 수)를 고정한 채 구성원만 다시 뽑으면**, �
 **모든 명령은 `pipeline/` 안에서 실행한다.** 타깃 명단 CSV가 상대경로로 읽히기 때문이다.
 
 ```bash
-cd ~/projects/bk21-msa-depth-bias/pipeline
+cd ~/projects/msa-composition-bias/pipeline
 export DATA=/path/to/large-disk/msadepth
 
 # 1) 데이터셋 조립 — SAbDab → 매니페스트 → 에피토프 라벨 → 파일럿 선별
@@ -187,14 +187,15 @@ cd ../report && python -u plot_agg.py
 
 이 저장소는 **① 생성**(조성 재추첨으로 결합 자리 후보를 넓힌다)과 **② 후보 조립**(조성 간
 투표로 후보 자리를 세운다)을 담당한다. **③ 선택**과 **④ 유도 재도킹**은 형제 저장소
-`bk21-antibody-ml`에 있다.
+[`epitope-guided-docking`](https://github.com/Feellived/epitope-guided-docking)에 있다.
 
 의존은 양방향이다.
 
-- `bk21-antibody-ml`의 데모·honest·전체후보 흐름이 이 저장소를 하드코딩 경로
-  `~/projects/bk21-msa-depth-bias/pipeline`(환경변수 `MSAD`)로 참조한다.
-  `lib_pose_features`·`lib_epitope_recall`을 모듈로 불러 쓰고, `results/sites_*.json`을 읽는다
-- 이 저장소의 재선택·후보천장 흐름은 `bk21-antibody-ml`의 스크립트를 호출한다
+- [`epitope-guided-docking`](https://github.com/Feellived/epitope-guided-docking)의 데모·honest·전체후보
+  흐름이 이 저장소를 환경변수 `MSAD`(기본값 `~/projects/msa-composition-bias/pipeline`)로 참조한다.
+  공유 모듈 `lib_pose_features`·`lib_epitope_recall`을 `$MSAD/scripts`에서 불러오고,
+  결합 자리 후보 `$MSAD/results/sites_<타깃>.json`을 읽는다
+- 이 저장소의 재선택·후보천장 흐름은 `epitope-guided-docking`의 스크립트를 호출한다
 
 **한쪽 저장소의 파일명을 바꾸면 반대쪽도 함께 고쳐야 한다.**
 

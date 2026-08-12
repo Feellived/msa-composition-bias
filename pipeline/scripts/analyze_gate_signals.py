@@ -25,12 +25,12 @@ GPU 를 쓰지 않는다. 이미 만들어 둔 구조 파일과 confidence JSON 
 사용 (conda activate boltz · pipeline/ 에서):
   python -u analyze_gate_signals.py --selftest      # 통계 부분만 자체 검증 (자료 없이 즉시)
   python -u analyze_gate_signals.py
-  python -u analyze_gate_signals.py --runs ~/projects/bk21-antibody-ml/pipeline/runs_sites_guided_honest
+  python -u analyze_gate_signals.py --runs ~/projects/epitope-guided-docking/pipeline/runs_sites_guided_honest
 """
 import argparse, csv, glob, json, os, random, re
 import statistics as st
 
-AB = os.path.expanduser("~/projects/bk21-antibody-ml/pipeline")
+AB = os.path.expanduser("~/projects/epitope-guided-docking/pipeline")
 
 
 # ── 채점용 도구 ─────────────────────────────────────────────────────────────

@@ -17,7 +17,7 @@
 # ══════════════════════════════════════════════════════════════════════════════
 set -uo pipefail
 cd "$(cd "$(dirname "$0")" && pwd)"
-DATA="${DATA:-/mnt/data/admuser/msadepth}"
+DATA="${DATA:-/mnt/data/msadepth}"
 TARGET="${TARGET:-8ulr_HL}"; MODEL="${MODEL:-protenix}"; SRCSEED="${SRCSEED:-seed0}"
 REPS="${REPS:-3}"; SAMP="${SAMP:-5}"; SEED="${SEED:-0}"
 say(){ echo "[$(date '+%m-%d %H:%M:%S')] $*"; }
@@ -38,7 +38,7 @@ say "기준 = $SRC  (깊이 $DEPTH)"
 case "$MODEL" in
   protenix)
     conda activate "${PROT_ENV:-protenix}" 2>/dev/null
-    export PROTENIX_ROOT_DIR="${PROTENIX_ROOT_DIR:-/mnt/data/admuser/protenix_weights}" LAYERNORM_TYPE=torch
+    export PROTENIX_ROOT_DIR="${PROTENIX_ROOT_DIR:-/mnt/data/protenix_weights}" LAYERNORM_TYPE=torch
     PROT_MODEL="${PROT_MODEL:-protenix_base_default_v1.0.0}"; INP="input.json"
     RUN(){ ( cd "$1" && protenix pred -i "$INP" -o results -n "$PROT_MODEL" -s "$SEED" -e "$SAMP" \
              --trimul_kernel torch --triatt_kernel torch --enable_fusion False >run.log 2>&1 ); }

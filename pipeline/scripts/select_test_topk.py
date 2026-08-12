@@ -22,7 +22,7 @@
 
 사용 (conda activate boltz · pipeline/ 에서):
   python -u select_test_topk.py --sites results/sites_refined \
-      --abepi ../../bk21-antibody-ml/pipeline/results/abepiscore_all.csv \
+      --abepi ../../epitope-guided-docking/pipeline/results/abepiscore_all.csv \
       --iptm results/iptm_all.csv --k 3
 """
 import argparse

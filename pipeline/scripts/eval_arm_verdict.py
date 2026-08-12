@@ -17,7 +17,7 @@
 GPU 를 쓰지 않는다. 채점 CSV 하나만 읽는다.
 
 사용:
-  python -u eval_arm_verdict.py --dockq ~/projects/bk21-antibody-ml/pipeline/results/demo_dockq.csv
+  python -u eval_arm_verdict.py --dockq ~/projects/epitope-guided-docking/pipeline/results/demo_dockq.csv
 """
 import argparse, csv, os
 import statistics as st

@@ -14,8 +14,8 @@
 # env: MSAD(msa-depth pipeline) · CD(consensus_docking) · SEL · ARMS · MODELS
 # ══════════════════════════════════════════════════════════════════════════════
 set -uo pipefail
-MSAD="${MSAD:-$HOME/projects/bk21-msa-depth-bias/pipeline}"
-CD="${CD:-$HOME/projects/bk21-antibody-ml/pipeline}"
+MSAD="${MSAD:-$HOME/projects/msa-composition-bias/pipeline}"
+CD="${CD:-$HOME/projects/epitope-guided-docking/pipeline}"
 SEL="${SEL:-ncomp_x_abemax}"
 ARMS="${ARMS:-noconstraint fullmsa sizematch ours}"
 MODELS="${MODELS:-boltz}"

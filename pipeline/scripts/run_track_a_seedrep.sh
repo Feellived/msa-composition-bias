@@ -17,7 +17,7 @@
 #   ⚠️채점은 DockQ 아니라 epitope-recall(예측이 진짜 쪽으로 이동)이 정직한 종점.
 #
 # 사용:
-#   cd ~/projects/bk21-msa-depth-bias/pipeline && git pull
+#   cd ~/projects/msa-composition-bias/pipeline && git pull
 #   bash run_track_a_seedrep.sh                     # 기본 앵커 4개
 #   ANCHORS="8wpy_AB" bash run_track_a_seedrep.sh   # 한 앵커만
 #   REPLICAS=5 OUT=seedrep bash run_track_a_seedrep.sh
@@ -30,7 +30,7 @@ conda activate "${SEEDREP_ENV:-protenix}" 2>/dev/null
 PY="${PY:-python3}"
 "$PY" -c 'import numpy' 2>/dev/null || { echo "!! numpy 없는 python — conda env 활성화 실패(SEEDREP_ENV=numpy 보유 env 지정). seed a3m 0개 방지 위해 즉시 중단."; exit 1; }
 
-DATA="${DATA:-/mnt/data/admuser/msadepth}"
+DATA="${DATA:-/mnt/data/msadepth}"
 LADDIR="$DATA/ladders"
 OUT="${OUT:-seedrep}"                 # pipeline/seedrep/<target>_<chain>/
 REPLICAS="${REPLICAS:-5}"

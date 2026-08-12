@@ -40,7 +40,7 @@
   · '후보 목록이 몇 개로 줄어드나'는 자리 군집이 필요해 여기서 못 잰다(구조 파일이 있어야 한다).
 
 사용 (stdlib only · CPU 몇 초):
-    cd ~/projects/bk21-msa-depth-bias/pipeline
+    cd ~/projects/msa-composition-bias/pipeline
     python analyze_depth_blind_check.py
     python analyze_depth_blind_check.py --thr 0.40 --model protenix --out results/depth_blind_check.csv
 """

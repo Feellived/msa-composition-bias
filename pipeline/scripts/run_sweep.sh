@@ -11,7 +11,7 @@ set -uo pipefail
 HERE="$(cd "$(dirname "$0")/.." && pwd)"          
 cd "$HERE" || exit 1
 COF="${1:?boltz|protenix|chai}"; HOURS="${2:-11}"
-DATA="${DATA:-/mnt/data/admuser/msadepth}"      # ⚠️ 대용량 출력 = /mnt/data(홈 금지)
+DATA="${DATA:-/mnt/data/msadepth}"      # ⚠️ 대용량 출력 = /mnt/data(홈 금지)
 LADDIR="$DATA/ladders"; RUNGS="${RUNGS:-12}"; SAMP="${SAMP:-5}"; SEED="${SEED:-0}"; SMOKE="${SMOKE:-0}"   # 12단(깊이 촘촘)
 DIVERSE="${DIVERSE:-$HERE/../runs_diverse}"      # C 재활용 위치(서버 확인)
 LIST="${LIST:-$HERE/sweep_targets.csv}"
@@ -35,7 +35,7 @@ case "$COF" in
     DONE(){ find "$1/results" -name '*_model_*.cif' 2>/dev/null | grep -q .; } ;;
   protenix)
     conda activate "${PROT_ENV:-protenix}" 2>/dev/null
-    export PROTENIX_ROOT_DIR="${PROTENIX_ROOT_DIR:-/mnt/data/admuser/protenix_weights}" LAYERNORM_TYPE=torch
+    export PROTENIX_ROOT_DIR="${PROTENIX_ROOT_DIR:-/mnt/data/protenix_weights}" LAYERNORM_TYPE=torch
     command -v protenix >/dev/null || { say "!! protenix 없음"; exit 1; }
     # ⚠️ leakage: protenix_base_20250630_v1.0.0 = 학습컷오프 2025-06-30(post-2023-06 테스트셋 암기) → 금지.
     # 기본=protenix_base_default_v1.0.0(컷오프 2021-09-30=leakage-free, 공식 권장·AF3 능가).

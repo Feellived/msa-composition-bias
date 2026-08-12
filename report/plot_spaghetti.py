@@ -3,6 +3,7 @@
 """렌즈3: 자기정규화 스파게티 (A/B/C 그룹 facet)
 각 복합체의 DockQ를 자기 안에서 min-max 정규화(0~1)한 뒤 정규화 깊이에 대해 옅은 선으로.
 평균이 상쇄되는 이유(반응 '모양'이 제각각: 상승/하강/피크형)를 직접 보여준다."""
+import os
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.font_manager as fm
@@ -13,7 +14,7 @@ matplotlib.rcParams['axes.unicode_minus'] = False
 import pandas as pd
 import numpy as np
 
-BASE = '/private/tmp/claude-501/-Users-zzuhyeong2-Library-CloudStorage-GoogleDrive-a01056371120-gmail-com-My-Drive-SNU-BK-Summer-2026/be7059af-14d1-4717-a37d-c316fbae23f5/scratchpad/analysis'
+BASE = os.environ.get('ANALYSIS_DIR', 'analysis')   # 중간 산출 CSV 폴더
 df = pd.read_csv(f'{BASE}/dockq_sweep_boltz.csv')
 
 COL = {'A': '#2c7fb8', 'B': '#d95f0e', 'C': '#7a7a7a'}

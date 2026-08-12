@@ -9,9 +9,9 @@
 
 | 위치 | 내용 | 접근 |
 |---|---|---|
-| `~/projects/bk21-msa-depth-bias/pipeline/results/` | 본 검정·사다리 채점 결과 (**CSV 196 · json 30 · txt 59 · `analysis/` · `.bak` 2**) | 대부분 레포 커밋됨 |
-| `~/projects/bk21-antibody-ml/pipeline/` | 유도 재도킹(데모) · 물리 도킹 · 모델 비교 | `results/*.csv` · `dataset/*.csv` 커밋됨 |
-| `/mnt/data/admuser/msadepth/` | 예측 원본(구조·MSA·pose) · iDist | **레포 밖.** 용량 큼 |
+| `~/projects/msa-composition-bias/pipeline/results/` | 본 검정·사다리 채점 결과 (**CSV 196 · json 30 · txt 59 · `analysis/` · `.bak` 2**) | 대부분 레포 커밋됨 |
+| `~/projects/epitope-guided-docking/pipeline/` | 유도 재도킹(데모) · 물리 도킹 · 모델 비교 | `results/*.csv` · `dataset/*.csv` 커밋됨 |
+| `/mnt/data/msadepth/` | 예측 원본(구조·MSA·pose) · iDist | **레포 밖.** 용량 큼 |
 
 ⚠️ `_stale_0727_1505` · `_stale_0727_1516` 계열 폴더는 **a3m 사고로 밀어둔 무효 자료**다. 채점기가
 긁지 않는지 확인할 것.
@@ -90,7 +90,7 @@
 
 ---
 
-## 4. bk21-antibody-ml/pipeline
+## 4. epitope-guided-docking/pipeline
 
 | 파일 | 내용 |
 |---|---|

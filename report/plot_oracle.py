@@ -5,6 +5,7 @@
 복합체별 수평 덤벨: full(rung0) DockQ vs best-over-depth DockQ.
 그룹평균 꺾은선이 숨기는 per-complex 깊이 신호를 드러낸다.
 """
+import os
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.font_manager as fm
@@ -17,9 +18,7 @@ fm.fontManager.addfont('/System/Library/Fonts/Supplemental/AppleGothic.ttf')
 matplotlib.rcParams['font.family'] = 'AppleGothic'
 matplotlib.rcParams['axes.unicode_minus'] = False
 
-BASE = ('/private/tmp/claude-501/-Users-zzuhyeong2-Library-CloudStorage-'
-        'GoogleDrive-a01056371120-gmail-com-My-Drive-SNU-BK-Summer-2026/'
-        'be7059af-14d1-4717-a37d-c316fbae23f5/scratchpad/analysis')
+BASE = os.environ.get('ANALYSIS_DIR', 'analysis')   # 중간 산출 CSV 폴더
 CSV = f'{BASE}/dockq_sweep_boltz.csv'
 OUT = f'{BASE}/viz_oracle.png'
 

@@ -15,7 +15,7 @@ plt.rcParams["font.family"] = "AppleGothic"
 plt.rcParams["axes.unicode_minus"] = False
 
 BLUE, GRAY = "#1F4E79", "#8C8C8C"
-SRC = "/Users/zzuhyeong2/projects/bk21-msa-depth-bias/pipeline/results/seedcomp_by_target/*.csv"
+SRC = "~/projects/msa-composition-bias/pipeline/results/seedcomp_by_target/*.csv"
 
 byn = {n: [[], []] for n in (1, 2, 3, 4)}
 for f in sorted(glob.glob(SRC)):

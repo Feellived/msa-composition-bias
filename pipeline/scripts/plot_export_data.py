@@ -4,7 +4,7 @@
 ⚠️ 재랭커 아님 — 그림 재료만 만든다. stdlib only. 서버 results/ 에서 실행하고
    찍힌 출력을 그대로(4블록 전부) 붙여주면 로컬에서 그림을 그려 노션에 올린다.
 
-  cd ~/projects/bk21-msa-depth-bias/pipeline && git pull
+  cd ~/projects/msa-composition-bias/pipeline && git pull
   python plot_export_data.py                 # results/pose_features.csv + results/crosscheck_depth.csv
   python plot_export_data.py --pf 다른.csv --cc 다른.csv
 

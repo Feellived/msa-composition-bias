@@ -59,7 +59,7 @@ def main():
     ap.add_argument("--list", default="sweep_targets.csv")
     ap.add_argument("--pf", default="results/pose_features.csv")
     ap.add_argument("--seedrep", default="results/seedrep_poses.csv")
-    ap.add_argument("--data", default=os.environ.get("DATA", "/mnt/data/admuser/msadepth"))
+    ap.add_argument("--data", default=os.environ.get("DATA", "/mnt/data/msadepth"))
     ap.add_argument("--targets-dir", default="targets")
     ap.add_argument("--cutoff", type=float, default=5.0)
     ap.add_argument("--only", default="")

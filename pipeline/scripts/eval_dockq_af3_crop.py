@@ -13,7 +13,7 @@ DockQ CLI 가 잔기 수 불일치로 값을 못 낸다(native_merged/pose_merge
 
 사용(DockQ+biopython env · pipeline/ 에서):
   python -u eval_dockq_af3_crop.py --target 9b7g_QP \
-      --pose /home/admuser/projects/bk21-antibody-ml/pipeline/fold_9b7g_qp_model_0.cif
+      --pose /home/user/projects/epitope-guided-docking/pipeline/fold_9b7g_qp_model_0.cif
 """
 import argparse
 import json

@@ -25,8 +25,8 @@ GPU 를 쓰지 않는다. 채점 CSV 만 읽는다.
 
 사용:
   python -u select_allcand_ceiling.py \\
-      --allcand ~/projects/bk21-antibody-ml/pipeline/results/allcand \\
-      --dockq   ~/projects/bk21-antibody-ml/pipeline/results/demo_dockq.csv
+      --allcand ~/projects/epitope-guided-docking/pipeline/results/allcand \\
+      --dockq   ~/projects/epitope-guided-docking/pipeline/results/demo_dockq.csv
 """
 import argparse, csv, glob, os, re
 import statistics as st

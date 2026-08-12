@@ -25,7 +25,7 @@
 #   bash run_fix_protenix_dirs.sh --apply
 # ══════════════════════════════════════════════════════════════════════════════
 set -uo pipefail
-DATA="${DATA:-/mnt/data/admuser/msadepth}"
+DATA="${DATA:-/mnt/data/msadepth}"
 NEW="$DATA/protenix"
 OLD="${OLD:-$DATA/protenix_stale_0727_1505}"
 APPLY=0; [ "${1:-}" = "--apply" ] && APPLY=1

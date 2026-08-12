@@ -1,7 +1,7 @@
 target,arm,crit,model,dockq,recall,n_pose,pose,png
-8k3k_D,blind,recall,protenix,,0.1364,100,/mnt/data/admuser/msadepth/compreps/seedrep_cand/protenix/8k3k_D/d57/seedfull_r17/results/8k3k_d/seed_0/predictions/8k3k_d_sample_4.cif,fig/demo_8k3k_D_blind_rc.png
+8k3k_D,blind,recall,protenix,,0.1364,100,/mnt/data/msadepth/compreps/seedrep_cand/protenix/8k3k_D/d57/seedfull_r17/results/8k3k_d/seed_0/predictions/8k3k_d_sample_4.cif,fig/demo_8k3k_D_blind_rc.png
 8k3k_D,ours,recall,boltz,,0.7600,10,runs_sites_guided/8k3k_d/ours/out_boltz/results/boltz_results_boltz_8k3k_d_patch0/predictions/boltz_8k3k_d_patch0/boltz_8k3k_d_patch0_model_3.cif,fig/demo_8k3k_D_ours_rc.png
-8sis_HL,blind,recall,protenix,,0.4068,100,/mnt/data/admuser/msadepth/compreps/seedrep_cand/protenix/8sis_HL/d4169/seedfull_r1/results/8sis_hl/seed_0/predictions/8sis_hl_sample_1.cif,fig/demo_8sis_HL_blind_rc.png
+8sis_HL,blind,recall,protenix,,0.4068,100,/mnt/data/msadepth/compreps/seedrep_cand/protenix/8sis_HL/d4169/seedfull_r1/results/8sis_hl/seed_0/predictions/8sis_hl_sample_1.cif,fig/demo_8sis_HL_blind_rc.png
 8sis_HL,ours,recall,boltz,,0.7368,5,runs_sites_guided/8sis_hl/ours/out_boltz/results/boltz_results_boltz_8sis_hl_patch0/predictions/boltz_8sis_hl_patch0/boltz_8sis_hl_patch0_model_2.cif,fig/demo_8sis_HL_ours_rc.png
-8ume_HL,blind,recall,protenix,,0.6250,40,/mnt/data/admuser/msadepth/compreps/seedrep_cand/protenix/8ume_HL/d653/seedfull_r7/results/8ume_hl/seed_0/predictions/8ume_hl_sample_1.cif,fig/demo_8ume_HL_blind_rc.png
+8ume_HL,blind,recall,protenix,,0.6250,40,/mnt/data/msadepth/compreps/seedrep_cand/protenix/8ume_HL/d653/seedfull_r7/results/8ume_hl/seed_0/predictions/8ume_hl_sample_1.cif,fig/demo_8ume_HL_blind_rc.png
 8ume_HL,ours,recall,boltz,,0.6923,5,runs_sites_guided/8ume_hl/ours/out_boltz/results/boltz_results_boltz_8ume_hl_patch0/predictions/boltz_8ume_hl_patch0/boltz_8ume_hl_patch0_model_3.cif,fig/demo_8ume_HL_ours_rc.png

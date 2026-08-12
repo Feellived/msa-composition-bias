@@ -21,12 +21,12 @@
 # ══════════════════════════════════════════════════════════════════════════════
 set -uo pipefail
 cd "$(cd "$(dirname "$0")" && pwd)"
-DATA="${DATA:-/mnt/data/admuser/msadepth}"
+DATA="${DATA:-/mnt/data/msadepth}"
 CSV="${CSV:-maintest.csv}"
 WAIT_SEC="${WAIT_SEC:-300}"
 SCREEN="${SCREEN:-0}"
 NOWAIT="${NOWAIT:-0}"
-CD="${CD:-$HOME/projects/bk21-antibody-ml/pipeline}"
+CD="${CD:-$HOME/projects/epitope-guided-docking/pipeline}"
 # ⚠️ 채점에는 DockQ 도구가 필요하다. tmux 가 물려받은 env 에 없으면 dockq 열만 조용히 비고
 #    자리겹침만 나온다(2026-07-30 실제로 그랬다). 그래서 env 를 명시해 부른다.
 DOCKQ_ENV="${DOCKQ_ENV:-boltz}"

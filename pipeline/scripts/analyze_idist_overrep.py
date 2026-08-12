@@ -198,7 +198,7 @@ def main():
     p.add_argument("--targets-dir", default="targets")
     p.add_argument("--ref-manifest", dest="ref_manifest", default="ref_manifest.csv")
     p.add_argument("--ref-struct", dest="ref_struct", default="ref_structures")
-    p.add_argument("--work", default=os.path.join(os.environ.get("DATA", "/mnt/data/admuser/msadepth"), "idist"))
+    p.add_argument("--work", default=os.path.join(os.environ.get("DATA", "/mnt/data/msadepth"), "idist"))
     p.add_argument("--out", default="results/overrep_idist.csv")
     p.add_argument("--reembed", action="store_true", help="refemb 캐시 무시하고 레퍼런스 재임베딩")
     a = p.parse_args()

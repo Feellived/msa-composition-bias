@@ -10,7 +10,7 @@ set -uo pipefail
 # 스크립트는 pipeline/scripts/ 에 있고, 기준 디렉토리는 상위 pipeline/ 이다
 HERE="$(cd "$(dirname "$0")/.." && pwd)"; cd "$HERE"
 COF="${1:?protenix|chai}"
-DATA="${DATA:-/mnt/data/admuser/msadepth}"
+DATA="${DATA:-/mnt/data/msadepth}"
 SEEDREP="${SEEDREP:-$HERE/seedrep}"
 OUTROOT="${OUTROOT:-$DATA/seedrep_pred}"
 LIST="${LIST:-$HERE/sweep_targets.csv}"
@@ -26,7 +26,7 @@ source ~/miniconda3/etc/profile.d/conda.sh 2>/dev/null
 case "$COF" in
   protenix)
     conda activate "${PROT_ENV:-protenix}" 2>/dev/null
-    export PROTENIX_ROOT_DIR="${PROTENIX_ROOT_DIR:-/mnt/data/admuser/protenix_weights}" LAYERNORM_TYPE=torch
+    export PROTENIX_ROOT_DIR="${PROTENIX_ROOT_DIR:-/mnt/data/protenix_weights}" LAYERNORM_TYPE=torch
     command -v protenix >/dev/null || { say "!! protenix 없음"; exit 1; }
     PROT_MODEL="${PROT_MODEL:-protenix_base_default_v1.0.0}"; EXT="json"   # leakage-free(컷 2021-09-30)
     RUN(){ ( cd "$2" && protenix pred -i "$1" -o results -n "$PROT_MODEL" -s "$SEED" -e "$SAMP" \
