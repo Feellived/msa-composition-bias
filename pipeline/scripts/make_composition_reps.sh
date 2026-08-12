@@ -27,7 +27,7 @@
 # ══════════════════════════════════════════════════════════════════════════════
 set -uo pipefail
 cd "$(cd "$(dirname "$0")" && pwd)"
-DATA="${DATA:-/mnt/data/admuser/msadepth}"
+DATA="${DATA:-/mnt/data/msadepth}"
 TARGET="${TARGET:-8ulr_HL}"; MODEL="${MODEL:-protenix}"
 RUNG="${RUNG:-}"                 # 지정 시 이 rung 깊이로 조성 a3m 자동 생성(없을 때만)
 REPLICAS="${REPLICAS:-8}"        # 자동 생성할 조성 개수
@@ -84,7 +84,7 @@ case "$MODEL" in
   protenix)
     conda activate "${PROT_ENV:-protenix}" 2>/dev/null
     command -v protenix >/dev/null || { say "!! protenix 없음"; exit 1; }
-    export PROTENIX_ROOT_DIR="${PROTENIX_ROOT_DIR:-/mnt/data/admuser/protenix_weights}" LAYERNORM_TYPE=torch
+    export PROTENIX_ROOT_DIR="${PROTENIX_ROOT_DIR:-/mnt/data/protenix_weights}" LAYERNORM_TYPE=torch
     PROT_MODEL="${PROT_MODEL:-protenix_base_default_v1.0.0}"; EXT="json"
     RUN(){ ( cd "$2" && protenix pred -i "$1" -o results -n "$PROT_MODEL" -s "$SEED" -e "$SAMP" \
              --trimul_kernel torch --triatt_kernel torch --enable_fusion False >"$3" 2>&1 ); }

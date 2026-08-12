@@ -100,7 +100,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--csv", default="maintest.csv")
     ap.add_argument("--list", default="sweep_targets.csv")
-    ap.add_argument("--data", default=os.environ.get("DATA", "/mnt/data/admuser/msadepth"))
+    ap.add_argument("--data", default=os.environ.get("DATA", "/mnt/data/msadepth"))
     ap.add_argument("--loop", action="store_true")
     ap.add_argument("--every", type=int, default=60)
     ap.add_argument("--score", default="", help="이 타깃을 지금까지 나온 자세로 채점")

@@ -19,7 +19,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--target", required=True, help="targets/<이름>/ 의 이름")
     ap.add_argument("--poses", nargs="+", required=True)
-    ap.add_argument("--msad", default=os.path.expanduser("~/projects/bk21-msa-depth-bias/pipeline"))
+    ap.add_argument("--msad", default=os.path.expanduser("~/projects/msa-composition-bias/pipeline"))
     ap.add_argument("--labels", nargs="*", default=None, help="출력에 쓸 이름(자세와 같은 순서)")
     a = ap.parse_args()
 

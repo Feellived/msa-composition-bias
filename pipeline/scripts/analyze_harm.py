@@ -23,7 +23,7 @@
 import argparse, csv, glob, json, os
 import statistics as st
 
-AB = os.path.expanduser("~/projects/bk21-antibody-ml/pipeline")
+AB = os.path.expanduser("~/projects/epitope-guided-docking/pipeline")
 CAUSES = ("이득", "무변화", "제약방해", "선택실패", "생성실패")
 
 

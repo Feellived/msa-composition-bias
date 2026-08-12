@@ -10,7 +10,7 @@
 # ⚠️ SMOKE 게이트: 새 러너가 깨졌으면 전체 몇 시간 태우기 전에 1건에서 멈춤(밤 낭비 방지).
 #
 # 사용(tmux 권장 — 세션 끊겨도 유지):
-#   cd ~/projects/bk21-msa-depth-bias/pipeline && git pull
+#   cd ~/projects/msa-composition-bias/pipeline && git pull
 #   tmux new -s trackA
 #   bash run_track_a_overnight.sh 2>&1 | tee overnight_$(date +%m%d).log
 #   # Ctrl-b d 로 detach 후 집에. 아침에 overnight_*.log 마지막부분 붙여주세요.
@@ -76,7 +76,7 @@ if [ "$CHAI_OK" = 1 ]; then
 fi
 
 # ⑥ 정지 — 게이트까지만.
-DATA="${DATA:-/mnt/data/admuser/msadepth}"
+DATA="${DATA:-/mnt/data/msadepth}"
 np=$(find "$DATA/seedrep_pred" -path '*/results/*sample*.cif' 2>/dev/null | wc -l)
 nc=$(find "$DATA/seedrep_pred/chai" -path '*/results/*.cif' 2>/dev/null | wc -l)
 say "======== Track A Stage 0 완료 ========"

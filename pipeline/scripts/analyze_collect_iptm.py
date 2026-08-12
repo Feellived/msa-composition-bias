@@ -57,7 +57,7 @@ def _flatten(x):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data",
-                    default=os.path.join(os.environ.get("DATA", "/mnt/data/admuser/msadepth"),
+                    default=os.path.join(os.environ.get("DATA", "/mnt/data/msadepth"),
                                          "compreps", "seedrep_cand", "protenix"),
                     help="…/compreps/seedrep_cand/protenix ($DATA 가 비어 있으면 기본 경로를 쓴다)")
     ap.add_argument("--out", default="results/iptm_all.csv")

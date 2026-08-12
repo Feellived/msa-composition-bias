@@ -17,7 +17,7 @@ eval_selectors 에서 그대로 가져와, 같은 판·같은 집계로 비교�
 
 사용 (conda activate boltz · pipeline/ 에서):
   python -u select_test_selectors.py --sites results \
-      --abepi ../../bk21-antibody-ml/pipeline/results/abepiscore_all.csv \
+      --abepi ../../epitope-guided-docking/pipeline/results/abepiscore_all.csv \
       --iptm results/iptm_all.csv
 """
 import argparse

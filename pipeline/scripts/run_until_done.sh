@@ -26,7 +26,7 @@
 # ══════════════════════════════════════════════════════════════════════════════
 set -uo pipefail
 cd "$(cd "$(dirname "$0")" && pwd)"
-DATA="${DATA:-/mnt/data/admuser/msadepth}"
+DATA="${DATA:-/mnt/data/msadepth}"
 HOURS="${HOURS:-6}"
 MAX_ITERS="${MAX_ITERS:-20}"
 AUTO_ANALYZE="${AUTO_ANALYZE:-1}"

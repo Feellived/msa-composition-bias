@@ -18,7 +18,7 @@
 # ══════════════════════════════════════════════════════════════════════════════
 set -uo pipefail
 cd "$(cd "$(dirname "$0")" && pwd)"
-DATA="${DATA:-/mnt/data/admuser/msadepth}"
+DATA="${DATA:-/mnt/data/msadepth}"
 [ $# -ge 1 ] || { echo "사용: bash run_analyze_target.sh <타깃> [타깃...]"; exit 1; }
 for T in "$@"; do
   echo ""

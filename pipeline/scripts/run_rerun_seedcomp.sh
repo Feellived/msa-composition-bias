@@ -16,7 +16,7 @@
 #   python -u analyze_merge_seedcomp.py
 # ══════════════════════════════════════════════════════════════════════════════
 set -uo pipefail
-DATA="${DATA:-/mnt/data/admuser/msadepth}"
+DATA="${DATA:-/mnt/data/msadepth}"
 mkdir -p results/seedcomp_by_target
 
 # "타깃:깊이" — results/compreps_<타깃>.csv 의 depth 열에서 그대로 읽은 값.

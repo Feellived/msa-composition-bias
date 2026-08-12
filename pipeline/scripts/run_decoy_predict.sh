@@ -14,14 +14,14 @@
 #    돌리기 전에 반드시 사용자 확인을 거쳤다는 전제.
 #
 # 사용(tmux 권장):
-#   cd ~/projects/bk21-msa-depth-bias/pipeline && git pull
+#   cd ~/projects/msa-composition-bias/pipeline && git pull
 #   SMOKE=1 bash run_decoy_predict.sh          # 가짜쌍 1개 × rung 1개만 스모크
 #   bash run_decoy_predict.sh 2>&1 | tee logs/decoy_predict_$(date +%m%d).log
 #   완료 후: python analyze_collect_iptm.py --data "$DATA/decoy/protenix" --out results/decoy_iptm.csv
 # ══════════════════════════════════════════════════════════════════════════════
 set -uo pipefail
 cd "$(cd "$(dirname "$0")" && pwd)"
-DATA="${DATA:-/mnt/data/admuser/msadepth}"
+DATA="${DATA:-/mnt/data/msadepth}"
 LADDIR="$DATA/ladders"
 MANIFEST="${MANIFEST:-results/decoy_manifest.csv}"
 OUTROOT="${OUTROOT:-$DATA/decoy/protenix}"    # ⚠️ analyze_collect_iptm.py 가 경로에서 리터럴 "/protenix/<타깃>/<깊이>/<실행>/results/" 를 찾는다
@@ -37,7 +37,7 @@ export HF_HOME="${HF_HOME:-$DATA/.cache/hf}" PIP_CACHE_DIR="${PIP_CACHE_DIR:-$DA
 mkdir -p "$XDG_CACHE_HOME" "$TORCH_EXTENSIONS_DIR" "$HF_HOME"
 source ~/miniconda3/etc/profile.d/conda.sh 2>/dev/null
 conda activate "${PROT_ENV:-protenix}" 2>/dev/null
-export PROTENIX_ROOT_DIR="${PROTENIX_ROOT_DIR:-/mnt/data/admuser/protenix_weights}" LAYERNORM_TYPE=torch
+export PROTENIX_ROOT_DIR="${PROTENIX_ROOT_DIR:-/mnt/data/protenix_weights}" LAYERNORM_TYPE=torch
 command -v protenix >/dev/null || { say "!! protenix 없음 (conda activate ${PROT_ENV:-protenix})"; exit 1; }
 PROT_MODEL="${PROT_MODEL:-protenix_base_default_v1.0.0}"     # ⚠️ leakage-free 컷오프. base_20250630 쓰지 말 것
 

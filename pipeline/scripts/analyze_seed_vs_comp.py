@@ -26,7 +26,7 @@ GPU 를 쓰지 않는다. 이미 있는 실행만 읽는다.
 
 사용 (conda activate boltz · pipeline/ 에서):
   python -u analyze_seed_vs_comp.py --selftest
-  export DATA=/mnt/data/admuser/msadepth && python -u analyze_seed_vs_comp.py
+  export DATA=/mnt/data/msadepth && python -u analyze_seed_vs_comp.py
   python -u analyze_seed_vs_comp.py --only "8k3k_D 8k46_I 8tp5_HL"
 """
 import argparse, csv, glob, json, os, random, re

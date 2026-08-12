@@ -4,14 +4,14 @@
 → protenix 'MSA query/size mismatch'를 GPU 쓰기 전에 일괄 검출. (2026-07-22 protenix 전멸 재발 방지 프리플라이트)
 
 사용(pipeline/에서): python prep_check_protenix_inputs.py [--rungs 12] [--workers 0=자동]
-  DATA 환경변수로 사다리 위치 지정(기본 /mnt/data/admuser/msadepth). GPU·모델 실행 없음 = 수 초.
+  DATA 환경변수로 사다리 위치 지정(기본 /mnt/data/msadepth). GPU·모델 실행 없음 = 수 초.
 """
 import argparse, csv, json, os
 from collections import Counter
 from concurrent.futures import ProcessPoolExecutor
 from make_input import clean_a3m_lines
 
-DATA = os.environ.get("DATA", "/mnt/data/admuser/msadepth")
+DATA = os.environ.get("DATA", "/mnt/data/msadepth")
 LADDIR = os.path.join(DATA, "ladders")
 
 def query_of(a3m_path):

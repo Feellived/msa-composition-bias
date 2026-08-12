@@ -7,7 +7,7 @@ set -uo pipefail
 # 스크립트는 pipeline/scripts/ 에 있고, 기준 디렉토리는 상위 pipeline/ 이다
 HERE="$(cd "$(dirname "$0")/.." && pwd)"; cd "$HERE" || exit 1
 HOURS="${1:-22}"
-DATA="${DATA:-/mnt/data/admuser/msadepth}"
+DATA="${DATA:-/mnt/data/msadepth}"
 say(){ echo "[$(date '+%m-%d %H:%M:%S')] [prot-after] $*"; }
 has_cif(){ find "$DATA/protenix" -name '*sample*.cif' 2>/dev/null | grep -q .; }
 

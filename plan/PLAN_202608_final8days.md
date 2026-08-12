@@ -214,7 +214,7 @@ tmux new -s aug08
 ```
 
 ```bash
-conda activate boltz && cd ~/projects/bk21-msa-depth-bias/pipeline && git pull
+conda activate boltz && cd ~/projects/msa-composition-bias/pipeline && git pull
 ```
 
 **A — 같은 항원 다른 항체 (GPU 불필요, 몇 분)**
@@ -231,19 +231,19 @@ LOO가 고른 설정을 `--use` 에 넣어(예 `0.7,0.5,30`):
 python -u select_refine_sites.py --all --dump-sites results/sites_refined --use 0.7,0.5,30 2>&1 | tee logs/refine_dump.log
 ```
 ```bash
-python -u select_eval_selectors.py --sites results/sites_refined --abepi ../../bk21-antibody-ml/pipeline/results/abepiscore_all.csv --iptm results/iptm_all.csv --summary-out results/eval_refined.csv 2>&1 | tee logs/eval_refined.log
+python -u select_eval_selectors.py --sites results/sites_refined --abepi ../../epitope-guided-docking/pipeline/results/abepiscore_all.csv --iptm results/iptm_all.csv --summary-out results/eval_refined.csv 2>&1 | tee logs/eval_refined.log
 ```
 ```bash
-python -u select_test_selectors.py --sites results/sites_refined --abepi ../../bk21-antibody-ml/pipeline/results/abepiscore_all.csv --iptm results/iptm_all.csv --out results/tests_refined.csv 2>&1 | tee logs/test_refined.log
+python -u select_test_selectors.py --sites results/sites_refined --abepi ../../epitope-guided-docking/pipeline/results/abepiscore_all.csv --iptm results/iptm_all.csv --out results/tests_refined.csv 2>&1 | tee logs/test_refined.log
 ```
 
 **C — 상위 k개 + 편향 보정 (GPU 불필요, 몇 분)**
 ```bash
-python -u select_eval_topk.py --sites results --abepi ../../bk21-antibody-ml/pipeline/results/abepiscore_all.csv --iptm results/iptm_all.csv --out results/topk.csv 2>&1 | tee logs/topk.log
+python -u select_eval_topk.py --sites results --abepi ../../epitope-guided-docking/pipeline/results/abepiscore_all.csv --iptm results/iptm_all.csv --out results/topk.csv 2>&1 | tee logs/topk.log
 ```
 정제본에도 같이:
 ```bash
-python -u select_eval_topk.py --sites results/sites_refined --abepi ../../bk21-antibody-ml/pipeline/results/abepiscore_all.csv --iptm results/iptm_all.csv --out results/topk_refined.csv 2>&1 | tee logs/topk_refined.log
+python -u select_eval_topk.py --sites results/sites_refined --abepi ../../epitope-guided-docking/pipeline/results/abepiscore_all.csv --iptm results/iptm_all.csv --out results/topk_refined.csv 2>&1 | tee logs/topk_refined.log
 ```
 
 **E — 비용 곡선 (GPU 불필요)**

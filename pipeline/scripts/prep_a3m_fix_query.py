@@ -42,7 +42,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--roots", nargs="*", default=None,
                     help="검사할 폴더들(기본: $DATA/ladders, $DATA/seedrep, ./seedrep_cand)")
-    ap.add_argument("--data", default=os.environ.get("DATA", "/mnt/data/admuser/msadepth"))
+    ap.add_argument("--data", default=os.environ.get("DATA", "/mnt/data/msadepth"))
     ap.add_argument("--apply", action="store_true", help="실제로 파일을 고친다(기본은 dry-run)")
     a = ap.parse_args()
 

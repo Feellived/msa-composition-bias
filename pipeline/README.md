@@ -1,7 +1,7 @@
 # depth-sweep 생성 — 서버 실행 흐름 (lean 파일럿 49)
 
 세트 = `pilot_lean.csv` (RBD 7A+7B, HA 7A+7B, Env 6A+6B, C 9 재활용). 순서 = `sweep_targets.csv`(round-robin).
-출력 = **`/mnt/data/admuser/msadepth/`** (홈 디스크 97%→금지). co-folder 순서 = **Boltz → Protenix → Chai**.
+출력 = **`/mnt/data/msadepth/`** (홈 디스크 97%→금지). co-folder 순서 = **Boltz → Protenix → Chai**.
 depth = rung 6개(full→single, 사슬별 Neff80 라벨). pose = diffusion sample 5.
 
 ## 0. 착수 전 확인 (사수 GPU 허락 + 서버값)
@@ -15,7 +15,7 @@ depth = rung 6개(full→single, 사슬별 Neff80 라벨). pose = diffusion samp
 ## 1. 준비 (GPU 불필요)
 
 ```bash
-cd ~/projects/bk21-antibody-ml && git pull
+cd ~/projects/epitope-guided-docking && git pull
 cd pipeline
 conda activate boltz     # biopython 필요
 
@@ -25,14 +25,14 @@ python prep_targets.py --struct structures --outdir targets                # tar
 
 # (b) 항원 MSA + depth 사다리 (CPU/네트워크, self-heal)
 ONLY=8q7s_O bash make_msa.sh      # ⚠️ 먼저 한 타깃 smoke — colabfold 동작·a3m 생성 확인
-bash make_msa.sh                  # 전체 → /mnt/data/admuser/msadepth/ladders/<target>/<chain>/rung{0..5}.a3m
+bash make_msa.sh                  # 전체 → /mnt/data/msadepth/ladders/<target>/<chain>/rung{0..5}.a3m
 ```
 
 ## 2. smoke test (1건, 타이밍 캘리브레이션)
 
 ```bash
 SMOKE=1 bash run_sweep.sh boltz 1
-# → /mnt/data/admuser/msadepth/boltz/<target>/rung0/results/*.cif 확인 + 소요시간 측정
+# → /mnt/data/msadepth/boltz/<target>/rung0/results/*.cif 확인 + 소요시간 측정
 #   1건 소요시간 × 49 × 6 으로 청크 크기 재보정.
 ```
 
@@ -54,7 +54,7 @@ PROT_MODEL=<base모델명> bash run_sweep.sh protenix 54
 ## 산출물 구조
 
 ```
-/mnt/data/admuser/msadepth/
+/mnt/data/msadepth/
   ladders/<target>/<chain>/rung{0..5}.a3m + neff.tsv   # 사슬별 depth 사다리(Neff80 축)
   boltz/<target>/rung{0..5}/results/*.cif              # pose (5 sample)
   protenix/<target>/rung{0..5}/results/*.cif

@@ -155,7 +155,7 @@ def main():
     if not os.path.isdir(a.data):
         raise SystemExit(f"!! 대조군 폴더가 없다: {a.data}\n"
                          f"   $DATA 가 비어 있지 않은지 확인하고 --data 로 직접 줄 것\n"
-                         f"   예: --data /mnt/data/admuser/msadepth/fullmsa_ctl")
+                         f"   예: --data /mnt/data/msadepth/fullmsa_ctl")
     root = os.path.join(a.data, a.model)
     if not os.path.isdir(root):
         raise SystemExit(f"!! 모델 폴더가 없다: {root}\n"

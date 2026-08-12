@@ -14,7 +14,7 @@
 
 사용 (conda activate boltz · pipeline/ 에서, run_rerun_sites.sh 다음에):
   python -u analyze_identify_stat.py --sites results \
-      --abepi ../../bk21-antibody-ml/pipeline/results/abepiscore_all.csv
+      --abepi ../../epitope-guided-docking/pipeline/results/abepiscore_all.csv
 """
 import argparse
 import csv

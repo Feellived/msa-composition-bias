@@ -28,7 +28,7 @@
 # ══════════════════════════════════════════════════════════════════════════════
 set -uo pipefail
 cd "$(cd "$(dirname "$0")" && pwd)"
-DATA="${DATA:-/mnt/data/admuser/msadepth}"
+DATA="${DATA:-/mnt/data/msadepth}"
 CSV="${CSV:-maintest.csv}"
 HOURS="${HOURS:-8}"
 APPLY=0; TARGETS=""

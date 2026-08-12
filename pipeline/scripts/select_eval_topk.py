@@ -36,7 +36,7 @@
 
 사용 (conda activate boltz · pipeline/ 에서):
   python -u select_eval_topk.py --sites results \
-      --abepi ../../bk21-antibody-ml/pipeline/results/abepiscore_all.csv \
+      --abepi ../../epitope-guided-docking/pipeline/results/abepiscore_all.csv \
       --iptm results/iptm_all.csv --out results/topk.csv
   python -u select_eval_topk.py --sites results/sites_refined ... --out results/topk_refined.csv
 """

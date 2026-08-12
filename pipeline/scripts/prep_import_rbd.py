@@ -347,12 +347,12 @@ def stage_undo(a, tg):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--src", default=os.path.expanduser(
-        "~/projects/bk21-antibody-ml/pipeline/runs_rbd"))
+        "~/projects/epitope-guided-docking/pipeline/runs_rbd"))
     ap.add_argument("--stage", choices=["plan", "csv", "msa", "undo"], default="plan")
     ap.add_argument("--targets-dir", default="targets")
     ap.add_argument("--struct", default="structures")
     ap.add_argument("--csv-out", default="rbd_offhot.csv")
-    ap.add_argument("--data", default=os.environ.get("DATA", "/mnt/data/admuser/msadepth"))
+    ap.add_argument("--data", default=os.environ.get("DATA", "/mnt/data/msadepth"))
     ap.add_argument("--list", default="sweep_targets.csv")
     ap.add_argument("--apply", action="store_true")
     a = ap.parse_args()

@@ -16,7 +16,7 @@
   <consensus_docking>/results/abepiscore_all.csv    (eval_abepitope.py)
 
 사용:
-  python select_eval_selectors.py --sites results --abepi ../bk21-antibody-ml/pipeline/results/abepiscore_all.csv
+  python select_eval_selectors.py --sites results --abepi ../epitope-guided-docking/pipeline/results/abepiscore_all.csv
   python select_eval_selectors.py ... --pick ncomp_x_abemax --out results/selected_sites.csv
 """
 import argparse

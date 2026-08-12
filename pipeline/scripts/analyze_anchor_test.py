@@ -14,7 +14,7 @@
 출력  : results/anchor_tests.csv + 화면 표
 
 사용(stdlib만, GPU 불필요):
-  cd ~/projects/bk21-msa-depth-bias/pipeline && python analyze_anchor_test.py
+  cd ~/projects/msa-composition-bias/pipeline && python analyze_anchor_test.py
   python analyze_anchor_test.py --metric recall --thr 0.4
   python analyze_anchor_test.py --only 8ulr_HL --perms 200000
 """

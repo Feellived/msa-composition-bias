@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # 렌즈5 — full MSA 대비 DockQ 변화(Δ) 히트맵
+import os
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.font_manager as fm, matplotlib.pyplot as plt
@@ -9,7 +10,7 @@ matplotlib.rcParams['axes.unicode_minus'] = False
 import pandas as pd, numpy as np
 from matplotlib.gridspec import GridSpec
 
-BASE = '/private/tmp/claude-501/-Users-zzuhyeong2-Library-CloudStorage-GoogleDrive-a01056371120-gmail-com-My-Drive-SNU-BK-Summer-2026/be7059af-14d1-4717-a37d-c316fbae23f5/scratchpad/analysis'
+BASE = os.environ.get('ANALYSIS_DIR', 'analysis')   # 중간 산출 CSV 폴더
 GC = {'A': '#2c7fb8', 'B': '#d95f0e', 'C': '#7a7a7a'}
 
 d = pd.read_csv(f'{BASE}/dockq_sweep_boltz.csv')
