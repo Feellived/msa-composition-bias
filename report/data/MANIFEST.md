@@ -1,6 +1,11 @@
 # 그림용 데이터
 
-`pipeline/collect_data.py --apply` 가 만든 폴더다. 표만 모여 있고 구조 파일은 없다.
+> ⚠️ 아래 '원본' 경로의 `bk21-antibody-ml/consensus_docking/` 은 2026-08-12 재구성으로
+> **`bk21-antibody-ml/pipeline/`** 로 바뀌었다. 적힌 커밋 해시 시점의 경로를 그대로 두었으니,
+> 현재 저장소에서 찾을 때는 `consensus_docking` 을 `pipeline` 으로 바꿔 읽을 것.
+
+
+`pipeline/analyze_collect_data.py --apply` 가 만든 폴더다. 표만 모여 있고 구조 파일은 없다.
 
 | 파일 | 줄 | 열 | 원본 | 해시 |
 |---|---|---|---|---|

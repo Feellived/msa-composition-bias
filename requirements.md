@@ -11,15 +11,15 @@ conda create -n msadepth python=3.10 -y && conda activate msadepth
 pip install biopython pandas numpy DockQ
 # (build_ladder의 Neff80 계산엔 numpy만, classify_epitope엔 biopython)
 ```
-- **DockQ** = pose 채점(`dockq_sweep.py`)에 필수. `which DockQ`로 확인.
+- **DockQ** = pose 채점(`eval_dockq_sweep.py`)에 필수. `which DockQ`로 확인.
 - 서버 실무에선 `boltz`/`DockQ` 깔린 env에 biopython만 추가해 써도 됨(전에 boltz env에서 채점함).
 
 ## 2. MSA 생성 (CPU/네트워크)
 
-`gen_msa.sh` — colabfold로 항원 MSA 생성.
+`make_msa.sh` — colabfold로 항원 MSA 생성.
 ```bash
 # ColabFold 설치 (예: localcolabfold) → colabfold_batch 사용
-#   gen_msa.sh 의 MSA_CMD 기본값 = "colabfold_batch --msa-only"
+#   make_msa.sh 의 MSA_CMD 기본값 = "colabfold_batch --msa-only"
 ```
 서버 colabfold 명령이 다르면 `MSA_CMD` env로 조정.
 

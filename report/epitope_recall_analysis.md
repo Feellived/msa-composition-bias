@@ -2,7 +2,7 @@
 
 > DockQ(fold+배치 혼합 스칼라)와 달리 **"항체가 진짜 에피토프 자리에 붙었나"(위치)만** 재는 지표.
 > pose를 native 에피토프(항체 5Å 내 항원 잔기, 참조 항원서열 위치)와 비교. 47 복합체 × 최대 11 rung × 5 pose.
-> 데이터: `report/epitope_recall.csv` · 그림: `report/figures/epitope_recall_ABC.png` · 코드: `pipeline/epitope_recall.py`.
+> 데이터: `report/epitope_recall.csv` · 그림: `report/figures/epitope_recall_ABC.png` · 코드: `pipeline/lib_epitope_recall.py`.
 
 ## 지표 (recall 단독 불충분 → 세트로)
 `recall(best/mean/min)` · `precision` · `F1` · **`MCC`**(불균형 강건 = 정직한 accuracy) · **`AUPRC`**(threshold-free, 잔기별 항체거리 점수).
@@ -36,6 +36,6 @@ pooled 상관: best_recall↔F1 0.93, ↔MCC 0.95, ↔AUPRC 0.91 / F1↔MCC 0.99
 
 ## 재현
 ```bash
-python epitope_recall.py --models boltz --rungs 12    # → results/epitope_recall.csv
+python lib_epitope_recall.py --models boltz --rungs 12    # → results/epitope_recall.csv
 # 분석·그림: report 폴더 analyze.py / fig.py 참조 (pandas+matplotlib)
 ```
