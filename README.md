@@ -123,7 +123,7 @@ cd ~/projects/msa-composition-bias/pipeline
 export DATA=/path/to/large-disk/msadepth
 
 # 1) 데이터셋 조립 — SAbDab → 매니페스트 → 에피토프 라벨 → 파일럿 선별
-python scripts/prep_fetch_sabdab.sh
+bash scripts/prep_fetch_sabdab.sh
 python -u scripts/prep_manifest.py
 python -u scripts/prep_classify_epitope.py
 python -u scripts/prep_select_pilot.py
@@ -153,7 +153,46 @@ python -u scripts/analyze_seed_vs_comp.py             # 조성 효과 대 시드
 cd ../report && python -u plot_agg.py
 ```
 
-전체 인자는 `--help`로 확인한다.
+대부분의 파이썬 스크립트는 `--help`로 인자를 확인할 수 있다. 다만 데이터셋 조립 단계의
+`prep_manifest.py`·`prep_classify_epitope.py`는 인자 없이 **`pipeline/` 안에서 그대로 실행**하는
+1회용 스크립트다(입력 파일명이 코드에 박혀 있다).
+
+### ⭐ 최소 재현 — 데이터셋을 다시 만들지 말 것
+
+**SAbDab은 살아 있는 데이터베이스다.** `prep_fetch_sabdab.sh`로 다시 받아 `prep_manifest.py`를
+재실행하면 **세트가 달라진다.** 이 연구의 결과를 재현하려면 위 1)단계를 건너뛰고, 커밋된
+확정 세트 `pipeline/pilot_lean_full.csv`를 그대로 쓴 뒤 구조만 내려받는다.
+
+```bash
+cd ~/projects/msa-composition-bias/pipeline
+export DATA=/path/to/large-disk/msadepth
+python -u scripts/prep_fetch_structures.py --manifest pilot_lean_full.csv --outdir $DATA/structures
+python -u scripts/prep_targets.py
+```
+
+1)단계는 **"세트를 어떻게 만들었나"를 재현하거나 갱신할 때만** 쓴다. 자세한 출처와 저장 위치는
+`pipeline/DATA.md`에 있다.
+
+### 모델을 어떤 명령으로 돌렸는가
+
+오케스트레이션 스크립트가 아래 형태로 부른다. 직접 한 건만 돌려 볼 때 참고한다.
+
+```bash
+# Protenix — 후보 생성에 쓴 모델
+protenix pred -i <입력.json> -o results -n "$PROT_MODEL" -s "$SEED" -e "$SAMP"
+
+# Boltz-2 — 자리 제약을 주는 재도킹에 쓴 모델
+boltz predict <입력.yaml> --out_dir results --cache "$BOLTZ_CACHE" --no_kernels --diffusion_samples "$SAMP"
+```
+
+| 변수 | 값 | 비고 |
+|---|---|---|
+| `PROT_MODEL` | **`protenix_base_default_v1.0.0`** | 학습 컷오프 2021-09-30. **`base_20250630`은 쓰지 말 것** — 2025 컷오프라 이 데이터셋에 leakage가 생긴다 |
+| `SAMP` | 5 | 실행 1회당 자세 수 |
+| `BOLTZ_CACHE` | `$DATA/boltz_cache` | 홈 디스크에 weight를 쌓지 않기 위해 |
+| Boltz-2 판본 | **기록되지 않았다** | 설치된 것을 그대로 썼다. 재현 시 `boltz --version`을 먼저 남길 것 |
+
+`--no_kernels`는 이 서버에서 커널 컴파일이 실패해 붙인 것이다. 환경이 다르면 빼도 된다.
 
 ---
 

@@ -27,18 +27,18 @@ pip install biopython scipy pandas matplotlib
 ## 실행 순서 (`pipeline/`에서, ppiref env)
 ```bash
 # 0) 레퍼런스: 컷 이전 SAbDab 항체-항원 매니페스트 → 구조 다운
-python prep_idist_ref_manifest.py                                   # → ref_manifest.csv (RBD/HA/Env, date<2023-06-01)
-python prep_fetch_structures.py --manifest ref_manifest.csv --outdir ref_structures
+python scripts/prep_idist_ref_manifest.py                                   # → ref_manifest.csv (RBD/HA/Env, date<2023-06-01)
+python scripts/prep_fetch_structures.py --manifest ref_manifest.csv --outdir ref_structures
 # (테스트 구조 targets/ 는 기존 재생성: fetch_structures + prep_targets)
 
 # 1) 계면 추출(테스트+레퍼런스) — 6Å 접촉, 캐시 재사용
-python analyze_idist_overrep.py --stage extract
+python scripts/analyze_idist_overrep.py --stage extract
 
 # 2) 임베딩 → 이웃수(과대표집) 채점
-python analyze_idist_overrep.py --stage score                          # → results/overrep_idist.csv
+python scripts/analyze_idist_overrep.py --stage score                          # → results/overrep_idist.csv
 
 # 3) 가설 검정: A>B? 과대표집 vs 깊이-취약성 상관 + 그림
-python analyze_idist.py                                        # → results/idist_overrep.png
+python scripts/analyze_idist.py                                        # → results/idist_overrep.png
 ```
 ⚠️ **먼저 2개 복합체로 스모크** 권장(코드가 로컬 미검증): `sweep_targets.csv`를 2행으로 줄여 --stage all 후
 계면 파일·이웃수가 나오는지 확인.

@@ -20,18 +20,18 @@ cd pipeline
 conda activate boltz     # biopython 필요
 
 # (a) A/B 구조 fetch + 입력 준비 (C는 runs_diverse 재활용이라 제외)
-python prep_fetch_structures.py --manifest pilot_lean.csv --outdir structures   # A/B 40개(+C skip)
-python prep_targets.py --struct structures --outdir targets                # targets/<id>/chains.json
+python scripts/prep_fetch_structures.py --manifest pilot_lean.csv --outdir structures   # A/B 40개(+C skip)
+python scripts/prep_targets.py --struct structures --outdir targets                # targets/<id>/chains.json
 
 # (b) 항원 MSA + depth 사다리 (CPU/네트워크, self-heal)
-ONLY=8q7s_O bash make_msa.sh      # ⚠️ 먼저 한 타깃 smoke — colabfold 동작·a3m 생성 확인
-bash make_msa.sh                  # 전체 → /mnt/data/msadepth/ladders/<target>/<chain>/rung{0..5}.a3m
+ONLY=8q7s_O bash scripts/make_msa.sh      # ⚠️ 먼저 한 타깃 smoke — colabfold 동작·a3m 생성 확인
+bash scripts/make_msa.sh                  # 전체 → /mnt/data/msadepth/ladders/<target>/<chain>/rung{0..5}.a3m
 ```
 
 ## 2. smoke test (1건, 타이밍 캘리브레이션)
 
 ```bash
-SMOKE=1 bash run_sweep.sh boltz 1
+SMOKE=1 bash scripts/run_sweep.sh boltz 1
 # → /mnt/data/msadepth/boltz/<target>/rung0/results/*.cif 확인 + 소요시간 측정
 #   1건 소요시간 × 49 × 6 으로 청크 크기 재보정.
 ```
@@ -41,11 +41,11 @@ SMOKE=1 bash run_sweep.sh boltz 1
 ```bash
 tmux new -s sweep
 # 평일 퇴근(밤샘 ~11h):
-bash run_sweep.sh boltz 11
+bash scripts/run_sweep.sh boltz 11
 # 금요일 퇴근(주말 ~54h):
-bash run_sweep.sh boltz 54
+bash scripts/run_sweep.sh boltz 54
 # Boltz 다 끝나면 Protenix:
-PROT_MODEL=<base모델명> bash run_sweep.sh protenix 54
+PROT_MODEL=<base모델명> bash scripts/run_sweep.sh protenix 54
 ```
 - 예산 소진 시 자동 정지, **재실행하면 완료분 skip하고 이어감**(kill돼도 안전).
 - 복합체 단위 완결 순서라, 중간에 멈춰도 "완전히 스윕된 복합체 K개"(그룹 균형) = 바로 분석 가능.
