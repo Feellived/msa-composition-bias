@@ -7,19 +7,19 @@
 ```
 [다운] SAbDab2 summary  ──prep_fetch_sabdab.sh──▶  sabdab2_summary.csv
                                                    │
-                          build_manifest → classify_epitope → select_pilot   (Mac에서 1회 수행, 결과 committed)
+                          prep_manifest.py → prep_classify_epitope.py → prep_select_pilot.py   (Mac에서 1회 수행, 결과 committed)
                                                    ▼
                                     ★ pilot_lean_full.csv (49, FROZEN 확정 세트)   ← 재현은 이걸 그대로 사용
                                                    │
 [다운] RCSB 구조  ──prep_fetch_structures.py──▶  structures/         (49 PDB)
                           prep_targets.py ──▶  targets/          (chains.json·항원 fasta·native)
-[생성] colabfold  ──make_msa.sh + build_ladder──▶  ladders/       (항원 MSA → Neff80 사다리)
+[생성] colabfold  ──make_msa.sh + prep_ladder.py──▶  ladders/       (항원 MSA → Neff80 사다리)
 [생성] co-folder  ──run_sweep.sh──▶  boltz/ protenix/ ...        (pose)
 ```
 
-⚠️ **SAbDab은 live DB** — `prep_fetch_sabdab.sh`로 다시 받아 `build_manifest`를 재실행하면 세트가 **달라진다**.
+⚠️ **SAbDab은 live DB** — `prep_fetch_sabdab.sh`로 다시 받아 `prep_manifest.py`를 재실행하면 세트가 **달라진다**.
 확정 세트를 재현하려면 committed `pilot_lean_full.csv`를 그대로 쓰고 구조만 받으면 된다(아래 최소 재현).
-`prep_fetch_sabdab.sh` + `build_manifest` 계열은 **"어떻게 만들었나"(provenance) 재현·갱신용**.
+`prep_fetch_sabdab.sh` + `prep_manifest.py` 계열은 **"어떻게 만들었나"(provenance) 재현·갱신용**.
 
 ## 저장 위치 (다운로드 vs 생성)
 
@@ -38,19 +38,19 @@
 
 ```bash
 DROOT=/mnt/data/msadepth
-python prep_fetch_structures.py --manifest pilot_lean_full.csv --outdir "$DROOT/structures"
-python prep_targets.py     --csv pilot_lean_full.csv --struct "$DROOT/structures" --outdir targets
-#   targets/ 는 작아서 레포 폴더에 둬도 됨(gen_msa·run_sweep이 $HERE/targets 를 봄).
+python scripts/prep_fetch_structures.py --manifest pilot_lean_full.csv --outdir "$DROOT/structures"
+python scripts/prep_targets.py     --csv pilot_lean_full.csv --struct "$DROOT/structures" --outdir targets
+#   targets/ 는 작아서 레포 폴더에 둬도 됨(make_msa.sh·run_sweep이 $HERE/targets 를 봄).
 ```
 
 ## 최소 재현 (확정 세트 그대로)
 
 ```bash
 cd pipeline && conda activate boltz
-python prep_fetch_structures.py --manifest pilot_lean_full.csv --outdir structures   # 구조만 받으면 됨
-python prep_targets.py     --csv pilot_lean_full.csv --struct structures --outdir targets
-bash make_msa.sh                                                                  # MSA·사다리 → /mnt/data
-bash run_sweep.sh boltz 11                                                       # pose → /mnt/data
+python scripts/prep_fetch_structures.py --manifest pilot_lean_full.csv --outdir structures   # 구조만 받으면 됨
+python scripts/prep_targets.py     --csv pilot_lean_full.csv --struct structures --outdir targets
+bash scripts/make_msa.sh                                                                  # MSA·사다리 → /mnt/data
+bash scripts/run_sweep.sh boltz 11                                                       # pose → /mnt/data
 ```
 
 ## 원천 URL·참조
